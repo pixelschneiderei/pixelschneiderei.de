@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="theme-color" content="#f0f3ed" />
+<title>Atmen · Yoga &amp; Pilates Studio (Demo)</title>
+<meta name="description" content="Demo: Yoga-Studio Atmen. Beispielauftritt der Pixelschneiderei für ein Studio." />
+<meta name="robots" content="noindex, nofollow" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23f0f3ed'/%3E%3Ccircle cx='16' cy='16' r='10' fill='none' stroke='%233a544a' stroke-width='1.5'/%3E%3Ccircle cx='16' cy='16' r='5' fill='%233a544a'/%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  :root{
+    --paper: #f0f3ed;
+    --paper-2: #e2e9dd;
+    --cream: #fafbf8;
+    --ink: #1a2520;
+    --ink-soft: #364840;
+    --muted: #6b7d72;
+    --moss: #5b7868;
+    --moss-deep: #3a544a;
+    --line: #cdd6c8;
+    --serif: 'Cormorant Garamond', serif;
+    --sans: 'Inter', sans-serif;
+    --ease: cubic-bezier(.2,.7,.2,1);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{ background: var(--paper); color: var(--ink); font-family: var(--sans); line-height: 1.7; -webkit-font-smoothing: antialiased;}
+  a{color:inherit; text-decoration:none}
+  img,svg{display:block; max-width:100%}
+
+  .demo-banner{ background: var(--moss-deep); color: var(--cream); text-align:center; padding: 10px 16px; font-size: .76rem; letter-spacing: .12em; text-transform: uppercase;}
+  .demo-banner a{ text-decoration: underline; text-underline-offset: 3px;}
+  .container{ max-width: 1180px; margin: 0 auto; padding: 0 24px;}
+
+  /* NAV */
+  .nav{ position: sticky; top: 0; z-index: 50; background: rgba(240,243,237,.92); backdrop-filter: blur(12px); border-bottom: 1px solid transparent; transition: border-color .3s var(--ease);}
+  .nav.is-scrolled{ border-color: var(--line);}
+  .nav-row{ display:flex; align-items:center; justify-content: space-between; height: 76px;}
+  .brand{ font-family: var(--serif); font-size: 1.6rem; display:flex; align-items:center; gap: 10px; font-weight: 400; letter-spacing: 0.04em;}
+  .brand-mark{ width: 24px; height: 24px; border: 1.5px solid var(--moss-deep); border-radius: 50%; position: relative;}
+  .brand-mark::before{ content:""; width: 8px; height: 8px; background: var(--moss-deep); border-radius: 50%; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);}
+  .brand em{ font-style: italic; color: var(--moss-deep); font-weight: 400;}
+  .nav-links{ display:flex; gap: 32px; font-size: .95rem; color: var(--ink-soft);}
+  .nav-links a:hover{ color: var(--moss-deep);}
+  .nav-cta{ padding: 10px 22px; background: var(--moss-deep); color: var(--cream); border-radius: 999px; font-size: .9rem; font-weight: 500; transition: background .25s var(--ease), transform .25s var(--ease);}
+  .nav-cta:hover{ background: var(--moss); transform: translateY(-1px);}
+  @media (max-width: 720px){ .nav-links{ display:none;}}
+
+  /* HERO */
+  .hero{ padding: 120px 0; position: relative; overflow: hidden; text-align: center;}
+  .hero-eyebrow{ font-size: .8rem; letter-spacing: .24em; text-transform: uppercase; color: var(--moss-deep); margin-bottom: 32px; font-weight: 500;}
+  .hero h1{ font-family: var(--serif); font-weight: 300; font-size: clamp(3rem, 8vw, 6.5rem); line-height: 1; letter-spacing: -0.01em;}
+  .hero h1 em{ font-style: italic; color: var(--moss-deep); font-weight: 300;}
+  .hero p.lede{ margin: 32px auto 0; font-size: 1.2rem; color: var(--ink-soft); max-width: 50ch;}
+  .hero-actions{ margin-top: 48px; display:flex; gap: 14px; flex-wrap: wrap; justify-content: center;}
+  .btn{ display:inline-flex; align-items:center; gap: 10px; padding: 14px 32px; border-radius: 999px; font-weight: 500; font-size: 1rem; transition: transform .25s var(--ease), background .25s var(--ease);}
+  .btn-primary{ background: var(--moss-deep); color: var(--cream);}
+  .btn-primary:hover{ background: var(--moss); transform: translateY(-2px);}
+  .btn-ghost{ border: 1px solid var(--moss-deep); color: var(--moss-deep);}
+  .btn-ghost:hover{ background: var(--moss-deep); color: var(--cream); transform: translateY(-2px);}
+
+  /* concentric circles bg */
+  .hero-bg{ position: absolute; inset: 0; pointer-events: none; opacity: .6;}
+  .hero-bg svg{ width: 100%; height: 100%;}
+
+  /* THREE PILLARS */
+  .pillars{ padding: 96px 0; background: var(--cream); border-block: 1px solid var(--line);}
+  .pillars-head{ text-align: center; margin-bottom: 64px;}
+  .section-eyebrow{ font-size: .8rem; letter-spacing: .24em; text-transform: uppercase; color: var(--moss-deep); margin-bottom: 16px; font-weight: 500;}
+  h2{ font-family: var(--serif); font-weight: 400; font-size: clamp(2.2rem, 5vw, 4rem); line-height: 1.05; letter-spacing: -0.005em;}
+  h2 em{ font-style: italic; color: var(--moss-deep);}
+  .pillars-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 32px; text-align: center;}
+  @media (max-width: 720px){ .pillars-grid{ grid-template-columns: 1fr;}}
+  .pillar h3{ font-family: var(--serif); font-size: 1.6rem; margin: 24px 0 12px; font-style: italic; color: var(--moss-deep); font-weight: 400;}
+  .pillar p{ color: var(--ink-soft);}
+  .pillar-num{ font-family: var(--serif); font-style: italic; font-size: 2rem; color: var(--moss); display:block;}
+
+  /* SCHEDULE */
+  .schedule{ padding: 96px 0;}
+  .schedule-head{ text-align: center; margin-bottom: 64px;}
+  .table{ width: 100%; border-collapse: collapse; max-width: 880px; margin: 0 auto;}
+  .table th, .table td{ padding: 18px 20px; text-align: left; border-bottom: 1px solid var(--line); font-size: .96rem;}
+  .table th{ font-family: var(--sans); font-size: .76rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); font-weight: 500;}
+  .table td strong{ font-family: var(--serif); font-size: 1.15rem; color: var(--moss-deep); font-weight: 500; display:block;}
+  .table td em{ font-size: .85rem; color: var(--muted); font-style: italic;}
+  .badge{ display:inline-block; padding: 3px 10px; background: var(--paper-2); color: var(--moss-deep); border-radius: 999px; font-size: .76rem; font-weight: 500;}
+
+  /* TEACHERS */
+  .teachers{ padding: 96px 0; background: var(--paper-2);}
+  .teachers-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 32px;}
+  @media (max-width: 880px){ .teachers-grid{ grid-template-columns: 1fr; max-width: 480px; margin: 0 auto;}}
+  .teacher{ text-align: center;}
+  .teacher-photo{ width: 100%; aspect-ratio: 1; border-radius: 50%; margin-bottom: 24px; background: linear-gradient(135deg, #b9c8b3, #5b7868);}
+  .teacher h3{ font-family: var(--serif); font-size: 1.5rem; font-style: italic; color: var(--moss-deep); margin-bottom: 6px;}
+  .teacher span{ color: var(--muted); font-size: .9rem; letter-spacing: .04em;}
+
+  /* CTA */
+  .booking{ padding: 96px 24px; background: var(--moss-deep); color: var(--cream); text-align: center;}
+  .booking h2{ color: var(--cream);}
+  .booking h2 em{ color: var(--paper-2);}
+  .booking p{ margin: 24px auto 0; max-width: 50ch; color: rgba(250,251,248,.85);}
+  .booking-cta{ margin-top: 40px; display:inline-flex; gap: 14px; flex-wrap: wrap; justify-content: center;}
+  .booking .btn-primary{ background: var(--cream); color: var(--moss-deep);}
+  .booking .btn-primary:hover{ background: var(--paper-2);}
+  .booking .btn-ghost{ border-color: rgba(250,251,248,.4); color: var(--cream);}
+  .booking .btn-ghost:hover{ background: var(--cream); color: var(--moss-deep); border-color: var(--cream);}
+
+  /* FOOTER */
+  footer{ background: var(--ink); color: var(--paper-2); padding: 56px 0 32px;}
+  .foot-row{ display:grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; margin-bottom: 40px;}
+  @media (max-width: 720px){ .foot-row{ grid-template-columns: 1fr; gap: 32px;}}
+  .foot-row h4{ font-size: .8rem; letter-spacing: .14em; text-transform: uppercase; color: var(--moss); margin-bottom: 16px; font-weight: 600;}
+  .foot-row a{ display:block; color: var(--paper-2); padding: 4px 0; transition: color .2s ease;}
+  .foot-row a:hover{ color: var(--moss);}
+  .foot-row .brand-block .foot-brand{ font-family: var(--serif); font-size: 1.6rem; margin-bottom: 12px;}
+  .foot-row .brand-block .foot-brand em{ font-style: italic; color: var(--moss);}
+  .foot-bottom{ border-top: 1px solid rgba(240,243,237,.1); padding-top: 24px; text-align: center; font-size: .82rem; color: rgba(240,243,237,.5);}
+  .foot-bottom a{ color: var(--moss);}
+
+  .reveal{ opacity:0; transform: translateY(18px); transition: opacity .8s var(--ease), transform .8s var(--ease);}
+  .reveal.is-visible{ opacity:1; transform: translateY(0);}
+  @media (prefers-reduced-motion: reduce){ .reveal{ opacity:1; transform: none;} *,*::before,*::after{transition-duration: 0.001ms !important;}}
+</style>
+</head>
+<body>
+
+<div class="demo-banner">Demo · Branche: Fitness &amp; Studio &nbsp;·&nbsp; <a href="../../index.html">← zur Pixelschneiderei</a></div>
+
+<a class="demo-exit" href="../../index.html">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+  Demo verlassen
+</a>
+<style>
+  .demo-exit{ position: fixed; bottom: 24px; left: 24px; z-index: 100; display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; background: rgba(20,20,22,.92); color: #fff; border-radius: 999px; font-family: 'Inter', sans-serif; font-size: .82rem; font-weight: 500; letter-spacing: .04em; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,.1); box-shadow: 0 6px 20px rgba(0,0,0,.25); transition: transform .2s ease, background .2s ease; text-decoration: none;}
+  .demo-exit:hover{ transform: translateY(-2px); background: #b8392a;}
+  .demo-exit svg{ width: 14px; height: 14px;}
+  @media (max-width: 720px){ .demo-exit{ bottom: 16px; left: 16px; padding: 8px 14px; font-size: .78rem;}}
+</style>
+
+<header class="nav" id="nav">
+  <div class="container nav-row">
+    <a href="#top" class="brand"><span class="brand-mark"></span><em>Atmen</em> · Studio</a>
+    <nav class="nav-links">
+      <a href="#philosophie">Philosophie</a>
+      <a href="#stundenplan">Stundenplan</a>
+      <a href="#lehrer">Lehrer:innen</a>
+      <a href="#buchen">Buchen</a>
+    </nav>
+    <a href="#buchen" class="nav-cta">Probestunde →</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="hero-bg">
+      <svg viewBox="0 0 1400 800" preserveAspectRatio="xMidYMid slice">
+        <g fill="none" stroke="#5b7868" stroke-width="1" opacity=".35">
+          <circle cx="700" cy="400" r="80"/>
+          <circle cx="700" cy="400" r="160"/>
+          <circle cx="700" cy="400" r="240"/>
+          <circle cx="700" cy="400" r="320"/>
+          <circle cx="700" cy="400" r="400"/>
+          <circle cx="700" cy="400" r="480"/>
+          <circle cx="700" cy="400" r="560"/>
+        </g>
+      </svg>
+    </div>
+    <div class="container" style="position: relative;">
+      <div class="hero-eyebrow reveal">Yoga · Pilates · Atemarbeit</div>
+      <h1 class="reveal">Ankommen.<br/><em>Atmen.</em><br/>Bewegen.</h1>
+      <p class="lede reveal">
+        Ein kleines Studio mit großen Fenstern, ehrlichem Unterricht und
+        viel Platz für das, was wirklich zählt: Sie selbst.
+      </p>
+      <div class="hero-actions reveal">
+        <a class="btn btn-primary" href="#buchen">Probestunde buchen</a>
+        <a class="btn btn-ghost" href="#stundenplan">Stundenplan</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="pillars" id="philosophie">
+    <div class="container">
+      <div class="pillars-head reveal">
+        <div class="section-eyebrow">Unsere Philosophie</div>
+        <h2>Drei <em>Säulen.</em></h2>
+      </div>
+      <div class="pillars-grid">
+        <div class="pillar reveal">
+          <span class="pillar-num">i.</span>
+          <h3>Aufmerksamkeit</h3>
+          <p>Bewegung beginnt mit dem Wahrnehmen. Wir nehmen uns Zeit, bevor wir loslegen.</p>
+        </div>
+        <div class="pillar reveal">
+          <span class="pillar-num">ii.</span>
+          <h3>Ehrlichkeit</h3>
+          <p>Kein Wettbewerb. Keine perfekte Pose. Nur das, was Ihrem Körper heute gut tut.</p>
+        </div>
+        <div class="pillar reveal">
+          <span class="pillar-num">iii.</span>
+          <h3>Atem</h3>
+          <p>Jede Stunde fängt mit ihm an und endet mit ihm. Das Geländer der Praxis.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="schedule" id="stundenplan">
+    <div class="container">
+      <div class="schedule-head reveal">
+        <div class="section-eyebrow">Stundenplan</div>
+        <h2>Diese <em>Woche.</em></h2>
+      </div>
+      <div class="reveal">
+        <table class="table">
+          <thead><tr><th>Tag &amp; Zeit</th><th>Stunde</th><th>Lehrer:in</th><th>Stil</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Mo · 7:30</strong><em>60 Min.</em></td><td>Morgen-Yoga · sanft</td><td>Lina</td><td><span class="badge">Hatha</span></td></tr>
+            <tr><td><strong>Di · 18:30</strong><em>75 Min.</em></td><td>Vinyasa Flow</td><td>Jonas</td><td><span class="badge">Vinyasa</span></td></tr>
+            <tr><td><strong>Mi · 19:00</strong><em>60 Min.</em></td><td>Pilates Mat</td><td>Mira</td><td><span class="badge">Pilates</span></td></tr>
+            <tr><td><strong>Do · 7:30</strong><em>45 Min.</em></td><td>Atem &amp; Meditation</td><td>Lina</td><td><span class="badge">Pranayama</span></td></tr>
+            <tr><td><strong>Fr · 18:00</strong><em>75 Min.</em></td><td>Yin Yoga</td><td>Jonas</td><td><span class="badge">Yin</span></td></tr>
+            <tr><td><strong>Sa · 9:30</strong><em>90 Min.</em></td><td>Slow Flow &amp; Tee</td><td>Mira</td><td><span class="badge">Mixed</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="teachers" id="lehrer">
+    <div class="container">
+      <div class="schedule-head reveal">
+        <div class="section-eyebrow">Lehrer:innen</div>
+        <h2>Die <em>Stimmen</em><br/>im Raum.</h2>
+      </div>
+      <div class="teachers-grid">
+        <div class="teacher reveal">
+          <div class="teacher-photo"></div>
+          <h3>Lina</h3>
+          <span>Hatha · Pranayama</span>
+        </div>
+        <div class="teacher reveal">
+          <div class="teacher-photo" style="background: linear-gradient(135deg, #d2dcc8, #6d8a78);"></div>
+          <h3>Jonas</h3>
+          <span>Vinyasa · Yin</span>
+        </div>
+        <div class="teacher reveal">
+          <div class="teacher-photo" style="background: linear-gradient(135deg, #c0d2b9, #4a6557);"></div>
+          <h3>Mira</h3>
+          <span>Pilates · Mixed</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="booking" id="buchen">
+    <div class="reveal">
+      <div class="section-eyebrow" style="color: var(--paper-2);">Buchen</div>
+      <h2>Erste Stunde<br/>auf <em>uns.</em></h2>
+      <p>
+        Eine Probestunde – kostenfrei, ohne Vertragsbindung. Bringen Sie nur sich
+        selbst mit (Matte und Wasser stellen wir).
+      </p>
+      <div class="booking-cta">
+        <a class="btn btn-primary" href="#">Termin reservieren</a>
+        <a class="btn btn-ghost" href="mailto:hallo@atmen-demo.example">Per E-Mail anfragen</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="foot-row">
+      <div class="brand-block">
+        <div class="foot-brand">Studio <em>Atmen</em></div>
+        <p>Yoga, Pilates, Atemarbeit — kleines Studio mit ehrlichem Unterricht.</p>
+      </div>
+      <div>
+        <h4>Studio</h4>
+        <a href="#philosophie">Philosophie</a>
+        <a href="#stundenplan">Stundenplan</a>
+        <a href="#lehrer">Lehrer:innen</a>
+        <a href="#buchen">Buchen</a>
+      </div>
+      <div>
+        <h4>Demo-Hinweise</h4>
+        <a href="../../index.html">← Pixelschneiderei</a>
+        <a href="../../referenzen.html">Weitere Demos</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      Demo · Studio Atmen ist ein fiktiver Beispielauftritt der <a href="../../index.html">Pixelschneiderei</a>.
+    </div>
+  </div>
+</footer>
+
+<script>
+  var nav = document.getElementById('nav');
+  if (nav){
+    var onScroll = function(){ nav.classList.toggle('is-scrolled', window.scrollY > 8); };
+    window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if (e.isIntersecting){ e.target.classList.add('is-visible'); io.unobserve(e.target);}});
+  }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+</script>
+
+</body>
+</html>

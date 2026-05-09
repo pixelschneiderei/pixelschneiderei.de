@@ -1,0 +1,601 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="theme-color" content="#ffffff" />
+<title>Pixelakademie – Online lernen, pixelgenau (Demo)</title>
+<meta name="description" content="Demo: Pixelakademie – Online-Kurse als scrollbare Präsentation. Beispielauftritt der Pixelschneiderei für eine Bildungs-Plattform." />
+<meta name="robots" content="noindex, nofollow" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23ffffff'/%3E%3Cpath d='M6 22 L16 8 L26 22 Z' fill='none' stroke='%23295a8c' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='2' fill='%23295a8c'/%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..700,30..100&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root{
+    --paper: #ffffff;
+    --paper-2: #f5f7fa;
+    --paper-3: #e8edf3;
+    --ink: #0d1320;
+    --ink-soft: #2a3447;
+    --muted: #6c7588;
+    --blue: #4779b8;
+    --blue-deep: #295a8c;
+    --line: #e1e6ee;
+    --accent: #f5b95c;
+    --serif: 'Fraunces', serif;
+    --sans: 'Inter', sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+    --ease: cubic-bezier(.2,.7,.2,1);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{ background: var(--paper); color: var(--ink); font-family: var(--sans); line-height: 1.6; -webkit-font-smoothing: antialiased;}
+  a{color:inherit; text-decoration:none}
+  img,svg{display:block; max-width:100%}
+
+  .demo-banner{ background: var(--blue-deep); color: #fff; text-align:center; padding: 10px 16px; font-size: .76rem; letter-spacing: .12em; text-transform: uppercase;}
+  .demo-banner a{ text-decoration: underline; text-underline-offset: 3px;}
+
+  .container{ max-width: 1180px; margin: 0 auto; padding: 0 24px;}
+
+  .nav{ position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,.92); backdrop-filter: blur(12px); border-bottom: 1px solid transparent; transition: border-color .3s var(--ease);}
+  .nav.is-scrolled{ border-color: var(--line);}
+  .nav-row{ display:flex; align-items:center; justify-content: space-between; height: 76px;}
+  .brand{ font-family: var(--serif); font-size: 1.5rem; display:flex; align-items:center; gap: 10px;}
+  .brand-mark{ width: 26px; height: 26px; position: relative;}
+  .brand-mark::before{ content:""; position: absolute; inset: 0; border: 2px solid var(--blue-deep); clip-path: polygon(50% 10%, 95% 90%, 5% 90%);}
+  .brand-mark::after{ content:""; position: absolute; left: 50%; top: 60%; transform: translate(-50%, -50%); width: 4px; height: 4px; background: var(--blue-deep); border-radius: 50%;}
+  .brand em{ color: var(--blue-deep); font-style: italic;}
+  .nav-links{ display:flex; gap: 32px; font-size: .95rem; color: var(--ink-soft);}
+  .nav-links a:hover{ color: var(--blue-deep);}
+  .nav-cta{ padding: 10px 22px; background: var(--blue-deep); color: #fff; border-radius: 8px; font-size: .9rem; font-weight: 500;}
+  .nav-cta:hover{ background: var(--blue);}
+  @media (max-width: 720px){ .nav-links{ display:none;}}
+
+  .hero{
+    padding: 96px 0;
+    background:
+      radial-gradient(800px 400px at 20% 0%, rgba(245,185,92,.12), transparent 60%),
+      radial-gradient(700px 400px at 90% 30%, rgba(41,90,140,.06), transparent 60%);
+  }
+  .hero-grid{ display:grid; grid-template-columns: 1.1fr 1fr; gap: 64px; align-items: center;}
+  @media (max-width: 880px){ .hero-grid{ grid-template-columns: 1fr;}}
+  .eyebrow{ font-family: var(--mono); font-size: .76rem; letter-spacing: .2em; text-transform: uppercase; color: var(--blue-deep); margin-bottom: 24px;}
+  .hero h1{ font-family: var(--serif); font-weight: 400; font-size: clamp(2.6rem, 6vw, 5rem); line-height: 1.05; letter-spacing: -0.02em;}
+  .hero h1 em{ font-style: italic; color: var(--blue-deep); font-weight: 300;}
+  .hero p.lede{ margin-top: 28px; font-size: 1.15rem; color: var(--ink-soft); max-width: 50ch;}
+  .hero-actions{ margin-top: 36px; display:flex; gap: 14px; flex-wrap: wrap;}
+  .btn{ display:inline-flex; align-items:center; gap: 10px; padding: 14px 28px; border-radius: 999px; font-weight: 500; font-size: 1rem; transition: transform .25s var(--ease), background .25s var(--ease);}
+  .btn-primary{ background: var(--ink); color: var(--paper);}
+  .btn-primary:hover{ background: var(--blue-deep); transform: translateY(-2px);}
+  .btn-ghost{ border: 1px solid var(--line); color: var(--ink); background: var(--paper);}
+  .btn-ghost:hover{ border-color: var(--blue-deep); color: var(--blue-deep); transform: translateY(-2px);}
+
+  .hero-art{
+    aspect-ratio: 1.1/1; border-radius: 16px;
+    background: var(--paper-2);
+    border: 1px solid var(--line);
+    padding: 32px;
+    display:flex; flex-direction: column; justify-content: space-between;
+    box-shadow: 0 12px 40px rgba(13,19,32,.06);
+    position: relative; overflow: hidden;
+  }
+  .hero-art::before{
+    content:""; position:absolute; inset:0;
+    background-image:
+      linear-gradient(to right, rgba(13,19,32,.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(13,19,32,.04) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+  .demo-window-bar{ display:flex; gap: 6px; position: relative;}
+  .demo-window-bar i{ width: 10px; height: 10px; border-radius: 50%; background: var(--line);}
+  .demo-window-bar i:nth-child(1){ background: #f87171;}
+  .demo-window-bar i:nth-child(2){ background: var(--accent);}
+  .demo-window-bar i:nth-child(3){ background: #6ec77a;}
+  .demo-content{ position: relative;}
+  .demo-content h2{ font-family: var(--serif); font-size: clamp(1.3rem, 2.5vw, 2rem); font-weight: 400; letter-spacing: -0.01em;}
+  .demo-content h2 em{ font-style: italic; color: var(--blue-deep);}
+  .demo-content p{ color: var(--ink-soft); margin-top: 12px; font-size: .92rem;}
+  .demo-progress{ position: relative; margin-top: 18px;}
+  .demo-progress-bar{ height: 4px; background: var(--paper-3); border-radius: 999px; overflow: hidden;}
+  .demo-progress-bar i{ display:block; width: 38%; height: 100%; background: var(--blue-deep); border-radius: 999px;}
+  .demo-progress span{ display:block; margin-top: 8px; font-family: var(--mono); font-size: .72rem; color: var(--muted); letter-spacing: .12em; text-transform: uppercase;}
+
+  section{ padding: 96px 0;}
+
+  .features{ background: var(--paper-2); border-block: 1px solid var(--line);}
+  .features-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 28px;}
+  @media (max-width: 880px){ .features-grid{ grid-template-columns: 1fr;}}
+  .feat{
+    background: var(--paper); padding: 32px;
+    border: 1px solid var(--line); border-radius: 16px;
+  }
+  .feat-icon{ width: 44px; height: 44px; border-radius: 12px; background: var(--paper-2); color: var(--blue-deep); display:grid; place-items: center; margin-bottom: 18px;}
+  .feat-icon svg{ width: 22px; height: 22px;}
+  .feat h3{ font-family: var(--serif); font-size: 1.4rem; margin-bottom: 10px;}
+  .feat p{ color: var(--ink-soft); font-size: .94rem;}
+
+  h2.title{ font-family: var(--serif); font-weight: 400; font-size: clamp(2.2rem, 4.5vw, 3.4rem); line-height: 1.05; letter-spacing: -0.01em;}
+  h2.title em{ font-style: italic; color: var(--blue-deep);}
+  .head-center{ text-align: center; margin: 0 auto 56px; max-width: 60ch;}
+
+  .courses{
+    display:grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+  }
+  @media (max-width: 980px){ .courses{ grid-template-columns: repeat(2, 1fr);}}
+  @media (max-width: 580px){ .courses{ grid-template-columns: 1fr;}}
+  .course{
+    border: 1px solid var(--line); border-radius: 16px;
+    overflow: hidden;
+    transition: transform .25s var(--ease), border-color .25s var(--ease), box-shadow .25s var(--ease);
+    display:flex; flex-direction: column;
+  }
+  .course:hover{ transform: translateY(-4px); border-color: var(--blue-deep); box-shadow: 0 12px 32px rgba(13,19,32,.08);}
+  .course-thumb{ aspect-ratio: 16/10; background: linear-gradient(135deg, var(--blue), var(--blue-deep)); position: relative; overflow: hidden;}
+  .course:nth-child(2) .course-thumb{ background: linear-gradient(135deg, #f5b95c, #c8862c);}
+  .course:nth-child(3) .course-thumb{ background: linear-gradient(135deg, #6ec77a, #2c7d49);}
+  .course:nth-child(4) .course-thumb{ background: linear-gradient(135deg, #c97c5a, #5b2f1c);}
+  .course:nth-child(5) .course-thumb{ background: linear-gradient(135deg, #b88dd8, #5b3a8c);}
+  .course:nth-child(6) .course-thumb{ background: linear-gradient(135deg, #4779b8, #1f3a5b);}
+  .course-thumb svg{ position: absolute; inset: 0; width: 100%; height: 100%; opacity: .5;}
+  .course-body{ padding: 22px 26px 24px; display:flex; flex-direction: column; flex: 1;}
+  .course-meta{ font-family: var(--mono); font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px;}
+  .course h3{ font-family: var(--serif); font-size: 1.35rem; line-height: 1.15; margin-bottom: 8px;}
+  .course p{ color: var(--ink-soft); font-size: .92rem; flex: 1;}
+  .course-foot{ display:flex; justify-content: space-between; align-items: center; margin-top: 16px; padding-top: 14px; border-top: 1px dashed var(--line);}
+  .course-foot small{ font-family: var(--mono); font-size: .76rem; color: var(--muted);}
+  .course-foot a{ color: var(--blue-deep); font-weight: 500; font-size: .92rem;}
+
+  /* Featured course (presentation-style) */
+  .featured{ background: var(--ink); color: var(--paper); padding: 96px 0;}
+  .featured h2.title{ color: var(--paper);}
+  .featured h2.title em{ color: var(--accent);}
+  .featured .head-center p{ color: rgba(255,255,255,.7); margin-top: 20px;}
+
+  .preso{
+    margin-top: 48px;
+    background: var(--paper); color: var(--ink);
+    border-radius: 18px; overflow: hidden;
+    box-shadow: 0 24px 64px rgba(0,0,0,.4);
+  }
+  .preso-bar{
+    background: var(--paper-2); padding: 14px 18px;
+    display:flex; align-items: center; gap: 14px;
+    border-bottom: 1px solid var(--line);
+  }
+  .preso-dots{ display:flex; gap: 6px;}
+  .preso-dots i{ width: 10px; height: 10px; border-radius: 50%; background: var(--line);}
+  .preso-dots i:nth-child(1){ background: #f87171;}
+  .preso-dots i:nth-child(2){ background: var(--accent);}
+  .preso-dots i:nth-child(3){ background: #6ec77a;}
+  .preso-url{ flex: 1; padding: 6px 14px; background: var(--paper); border: 1px solid var(--line); border-radius: 8px; font-family: var(--mono); font-size: .82rem; color: var(--muted);}
+
+  .preso-grid{ display:grid; grid-template-columns: 280px 1fr; min-height: 420px;}
+  @media (max-width: 720px){ .preso-grid{ grid-template-columns: 1fr;}}
+  .chapters{ background: var(--paper-2); padding: 24px; border-right: 1px solid var(--line);}
+  @media (max-width: 720px){ .chapters{ border-right: 0; border-bottom: 1px solid var(--line);}}
+  .chapters h4{ font-family: var(--mono); font-size: .76rem; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; font-weight: 500;}
+  .chapters ol{ list-style: none; padding: 0; counter-reset: chap;}
+  .chapters li{
+    padding: 10px 12px; border-radius: 8px;
+    cursor: pointer; counter-increment: chap;
+    color: var(--ink-soft); font-size: .92rem;
+    transition: background .2s ease, color .2s ease;
+    display:flex; gap: 12px; align-items: center;
+  }
+  .chapters li::before{
+    content: counter(chap, decimal-leading-zero); font-family: var(--mono); font-size: .76rem; color: var(--muted);
+  }
+  .chapters li:hover{ background: var(--paper); color: var(--ink);}
+  .chapters li.is-active{ background: var(--ink); color: var(--paper);}
+  .chapters li.is-active::before{ color: var(--accent);}
+
+  .slide{ padding: 40px;}
+  .slide-meta{ font-family: var(--mono); font-size: .76rem; letter-spacing: .14em; text-transform: uppercase; color: var(--blue-deep); margin-bottom: 14px;}
+  .slide h3{ font-family: var(--serif); font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 400; line-height: 1.1; margin-bottom: 18px;}
+  .slide p{ color: var(--ink-soft); margin-bottom: 14px;}
+  .slide pre{
+    background: var(--ink); color: var(--paper);
+    padding: 16px 20px; border-radius: 10px;
+    font-family: var(--mono); font-size: .82rem; line-height: 1.55;
+    overflow-x: auto; margin: 16px 0;
+  }
+  .slide pre .c{ color: #6ec77a;}
+  .slide pre .k{ color: var(--accent);}
+  .slide-nav{ display:flex; justify-content: space-between; padding: 18px 24px; border-top: 1px solid var(--line); background: var(--paper-2);}
+  .slide-nav button{
+    padding: 8px 14px; background: transparent; border: 1px solid var(--line); border-radius: 8px;
+    cursor: pointer; font-size: .88rem; color: var(--ink); font-family: inherit;
+    transition: border-color .2s ease, color .2s ease;
+  }
+  .slide-nav button:hover{ border-color: var(--blue-deep); color: var(--blue-deep);}
+  .slide-nav .progress{ font-family: var(--mono); font-size: .76rem; color: var(--muted); align-self: center;}
+
+  /* CTA */
+  .cta{ padding: 96px 24px; text-align: center; background: var(--paper-2); border-top: 1px solid var(--line);}
+  .cta p{ margin: 24px auto 0; color: var(--ink-soft); max-width: 50ch;}
+  .cta-actions{ margin-top: 32px; display:inline-flex; gap: 14px; flex-wrap: wrap; justify-content: center;}
+
+  footer{ background: var(--ink); color: var(--paper-2); padding: 56px 0 32px;}
+  .foot-row{ display:grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; margin-bottom: 40px;}
+  @media (max-width: 720px){ .foot-row{ grid-template-columns: 1fr; gap: 32px;}}
+  .foot-row h4{ font-size: .8rem; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; font-weight: 600;}
+  .foot-row a{ display:block; color: var(--paper-2); padding: 4px 0; transition: color .2s ease;}
+  .foot-row a:hover{ color: var(--accent);}
+  .foot-row .brand-block .foot-brand{ font-family: var(--serif); font-size: 1.6rem; margin-bottom: 12px;}
+  .foot-row .brand-block .foot-brand em{ font-style: italic; color: var(--accent);}
+  .foot-bottom{ border-top: 1px solid rgba(255,255,255,.1); padding-top: 24px; text-align: center; font-size: .82rem; color: rgba(255,255,255,.5);}
+  .foot-bottom a{ color: var(--accent);}
+
+  .reveal{ opacity:0; transform: translateY(18px); transition: opacity .8s var(--ease), transform .8s var(--ease);}
+  .reveal.is-visible{ opacity:1; transform: translateY(0);}
+  @media (prefers-reduced-motion: reduce){ .reveal{ opacity:1; transform: none;} *,*::before,*::after{transition-duration: 0.001ms !important;}}
+</style>
+</head>
+<body>
+
+<div class="demo-banner">Demo · Branche: Bildung &amp; Online-Kurse &nbsp;·&nbsp; <a href="../../index.html">← zur Pixelschneiderei</a></div>
+
+<a class="demo-exit" href="../../index.html">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+  Demo verlassen
+</a>
+<style>
+  .demo-exit{ position: fixed; bottom: 24px; left: 24px; z-index: 100; display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; background: rgba(20,20,22,.92); color: #fff; border-radius: 999px; font-family: 'Inter', sans-serif; font-size: .82rem; font-weight: 500; letter-spacing: .04em; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,.1); box-shadow: 0 6px 20px rgba(0,0,0,.25); transition: transform .2s ease, background .2s ease; text-decoration: none;}
+  .demo-exit:hover{ transform: translateY(-2px); background: #b8392a;}
+  .demo-exit svg{ width: 14px; height: 14px;}
+  @media (max-width: 720px){ .demo-exit{ bottom: 16px; left: 16px; padding: 8px 14px; font-size: .78rem;}}
+</style>
+
+<header class="nav" id="nav">
+  <div class="container nav-row">
+    <a href="#top" class="brand"><span class="brand-mark"></span><em>Pixel</em>akademie</a>
+    <nav class="nav-links">
+      <a href="#kurse">Kurse</a>
+      <a href="#vorschau">Vorschau</a>
+      <a href="#anmelden">Anmelden</a>
+    </nav>
+    <a href="#anmelden" class="nav-cta">Jetzt starten →</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div>
+          <div class="eyebrow reveal">Online-Kurse · Pixelakademie</div>
+          <h1 class="reveal">Online lernen.<br/><em>Pixelgenau.</em></h1>
+          <p class="lede reveal">
+            Jeder Kurs ist eine scrollbare Präsentation – durchdacht aufgebaut,
+            ohne Login-Wahn, ohne Tracking-Hagel. Lernen wie es sich gehört.
+          </p>
+          <div class="hero-actions reveal">
+            <a class="btn btn-primary" href="#kurse">Kurse ansehen</a>
+            <a class="btn btn-ghost" href="#vorschau">Vorschau öffnen</a>
+          </div>
+        </div>
+        <div class="hero-art reveal">
+          <div class="demo-window-bar"><i></i><i></i><i></i></div>
+          <div class="demo-content">
+            <div class="eyebrow" style="margin-bottom: 12px;">Kapitel 03 · 12</div>
+            <h2>Warum sich gutes Design <em>trauen</em> traut.</h2>
+            <p>Ein Kurs in zwölf Kapiteln. Jedes vierzig Minuten lang. Mit Praxis-Aufgaben, Code-Beispielen und einem ehrlichen Lese-Ende.</p>
+            <div class="demo-progress">
+              <div class="demo-progress-bar"><i></i></div>
+              <span>Fortschritt · 38 %</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="features">
+    <div class="container">
+      <div class="head-center reveal">
+        <div class="eyebrow" style="justify-content: center;">Warum diese Akademie</div>
+        <h2 class="title">Kein Pflichtprogramm.<br/><em>Echte</em> Vermittlung.</h2>
+      </div>
+      <div class="features-grid">
+        <div class="feat reveal">
+          <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
+          <h3>Kurse als Webseite</h3>
+          <p>Statt PDFs und Login-Portalen: scrollbare Kurse, die wie eine gut gemachte Webseite funktionieren – auf jedem Gerät.</p>
+        </div>
+        <div class="feat reveal">
+          <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+          <h3>Im eigenen Tempo</h3>
+          <p>Kein Cohort-Druck, keine Live-Calls um 19 Uhr. Lesen, pausieren, weiterlesen – Fortschritt wird sauber gespeichert.</p>
+        </div>
+        <div class="feat reveal">
+          <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><path d="M21 12c0 4.9-3.5 9-8 9.9C8.5 21 5 16.9 5 12V6l8-4 8 4v6z"/></svg></div>
+          <h3>Praxisnah, nicht klatschig</h3>
+          <p>Aufgaben, Code-Snippets und Vorlagen, die Sie wirklich verwenden – nicht nur „Quizfragen am Ende des Kapitels".</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="kurse">
+    <div class="container">
+      <div class="head-center reveal">
+        <div class="eyebrow" style="justify-content: center;">Kurs-Katalog</div>
+        <h2 class="title">Sechs Kurse. <em>Eines</em> Konzept.</h2>
+      </div>
+      <div class="courses">
+        <a class="course reveal" href="#vorschau">
+          <div class="course-thumb">
+            <svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice">
+              <g fill="#fff" opacity=".5">
+                <rect x="40" y="60" width="60" height="6"/><rect x="40" y="76" width="180" height="6"/>
+                <rect x="40" y="100" width="240" height="4"/><rect x="40" y="112" width="200" height="4"/>
+                <rect x="40" y="124" width="220" height="4"/>
+              </g>
+            </svg>
+          </div>
+          <div class="course-body">
+            <div class="course-meta">12 Kapitel · ~ 8 Std</div>
+            <h3>Webdesign-Grundlagen</h3>
+            <p>Von Typografie und Farbe bis zur ersten responsiven Seite. Für Einsteiger:innen mit Anspruch.</p>
+            <div class="course-foot"><small>Einstieg</small><a href="#vorschau">Vorschau →</a></div>
+          </div>
+        </a>
+
+        <a class="course reveal" href="#vorschau">
+          <div class="course-thumb">
+            <svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice">
+              <g fill="#fff" opacity=".55">
+                <circle cx="80" cy="100" r="36"/><circle cx="160" cy="100" r="36" opacity=".7"/><circle cx="240" cy="100" r="36" opacity=".4"/>
+              </g>
+            </svg>
+          </div>
+          <div class="course-body">
+            <div class="course-meta">8 Kapitel · ~ 5 Std</div>
+            <h3>Farb- &amp; Typo-Systeme</h3>
+            <p>Wie man Marken farb- und schriftsicher aufbaut – Tokens, Kontraste, Pairings.</p>
+            <div class="course-foot"><small>Aufbau</small><a href="#vorschau">Vorschau →</a></div>
+          </div>
+        </a>
+
+        <a class="course reveal" href="#vorschau">
+          <div class="course-thumb">
+            <svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice">
+              <g fill="none" stroke="#fff" stroke-width="2" opacity=".55">
+                <rect x="40" y="60" width="240" height="80" rx="6"/>
+                <line x1="40" y1="100" x2="280" y2="100"/>
+                <line x1="160" y1="60" x2="160" y2="140"/>
+              </g>
+            </svg>
+          </div>
+          <div class="course-body">
+            <div class="course-meta">10 Kapitel · ~ 7 Std</div>
+            <h3>Modernes CSS &amp; Layout</h3>
+            <p>Grid, Flexbox, Container Queries, fluid Typography – sauber erklärt mit Live-Beispielen.</p>
+            <div class="course-foot"><small>Praxis</small><a href="#vorschau">Vorschau →</a></div>
+          </div>
+        </a>
+
+        <a class="course reveal" href="#vorschau">
+          <div class="course-thumb">
+            <svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice">
+              <g fill="none" stroke="#fff" stroke-width="2" opacity=".55">
+                <path d="M40 140 Q80 80 120 140 T200 100 T280 140"/>
+              </g>
+            </svg>
+          </div>
+          <div class="course-body">
+            <div class="course-meta">6 Kapitel · ~ 4 Std</div>
+            <h3>Animation &amp; Bewegung</h3>
+            <p>Wann Animation hilft – und wann sie stört. Mit CSS-Transitions, Keyframes und etwas JavaScript.</p>
+            <div class="course-foot"><small>Aufbau</small><a href="#vorschau">Vorschau →</a></div>
+          </div>
+        </a>
+
+        <a class="course reveal" href="#vorschau">
+          <div class="course-thumb">
+            <svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice">
+              <g fill="#fff" opacity=".5">
+                <rect x="40" y="50" width="240" height="6"/>
+                <rect x="40" y="74" width="240" height="6"/>
+                <rect x="40" y="98" width="180" height="6"/>
+                <rect x="40" y="122" width="240" height="6"/>
+              </g>
+            </svg>
+          </div>
+          <div class="course-body">
+            <div class="course-meta">9 Kapitel · ~ 6 Std</div>
+            <h3>SEO ohne Hokuspokus</h3>
+            <p>Saubere Strukturen, Meta-Daten, strukturierte Daten – ehrliches SEO ohne Wundermittel.</p>
+            <div class="course-foot"><small>Praxis</small><a href="#vorschau">Vorschau →</a></div>
+          </div>
+        </a>
+
+        <a class="course reveal" href="#vorschau">
+          <div class="course-thumb">
+            <svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice">
+              <g fill="none" stroke="#fff" stroke-width="2" opacity=".55">
+                <path d="M50 100 L130 50 L210 100 L290 50"/>
+                <circle cx="50" cy="100" r="6" fill="#fff"/>
+                <circle cx="130" cy="50" r="6" fill="#fff"/>
+                <circle cx="210" cy="100" r="6" fill="#fff"/>
+                <circle cx="290" cy="50" r="6" fill="#fff"/>
+              </g>
+            </svg>
+          </div>
+          <div class="course-body">
+            <div class="course-meta">7 Kapitel · ~ 5 Std</div>
+            <h3>Barrierefreiheit von Anfang an</h3>
+            <p>Semantik, Kontrast, Tastatur, Screenreader – Webseiten, die wirklich für alle funktionieren.</p>
+            <div class="course-foot"><small>Aufbau</small><a href="#vorschau">Vorschau →</a></div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="featured" id="vorschau">
+    <div class="container">
+      <div class="head-center reveal">
+        <div class="eyebrow" style="color: var(--accent); justify-content: center;">Live-Vorschau</div>
+        <h2 class="title">So sieht ein Kurs <em>aus.</em></h2>
+        <p>Eine Präsentation als Webseite – navigierbar mit Pfeiltasten oder Klicks. Inhalte sind echt, kein Lorem.</p>
+      </div>
+
+      <div class="preso reveal">
+        <div class="preso-bar">
+          <div class="preso-dots"><i></i><i></i><i></i></div>
+          <div class="preso-url">akademie.demo / kurs / webdesign-grundlagen</div>
+        </div>
+        <div class="preso-grid">
+          <aside class="chapters">
+            <h4>Kapitel</h4>
+            <ol id="chapters">
+              <li>Was eine Webseite leistet</li>
+              <li>Die Bühne: Typografie</li>
+              <li class="is-active">Farben mit Bedeutung</li>
+              <li>Kontrast &amp; Lesbarkeit</li>
+              <li>Layout-Grundlagen</li>
+              <li>Mobile zuerst</li>
+              <li>Bildwelten finden</li>
+              <li>Praxisaufgabe: Erste Seite</li>
+            </ol>
+          </aside>
+          <div>
+            <div class="slide" id="slide">
+              <div class="slide-meta" id="slide-meta">Kapitel 03 · Farben mit Bedeutung</div>
+              <h3 id="slide-title">Eine Farbe ist nie nur eine Farbe.</h3>
+              <p id="slide-body-1">Farben transportieren Stimmung, lenken Aufmerksamkeit und tragen Marken-Identität. In diesem Kapitel lernen Sie, ein Farb-System zu bauen, das robust ist – auch wenn es mal lebhaft wird.</p>
+              <p id="slide-body-2">Statt einzelne Hex-Werte zu jagen, definieren wir Tokens. Diese werden als CSS-Variablen exportiert und sind in jedem Stylesheet verfügbar.</p>
+              <pre><span class="c">/* Beispiel: Farb-Tokens als CSS-Variablen */</span>
+<span class="k">:root</span> {
+  <span class="k">--color-ink</span>:    #0d1320;
+  <span class="k">--color-paper</span>:  #ffffff;
+  <span class="k">--color-accent</span>: #295a8c;
+}</pre>
+            </div>
+            <div class="slide-nav">
+              <button id="prev">← Zurück</button>
+              <span class="progress" id="progress">3 von 8</span>
+              <button id="next">Weiter →</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta" id="anmelden">
+    <div class="reveal">
+      <div class="eyebrow" style="justify-content: center;">Newsletter</div>
+      <h2 class="title">Eingeladen, wenn der nächste<br/>Kurs <em>fertig</em> ist.</h2>
+      <p>Kein Spam. Kein Tracking. Nur eine kurze Mail, wenn etwas Neues bereit ist – und ein freier Probekurs zum Einstieg.</p>
+      <div class="cta-actions">
+        <a class="btn btn-primary" href="#">Probekurs starten</a>
+        <a class="btn btn-ghost" href="#">Mich erinnern</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="foot-row">
+      <div class="brand-block">
+        <div class="foot-brand"><em>Pixel</em>akademie</div>
+        <p>Online-Kurse als scrollbare Webseiten. Praxisnah, im eigenen Tempo, ohne Pflichtprogramm.</p>
+      </div>
+      <div>
+        <h4>Akademie</h4>
+        <a href="#kurse">Kurse</a>
+        <a href="#vorschau">Vorschau</a>
+        <a href="#anmelden">Anmelden</a>
+      </div>
+      <div>
+        <h4>Demo-Hinweise</h4>
+        <a href="../../index.html">← Pixelschneiderei</a>
+        <a href="../../referenzen.html">Weitere Demos</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      Demo · Pixelakademie ist ein fiktiver Beispielauftritt der <a href="../../index.html">Pixelschneiderei</a>.
+    </div>
+  </div>
+</footer>
+
+<script>
+  // nav scroll
+  var nav = document.getElementById('nav');
+  if (nav){ window.addEventListener('scroll', function(){ nav.classList.toggle('is-scrolled', window.scrollY > 8); }, {passive:true}); }
+  // reveal
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if (e.isIntersecting){ e.target.classList.add('is-visible'); io.unobserve(e.target);}});
+  }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+
+  // Slide navigation
+  var slides = [
+    {meta:'Kapitel 01 · Was eine Webseite leistet', title:'Eine Webseite ist ein Versprechen.',
+      body1:'Bevor man Pixel verschiebt, fragt man: Was soll diese Seite tun? Wer kommt hier an? Und mit welchem Gefühl gehen die Besucher:innen wieder?',
+      body2:'Diese Fragen klingen banal. Sie sind die Grundlage jeder Entscheidung.', code:''},
+    {meta:'Kapitel 02 · Die Bühne: Typografie', title:'Schrift ist 90% der Webseite.',
+      body1:'Eine Webseite besteht zu 90% aus Text. Wer Typografie nicht beherrscht, baut also 90% einer Webseite schlecht.',
+      body2:'Die gute Nachricht: Schon eine Schrift, ein Größen-System und gute Zeilenhöhen reichen für 80% guter Webseiten.', code:'/* Variable Font, eine Familie, drei Größen */\nfont-family: \'Fraunces\', serif;\nfont-variation-settings: \'opsz\' 144;'},
+    {meta:'Kapitel 03 · Farben mit Bedeutung', title:'Eine Farbe ist nie nur eine Farbe.',
+      body1:'Farben transportieren Stimmung, lenken Aufmerksamkeit und tragen Marken-Identität. In diesem Kapitel lernen Sie, ein Farb-System zu bauen, das robust ist – auch wenn es mal lebhaft wird.',
+      body2:'Statt einzelne Hex-Werte zu jagen, definieren wir Tokens. Diese werden als CSS-Variablen exportiert und sind in jedem Stylesheet verfügbar.',
+      code:'/* Beispiel: Farb-Tokens als CSS-Variablen */\n:root {\n  --color-ink:    #0d1320;\n  --color-paper:  #ffffff;\n  --color-accent: #295a8c;\n}'},
+    {meta:'Kapitel 04 · Kontrast &amp; Lesbarkeit', title:'Lesbar ist die erste Pflicht.',
+      body1:'Ein wunderschönes Design, das niemand entziffern kann, hat versagt. WCAG-Kontrastregeln helfen, einen unnachgiebigen Standard einzuhalten.',
+      body2:'Mindestens 4.5:1 für normalen Text, 3:1 für große Schrift. Keine Diskussion.', code:''},
+    {meta:'Kapitel 05 · Layout-Grundlagen', title:'Erst die Struktur, dann die Hülle.',
+      body1:'Ein gutes Layout entsteht aus den Inhalten heraus, nicht aus einem Raster, das man füllt. Skizzieren Sie zuerst auf Papier.',
+      body2:'CSS Grid und Flexbox sind die zwei Werkzeuge, die fast alles abdecken.', code:'.layout {\n  display: grid;\n  grid-template-columns: 1fr 2fr;\n  gap: 32px;\n}'},
+    {meta:'Kapitel 06 · Mobile zuerst', title:'Klein anfangen heißt sauber anfangen.',
+      body1:'Wer mit der mobilen Ansicht beginnt, trifft härtere Entscheidungen: Was ist wirklich wichtig?',
+      body2:'Diese Disziplin macht das Desktop-Layout später besser, nicht schlechter.', code:''},
+    {meta:'Kapitel 07 · Bildwelten finden', title:'Bilder sind eigene Geschichten.',
+      body1:'Stockfotos sind die schwächste Form der Bildsprache. Versuchen Sie es mit Illustration, Foto-Skizzen oder Mockups.',
+      body2:'Wenn keine Bilder verfügbar sind: Liefern Sie welche – die Pixelschneiderei zum Beispiel macht das auf Wunsch.', code:''},
+    {meta:'Kapitel 08 · Praxisaufgabe: Erste Seite', title:'Jetzt sind Sie dran.',
+      body1:'Bauen Sie eine einseitige Webseite zu einem Thema, das Sie wirklich kennen. Maximal 200 Wörter Text, eine Schrift, drei Farben.',
+      body2:'Schicken Sie das Ergebnis an die Akademie – wir geben innerhalb 48 Std Feedback.', code:''}
+  ];
+  var idx = 2; // start on chapter 3
+  var meta = document.getElementById('slide-meta');
+  var title = document.getElementById('slide-title');
+  var body1 = document.getElementById('slide-body-1');
+  var body2 = document.getElementById('slide-body-2');
+  var pre = document.querySelector('.slide pre');
+  var progress = document.getElementById('progress');
+  var chapters = document.getElementById('chapters');
+  var chapterItems = chapters.querySelectorAll('li');
+
+  function render(){
+    var s = slides[idx];
+    meta.textContent = s.meta.replace(/&amp;/g, '&');
+    title.textContent = s.title;
+    body1.textContent = s.body1;
+    body2.textContent = s.body2;
+    if (s.code){
+      pre.style.display = '';
+      pre.textContent = s.code;
+    } else {
+      pre.style.display = 'none';
+    }
+    progress.textContent = (idx+1) + ' von ' + slides.length;
+    chapterItems.forEach(function(li, i){ li.classList.toggle('is-active', i===idx); });
+  }
+  document.getElementById('next').addEventListener('click', function(){ idx = Math.min(idx+1, slides.length-1); render(); });
+  document.getElementById('prev').addEventListener('click', function(){ idx = Math.max(idx-1, 0); render(); });
+  chapterItems.forEach(function(li, i){ li.addEventListener('click', function(){ idx = i; render(); }); });
+  document.addEventListener('keydown', function(e){
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+    if (e.key === 'ArrowRight'){ idx = Math.min(idx+1, slides.length-1); render(); }
+    if (e.key === 'ArrowLeft'){ idx = Math.max(idx-1, 0); render(); }
+  });
+</script>
+</body>
+</html>

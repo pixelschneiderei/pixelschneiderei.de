@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="theme-color" content="#fef0e8" />
+<title>Café Aurora – Specialty Coffee &amp; kleine Küche (Demo)</title>
+<meta name="description" content="Demo: Café Aurora. Beispielauftritt der Pixelschneiderei für ein Café mit eigener Rösterei." />
+<meta name="robots" content="noindex, nofollow" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23fef0e8'/%3E%3Ccircle cx='16' cy='16' r='8' fill='none' stroke='%23a4452f' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='3' fill='%23a4452f'/%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  :root{
+    --paper: #fef0e8;
+    --paper-2: #fbe1d2;
+    --cream: #fff8f3;
+    --ink: #2a1414;
+    --ink-soft: #5a3026;
+    --muted: #9d6c5c;
+    --coral: #e8704c;
+    --coral-deep: #a4452f;
+    --line: #f0c8b3;
+    --serif: 'DM Serif Display', serif;
+    --sans: 'Inter', sans-serif;
+    --ease: cubic-bezier(.2,.7,.2,1);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{ background: var(--paper); color: var(--ink); font-family: var(--sans); line-height: 1.6; -webkit-font-smoothing: antialiased;}
+  a{color:inherit; text-decoration:none}
+  img,svg{display:block; max-width:100%}
+
+  .demo-banner{ background: var(--coral-deep); color: var(--cream); text-align:center; padding: 10px 16px; font-size: .76rem; letter-spacing: .12em; text-transform: uppercase;}
+  .demo-banner a{ text-decoration: underline; text-underline-offset: 3px;}
+
+  .container{ max-width: 1180px; margin: 0 auto; padding: 0 24px;}
+
+  /* NAV */
+  .nav{
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(254,240,232,.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid transparent;
+    transition: border-color .3s var(--ease);
+  }
+  .nav.is-scrolled{ border-color: var(--line);}
+  .nav-row{ display:flex; align-items:center; justify-content: space-between; height: 76px;}
+  .brand{ font-family: var(--serif); font-size: 1.5rem; display:flex; align-items:center; gap: 10px;}
+  .brand-mark{ width: 22px; height: 22px; border: 2px solid var(--coral-deep); border-radius: 50%; position: relative;}
+  .brand-mark::before{ content:""; width: 8px; height: 8px; background: var(--coral-deep); border-radius: 50%; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);}
+  .nav-links{ display:flex; gap: 32px; font-size: .95rem; color: var(--ink-soft);}
+  .nav-links a:hover{ color: var(--coral-deep);}
+  .nav-cta{ padding: 10px 22px; background: var(--coral-deep); color: var(--cream); border-radius: 999px; font-size: .9rem; font-weight: 500; transition: background .25s var(--ease), transform .25s var(--ease);}
+  .nav-cta:hover{ background: var(--coral); transform: translateY(-1px);}
+  @media (max-width: 720px){ .nav-links{ display:none;}}
+
+  /* HERO */
+  .hero{
+    padding: 80px 0 96px;
+    position: relative; overflow: hidden;
+    background:
+      radial-gradient(700px 400px at 90% 0%, rgba(232,112,76,.18), transparent 60%),
+      var(--paper);
+  }
+  .hero-grid{ display:grid; grid-template-columns: 1.2fr 1fr; gap: 64px; align-items: center;}
+  @media (max-width: 880px){ .hero-grid{ grid-template-columns: 1fr;}}
+  .hero-eyebrow{ font-size: .8rem; letter-spacing: .2em; text-transform: uppercase; color: var(--coral-deep); margin-bottom: 24px; font-weight: 500;}
+  .hero h1{ font-family: var(--serif); font-weight: 400; font-size: clamp(3rem, 7vw, 5.6rem); line-height: 1; letter-spacing: -0.02em;}
+  .hero h1 em{ font-style: italic; color: var(--coral-deep);}
+  .hero p.lede{ margin-top: 32px; font-size: 1.2rem; color: var(--ink-soft); max-width: 50ch;}
+  .hero-actions{ margin-top: 40px; display:flex; gap: 14px; flex-wrap: wrap;}
+  .btn{
+    display:inline-flex; align-items:center; gap: 10px;
+    padding: 14px 28px; border-radius: 999px;
+    font-weight: 500; font-size: 1rem;
+    transition: transform .25s var(--ease), background .25s var(--ease);
+  }
+  .btn-primary{ background: var(--coral-deep); color: var(--cream);}
+  .btn-primary:hover{ background: var(--coral); transform: translateY(-2px);}
+  .btn-ghost{ border: 1px solid var(--coral-deep); color: var(--coral-deep);}
+  .btn-ghost:hover{ background: var(--coral-deep); color: var(--cream); transform: translateY(-2px);}
+
+  .hero-art{
+    aspect-ratio: 4/5;
+    border-radius: 200px 200px 24px 24px;
+    overflow: hidden;
+    background: linear-gradient(180deg, #f8c9b0 0%, #e8704c 60%, #a4452f 100%);
+    position: relative;
+  }
+  .hero-art svg{ width: 100%; height: 100%;}
+
+  /* MENU SECTION */
+  .menu-section{ padding: 96px 0; background: var(--cream);}
+  .menu-head{ text-align: center; margin-bottom: 64px;}
+  .section-eyebrow{ font-size: .8rem; letter-spacing: .2em; text-transform: uppercase; color: var(--coral-deep); margin-bottom: 16px; font-weight: 500;}
+  h2{ font-family: var(--serif); font-weight: 400; font-size: clamp(2.2rem, 5vw, 4rem); line-height: 1.05; letter-spacing: -0.01em;}
+  h2 em{ font-style: italic; color: var(--coral-deep);}
+  .menu-grid{
+    display:grid; grid-template-columns: repeat(2, 1fr); gap: 24px;
+    max-width: 880px; margin: 0 auto;
+  }
+  @media (max-width: 720px){ .menu-grid{ grid-template-columns: 1fr;}}
+  .menu-card{
+    background: var(--paper);
+    padding: 32px;
+    border: 1px solid var(--line);
+    border-radius: 24px;
+    transition: transform .25s var(--ease), border-color .25s var(--ease);
+  }
+  .menu-card:hover{ transform: translateY(-4px); border-color: var(--coral-deep);}
+  .menu-card h3{ font-family: var(--serif); font-size: 1.6rem; margin-bottom: 16px; display:flex; justify-content: space-between; align-items: center; gap: 16px;}
+  .menu-card h3 em{ font-style: italic; color: var(--coral-deep);}
+  .menu-card .price{ font-family: var(--sans); font-size: .95rem; color: var(--ink-soft); font-weight: 500;}
+  .menu-card p{ color: var(--ink-soft); font-size: .94rem;}
+  .menu-card ul{ list-style: none; margin-top: 20px;}
+  .menu-card li{ display:flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px dashed var(--line); color: var(--ink-soft); font-size: .94rem;}
+  .menu-card li:last-child{ border-bottom: 0;}
+  .menu-card li strong{ color: var(--ink); font-weight: 500;}
+
+  /* TWO COLS */
+  .two-cols{
+    padding: 96px 0;
+    display:grid; grid-template-columns: 1fr 1fr; align-items: center;
+  }
+  @media (max-width: 880px){ .two-cols{ grid-template-columns: 1fr;}}
+  .two-cols-text{ padding: 0 56px;}
+  .two-cols-text p{ margin-top: 24px; color: var(--ink-soft); font-size: 1.05rem;}
+  .two-cols-art{ aspect-ratio: 1; background: linear-gradient(135deg, #fbd7c2, #e8704c);}
+  @media (max-width: 880px){ .two-cols-text{ padding: 32px 24px 0;} .two-cols-art{ aspect-ratio: 16/10;}}
+
+  /* HOURS */
+  .hours{
+    padding: 96px 24px; text-align: center;
+    background: var(--coral-deep); color: var(--cream);
+  }
+  .hours h2{ color: var(--cream);}
+  .hours h2 em{ color: var(--paper-2);}
+  .hours-grid{
+    display:grid; grid-template-columns: repeat(3, 1fr); gap: 32px;
+    max-width: 720px; margin: 56px auto 0;
+  }
+  @media (max-width: 720px){ .hours-grid{ grid-template-columns: 1fr;}}
+  .hours-card strong{ font-family: var(--serif); font-size: 1.4rem; display: block; margin-bottom: 8px;}
+  .hours-card span{ font-size: .95rem; color: rgba(255,248,243,.8);}
+
+  /* CONTACT */
+  .contact{ padding: 96px 0;}
+  .contact-grid{ display:grid; grid-template-columns: 1fr 1fr; gap: 64px;}
+  @media (max-width: 720px){ .contact-grid{ grid-template-columns: 1fr;}}
+  .contact p{ color: var(--ink-soft); margin-top: 16px;}
+  .contact strong{ color: var(--ink); display:block; margin-top: 24px; font-family: var(--serif); font-size: 1.2rem; font-weight: 400;}
+
+  /* WhatsApp button */
+  .wa-btn{
+    display:inline-flex; align-items: center; gap: 10px;
+    padding: 14px 24px; background: #25D366; color: #fff;
+    border-radius: 999px; font-weight: 500; font-size: .98rem;
+    transition: transform .2s ease, background .2s ease;
+  }
+  .wa-btn:hover{ background: #128C7E; transform: translateY(-2px);}
+
+  /* FOOTER */
+  footer{ background: var(--ink); color: var(--paper-2); padding: 56px 0 32px;}
+  .foot-row{ display:grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; margin-bottom: 40px;}
+  @media (max-width: 720px){ .foot-row{ grid-template-columns: 1fr; gap: 32px;}}
+  .foot-row h4{ font-size: .8rem; letter-spacing: .14em; text-transform: uppercase; color: var(--coral); margin-bottom: 16px; font-weight: 600;}
+  .foot-row a{ display:block; color: var(--paper-2); padding: 4px 0; transition: color .2s ease;}
+  .foot-row a:hover{ color: var(--coral);}
+  .foot-row .brand-block .foot-brand{ font-family: var(--serif); font-size: 1.6rem; margin-bottom: 12px;}
+  .foot-row .brand-block .foot-brand em{ font-style: italic; color: var(--coral);}
+  .foot-bottom{ border-top: 1px solid rgba(254,240,232,.1); padding-top: 24px; text-align: center; font-size: .82rem; color: rgba(254,240,232,.5);}
+  .foot-bottom a{ color: var(--coral);}
+
+  .reveal{ opacity:0; transform: translateY(18px); transition: opacity .8s var(--ease), transform .8s var(--ease);}
+  .reveal.is-visible{ opacity:1; transform: translateY(0);}
+  @media (prefers-reduced-motion: reduce){ .reveal{ opacity:1; transform: none;} *,*::before,*::after{transition-duration: 0.001ms !important;}}
+</style>
+</head>
+<body>
+
+<div class="demo-banner">Demo · Branche: Gastronomie &nbsp;·&nbsp; <a href="../../index.html">← zur Pixelschneiderei</a></div>
+
+<a class="demo-exit" href="../../index.html">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+  Demo verlassen
+</a>
+<style>
+  .demo-exit{ position: fixed; bottom: 24px; left: 24px; z-index: 100; display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; background: rgba(20,20,22,.92); color: #fff; border-radius: 999px; font-family: 'Inter', sans-serif; font-size: .82rem; font-weight: 500; letter-spacing: .04em; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,.1); box-shadow: 0 6px 20px rgba(0,0,0,.25); transition: transform .2s ease, background .2s ease; text-decoration: none;}
+  .demo-exit:hover{ transform: translateY(-2px); background: #b8392a;}
+  .demo-exit svg{ width: 14px; height: 14px;}
+  @media (max-width: 720px){ .demo-exit{ bottom: 16px; left: 16px; padding: 8px 14px; font-size: .78rem;}}
+</style>
+
+<header class="nav" id="nav">
+  <div class="container nav-row">
+    <a href="#top" class="brand"><span class="brand-mark"></span>Café Aurora</a>
+    <nav class="nav-links">
+      <a href="#karte">Karte</a>
+      <a href="#kaffee">Kaffee</a>
+      <a href="#oeffnungszeiten">Öffnungszeiten</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+    <a href="#kontakt" class="nav-cta">Reservieren →</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div>
+          <div class="hero-eyebrow reveal">Specialty Coffee · seit 2018</div>
+          <h1 class="reveal">Tagesanbruch<br/><em>in der Tasse.</em></h1>
+          <p class="lede reveal">
+            Eigene Rösterei, kleine Karte aus saisonalen Zutaten und ein Sofa,
+            das genau für Ihren Sonntagvormittag gebaut wurde.
+          </p>
+          <div class="hero-actions reveal">
+            <a class="btn btn-primary" href="#kontakt">Tisch reservieren</a>
+            <a class="btn btn-ghost" href="#karte">Karte ansehen</a>
+          </div>
+        </div>
+        <div class="hero-art reveal">
+          <svg viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <linearGradient id="auGr" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#fff8f3" stop-opacity=".4"/>
+                <stop offset="100%" stop-color="#fff8f3" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <rect width="400" height="500" fill="url(#auGr)"/>
+            <!-- Coffee cup silhouette -->
+            <g transform="translate(200 280)">
+              <ellipse cx="0" cy="0" rx="100" ry="14" fill="#2a1414" opacity=".4"/>
+              <path d="M -90 0 L -80 100 Q -80 130 -50 130 L 50 130 Q 80 130 80 100 L 90 0 Z" fill="#fff8f3" opacity=".95"/>
+              <ellipse cx="0" cy="0" rx="90" ry="10" fill="#5a3026"/>
+              <ellipse cx="0" cy="0" rx="60" ry="6" fill="#a4452f"/>
+              <path d="M 80 30 Q 130 30 130 70 Q 130 110 80 110" fill="none" stroke="#fff8f3" stroke-width="14" opacity=".95"/>
+              <!-- steam -->
+              <g stroke="#fff8f3" stroke-width="2" fill="none" opacity=".5">
+                <path d="M -30 -20 Q -25 -50 -30 -80 T -30 -130"/>
+                <path d="M 0 -20 Q 5 -50 0 -80 T 0 -130"/>
+                <path d="M 30 -20 Q 35 -50 30 -80 T 30 -130"/>
+              </g>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="menu-section" id="karte">
+    <div class="container">
+      <div class="menu-head reveal">
+        <div class="section-eyebrow">Karte</div>
+        <h2>Was es <em>heute</em> gibt.</h2>
+      </div>
+
+      <div class="menu-grid">
+        <article class="menu-card reveal">
+          <h3>Aus der <em>Mühle</em></h3>
+          <ul>
+            <li><strong>Espresso</strong><span>– aus eigener Rösterei –</span></li>
+            <li><strong>Flat White</strong><span>Hafer- oder Vollmilch</span></li>
+            <li><strong>Filter Aurora</strong><span>Single Origin, wechselnd</span></li>
+            <li><strong>Mokka</strong><span>mit Kardamom · klassisch</span></li>
+          </ul>
+        </article>
+
+        <article class="menu-card reveal">
+          <h3>Aus der <em>Backstube</em></h3>
+          <ul>
+            <li><strong>Sauerteig-Toast</strong><span>Avocado, Frühlingskräuter</span></li>
+            <li><strong>Pancake-Stapel</strong><span>Saisonobst, Ahorn</span></li>
+            <li><strong>Quiche</strong><span>vegetarisch, hausgemacht</span></li>
+            <li><strong>Schokoküchlein</strong><span>warm, mit Vanille-Eis</span></li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="two-cols" id="kaffee">
+    <div class="two-cols-text reveal">
+      <div class="section-eyebrow">Eigene Rösterei</div>
+      <h2><em>Wir</em> rösten<br/>noch selbst.</h2>
+      <p>
+        Drei Tage die Woche brennt unser Probat-Röster. Wir kaufen direkt bei kleinen
+        Farmen in Äthiopien, Honduras und Indonesien – und rösten in kleinen Chargen,
+        damit jede Tasse schmeckt, wie sie soll.
+      </p>
+      <p>
+        Bohnen für zuhause? Ab 100 g, frisch geröstet, im Café oder per Mail.
+      </p>
+    </div>
+    <div class="two-cols-art reveal"></div>
+  </section>
+
+  <section class="hours" id="oeffnungszeiten">
+    <div class="reveal">
+      <div class="section-eyebrow" style="color: var(--paper-2);">Öffnungszeiten</div>
+      <h2>Wir haben für <em>Sie</em> auf.</h2>
+    </div>
+    <div class="hours-grid">
+      <div class="hours-card reveal"><strong>Mo – Fr</strong><span>7:30 – 17:00 Uhr</span></div>
+      <div class="hours-card reveal"><strong>Sa</strong><span>8:30 – 17:00 Uhr</span></div>
+      <div class="hours-card reveal"><strong>So</strong><span>9:00 – 15:00 Uhr</span></div>
+    </div>
+  </section>
+
+  <section class="contact" id="kontakt">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="reveal">
+          <div class="section-eyebrow">Kontakt</div>
+          <h2>Reservieren oder<br/><em>einfach</em> kommen.</h2>
+          <p>
+            Sie können einen Tisch online anfragen oder uns kurz per WhatsApp
+            schreiben – wir antworten meist innerhalb einer Stunde.
+          </p>
+          <strong>Anschrift</strong>
+          <p>Beispielstraße 12 · 0000 Musterstadt</p>
+          <strong>Telefon</strong>
+          <p>0123 456 78 90</p>
+          <div style="margin-top: 32px;">
+            <a class="wa-btn" href="#">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M.057 24l1.687-6.163A11.867 11.867 0 0 1 .057 11.94C.057 5.34 5.396 0 12 0c3.21 0 6.218 1.247 8.485 3.515A11.864 11.864 0 0 1 24 11.957C24 18.557 18.661 23.9 12.066 23.9a11.93 11.93 0 0 1-5.681-1.451L.057 24zm6.597-3.807c1.676.997 3.276 1.595 5.392 1.596 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.886-.001 2.225.651 3.891 1.746 5.634L4.918 19.81l3.736-.984z"/></svg>
+              Per WhatsApp anfragen
+            </a>
+          </div>
+        </div>
+        <div class="reveal" style="background: var(--paper-2); border-radius: 24px; padding: 48px; min-height: 320px;">
+          <div class="section-eyebrow">Reservierung</div>
+          <h2 style="font-size: 1.6rem;">Tisch <em>buchen.</em></h2>
+          <form onsubmit="event.preventDefault(); alert('Demo: Formular nicht aktiv.');" style="margin-top: 24px; display:flex; flex-direction: column; gap: 14px;">
+            <input type="text" placeholder="Name" required style="padding: 14px; background: var(--cream); border: 1px solid var(--line); border-radius: 12px; font: inherit;"/>
+            <input type="email" placeholder="E-Mail" required style="padding: 14px; background: var(--cream); border: 1px solid var(--line); border-radius: 12px; font: inherit;"/>
+            <input type="text" placeholder="Datum &amp; Uhrzeit · z.B. 12.5. um 19 Uhr" required style="padding: 14px; background: var(--cream); border: 1px solid var(--line); border-radius: 12px; font: inherit;"/>
+            <input type="number" placeholder="Personen" min="1" max="20" required style="padding: 14px; background: var(--cream); border: 1px solid var(--line); border-radius: 12px; font: inherit;"/>
+            <button type="submit" class="btn btn-primary" style="border:0; cursor:pointer; align-self: flex-start; margin-top: 8px;">Anfragen</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="foot-row">
+      <div class="brand-block">
+        <div class="foot-brand">Café <em>Aurora</em></div>
+        <p>Specialty Coffee, kleine Küche, große Sofas. Seit 2018.</p>
+      </div>
+      <div>
+        <h4>Café</h4>
+        <a href="#karte">Karte</a>
+        <a href="#kaffee">Rösterei</a>
+        <a href="#oeffnungszeiten">Öffnungszeiten</a>
+        <a href="#kontakt">Kontakt</a>
+      </div>
+      <div>
+        <h4>Demo-Hinweise</h4>
+        <a href="../../index.html">← Pixelschneiderei</a>
+        <a href="../../referenzen.html">Weitere Demos</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      Demo · Café Aurora ist ein fiktiver Beispielauftritt der <a href="../../index.html">Pixelschneiderei</a>.
+    </div>
+  </div>
+</footer>
+
+<script>
+  var nav = document.getElementById('nav');
+  if (nav){
+    var onScroll = function(){ nav.classList.toggle('is-scrolled', window.scrollY > 8); };
+    window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if (e.isIntersecting){ e.target.classList.add('is-visible'); io.unobserve(e.target);}});
+  }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+</script>
+
+</body>
+</html>

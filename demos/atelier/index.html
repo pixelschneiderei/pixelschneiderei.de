@@ -1,0 +1,833 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<meta name="theme-color" content="#000000" />
+<title>Atelier – Pixelschneiderei (Demo)</title>
+<meta name="description" content="Hochglanz-Demo: Eine Markenpräsentation im Stil großer Hersteller-Webseiten. Demoauftritt der Pixelschneiderei." />
+<meta name="robots" content="noindex, nofollow" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23000'/%3E%3Cg fill='%23fff'%3E%3Crect x='14' y='14' width='4' height='4' fill='%23b8392a'/%3E%3C/g%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..700,30..100&family=Inter:wght@200;300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg: #000;
+    --bg-1: #0a0a0a;
+    --bg-2: #131316;
+    --fg: #f5f5f7;
+    --fg-soft: #b8b8be;
+    --muted: #6e6e73;
+    --line: rgba(255,255,255,.08);
+    --thread: #d4554a;
+    --thread-2: #e8a89e;
+    --serif: 'Fraunces', serif;
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+    --ease: cubic-bezier(.2, .7, .2, 1);
+  }
+  *{box-sizing: border-box; margin: 0; padding: 0;}
+  html{ scroll-behavior: smooth; }
+  body{
+    background: var(--bg); color: var(--fg);
+    font-family: var(--sans); line-height: 1.45;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  a{ color: inherit; text-decoration: none; }
+  img,svg{ display:block; max-width: 100%;}
+  ::selection{ background: var(--thread); color: #fff;}
+
+  /* DEMO BANNER */
+  .demo-banner{
+    position: relative;
+    background: var(--thread);
+    color: #fff;
+    text-align: center;
+    padding: 10px 16px;
+    font-family: var(--mono);
+    font-size: .76rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    z-index: 100;
+  }
+  .demo-banner a{ text-decoration: underline; text-underline-offset: 3px;}
+  .demo-banner a:hover{ color: rgba(255,255,255,.85);}
+
+  /* NAV */
+  .a-nav{
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(0,0,0,.72);
+    backdrop-filter: saturate(150%) blur(20px);
+    -webkit-backdrop-filter: saturate(150%) blur(20px);
+    border-bottom: 1px solid var(--line);
+  }
+  .a-nav-row{
+    max-width: 1280px; margin: 0 auto; padding: 0 24px;
+    height: 56px;
+    display:flex; align-items:center; justify-content:space-between;
+    font-size: .85rem;
+    color: var(--fg-soft);
+  }
+  .a-nav-brand{ font-family: var(--serif); font-size: 1.1rem; color: var(--fg); letter-spacing: -0.01em;}
+  .a-nav-brand em{ color: var(--thread); font-style: italic; font-weight: 300;}
+  .a-nav-links{ display:flex; gap: 28px;}
+  .a-nav-links a{ transition: color .2s ease;}
+  .a-nav-links a:hover{ color: var(--fg);}
+  .a-nav-cta{
+    color: var(--thread);
+    transition: color .2s ease;
+  }
+  .a-nav-cta:hover{ color: var(--thread-2);}
+  @media (max-width: 720px){
+    .a-nav-links{ display:none;}
+  }
+
+  /* HERO */
+  .hero{
+    min-height: 92vh;
+    display:flex; flex-direction: column; justify-content: center; align-items: center;
+    text-align: center;
+    padding: 80px 24px 48px;
+    position: relative;
+    overflow: hidden;
+    background:
+      radial-gradient(1200px 600px at 50% 0%, rgba(212,85,74,.18), transparent 60%),
+      radial-gradient(800px 400px at 50% 100%, rgba(212,85,74,.06), transparent 60%),
+      var(--bg);
+  }
+  .hero-eyebrow{
+    font-family: var(--mono);
+    font-size: .76rem;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--thread);
+    margin-bottom: 24px;
+  }
+  .hero h1{
+    font-family: var(--serif);
+    font-size: clamp(3rem, 9vw, 8.5rem);
+    font-weight: 300;
+    letter-spacing: -0.04em;
+    line-height: .95;
+    max-width: 14ch;
+    margin: 0 auto;
+    font-variation-settings: "opsz" 144, "SOFT" 30;
+  }
+  .hero h1 em{
+    font-style: italic;
+    color: var(--thread);
+    font-weight: 300;
+  }
+  .hero-tagline{
+    margin-top: 28px;
+    font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+    color: var(--fg-soft);
+    max-width: 56ch;
+    margin-left: auto; margin-right: auto;
+  }
+  .hero-cta{
+    margin-top: 36px;
+    display: inline-flex; gap: 32px;
+    font-size: .98rem;
+  }
+  .hero-cta a{ color: var(--thread); display:inline-flex; align-items:center; gap: 6px;}
+  .hero-cta a:hover{ color: var(--thread-2);}
+
+  /* DEVICE */
+  .device-stage{
+    margin: 64px auto 0;
+    max-width: 900px;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    border-radius: 32px;
+    background:
+      radial-gradient(ellipse at center, rgba(212,85,74,.18), transparent 60%),
+      linear-gradient(180deg, #1a1a1d 0%, #0c0c0d 100%);
+    border: 1px solid rgba(255,255,255,.06);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 30px 80px rgba(212,85,74,.15), 0 1px 0 rgba(255,255,255,.05) inset;
+  }
+  .device-stage svg{ position: absolute; inset: 0; width: 100%; height: 100%;}
+
+  /* Section base */
+  .section{
+    padding: clamp(96px, 14vw, 180px) 24px;
+    text-align: center;
+  }
+  .section-inner{ max-width: 980px; margin: 0 auto;}
+  .eyebrow{
+    font-family: var(--mono);
+    font-size: .76rem;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--thread);
+    margin-bottom: 24px;
+  }
+  .section h2{
+    font-family: var(--serif);
+    font-size: clamp(2.4rem, 6.5vw, 5.5rem);
+    font-weight: 300;
+    letter-spacing: -0.035em;
+    line-height: 1.02;
+    font-variation-settings: "opsz" 144, "SOFT" 30;
+  }
+  .section h2 em{ font-style: italic; color: var(--thread); font-weight: 300; }
+  .section h2 .soft{ color: var(--fg-soft);}
+  .section p.lede{
+    margin-top: 28px;
+    font-size: clamp(1.1rem, 1.6vw, 1.4rem);
+    color: var(--fg-soft);
+    max-width: 60ch; margin-left: auto; margin-right: auto;
+    font-weight: 300;
+  }
+
+  /* Showcase grid */
+  .showcase{
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 64px;
+  }
+  @media (max-width: 720px){ .showcase{ grid-template-columns: 1fr;}}
+  .tile{
+    background: linear-gradient(180deg, var(--bg-2) 0%, var(--bg-1) 100%);
+    border-radius: 28px;
+    padding: 48px;
+    text-align: left;
+    min-height: 420px;
+    display:flex; flex-direction: column; justify-content: space-between;
+    position: relative; overflow: hidden;
+    border: 1px solid var(--line);
+  }
+  .tile-eyebrow{
+    font-family: var(--mono);
+    font-size: .72rem;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--thread);
+    margin-bottom: 16px;
+  }
+  .tile h3{
+    font-family: var(--serif);
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin-bottom: 12px;
+  }
+  .tile h3 em{ font-style: italic; color: var(--thread);}
+  .tile p{ color: var(--fg-soft); font-size: .98rem;}
+  .tile-art{
+    height: 180px;
+    margin-top: 24px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #1a1a1d, #0a0a0a);
+    border: 1px solid var(--line);
+    overflow: hidden;
+    position: relative;
+  }
+  .tile.is-large{ grid-column: span 2;}
+  @media (max-width: 720px){ .tile.is-large{ grid-column: span 1;}}
+
+  /* Specs strip */
+  .specs{
+    background: linear-gradient(180deg, #0a0a0a, #050505);
+    padding: clamp(80px, 10vw, 130px) 24px;
+    border-block: 1px solid var(--line);
+  }
+  .specs-inner{
+    max-width: 1180px; margin: 0 auto;
+    display:grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+  }
+  @media (max-width: 720px){ .specs-inner{ grid-template-columns: repeat(2, 1fr);}}
+  .spec strong{
+    display: block;
+    font-family: var(--serif);
+    font-size: clamp(2.6rem, 5vw, 4rem);
+    font-weight: 300;
+    color: var(--fg);
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+  .spec strong em{ font-style: italic; color: var(--thread);}
+  .spec span{
+    display: block; margin-top: 12px;
+    font-family: var(--mono); font-size: .76rem;
+    letter-spacing: .14em; text-transform: uppercase; color: var(--muted);
+  }
+
+  /* Pro section (cinematic strip) */
+  .pro{
+    background: var(--bg);
+    padding: 0;
+    position: relative;
+  }
+  .pro-stage{
+    position: relative;
+    min-height: 90vh;
+    display:flex; flex-direction: column; justify-content: center; align-items: center;
+    text-align: center;
+    overflow: hidden;
+    padding: 120px 24px;
+    background:
+      radial-gradient(800px 400px at 50% 50%, rgba(212,85,74,.18), transparent 70%),
+      radial-gradient(1400px 700px at 50% 100%, rgba(212,85,74,.08), transparent 70%);
+  }
+  .pro-stage::before{
+    content:""; position:absolute; inset:0;
+    background-image:
+      linear-gradient(to right, rgba(255,255,255,.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,.04) 1px, transparent 1px);
+    background-size: 80px 80px;
+    mask-image: radial-gradient(ellipse 60% 40% at 50% 50%, #000, transparent 70%);
+    -webkit-mask-image: radial-gradient(ellipse 60% 40% at 50% 50%, #000, transparent 70%);
+    pointer-events:none;
+  }
+  .pro-stage h2{
+    position:relative;
+    font-family: var(--serif);
+    font-size: clamp(3.5rem, 11vw, 10rem);
+    font-weight: 200;
+    letter-spacing: -0.05em;
+    line-height: .92;
+    font-variation-settings: "opsz" 144, "SOFT" 30;
+  }
+  .pro-stage h2 em{ font-style: italic; color: var(--thread); font-weight: 300;}
+  .pro-stage p{
+    position:relative;
+    margin-top: 32px;
+    color: var(--fg-soft);
+    font-size: clamp(1.1rem, 1.4vw, 1.25rem);
+    max-width: 50ch;
+  }
+
+  /* Material story */
+  .material{
+    padding: clamp(96px, 12vw, 160px) 24px;
+    text-align: center;
+    background: linear-gradient(180deg, #050505 0%, #0c0c0d 50%, #050505 100%);
+  }
+  .material-grid{
+    display:grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+    max-width: 1180px; margin: 64px auto 0;
+  }
+  @media (max-width: 880px){ .material-grid{ grid-template-columns: 1fr;}}
+  .material-card{
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    padding: 48px 36px;
+    text-align: center;
+  }
+  .material-art{
+    width: 88px; height: 88px;
+    margin: 0 auto 24px;
+    border-radius: 50%;
+    background:
+      radial-gradient(circle at 30% 30%, rgba(212,85,74,.4), transparent 50%),
+      linear-gradient(135deg, #1a1a1d, #0a0a0a);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.06), 0 6px 24px rgba(0,0,0,.5);
+  }
+  .material-card h3{
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-weight: 400;
+    letter-spacing: -0.015em;
+    margin-bottom: 8px;
+  }
+  .material-card p{ color: var(--fg-soft); font-size: .95rem;}
+
+  /* Closing CTA */
+  .closing{
+    padding: clamp(120px, 16vw, 200px) 24px;
+    text-align: center;
+    background:
+      radial-gradient(1000px 500px at 50% 50%, rgba(212,85,74,.18), transparent 70%),
+      var(--bg);
+    border-top: 1px solid var(--line);
+  }
+  .closing h2{
+    font-family: var(--serif);
+    font-size: clamp(3rem, 8vw, 6.5rem);
+    font-weight: 200;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    font-variation-settings: "opsz" 144, "SOFT" 30;
+  }
+  .closing h2 em{ font-style: italic; color: var(--thread); font-weight: 300;}
+  .closing p{
+    margin-top: 28px;
+    color: var(--fg-soft);
+    font-size: 1.1rem;
+    max-width: 50ch;
+    margin-left: auto; margin-right: auto;
+  }
+  .closing-cta{
+    margin-top: 40px;
+    display:inline-flex; gap: 14px; flex-wrap: wrap; justify-content: center;
+  }
+  .btn{
+    display:inline-flex; align-items: center; gap: 8px;
+    padding: 14px 28px; border-radius: 999px;
+    font-size: 1rem; font-weight: 500;
+    transition: transform .2s var(--ease), background .2s var(--ease), color .2s var(--ease);
+  }
+  .btn-primary{ background: var(--fg); color: var(--bg);}
+  .btn-primary:hover{ background: var(--thread); color: #fff; transform: translateY(-2px);}
+  .btn-ghost{ border: 1px solid var(--line); color: var(--fg);}
+  .btn-ghost:hover{ border-color: var(--thread); color: var(--thread); transform: translateY(-2px);}
+
+  /* footer */
+  .a-foot{
+    background: var(--bg);
+    padding: 48px 24px;
+    border-top: 1px solid var(--line);
+    text-align: center;
+    font-family: var(--mono);
+    font-size: .78rem;
+    color: var(--muted);
+    letter-spacing: .04em;
+  }
+  .a-foot a{ color: var(--thread); text-decoration: underline; text-underline-offset: 3px;}
+
+  /* Reveal */
+  .reveal{ opacity: 0; transform: translateY(20px); transition: opacity 1s var(--ease), transform 1s var(--ease);}
+  .reveal.is-visible{ opacity: 1; transform: translateY(0);}
+
+  /* scroll-driven scale-in for pro-stage h2 */
+  .pro-stage h2{
+    opacity: var(--p, 0.3);
+    transform: scale(calc(0.85 + 0.15 * var(--p, 0.3)));
+    transition: none;
+  }
+
+  /* parallax drift for blobs */
+  .blob{
+    position:absolute;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    pointer-events: none;
+    filter: blur(80px);
+    will-change: transform;
+  }
+  .blob-1{ top: 20%; left: -10%; background: rgba(212,85,74,.18);}
+  .blob-2{ top: 60%; right: -15%; background: rgba(212,85,74,.10);}
+  .blob-3{ top: 80%; left: 30%; background: rgba(212,85,74,.08); width: 800px; height: 800px;}
+
+  /* Counter animation */
+  @keyframes countpop{
+    0% { opacity: 0; transform: translateY(10px);}
+    100% { opacity: 1; transform: translateY(0);}
+  }
+
+  /* Scroll progress bar at top */
+  .scroll-bar{
+    position: fixed; top: 0; left: 0;
+    height: 2px; width: 0%;
+    background: linear-gradient(to right, var(--thread), var(--thread-2));
+    z-index: 200;
+    pointer-events: none;
+    transition: width .1s linear;
+  }
+
+  /* Sticky scroll-pinned tile in the pro section */
+  .pinned-stage{
+    position: relative;
+    height: 220vh; /* gives scroll room for the pinned content */
+    background: var(--bg);
+  }
+  .pinned-inner{
+    position: sticky; top: 0;
+    height: 100vh;
+    display:flex; align-items: center; justify-content: center;
+    overflow: hidden;
+  }
+  .pinned-content{
+    text-align: center; padding: 0 24px;
+    max-width: 900px;
+  }
+  .pinned-content .word{
+    display: inline-block;
+    margin: 0 .15em;
+    opacity: var(--w, 0.15);
+    transition: opacity .2s linear;
+    font-family: var(--serif);
+    font-weight: 200;
+    font-style: italic;
+    color: var(--thread);
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *,*::before,*::after{ animation-duration: 0.001ms !important; transition-duration: 0.001ms !important;}
+    .reveal{ opacity: 1; transform: none;}
+    .pro-stage h2{ opacity: 1; transform: none;}
+    .pinned-content .word{ opacity: 1;}
+    html{scroll-behavior: auto;}
+  }
+</style>
+</head>
+<body>
+
+<div class="scroll-bar" id="scrollBar"></div>
+
+<div class="demo-banner">
+  Demo · Hochglanz-Showcase &nbsp;·&nbsp; <a href="../../index.html">← zur Pixelschneiderei</a>
+</div>
+
+<a class="demo-exit" href="../../index.html">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+  Demo verlassen
+</a>
+
+<style>
+  .demo-exit{
+    position: fixed;
+    bottom: 24px; left: 24px;
+    z-index: 100;
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 18px;
+    background: rgba(20, 20, 22, .92);
+    color: #fff;
+    border-radius: 999px;
+    font-family: 'Inter', sans-serif;
+    font-size: .82rem; font-weight: 500;
+    letter-spacing: .04em;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,.1);
+    box-shadow: 0 6px 20px rgba(0,0,0,.25);
+    transition: transform .2s ease, background .2s ease;
+    text-decoration: none;
+  }
+  .demo-exit:hover{ transform: translateY(-2px); background: #b8392a;}
+  .demo-exit svg{ width: 14px; height: 14px;}
+  @media (max-width: 720px){
+    .demo-exit{ bottom: 16px; left: 16px; padding: 8px 14px; font-size: .78rem;}
+  }
+</style>
+
+<!-- Parallax decorative blobs -->
+<div class="blob blob-1" data-parallax="0.2"></div>
+<div class="blob blob-2" data-parallax="0.4"></div>
+<div class="blob blob-3" data-parallax="0.15"></div>
+
+<header class="a-nav">
+  <div class="a-nav-row">
+    <a href="../../index.html" class="a-nav-brand">Pixel<em>schneiderei</em> · Atelier</a>
+    <nav class="a-nav-links">
+      <a href="#design">Design</a>
+      <a href="#material">Material</a>
+      <a href="#performance">Performance</a>
+      <a href="#auftrag">Auftrag</a>
+    </nav>
+    <a href="#auftrag" class="a-nav-cta">Anfragen →</a>
+  </div>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-eyebrow reveal">Atelier — Pro</div>
+    <h1 class="reveal">Die Webseite.<br/><em>Anders gedacht.</em></h1>
+    <p class="hero-tagline reveal">
+      Maßgefertigt. In Perfektion. Ein Auftritt, der nicht imitiert –
+      sondern definiert. Bis zum letzten Pixel.
+    </p>
+    <div class="hero-cta reveal">
+      <a href="#design">Mehr erfahren →</a>
+      <a href="#auftrag">Atelier anfragen →</a>
+    </div>
+
+    <div class="device-stage reveal">
+      <svg viewBox="0 0 900 560" preserveAspectRatio="xMidYMid meet">
+        <defs>
+          <linearGradient id="screenGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#0d0d0d"/>
+            <stop offset="100%" stop-color="#000"/>
+          </linearGradient>
+          <radialGradient id="threadGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#d4554a" stop-opacity=".4"/>
+            <stop offset="60%" stop-color="#d4554a" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <rect x="40" y="40" width="820" height="480" rx="24" fill="url(#screenGrad)" stroke="#222" stroke-width="1"/>
+        <ellipse cx="450" cy="280" rx="320" ry="160" fill="url(#threadGlow)"/>
+        <!-- Layout suggestion -->
+        <g opacity=".7">
+          <rect x="80" y="80" width="80" height="6" rx="3" fill="#888"/>
+          <rect x="780" y="80" width="40" height="6" rx="3" fill="#666"/>
+        </g>
+        <text x="450" y="265" font-family="Fraunces, serif" font-size="68" fill="#fff" text-anchor="middle" font-weight="300" font-style="italic" letter-spacing="-2">Couture</text>
+        <text x="450" y="320" font-family="Fraunces, serif" font-size="68" fill="#fff" text-anchor="middle" font-weight="300" letter-spacing="-2">in Pixeln.</text>
+        <text x="450" y="370" font-family="Inter, sans-serif" font-size="13" fill="#d4554a" text-anchor="middle" letter-spacing="3">PIXELSCHNEIDEREI · ATELIER</text>
+        <!-- thread arc -->
+        <path d="M 80 460 Q 450 360 820 460" stroke="#d4554a" stroke-width="1.4" fill="none" opacity=".8"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- DESIGN -->
+  <section class="section" id="design">
+    <div class="section-inner">
+      <div class="eyebrow reveal">Design</div>
+      <h2 class="reveal">
+        Eine Form, die den<br/>
+        <span class="soft">Inhalten</span> <em>dient.</em>
+      </h2>
+      <p class="lede reveal">
+        Jedes Pixel ist gesetzt, weil es etwas erzählt. Kein Stilmittel ohne
+        Funktion, keine Animation ohne Zweck. Die Bühne, nicht das Schauspiel.
+      </p>
+
+      <div class="showcase">
+        <div class="tile reveal">
+          <div>
+            <div class="tile-eyebrow">Typografie</div>
+            <h3>Eine Schrift,<br/><em>die Haltung</em> hat.</h3>
+            <p>Variable Fonts mit charakterstarken Italics. Lesbar auf jedem Display, ausdrucksstark in jeder Größe.</p>
+          </div>
+          <div class="tile-art">
+            <svg viewBox="0 0 400 180" width="100%" height="100%">
+              <text x="50%" y="60%" font-family="Fraunces, serif" font-size="120" font-weight="300" font-style="italic" fill="#f5f5f7" text-anchor="middle" letter-spacing="-3">Aa</text>
+              <text x="50%" y="92%" font-family="JetBrains Mono, monospace" font-size="9" fill="#d4554a" text-anchor="middle" letter-spacing="3">VARIABLE · OPSZ · SOFT</text>
+            </svg>
+          </div>
+        </div>
+
+        <div class="tile reveal">
+          <div>
+            <div class="tile-eyebrow">Farbe</div>
+            <h3><em>Tiefe</em>, statt<br/>Buntheit.</h3>
+            <p>Ein präzises Spektrum. Wenig Farbe, viel Wirkung. Damit das Wesentliche im Blick bleibt.</p>
+          </div>
+          <div class="tile-art" style="background: linear-gradient(135deg, #d4554a 0%, #8c2a20 50%, #131316 100%);"></div>
+        </div>
+
+        <div class="tile is-large reveal">
+          <div>
+            <div class="tile-eyebrow">Bewegung</div>
+            <h3>Ruhig. <em>Gezielt.</em> Souverän.</h3>
+            <p>Bewegung folgt Funktion: Sie führt, hebt hervor, bestätigt. Kein Effekt-Karussell, sondern Choreografie. Auf jedem Gerät smooth und ressourcenschonend.</p>
+          </div>
+          <div class="tile-art" style="height: 220px;">
+            <svg viewBox="0 0 800 220" width="100%" height="100%" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="motionLine" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0%" stop-color="#d4554a" stop-opacity="0"/>
+                  <stop offset="50%" stop-color="#d4554a" stop-opacity="1"/>
+                  <stop offset="100%" stop-color="#d4554a" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <path d="M 0 110 Q 200 30, 400 110 T 800 110" stroke="url(#motionLine)" stroke-width="2" fill="none"/>
+              <path d="M 0 110 Q 200 190, 400 110 T 800 110" stroke="url(#motionLine)" stroke-width="1" fill="none" opacity=".5"/>
+              <circle cx="200" cy="60" r="3" fill="#d4554a"/>
+              <circle cx="400" cy="110" r="4" fill="#d4554a"/>
+              <circle cx="600" cy="60" r="3" fill="#d4554a"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRO STAGE -->
+  <section class="pro" id="performance">
+    <div class="pro-stage" id="proStage">
+      <h2>Pro,<br/>bis zum letzten<br/><em>Detail.</em></h2>
+      <p class="reveal">
+        Schnell. Stabil. Sicher. Eine Webseite, die ohne Frame-Drop liefert,
+        ohne Tracker auskommt und mit jeder Belastung wächst.
+      </p>
+    </div>
+  </section>
+
+  <!-- PINNED SCROLL (word-by-word reveal) -->
+  <section class="pinned-stage" id="pinned">
+    <div class="pinned-inner">
+      <div class="pinned-content">
+        <h2 style="font-family: var(--serif); font-weight: 200; font-size: clamp(2rem, 5.5vw, 4.4rem); line-height: 1.1; letter-spacing: -0.03em; color: var(--fg-soft);">
+          <span class="word">Jedes</span>
+          <span class="word">Pixel</span>
+          <span class="word">erzählt</span>
+          <span class="word">eine</span>
+          <span class="word">Geschichte</span>
+          <span class="word">—</span>
+          <span class="word">und</span>
+          <span class="word">wir</span>
+          <span class="word">setzen</span>
+          <span class="word">jedes</span>
+          <span class="word">davon</span>
+          <span class="word">mit</span>
+          <span class="word">Bedacht.</span>
+        </h2>
+      </div>
+    </div>
+  </section>
+
+  <!-- SPECS (animated counters) -->
+  <section class="specs">
+    <div class="specs-inner">
+      <div class="spec reveal"><strong>&lt; <span data-count="1" data-decimals="0">0</span><em>s</em></strong><span>Time-to-Interactive</span></div>
+      <div class="spec reveal"><strong><span data-count="100" data-decimals="0">0</span><em>%</em></strong><span>Mobile-First</span></div>
+      <div class="spec reveal"><strong><span data-count="0" data-decimals="0">0</span><em></em></strong><span>Cookies, kein Tracking</span></div>
+      <div class="spec reveal"><strong><span data-count="99.9" data-decimals="1">0</span><em>%</em></strong><span>Verfügbarkeit</span></div>
+    </div>
+  </section>
+
+  <!-- MATERIAL -->
+  <section class="material" id="material">
+    <div class="section-inner">
+      <div class="eyebrow reveal">Material</div>
+      <h2 class="reveal">
+        Aus dem<br/>
+        <em>besten</em> Stoff.
+      </h2>
+      <p class="lede reveal">
+        Wir verbauen, was Bestand hat. Keine modischen Frameworks ohne Gehalt –
+        sondern bewährte, aktuelle Standards. Schicht für Schicht.
+      </p>
+
+      <div class="material-grid">
+        <div class="material-card reveal">
+          <div class="material-art"></div>
+          <h3>Schicht 1 — Inhalt</h3>
+          <p>Klar strukturiertes HTML, semantisch gehalten. Die Grundlage für SEO und Barrierearmut.</p>
+        </div>
+        <div class="material-card reveal">
+          <div class="material-art" style="background: radial-gradient(circle at 30% 30%, rgba(212,85,74,.6), transparent 50%), linear-gradient(135deg, #1f1f23, #0a0a0a);"></div>
+          <h3>Schicht 2 — Form</h3>
+          <p>Modernes CSS mit Container-Queries, variable Fonts, präzises Grid. Performance und Eleganz im Gleichgewicht.</p>
+        </div>
+        <div class="material-card reveal">
+          <div class="material-art" style="background: radial-gradient(circle at 70% 30%, rgba(255,255,255,.2), transparent 50%), linear-gradient(135deg, #2a1a18, #0a0a0a);"></div>
+          <h3>Schicht 3 — Logik</h3>
+          <p>Schlanke, bewusst eingesetzte JavaScript-Bausteine. Auf Wunsch ein eigenes leichtgewichtiges CMS, Datenbank inklusive Backup.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLOSING -->
+  <section class="closing" id="auftrag">
+    <h2 class="reveal">
+      Bereit für<br/>
+      <em>Ihren</em> Auftritt?
+    </h2>
+    <p class="reveal">
+      Sprechen Sie mit der Pixelschneiderei. Wir nehmen Maß, schneiden zu –
+      und liefern einen Auftritt, der bleibt.
+    </p>
+    <div class="closing-cta reveal">
+      <a class="btn btn-primary" href="../../index.html#kontakt">Atelier anfragen →</a>
+      <a class="btn btn-ghost" href="../../index.html">Mehr über uns</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="a-foot">
+  Demo-Showcase · Pixelschneiderei Atelier · <a href="../../index.html">Zurück zur Pixelschneiderei</a>
+</footer>
+
+<script>
+  // Reveal on scroll
+  var io = new IntersectionObserver(function(entries){
+    for (var i=0;i<entries.length;i++){
+      var e = entries[i];
+      if (e.isIntersecting){ e.target.classList.add('is-visible'); io.unobserve(e.target); }
+    }
+  }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+
+  // Animated counters
+  var counters = document.querySelectorAll('[data-count]');
+  var counterObs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (!e.isIntersecting) return;
+      var el = e.target;
+      var target = parseFloat(el.getAttribute('data-count'));
+      var dec = parseInt(el.getAttribute('data-decimals') || '0', 10);
+      var dur = 1200;
+      var start = performance.now();
+      function tick(now){
+        var t = Math.min(1, (now - start) / dur);
+        var eased = 1 - Math.pow(1 - t, 3);
+        var v = (target * eased).toFixed(dec);
+        el.textContent = v;
+        if (t < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+      counterObs.unobserve(el);
+    });
+  }, { threshold: 0.5 });
+  counters.forEach(function(c){ counterObs.observe(c); });
+
+  // Scroll progress bar
+  var bar = document.getElementById('scrollBar');
+  function updateBar(){
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    var p = max > 0 ? (h.scrollTop / max) : 0;
+    bar.style.width = (p * 100) + '%';
+  }
+  window.addEventListener('scroll', updateBar, {passive:true});
+  updateBar();
+
+  // Parallax blobs
+  var blobs = document.querySelectorAll('[data-parallax]');
+  function updateParallax(){
+    var y = window.scrollY;
+    blobs.forEach(function(b){
+      var speed = parseFloat(b.getAttribute('data-parallax'));
+      b.style.transform = 'translate3d(0,' + (y * speed * -1) + 'px,0)';
+    });
+  }
+  window.addEventListener('scroll', updateParallax, {passive:true});
+  updateParallax();
+
+  // Pro stage h2: scale based on visibility progress
+  var proStage = document.getElementById('proStage');
+  if (proStage){
+    var proH2 = proStage.querySelector('h2');
+    function updateProStage(){
+      var rect = proStage.getBoundingClientRect();
+      var winH = window.innerHeight;
+      // progress 0..1 as the section moves through the viewport
+      var raw = 1 - (rect.top + rect.height * 0.3) / winH;
+      var p = Math.max(0, Math.min(1, raw));
+      proH2.style.setProperty('--p', p.toFixed(3));
+    }
+    window.addEventListener('scroll', updateProStage, {passive:true});
+    updateProStage();
+  }
+
+  // Pinned word-by-word reveal
+  var pinned = document.getElementById('pinned');
+  if (pinned){
+    var words = pinned.querySelectorAll('.word');
+    function updatePinned(){
+      var rect = pinned.getBoundingClientRect();
+      var pinH = pinned.offsetHeight - window.innerHeight;
+      // progress through the pinned section: 0 (entering) → 1 (leaving)
+      var p = Math.max(0, Math.min(1, -rect.top / pinH));
+      // Map progress to words
+      var n = words.length;
+      words.forEach(function(w, i){
+        var wp = Math.max(0, Math.min(1, (p * n) - i + 0.3));
+        // ease toward 1 so words "land"
+        var v = 0.15 + 0.85 * wp;
+        w.style.setProperty('--w', v.toFixed(3));
+        w.style.color = wp > 0.5 ? '#f5f5f7' : '';
+      });
+    }
+    window.addEventListener('scroll', updatePinned, {passive:true});
+    updatePinned();
+  }
+</script>
+
+</body>
+</html>

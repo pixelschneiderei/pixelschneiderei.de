@@ -1,0 +1,544 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="theme-color" content="#fdf6ec" />
+<title>Tischlerei Holzgeist – Maßmöbel aus Mitteldeutschland (Demo)</title>
+<meta name="description" content="Demo: Tischlerei Holzgeist – Maßmöbel mit Charakter. Beispielauftritt der Pixelschneiderei für ein Handwerksunternehmen." />
+<meta name="robots" content="noindex, nofollow" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23fdf6ec'/%3E%3Cpath d='M8 22 L16 8 L24 22 Z' fill='%23583e1f' stroke='%23583e1f' stroke-width='1.5' stroke-linejoin='round'/%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  :root{
+    --paper: #fdf6ec;
+    --paper-2: #f4ead4;
+    --ink: #2a1d0c;
+    --ink-soft: #4a3722;
+    --muted: #8a7556;
+    --wood: #a87b3c;
+    --wood-deep: #583e1f;
+    --line: #e0d2b1;
+    --serif: 'Cormorant Garamond', serif;
+    --sans: 'Inter', -apple-system, sans-serif;
+    --ease: cubic-bezier(.2,.7,.2,1);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    background: var(--paper); color: var(--ink);
+    font-family: var(--sans); line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  a{color:inherit; text-decoration:none}
+  img,svg{display:block; max-width:100%}
+
+  .demo-banner{
+    background: var(--wood-deep); color: var(--paper);
+    text-align:center; padding: 10px 16px;
+    font-family: var(--sans); font-size: .76rem;
+    letter-spacing: .12em; text-transform: uppercase;
+  }
+  .demo-banner a{ text-decoration: underline; text-underline-offset: 3px;}
+
+  .container{ max-width: 1180px; margin: 0 auto; padding: 0 24px;}
+
+  /* NAV */
+  .nav{
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(253,246,236,.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid transparent;
+    transition: border-color .3s var(--ease);
+  }
+  .nav.is-scrolled{ border-color: var(--line);}
+  .nav-row{ display:flex; align-items:center; justify-content: space-between; height: 76px;}
+  .brand{
+    font-family: var(--serif); font-size: 1.5rem; font-weight: 500;
+    letter-spacing: 0.02em; display:flex; align-items:center; gap: 10px;
+  }
+  .brand-mark{
+    width: 28px; height: 28px;
+    background: var(--wood-deep);
+    clip-path: polygon(50% 0, 100% 100%, 0 100%);
+  }
+  .brand em{ color: var(--wood-deep); font-style: italic;}
+  .nav-links{ display:flex; gap: 32px; font-size: .95rem; color: var(--ink-soft);}
+  .nav-links a:hover{ color: var(--wood-deep);}
+  .nav-cta{
+    padding: 10px 22px; background: var(--wood-deep); color: var(--paper);
+    border-radius: 999px; font-size: .9rem; font-weight: 500;
+    transition: background .25s var(--ease), transform .25s var(--ease);
+  }
+  .nav-cta:hover{ background: var(--wood); transform: translateY(-1px);}
+  @media (max-width: 720px){ .nav-links{ display:none;}}
+
+  /* HERO */
+  .hero{
+    padding: 80px 0 96px;
+    position: relative; overflow: hidden;
+  }
+  .hero-grid{
+    display:grid; grid-template-columns: 1.1fr 1fr; gap: 64px; align-items: center;
+  }
+  @media (max-width: 880px){ .hero-grid{ grid-template-columns: 1fr;}}
+  .hero-eyebrow{
+    font-size: .8rem; letter-spacing: .2em; text-transform: uppercase;
+    color: var(--wood-deep); margin-bottom: 24px;
+    font-weight: 500;
+  }
+  .hero h1{
+    font-family: var(--serif); font-weight: 400;
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    line-height: 1; letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+  .hero h1 em{ font-style: italic; color: var(--wood-deep);}
+  .hero p.lede{
+    margin-top: 32px; font-size: 1.2rem; color: var(--ink-soft);
+    max-width: 52ch; line-height: 1.6;
+  }
+  .hero-actions{ margin-top: 40px; display:flex; gap: 14px; flex-wrap: wrap;}
+  .btn{
+    display:inline-flex; align-items:center; gap: 10px;
+    padding: 14px 28px; border-radius: 0;
+    font-weight: 500; font-size: 1rem;
+    transition: transform .25s var(--ease), background .25s var(--ease);
+  }
+  .btn-primary{ background: var(--wood-deep); color: var(--paper);}
+  .btn-primary:hover{ background: var(--wood); transform: translateY(-2px);}
+  .btn-ghost{ border: 1px solid var(--wood-deep); color: var(--wood-deep);}
+  .btn-ghost:hover{ background: var(--wood-deep); color: var(--paper); transform: translateY(-2px);}
+
+  .hero-art{
+    aspect-ratio: 4/5;
+    background:
+      linear-gradient(135deg, #5e4322, #2a1d0c),
+      var(--wood-deep);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-art svg{ width: 100%; height: 100%;}
+
+  /* MEASURE BAR */
+  .measure{
+    background: var(--paper-2);
+    padding: 28px 0;
+    border-block: 1px solid var(--line);
+  }
+  .measure-row{
+    display:grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+    text-align: center;
+  }
+  @media (max-width: 720px){ .measure-row{ grid-template-columns: repeat(2, 1fr);}}
+  .measure strong{
+    display:block; font-family: var(--serif); font-size: 2.2rem; font-weight: 500;
+    color: var(--wood-deep); line-height: 1;
+  }
+  .measure span{
+    display:block; margin-top: 8px;
+    font-size: .82rem; letter-spacing: .12em; text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* SECTION */
+  section{ padding: 96px 0;}
+  .section-eyebrow{
+    font-size: .8rem; letter-spacing: .2em; text-transform: uppercase;
+    color: var(--wood-deep); margin-bottom: 16px; font-weight: 500;
+  }
+  h2{
+    font-family: var(--serif); font-weight: 400;
+    font-size: clamp(2.2rem, 4.5vw, 3.6rem); line-height: 1.05;
+    letter-spacing: -0.01em;
+  }
+  h2 em{ font-style: italic; color: var(--wood-deep);}
+
+  .about-grid{
+    display:grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
+  }
+  @media (max-width: 880px){ .about-grid{ grid-template-columns: 1fr;}}
+  .about-text p{ color: var(--ink-soft); font-size: 1.05rem; margin-top: 24px;}
+
+  /* SERVICES */
+  .work{ background: var(--paper-2); border-block: 1px solid var(--line);}
+  .work-grid{
+    display:grid; grid-template-columns: repeat(3, 1fr); gap: 28px;
+    margin-top: 56px;
+  }
+  @media (max-width: 880px){ .work-grid{ grid-template-columns: 1fr;}}
+  .work-card{
+    background: var(--paper);
+    padding: 36px 32px;
+    border: 1px solid var(--line);
+    transition: transform .25s var(--ease), border-color .25s var(--ease);
+  }
+  .work-card:hover{ transform: translateY(-4px); border-color: var(--wood-deep);}
+  .work-card h3{ font-family: var(--serif); font-size: 1.6rem; font-weight: 500; margin: 16px 0 10px;}
+  .work-card p{ color: var(--ink-soft); font-size: .95rem;}
+  .work-num{ font-family: var(--serif); font-style: italic; font-size: 1.4rem; color: var(--wood);}
+
+  /* GALLERY */
+  .gallery-grid{
+    display:grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
+    margin-top: 48px;
+  }
+  @media (max-width: 720px){ .gallery-grid{ grid-template-columns: repeat(2, 1fr);}}
+  .gallery-item{
+    aspect-ratio: 4/5;
+    background: linear-gradient(135deg, var(--wood), var(--wood-deep));
+    overflow: hidden; position: relative;
+    transition: transform .25s var(--ease);
+  }
+  .gallery-item:nth-child(2){ background: linear-gradient(135deg, #c8a06b, #6e4f25);}
+  .gallery-item:nth-child(3){ background: linear-gradient(135deg, #8a6435, #2a1d0c);}
+  .gallery-item:nth-child(4){ background: linear-gradient(135deg, #b48954, #4a3722);}
+  .gallery-item:nth-child(5){ background: linear-gradient(135deg, #a87b3c, #1f1308);}
+  .gallery-item:nth-child(6){ background: linear-gradient(135deg, #d4ad7d, #6e4f25);}
+  .gallery-item:nth-child(7){ background: linear-gradient(135deg, #816442, #2a1d0c);}
+  .gallery-item:nth-child(8){ background: linear-gradient(135deg, #c69b6a, #4a3722);}
+  .gallery-item::after{
+    content: attr(data-label); position: absolute; bottom: 16px; left: 16px;
+    color: var(--paper); font-family: var(--serif); font-style: italic; font-size: 1.1rem;
+    text-shadow: 0 1px 2px rgba(0,0,0,.3);
+  }
+  .gallery-item:hover{ transform: scale(1.02);}
+
+  /* TESTIMONIAL */
+  .quote{
+    background: var(--wood-deep); color: var(--paper);
+    padding: 96px 24px; text-align: center;
+  }
+  .quote blockquote{
+    font-family: var(--serif); font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-weight: 400; font-style: italic; line-height: 1.3;
+    max-width: 24ch; margin: 0 auto;
+  }
+  .quote blockquote::before{ content: "„"; font-size: 1.5em; color: var(--wood); display: block; line-height: 0; margin-bottom: 0.3em;}
+  .quote cite{ display:block; margin-top: 36px; font-style: normal; font-family: var(--sans); font-size: .85rem; letter-spacing: .12em; text-transform: uppercase; color: rgba(253,246,236,.7);}
+
+  /* CONTACT */
+  .contact-grid{
+    display:grid; grid-template-columns: 1fr 1fr; gap: 64px;
+  }
+  @media (max-width: 720px){ .contact-grid{ grid-template-columns: 1fr;}}
+  .contact-info p{ color: var(--ink-soft); margin-top: 16px;}
+  .contact-info strong{ color: var(--ink); display:block; margin-top: 24px; font-family: var(--serif); font-size: 1.2rem; font-weight: 500;}
+  .contact-form{
+    background: var(--paper-2); padding: 36px;
+    display:flex; flex-direction: column; gap: 16px;
+    border: 1px solid var(--line);
+  }
+  .contact-form label{ display:block; font-size: .82rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px;}
+  .contact-form input, .contact-form textarea{
+    width: 100%; padding: 14px 16px;
+    border: 1px solid var(--line); background: var(--paper);
+    font-family: inherit; font-size: 1rem; color: var(--ink);
+    transition: border-color .2s ease;
+  }
+  .contact-form input:focus, .contact-form textarea:focus{
+    outline: none; border-color: var(--wood-deep);
+  }
+  .contact-form textarea{ min-height: 120px; resize: vertical;}
+
+  /* FOOTER */
+  footer{
+    background: var(--ink); color: var(--paper-2);
+    padding: 56px 0 32px;
+  }
+  .foot-row{
+    display:grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px;
+    margin-bottom: 40px;
+  }
+  @media (max-width: 720px){ .foot-row{ grid-template-columns: 1fr; gap: 32px;}}
+  .foot-row h4{ font-family: var(--sans); font-size: .8rem; letter-spacing: .14em; text-transform: uppercase; color: var(--wood); margin-bottom: 16px; font-weight: 600;}
+  .foot-row a{ display:block; color: var(--paper-2); padding: 4px 0; transition: color .2s ease;}
+  .foot-row a:hover{ color: var(--wood);}
+  .foot-row .brand-block .foot-brand{ font-family: var(--serif); font-size: 1.6rem; margin-bottom: 12px;}
+  .foot-row .brand-block .foot-brand em{ font-style: italic; color: var(--wood);}
+  .foot-row .brand-block p{ color: rgba(253,246,236,.7); max-width: 36ch;}
+  .foot-bottom{
+    border-top: 1px solid rgba(253,246,236,.1);
+    padding-top: 24px;
+    text-align: center;
+    font-size: .82rem; color: rgba(253,246,236,.5);
+  }
+  .foot-bottom a{ color: var(--wood);}
+
+  /* reveal */
+  .reveal{ opacity:0; transform: translateY(18px); transition: opacity .8s var(--ease), transform .8s var(--ease);}
+  .reveal.is-visible{ opacity:1; transform: translateY(0);}
+  @media (prefers-reduced-motion: reduce){
+    .reveal{ opacity:1; transform: none;}
+    *,*::before,*::after{transition-duration: 0.001ms !important;}
+  }
+</style>
+</head>
+<body>
+
+<div class="demo-banner">
+  Demo · Branche: Handwerk &nbsp;·&nbsp; <a href="../../index.html">← zur Pixelschneiderei</a>
+</div>
+
+<a class="demo-exit" href="../../index.html">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+  Demo verlassen
+</a>
+
+<style>
+  .demo-exit{
+    position: fixed; bottom: 24px; left: 24px; z-index: 100;
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 18px;
+    background: rgba(20, 20, 22, .92); color: #fff;
+    border-radius: 999px;
+    font-family: 'Inter', sans-serif;
+    font-size: .82rem; font-weight: 500; letter-spacing: .04em;
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,.1);
+    box-shadow: 0 6px 20px rgba(0,0,0,.25);
+    transition: transform .2s ease, background .2s ease;
+    text-decoration: none;
+  }
+  .demo-exit:hover{ transform: translateY(-2px); background: #b8392a;}
+  .demo-exit svg{ width: 14px; height: 14px;}
+  @media (max-width: 720px){ .demo-exit{ bottom: 16px; left: 16px; padding: 8px 14px; font-size: .78rem;}}
+</style>
+
+<header class="nav" id="nav">
+  <div class="container nav-row">
+    <a href="#top" class="brand">
+      <span class="brand-mark"></span>
+      Tischlerei <em>Holzgeist</em>
+    </a>
+    <nav class="nav-links">
+      <a href="#werkstatt">Werkstatt</a>
+      <a href="#leistungen">Leistungen</a>
+      <a href="#galerie">Galerie</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+    <a href="#kontakt" class="nav-cta">Anfragen →</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div>
+          <div class="hero-eyebrow reveal">Tischlerei seit 1973</div>
+          <h1 class="reveal">Holz, das eine<br/><em>Geschichte</em> trägt.</h1>
+          <p class="lede reveal">
+            Wir bauen Maßmöbel, die in fünfzig Jahren noch im Wohnzimmer stehen.
+            Aus heimischem Holz, mit klassischen Verbindungen, in Hamburger
+            Werkstatt-Tradition.
+          </p>
+          <div class="hero-actions reveal">
+            <a class="btn btn-primary" href="#kontakt">Beratung anfragen</a>
+            <a class="btn btn-ghost" href="#galerie">Arbeiten ansehen</a>
+          </div>
+        </div>
+        <div class="hero-art reveal">
+          <svg viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <linearGradient id="hgWood" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#a87b3c"/>
+                <stop offset="100%" stop-color="#2a1d0c"/>
+              </linearGradient>
+            </defs>
+            <rect width="400" height="500" fill="url(#hgWood)"/>
+            <g stroke="#3d2810" stroke-width="1.4" fill="none" opacity=".55">
+              <path d="M0 100 Q200 130 400 100"/>
+              <path d="M0 130 Q200 160 400 130"/>
+              <path d="M0 200 Q200 230 400 200"/>
+              <path d="M0 230 Q200 260 400 230"/>
+              <path d="M0 300 Q200 330 400 300"/>
+              <path d="M0 330 Q200 360 400 330"/>
+              <path d="M0 400 Q200 430 400 400"/>
+            </g>
+            <g stroke="#fff7e8" stroke-width=".4" fill="none" opacity=".15">
+              <line x1="0" y1="100" x2="400" y2="100"/>
+              <line x1="0" y1="200" x2="400" y2="200"/>
+              <line x1="0" y1="300" x2="400" y2="300"/>
+              <line x1="0" y1="400" x2="400" y2="400"/>
+            </g>
+            <text x="40" y="60" font-family="Cormorant Garamond, serif" font-size="14" fill="#fff7e8" font-style="italic" opacity=".6">Eiche · 32 mm · geseift</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="measure">
+    <div class="container">
+      <div class="measure-row">
+        <div class="measure"><strong>50+</strong><span>Jahre Familientradition</span></div>
+        <div class="measure"><strong>~ 6 Wochen</strong><span>Lieferzeit Maßmöbel</span></div>
+        <div class="measure"><strong>100 %</strong><span>heimische Hölzer</span></div>
+        <div class="measure"><strong>3</strong><span>Generationen Meister</span></div>
+      </div>
+    </div>
+  </div>
+
+  <section id="werkstatt">
+    <div class="container">
+      <div class="about-grid">
+        <div class="reveal">
+          <div class="section-eyebrow">Werkstatt</div>
+          <h2>Wo Schnitt­muster und<br/><em>Maserung</em> sich treffen.</h2>
+        </div>
+        <div class="about-text reveal">
+          <p>
+            Bei uns beginnt jedes Möbel mit einem Gespräch und einem
+            sorgfältig gewählten Stamm. Wir trocknen unser Holz selbst, lagern
+            es Jahre lang luftig und arbeiten es dann mit klassischen
+            Holzverbindungen zu Möbeln, die nicht in Mode sein wollen.
+          </p>
+          <p>
+            Wir sind keine Möbelfabrik. Wir sind drei Tischler, eine
+            Werkstatt und ein altes Versprechen: Wenn etwas nach zwanzig
+            Jahren bricht, kommen wir vorbei.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="work" id="leistungen">
+    <div class="container">
+      <div class="reveal">
+        <div class="section-eyebrow">Leistungen</div>
+        <h2>Was wir <em>fertigen.</em></h2>
+      </div>
+      <div class="work-grid">
+        <article class="work-card reveal">
+          <div class="work-num">i.</div>
+          <h3>Einbau- und Maßmöbel</h3>
+          <p>Schränke, Regale, Garderoben, die genau in Ihren Raum passen – auch in alten Häusern mit schiefen Wänden.</p>
+        </article>
+        <article class="work-card reveal">
+          <div class="work-num">ii.</div>
+          <h3>Küchen &amp; Essen</h3>
+          <p>Massivholz-Küchen, Esstische und Sitzbänke für die Räume, in denen Familien zusammenkommen.</p>
+        </article>
+        <article class="work-card reveal">
+          <div class="work-num">iii.</div>
+          <h3>Ausbau &amp; Restaurierung</h3>
+          <p>Holzböden, Treppen, Türen und die Pflege alter Möbelstücke, die noch ein zweites Leben verdient haben.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="galerie">
+    <div class="container">
+      <div class="reveal">
+        <div class="section-eyebrow">Galerie</div>
+        <h2>Stücke aus der <em>Werkstatt.</em></h2>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item reveal" data-label="Küche · Eiche"></div>
+        <div class="gallery-item reveal" data-label="Esstisch · Nussbaum"></div>
+        <div class="gallery-item reveal" data-label="Garderobe · Esche"></div>
+        <div class="gallery-item reveal" data-label="Sideboard · Kirsche"></div>
+        <div class="gallery-item reveal" data-label="Treppe · Buche"></div>
+        <div class="gallery-item reveal" data-label="Bett · Eiche"></div>
+        <div class="gallery-item reveal" data-label="Schreibtisch · Lärche"></div>
+        <div class="gallery-item reveal" data-label="Vitrine · Ahorn"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="quote">
+    <blockquote class="reveal">
+      Mein Tisch ist seit 1981 bei mir. Bei Holzgeist
+      bekommt er gerade einen neuen Lack – nicht den ersten.
+    </blockquote>
+    <cite class="reveal">Frau M., Stammkundin</cite>
+  </section>
+
+  <section id="kontakt">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="reveal">
+          <div class="section-eyebrow">Besuch</div>
+          <h2>Schauen Sie<br/><em>vorbei.</em></h2>
+          <div class="contact-info">
+            <p>
+              Wir öffnen die Werkstatttür gerne für ein Gespräch –
+              am liebsten mit einem Tee aus dem Holzofen-Kessel.
+            </p>
+            <strong>Werkstatt Holzgeist</strong>
+            <p>Beispielweg 7 · 0000 Musterstadt<br/>Mo–Fr 8–17 Uhr · Sa nach Absprache</p>
+            <strong>Telefon</strong>
+            <p>0123 456 78 90</p>
+            <strong>E-Mail</strong>
+            <p>kontakt@holzgeist-demo.example</p>
+          </div>
+        </div>
+        <form class="contact-form reveal" onsubmit="event.preventDefault(); alert('Demo: Formular nicht aktiv.');">
+          <div>
+            <label for="hg-name">Ihr Name</label>
+            <input id="hg-name" type="text" required/>
+          </div>
+          <div>
+            <label for="hg-mail">E-Mail</label>
+            <input id="hg-mail" type="email" required/>
+          </div>
+          <div>
+            <label for="hg-msg">Ihr Vorhaben</label>
+            <textarea id="hg-msg" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" style="border:0; cursor:pointer; align-self: flex-start;">Anfrage senden</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="foot-row">
+      <div class="brand-block">
+        <div class="foot-brand">Tischlerei <em>Holzgeist</em></div>
+        <p>Maßmöbel aus heimischen Hölzern. Familienbetrieb in dritter Generation.</p>
+      </div>
+      <div>
+        <h4>Werkstatt</h4>
+        <a href="#werkstatt">Über uns</a>
+        <a href="#leistungen">Leistungen</a>
+        <a href="#galerie">Galerie</a>
+        <a href="#kontakt">Kontakt</a>
+      </div>
+      <div>
+        <h4>Demo-Hinweise</h4>
+        <a href="../../index.html">← Pixelschneiderei</a>
+        <a href="../../referenzen.html">Weitere Demos</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      Demo · Tischlerei Holzgeist ist ein fiktiver Beispielauftritt der <a href="../../index.html">Pixelschneiderei</a>.
+    </div>
+  </div>
+</footer>
+
+<script>
+  var nav = document.getElementById('nav');
+  if (nav){
+    var onScroll = function(){ nav.classList.toggle('is-scrolled', window.scrollY > 8); };
+    window.addEventListener('scroll', onScroll, {passive:true});
+    onScroll();
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting){ e.target.classList.add('is-visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+</script>
+
+</body>
+</html>

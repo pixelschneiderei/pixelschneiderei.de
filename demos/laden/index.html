@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="theme-color" content="#fbf3e8" />
+<title>Das gute Büro – Schreibwaren mit Charakter (Demo)</title>
+<meta name="description" content="Demo: Das gute Büro – Schreibwarengeschäft. Beispielauftritt der Pixelschneiderei für ein kleines Geschäft." />
+<meta name="robots" content="noindex, nofollow" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23fbf3e8'/%3E%3Cpath d='M8 24 L8 12 L16 6 L24 12 L24 24 L18 24 L18 17 L14 17 L14 24 Z' fill='%235b2f1c'/%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..700,30..100&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  :root{
+    --paper: #fbf3e8;
+    --paper-2: #f3ddd0;
+    --cream: #fff8ee;
+    --ink: #1a0d05;
+    --ink-soft: #4a2918;
+    --muted: #8a6c5b;
+    --rust: #c97c5a;
+    --rust-deep: #5b2f1c;
+    --line: #ead8c0;
+    --serif: 'Fraunces', serif;
+    --sans: 'Inter', sans-serif;
+    --ease: cubic-bezier(.2,.7,.2,1);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{ background: var(--paper); color: var(--ink); font-family: var(--sans); line-height: 1.6; -webkit-font-smoothing: antialiased;}
+  a{color:inherit; text-decoration:none}
+  img,svg{display:block; max-width:100%}
+
+  .demo-banner{ background: var(--rust-deep); color: var(--cream); text-align:center; padding: 10px 16px; font-size: .76rem; letter-spacing: .12em; text-transform: uppercase;}
+  .demo-banner a{ text-decoration: underline; text-underline-offset: 3px;}
+  .container{ max-width: 1180px; margin: 0 auto; padding: 0 24px;}
+
+  .nav{ position: sticky; top: 0; z-index: 50; background: rgba(251,243,232,.92); backdrop-filter: blur(12px); border-bottom: 1px solid transparent; transition: border-color .3s var(--ease);}
+  .nav.is-scrolled{ border-color: var(--line);}
+  .nav-row{ display:flex; align-items:center; justify-content: space-between; height: 76px;}
+  .brand{ font-family: var(--serif); font-size: 1.5rem; font-weight: 500; display:flex; align-items:center; gap: 10px; letter-spacing: -0.01em;}
+  .brand em{ font-style: italic; color: var(--rust-deep); font-weight: 400;}
+  .nav-links{ display:flex; gap: 28px; font-size: .94rem; color: var(--ink-soft);}
+  .nav-links a:hover{ color: var(--rust-deep);}
+  .nav-cta{ padding: 10px 20px; background: var(--rust-deep); color: var(--cream); border-radius: 999px; font-size: .9rem; font-weight: 500;}
+  .nav-cta:hover{ background: var(--rust);}
+  @media (max-width: 720px){ .nav-links{ display:none;}}
+
+  .hero{ padding: 96px 0; position: relative; overflow: hidden;}
+  .hero-grid{ display:grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;}
+  @media (max-width: 880px){ .hero-grid{ grid-template-columns: 1fr;}}
+  .eyebrow{ font-size: .8rem; letter-spacing: .2em; text-transform: uppercase; color: var(--rust-deep); margin-bottom: 24px; font-weight: 500;}
+  .hero h1{ font-family: var(--serif); font-weight: 400; font-size: clamp(2.6rem, 6vw, 4.6rem); line-height: 1.05; letter-spacing: -0.02em;}
+  .hero h1 em{ font-style: italic; color: var(--rust-deep);}
+  .hero p.lede{ margin-top: 28px; font-size: 1.15rem; color: var(--ink-soft); max-width: 50ch;}
+  .hero-actions{ margin-top: 36px; display:flex; gap: 14px; flex-wrap: wrap;}
+  .btn{ display:inline-flex; align-items:center; gap: 10px; padding: 14px 28px; border-radius: 999px; font-weight: 500; font-size: 1rem; transition: transform .25s var(--ease), background .25s var(--ease);}
+  .btn-primary{ background: var(--rust-deep); color: var(--cream);}
+  .btn-primary:hover{ background: var(--rust); transform: translateY(-2px);}
+  .btn-ghost{ border: 1px solid var(--rust-deep); color: var(--rust-deep);}
+  .btn-ghost:hover{ background: var(--rust-deep); color: var(--cream); transform: translateY(-2px);}
+
+  .hero-art{ aspect-ratio: 4/5; background: linear-gradient(180deg, #f3ddd0, #c97c5a); border-radius: 16px; overflow: hidden; position: relative;}
+
+  section{ padding: 80px 0;}
+  h2{ font-family: var(--serif); font-weight: 400; font-size: clamp(2rem, 4.5vw, 3.4rem); line-height: 1.05; letter-spacing: -0.01em;}
+  h2 em{ font-style: italic; color: var(--rust-deep);}
+  .section-eyebrow{ font-size: .8rem; letter-spacing: .2em; text-transform: uppercase; color: var(--rust-deep); margin-bottom: 16px; font-weight: 500;}
+
+  .products{ background: var(--cream); border-block: 1px solid var(--line);}
+  .products-head{ text-align: center; margin-bottom: 48px;}
+  .products-grid{ display:grid; grid-template-columns: repeat(4, 1fr); gap: 24px;}
+  @media (max-width: 880px){ .products-grid{ grid-template-columns: repeat(2, 1fr);}}
+  @media (max-width: 480px){ .products-grid{ grid-template-columns: 1fr;}}
+  .prod{
+    background: var(--paper); border: 1px solid var(--line); border-radius: 16px;
+    overflow: hidden; transition: transform .25s var(--ease), border-color .25s var(--ease);
+  }
+  .prod:hover{ transform: translateY(-4px); border-color: var(--rust-deep);}
+  .prod-thumb{ aspect-ratio: 1; background: linear-gradient(135deg, #efd9c2, #b86a4a);}
+  .prod:nth-child(2) .prod-thumb{ background: linear-gradient(135deg, #f3ddd0, #5b2f1c);}
+  .prod:nth-child(3) .prod-thumb{ background: linear-gradient(135deg, #d4b89a, #8a563b);}
+  .prod:nth-child(4) .prod-thumb{ background: linear-gradient(135deg, #f8e5cf, #c97c5a);}
+  .prod-body{ padding: 16px 20px;}
+  .prod h3{ font-family: var(--serif); font-size: 1.1rem; font-weight: 500;}
+  .prod span{ display:block; color: var(--muted); font-size: .85rem; margin-top: 4px;}
+
+  .story{ display:grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;}
+  @media (max-width: 720px){ .story{ grid-template-columns: 1fr;}}
+  .story-art{ aspect-ratio: 1; background: linear-gradient(135deg, #f3ddd0, #5b2f1c); border-radius: 16px;}
+  .story p{ margin-top: 24px; color: var(--ink-soft); font-size: 1.05rem;}
+
+  .visit{ background: var(--rust-deep); color: var(--cream); padding: 96px 24px; text-align: center;}
+  .visit h2{ color: var(--cream);}
+  .visit h2 em{ color: var(--paper-2);}
+  .visit p{ margin: 24px auto 0; max-width: 50ch; color: rgba(255,248,238,.85);}
+  .visit-info{ margin-top: 36px; display: inline-flex; flex-direction: column; gap: 6px; font-family: var(--serif);}
+  .visit-info strong{ font-size: 1.4rem; font-style: italic;}
+  .visit-info span{ color: rgba(255,248,238,.75);}
+
+  footer{ background: var(--ink); color: var(--paper-2); padding: 56px 0 32px;}
+  .foot-row{ display:grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; margin-bottom: 40px;}
+  @media (max-width: 720px){ .foot-row{ grid-template-columns: 1fr; gap: 32px;}}
+  .foot-row h4{ font-size: .8rem; letter-spacing: .14em; text-transform: uppercase; color: var(--rust); margin-bottom: 16px; font-weight: 600;}
+  .foot-row a{ display:block; color: var(--paper-2); padding: 4px 0; transition: color .2s ease;}
+  .foot-row a:hover{ color: var(--rust);}
+  .foot-row .brand-block .foot-brand{ font-family: var(--serif); font-size: 1.6rem; margin-bottom: 12px;}
+  .foot-row .brand-block .foot-brand em{ font-style: italic; color: var(--rust);}
+  .foot-bottom{ border-top: 1px solid rgba(251,243,232,.1); padding-top: 24px; text-align: center; font-size: .82rem; color: rgba(251,243,232,.5);}
+  .foot-bottom a{ color: var(--rust);}
+
+  .reveal{ opacity:0; transform: translateY(18px); transition: opacity .8s var(--ease), transform .8s var(--ease);}
+  .reveal.is-visible{ opacity:1; transform: translateY(0);}
+  @media (prefers-reduced-motion: reduce){ .reveal{ opacity:1; transform: none;} *,*::before,*::after{transition-duration: 0.001ms !important;}}
+</style>
+</head>
+<body>
+
+<div class="demo-banner">Demo · Branche: Geschäft &nbsp;·&nbsp; <a href="../../index.html">← zur Pixelschneiderei</a></div>
+
+<a class="demo-exit" href="../../index.html">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+  Demo verlassen
+</a>
+<style>
+  .demo-exit{ position: fixed; bottom: 24px; left: 24px; z-index: 100; display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; background: rgba(20,20,22,.92); color: #fff; border-radius: 999px; font-family: 'Inter', sans-serif; font-size: .82rem; font-weight: 500; letter-spacing: .04em; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,.1); box-shadow: 0 6px 20px rgba(0,0,0,.25); transition: transform .2s ease, background .2s ease; text-decoration: none;}
+  .demo-exit:hover{ transform: translateY(-2px); background: #b8392a;}
+  .demo-exit svg{ width: 14px; height: 14px;}
+  @media (max-width: 720px){ .demo-exit{ bottom: 16px; left: 16px; padding: 8px 14px; font-size: .78rem;}}
+</style>
+
+<header class="nav" id="nav">
+  <div class="container nav-row">
+    <a href="#top" class="brand">Das <em>gute</em> Büro</a>
+    <nav class="nav-links">
+      <a href="#sortiment">Sortiment</a>
+      <a href="#geschichte">Geschichte</a>
+      <a href="#besuch">Besuch</a>
+    </nav>
+    <a href="#besuch" class="nav-cta">Vorbeischauen →</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div>
+          <div class="eyebrow reveal">Schreibwaren · seit 1962</div>
+          <h1 class="reveal">Schreibwaren<br/>mit <em>Charakter.</em></h1>
+          <p class="lede reveal">
+            Ein kleines Geschäft an der Ecke. Füller, die schreiben statt klecksen.
+            Notizbücher, in denen die Tinte hält. Und eine Inhaberin, die sich an
+            Ihren letzten Einkauf erinnert.
+          </p>
+          <div class="hero-actions reveal">
+            <a class="btn btn-primary" href="#sortiment">Sortiment ansehen</a>
+            <a class="btn btn-ghost" href="#besuch">Vorbeischauen</a>
+          </div>
+        </div>
+        <div class="hero-art reveal">
+          <svg viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice">
+            <rect width="400" height="500" fill="transparent"/>
+            <g stroke="#5b2f1c" stroke-width="2" fill="none" opacity=".4">
+              <path d="M50 350 L50 200 L120 130 L190 200 L190 350"/>
+              <path d="M120 350 L120 250 L160 250 L160 350"/>
+              <path d="M190 350 L350 350 L350 220 L300 170 L250 220 L250 350"/>
+              <rect x="270" y="260" width="40" height="60"/>
+              <rect x="80" y="280" width="20" height="40"/>
+            </g>
+            <text x="200" y="450" text-anchor="middle" font-family="Fraunces" font-size="14" fill="#5b2f1c" font-style="italic" opacity=".6">Hauptstraße 14</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="products" id="sortiment">
+    <div class="container">
+      <div class="products-head reveal">
+        <div class="section-eyebrow">Sortiment</div>
+        <h2>Was bei uns <em>auf</em> dem Tresen liegt.</h2>
+      </div>
+      <div class="products-grid">
+        <div class="prod reveal">
+          <div class="prod-thumb"></div>
+          <div class="prod-body"><h3>Füller &amp; Tinte</h3><span>Manufaktur · diverse Marken</span></div>
+        </div>
+        <div class="prod reveal">
+          <div class="prod-thumb"></div>
+          <div class="prod-body"><h3>Notizbücher</h3><span>Leinen, Leder, Papier</span></div>
+        </div>
+        <div class="prod reveal">
+          <div class="prod-thumb"></div>
+          <div class="prod-body"><h3>Bürobedarf</h3><span>Klassisch &amp; nachhaltig</span></div>
+        </div>
+        <div class="prod reveal">
+          <div class="prod-thumb"></div>
+          <div class="prod-body"><h3>Geschenke</h3><span>Briefpapier, Stempel, Karten</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="geschichte">
+    <div class="container">
+      <div class="story">
+        <div class="reveal">
+          <div class="section-eyebrow">Seit 1962</div>
+          <h2>Drei Generationen.<br/><em>Eine</em> Ecke.</h2>
+          <p>
+            Mein Großvater eröffnete den Laden im Jahr 1962, mein Vater übernahm
+            in den Achtzigern. Ich führe ihn seit 2010 weiter – mit derselben
+            Vitrine, demselben Schaufenster und der zähen Überzeugung, dass
+            gutes Papier seinen Preis wert ist.
+          </p>
+        </div>
+        <div class="story-art reveal"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="visit" id="besuch">
+    <div class="reveal">
+      <div class="section-eyebrow" style="color: var(--paper-2);">Besuch</div>
+      <h2>Schauen Sie<br/><em>einfach</em> vorbei.</h2>
+      <p>Wir freuen uns über jede:n, der oder die durch die Tür kommt – auch ohne konkretes Anliegen.</p>
+      <div class="visit-info">
+        <strong>Hauptstraße 14 · 0000 Musterstadt</strong>
+        <span>Mo–Fr · 9:00 – 18:30 · Sa · 9:00 – 14:00</span>
+        <span>0123 / 456 78 90</span>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="foot-row">
+      <div class="brand-block">
+        <div class="foot-brand">Das <em>gute</em> Büro</div>
+        <p>Schreibwaren-Geschäft seit 1962. Drei Generationen, eine Ecke.</p>
+      </div>
+      <div>
+        <h4>Geschäft</h4>
+        <a href="#sortiment">Sortiment</a>
+        <a href="#geschichte">Geschichte</a>
+        <a href="#besuch">Besuch</a>
+      </div>
+      <div>
+        <h4>Demo-Hinweise</h4>
+        <a href="../../index.html">← Pixelschneiderei</a>
+        <a href="../../referenzen.html">Weitere Demos</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      Demo · „Das gute Büro" ist ein fiktiver Beispielauftritt der <a href="../../index.html">Pixelschneiderei</a>.
+    </div>
+  </div>
+</footer>
+
+<script>
+  var nav = document.getElementById('nav');
+  if (nav){
+    var onScroll = function(){ nav.classList.toggle('is-scrolled', window.scrollY > 8); };
+    window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if (e.isIntersecting){ e.target.classList.add('is-visible'); io.unobserve(e.target);}});
+  }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+</script>
+
+</body>
+</html>

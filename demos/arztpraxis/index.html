@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="theme-color" content="#f4f7fa" />
+<title>Praxis Linde – Allgemeinmedizin (Demo)</title>
+<meta name="description" content="Demo: Hausarztpraxis Linde. Beispielauftritt der Pixelschneiderei für eine Arztpraxis." />
+<meta name="robots" content="noindex, nofollow" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23f4f7fa'/%3E%3Crect x='14' y='8' width='4' height='16' fill='%23264a6b'/%3E%3Crect x='8' y='14' width='16' height='4' fill='%23264a6b'/%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..600;1,8..60,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  :root{
+    --paper: #f4f7fa;
+    --paper-2: #e6edf3;
+    --cream: #ffffff;
+    --ink: #0f1f2e;
+    --ink-soft: #354b5d;
+    --muted: #6c7e8d;
+    --blue: #4a7ba8;
+    --blue-deep: #264a6b;
+    --line: #d4dde5;
+    --green-soft: #6fa68b;
+    --serif: 'Source Serif 4', Georgia, serif;
+    --sans: 'Inter', sans-serif;
+    --ease: cubic-bezier(.2,.7,.2,1);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{ background: var(--paper); color: var(--ink); font-family: var(--sans); line-height: 1.6; -webkit-font-smoothing: antialiased;}
+  a{color:inherit; text-decoration:none}
+  img,svg{display:block; max-width:100%}
+
+  .demo-banner{ background: var(--blue-deep); color: var(--cream); text-align:center; padding: 10px 16px; font-size: .76rem; letter-spacing: .12em; text-transform: uppercase;}
+  .demo-banner a{ text-decoration: underline; text-underline-offset: 3px;}
+
+  /* URGENT NOTICE */
+  .notice{ background: #fdf2c1; border-bottom: 1px solid #efd97a; padding: 12px 24px; text-align: center; font-size: .92rem; color: #5c4a0d;}
+  .notice strong{ color: #2a2105;}
+
+  .container{ max-width: 1180px; margin: 0 auto; padding: 0 24px;}
+
+  /* NAV */
+  .nav{ position: sticky; top: 0; z-index: 50; background: rgba(244,247,250,.94); backdrop-filter: blur(12px); border-bottom: 1px solid transparent; transition: border-color .3s var(--ease);}
+  .nav.is-scrolled{ border-color: var(--line);}
+  .nav-row{ display:flex; align-items:center; justify-content: space-between; height: 76px;}
+  .brand{ font-family: var(--serif); font-size: 1.5rem; display:flex; align-items:center; gap: 10px; color: var(--blue-deep);}
+  .brand-mark{ width: 22px; height: 22px; position: relative;}
+  .brand-mark::before, .brand-mark::after{ content:""; position: absolute; background: var(--blue-deep);}
+  .brand-mark::before{ top: 50%; left: 0; right: 0; height: 4px; transform: translateY(-50%);}
+  .brand-mark::after{ left: 50%; top: 0; bottom: 0; width: 4px; transform: translateX(-50%);}
+  .nav-links{ display:flex; gap: 32px; font-size: .95rem; color: var(--ink-soft);}
+  .nav-links a:hover{ color: var(--blue-deep);}
+  .nav-cta{ padding: 10px 22px; background: var(--blue-deep); color: var(--cream); border-radius: 8px; font-size: .9rem; font-weight: 500; transition: background .25s var(--ease), transform .25s var(--ease);}
+  .nav-cta:hover{ background: var(--blue); transform: translateY(-1px);}
+  @media (max-width: 720px){ .nav-links{ display:none;}}
+
+  /* HERO */
+  .hero{ padding: 80px 0; background: var(--cream); border-bottom: 1px solid var(--line);}
+  .hero-grid{ display:grid; grid-template-columns: 1.2fr 1fr; gap: 64px; align-items: center;}
+  @media (max-width: 880px){ .hero-grid{ grid-template-columns: 1fr;}}
+  .hero-eyebrow{ font-size: .8rem; letter-spacing: .14em; text-transform: uppercase; color: var(--blue-deep); margin-bottom: 24px; font-weight: 600;}
+  .hero h1{ font-family: var(--serif); font-weight: 400; font-size: clamp(2.6rem, 5.5vw, 4.5rem); line-height: 1.05; letter-spacing: -0.015em; color: var(--ink);}
+  .hero h1 em{ font-style: italic; color: var(--blue-deep); font-weight: 400;}
+  .hero p.lede{ margin-top: 28px; font-size: 1.15rem; color: var(--ink-soft); max-width: 52ch;}
+  .hero-actions{ margin-top: 36px; display:flex; gap: 14px; flex-wrap: wrap;}
+  .btn{ display:inline-flex; align-items:center; gap: 10px; padding: 14px 24px; border-radius: 8px; font-weight: 500; font-size: 1rem; transition: transform .25s var(--ease), background .25s var(--ease);}
+  .btn-primary{ background: var(--blue-deep); color: var(--cream);}
+  .btn-primary:hover{ background: var(--blue); transform: translateY(-2px);}
+  .btn-ghost{ border: 1px solid var(--blue-deep); color: var(--blue-deep);}
+  .btn-ghost:hover{ background: var(--blue-deep); color: var(--cream); transform: translateY(-2px);}
+
+  .hero-art{
+    aspect-ratio: 4/5;
+    background: linear-gradient(135deg, #e3edf3, #b9cbdc);
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+  }
+  .hero-art svg{ width: 100%; height: 100%;}
+
+  /* QUICK INFO */
+  .quick{
+    padding: 0;
+    margin-top: -40px;
+    position: relative; z-index: 2;
+  }
+  .quick-grid{
+    display:grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+    background: var(--cream); border-radius: 16px;
+    padding: 32px;
+    box-shadow: 0 4px 24px rgba(15,31,46,.08);
+    border: 1px solid var(--line);
+  }
+  @media (max-width: 720px){ .quick-grid{ grid-template-columns: 1fr; padding: 24px;}}
+  .quick-item{ display:flex; gap: 16px; padding: 12px;}
+  .quick-icon{ flex-shrink: 0; width: 40px; height: 40px; border-radius: 50%; background: var(--paper-2); color: var(--blue-deep); display:grid; place-items: center;}
+  .quick-icon svg{ width: 20px; height: 20px;}
+  .quick-item strong{ display:block; font-family: var(--serif); font-size: 1.1rem; color: var(--ink); margin-bottom: 2px;}
+  .quick-item span{ display:block; color: var(--ink-soft); font-size: .92rem;}
+
+  /* SECTIONS */
+  section{ padding: 96px 0;}
+  .section-eyebrow{ font-size: .8rem; letter-spacing: .14em; text-transform: uppercase; color: var(--blue-deep); margin-bottom: 16px; font-weight: 600;}
+  h2{ font-family: var(--serif); font-weight: 400; font-size: clamp(2rem, 4.5vw, 3.4rem); line-height: 1.1; letter-spacing: -0.01em;}
+  h2 em{ font-style: italic; color: var(--blue-deep);}
+
+  .leistungen-grid{
+    display:grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+    margin-top: 48px;
+  }
+  @media (max-width: 880px){ .leistungen-grid{ grid-template-columns: 1fr;}}
+  .leistung{
+    background: var(--cream); padding: 32px;
+    border: 1px solid var(--line); border-radius: 16px;
+    transition: transform .25s var(--ease), border-color .25s var(--ease);
+  }
+  .leistung:hover{ transform: translateY(-4px); border-color: var(--blue-deep);}
+  .leistung-icon{ width: 48px; height: 48px; border-radius: 12px; background: var(--paper-2); color: var(--blue-deep); display:grid; place-items: center; margin-bottom: 20px;}
+  .leistung-icon svg{ width: 24px; height: 24px;}
+  .leistung h3{ font-family: var(--serif); font-size: 1.4rem; margin-bottom: 12px;}
+  .leistung p{ color: var(--ink-soft); font-size: .95rem;}
+
+  /* TEAM */
+  .team{ background: var(--paper-2);}
+  .team-grid{ display:grid; grid-template-columns: repeat(2, 1fr); gap: 32px; margin-top: 48px;}
+  @media (max-width: 720px){ .team-grid{ grid-template-columns: 1fr;}}
+  .doc{
+    background: var(--cream); padding: 36px;
+    border-radius: 16px; border: 1px solid var(--line);
+    display: flex; gap: 24px; align-items: flex-start;
+  }
+  .doc-photo{ flex-shrink: 0; width: 96px; height: 96px; border-radius: 50%; background: linear-gradient(135deg, #b9cbdc, #4a7ba8);}
+  .doc h3{ font-family: var(--serif); font-size: 1.4rem; margin-bottom: 4px;}
+  .doc span{ display:block; color: var(--blue-deep); font-size: .88rem; letter-spacing: .04em; margin-bottom: 12px;}
+  .doc p{ color: var(--ink-soft); font-size: .94rem;}
+
+  /* HOURS */
+  .hours-card{
+    background: var(--cream); padding: 36px;
+    border: 1px solid var(--line); border-radius: 16px;
+    max-width: 600px; margin: 48px auto 0;
+  }
+  .hours-card table{ width: 100%; border-collapse: collapse;}
+  .hours-card td{ padding: 14px 0; border-bottom: 1px solid var(--paper-2); font-size: 1rem;}
+  .hours-card td:first-child{ font-family: var(--serif); font-weight: 500; color: var(--ink);}
+  .hours-card td:last-child{ text-align: right; color: var(--ink-soft); font-variant-numeric: tabular-nums;}
+  .hours-card tr:last-child td{ border-bottom: 0;}
+
+  /* CTA */
+  .cta-strip{ padding: 80px 24px; background: var(--blue-deep); color: var(--cream); text-align: center;}
+  .cta-strip h2{ color: var(--cream);}
+  .cta-strip h2 em{ color: #b9cbdc;}
+  .cta-strip p{ margin: 24px auto 0; max-width: 50ch; color: rgba(255,255,255,.85);}
+  .cta-strip .btn-primary{ background: var(--cream); color: var(--blue-deep);}
+  .cta-strip .btn-primary:hover{ background: var(--paper-2);}
+  .cta-buttons{ margin-top: 36px; display:inline-flex; gap: 14px; flex-wrap: wrap; justify-content: center;}
+  .cta-strip .btn-ghost{ border-color: rgba(255,255,255,.4); color: var(--cream);}
+  .cta-strip .btn-ghost:hover{ background: var(--cream); color: var(--blue-deep); border-color: var(--cream);}
+
+  /* FOOTER */
+  footer{ background: var(--ink); color: var(--paper-2); padding: 56px 0 32px;}
+  .foot-row{ display:grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; margin-bottom: 40px;}
+  @media (max-width: 720px){ .foot-row{ grid-template-columns: 1fr; gap: 32px;}}
+  .foot-row h4{ font-size: .8rem; letter-spacing: .14em; text-transform: uppercase; color: var(--blue); margin-bottom: 16px; font-weight: 600;}
+  .foot-row a{ display:block; color: var(--paper-2); padding: 4px 0; transition: color .2s ease;}
+  .foot-row a:hover{ color: var(--blue);}
+  .foot-row .brand-block .foot-brand{ font-family: var(--serif); font-size: 1.6rem; margin-bottom: 12px;}
+  .foot-row .brand-block .foot-brand em{ font-style: italic; color: var(--blue);}
+  .foot-bottom{ border-top: 1px solid rgba(244,247,250,.1); padding-top: 24px; text-align: center; font-size: .82rem; color: rgba(244,247,250,.5);}
+  .foot-bottom a{ color: var(--blue);}
+
+  .reveal{ opacity:0; transform: translateY(18px); transition: opacity .8s var(--ease), transform .8s var(--ease);}
+  .reveal.is-visible{ opacity:1; transform: translateY(0);}
+  @media (prefers-reduced-motion: reduce){ .reveal{ opacity:1; transform: none;} *,*::before,*::after{transition-duration: 0.001ms !important;}}
+</style>
+</head>
+<body>
+
+<div class="demo-banner">Demo · Branche: Arztpraxis &nbsp;·&nbsp; <a href="../../index.html">← zur Pixelschneiderei</a></div>
+
+<a class="demo-exit" href="../../index.html">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+  Demo verlassen
+</a>
+<style>
+  .demo-exit{ position: fixed; bottom: 24px; left: 24px; z-index: 100; display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; background: rgba(20,20,22,.92); color: #fff; border-radius: 999px; font-family: 'Inter', sans-serif; font-size: .82rem; font-weight: 500; letter-spacing: .04em; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,.1); box-shadow: 0 6px 20px rgba(0,0,0,.25); transition: transform .2s ease, background .2s ease; text-decoration: none;}
+  .demo-exit:hover{ transform: translateY(-2px); background: #b8392a;}
+  .demo-exit svg{ width: 14px; height: 14px;}
+  @media (max-width: 720px){ .demo-exit{ bottom: 16px; left: 16px; padding: 8px 14px; font-size: .78rem;}}
+</style>
+
+<div class="notice">
+  <strong>Im Notfall:</strong> 112 · <strong>Ärztlicher Bereitschaftsdienst:</strong> 116 117 · Diese Seite ersetzt keinen Arztbesuch.
+</div>
+
+<header class="nav" id="nav">
+  <div class="container nav-row">
+    <a href="#top" class="brand"><span class="brand-mark"></span>Praxis Linde</a>
+    <nav class="nav-links">
+      <a href="#leistungen">Leistungen</a>
+      <a href="#team">Team</a>
+      <a href="#zeiten">Sprechzeiten</a>
+      <a href="#termin">Termin</a>
+    </nav>
+    <a href="#termin" class="nav-cta">Termin buchen</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div>
+          <div class="hero-eyebrow reveal">Hausarztpraxis · Allgemeinmedizin</div>
+          <h1 class="reveal">Vertraute Medizin.<br/><em>In Ihrer Nähe.</em></h1>
+          <p class="lede reveal">
+            Eine Hausarztpraxis, in der man sich Zeit nimmt – für Diagnose,
+            Beratung und das Gespräch dazwischen.
+          </p>
+          <div class="hero-actions reveal">
+            <a class="btn btn-primary" href="#termin">Online-Termin buchen</a>
+            <a class="btn btn-ghost" href="#zeiten">Sprechzeiten ansehen</a>
+          </div>
+        </div>
+        <div class="hero-art reveal">
+          <svg viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice">
+            <rect width="400" height="500" fill="#e3edf3"/>
+            <g opacity=".4">
+              <circle cx="100" cy="100" r="60" fill="#4a7ba8"/>
+              <circle cx="300" cy="380" r="80" fill="#264a6b"/>
+            </g>
+            <g transform="translate(200 250)">
+              <circle cx="0" cy="0" r="100" fill="#fff" opacity=".95"/>
+              <rect x="-10" y="-50" width="20" height="100" fill="#264a6b"/>
+              <rect x="-50" y="-10" width="100" height="20" fill="#264a6b"/>
+            </g>
+            <text x="200" y="450" font-family="Source Serif 4, serif" font-size="14" fill="#264a6b" text-anchor="middle" font-style="italic" opacity=".6">in guten Händen</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="quick">
+      <div class="quick-grid">
+        <div class="quick-item">
+          <div class="quick-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+          <div><strong>Sprechzeiten</strong><span>Mo–Fr 8:00–18:00 Uhr</span></div>
+        </div>
+        <div class="quick-item">
+          <div class="quick-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+          <div><strong>Telefon</strong><span>0123 / 456 78 90</span></div>
+        </div>
+        <div class="quick-item">
+          <div class="quick-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div><strong>Adresse</strong><span>Beispielstraße 5 · 0000 Musterstadt</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section id="leistungen">
+    <div class="container">
+      <div class="reveal" style="text-align: center; max-width: 60ch; margin: 0 auto;">
+        <div class="section-eyebrow">Leistungen</div>
+        <h2>Was wir<br/><em>für Sie</em> tun.</h2>
+      </div>
+      <div class="leistungen-grid">
+        <div class="leistung reveal">
+          <div class="leistung-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+          <h3>Vorsorge &amp; Check-up</h3>
+          <p>Gesundheitsuntersuchungen, Hautkrebs-Screening, Reise- und Sport-Check-up.</p>
+        </div>
+        <div class="leistung reveal">
+          <div class="leistung-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg></div>
+          <h3>Hausärztliche Versorgung</h3>
+          <p>Diagnostik, Therapie und Begleitung chronischer Erkrankungen – DMP-Programme inklusive.</p>
+        </div>
+        <div class="leistung reveal">
+          <div class="leistung-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+          <h3>Akut-Sprechstunde</h3>
+          <p>Tägliche offene Sprechzeit für akute Beschwerden – ohne Termin.</p>
+        </div>
+        <div class="leistung reveal">
+          <div class="leistung-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+          <h3>EKG &amp; Belastungs-EKG</h3>
+          <p>Herz-Kreislauf-Diagnostik direkt vor Ort, mit ausführlicher Befundbesprechung.</p>
+        </div>
+        <div class="leistung reveal">
+          <div class="leistung-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div>
+          <h3>Impfungen &amp; Reisemedizin</h3>
+          <p>Schutzimpfungen nach STIKO, Beratung für Auslandsaufenthalte, Gelbfieber-Impfstelle.</p>
+        </div>
+        <div class="leistung reveal">
+          <div class="leistung-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M9 12l2 2 4-4"/><path d="M21 12c0 4.9-3.5 9-8 9.9C8.5 21 5 16.9 5 12V6l8-4 8 4v6z"/></svg></div>
+          <h3>Hausbesuche</h3>
+          <p>Für unsere immobilen Patient:innen – Hausbesuche nach Absprache und im Notfall.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="team" id="team">
+    <div class="container">
+      <div class="reveal" style="text-align: center; max-width: 60ch; margin: 0 auto;">
+        <div class="section-eyebrow">Team</div>
+        <h2>Die Menschen<br/><em>hinter</em> der Praxis.</h2>
+      </div>
+      <div class="team-grid">
+        <article class="doc reveal">
+          <div class="doc-photo"></div>
+          <div>
+            <h3>Dr. med. Anna Linde</h3>
+            <span>Fachärztin für Allgemeinmedizin · Praxisinhaberin</span>
+            <p>Schwerpunkt Diabetologie, Reisemedizin. Seit 2008 in der Praxis, seit 2018 Inhaberin.</p>
+          </div>
+        </article>
+        <article class="doc reveal">
+          <div class="doc-photo" style="background: linear-gradient(135deg, #c1d5e2, #355a7a);"></div>
+          <div>
+            <h3>Dr. med. Johannes Bender</h3>
+            <span>Facharzt für Innere Medizin</span>
+            <p>Schwerpunkt Kardiologie und EKG-Diagnostik. Verstärkt das Team seit 2021.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="zeiten">
+    <div class="container">
+      <div class="reveal" style="text-align: center; max-width: 60ch; margin: 0 auto;">
+        <div class="section-eyebrow">Sprechzeiten</div>
+        <h2>Wann wir <em>für Sie</em> da sind.</h2>
+      </div>
+      <div class="hours-card reveal">
+        <table>
+          <tr><td>Montag</td><td>8:00 – 12:00 · 14:00 – 18:00</td></tr>
+          <tr><td>Dienstag</td><td>8:00 – 13:00</td></tr>
+          <tr><td>Mittwoch</td><td>8:00 – 12:00 · 14:00 – 18:00</td></tr>
+          <tr><td>Donnerstag</td><td>8:00 – 12:00 · 14:00 – 19:00</td></tr>
+          <tr><td>Freitag</td><td>8:00 – 13:00</td></tr>
+          <tr><td>Samstag &amp; Sonntag</td><td>geschlossen</td></tr>
+        </table>
+        <p style="margin-top: 24px; padding: 16px; background: var(--paper-2); border-radius: 8px; color: var(--ink-soft); font-size: .92rem;">
+          <strong style="color: var(--ink);">Akut-Sprechstunde:</strong> Mo–Fr 8:00–9:30 ohne Termin.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-strip" id="termin">
+    <div class="reveal">
+      <div class="section-eyebrow" style="color: #b9cbdc;">Termin</div>
+      <h2>Online <em>buchen.</em><br/>Schnell und einfach.</h2>
+      <p>Reguläre Sprechstundentermine können online vereinbart werden.<br/>Bei akuten Beschwerden rufen Sie bitte an.</p>
+      <div class="cta-buttons">
+        <a class="btn btn-primary" href="#">Termin online buchen</a>
+        <a class="btn btn-ghost" href="tel:01234567890">0123 / 456 78 90</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="foot-row">
+      <div class="brand-block">
+        <div class="foot-brand">Praxis <em>Linde</em></div>
+        <p>Hausarztpraxis · Allgemeinmedizin · Beispielstraße 5 · 0000 Musterstadt.</p>
+      </div>
+      <div>
+        <h4>Praxis</h4>
+        <a href="#leistungen">Leistungen</a>
+        <a href="#team">Team</a>
+        <a href="#zeiten">Sprechzeiten</a>
+        <a href="#termin">Termin buchen</a>
+      </div>
+      <div>
+        <h4>Demo-Hinweise</h4>
+        <a href="../../index.html">← Pixelschneiderei</a>
+        <a href="../../referenzen.html">Weitere Demos</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      Demo · Praxis Linde ist ein fiktiver Beispielauftritt der <a href="../../index.html">Pixelschneiderei</a>.
+    </div>
+  </div>
+</footer>
+
+<script>
+  var nav = document.getElementById('nav');
+  if (nav){
+    var onScroll = function(){ nav.classList.toggle('is-scrolled', window.scrollY > 8); };
+    window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if (e.isIntersecting){ e.target.classList.add('is-visible'); io.unobserve(e.target);}});
+  }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+</script>
+
+</body>
+</html>

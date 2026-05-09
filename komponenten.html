@@ -1,0 +1,633 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="theme-color" content="#ffffff" />
+<title>Komponenten – Pixelschneiderei</title>
+<meta name="description" content="Einzelne Bausteine für Ihre Webseite: Kontaktformulare, CTAs, WhatsApp-Integration, Karten, Newsletter, Buchungen – integrierbar in jeden Auftritt." />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23ffffff'/%3E%3Cg fill='%230f0f10'%3E%3Crect x='6' y='6' width='4' height='4'/%3E%3Crect x='14' y='6' width='4' height='4'/%3E%3Crect x='22' y='6' width='4' height='4'/%3E%3Crect x='6' y='14' width='4' height='4'/%3E%3Crect x='14' y='14' width='4' height='4' fill='%23b8392a'/%3E%3Crect x='6' y='22' width='4' height='4'/%3E%3Crect x='22' y='22' width='4' height='4'/%3E%3C/g%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..700,30..100&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="assets/style.css"/>
+<style>
+  .toc{
+    margin: 0 0 56px;
+    padding: 24px 28px;
+    background: var(--surface);
+    border: 1px solid var(--line-soft);
+    border-radius: var(--r-lg);
+    display:flex; flex-wrap: wrap; gap: 12px;
+  }
+  .toc strong{
+    font-family: var(--mono); font-size: .76rem; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--muted); margin-right: 12px; align-self: center;
+  }
+  .toc a{
+    padding: 6px 12px; border-radius: 999px;
+    background: var(--paper-2); color: var(--ink-soft);
+    font-size: .88rem;
+    transition: background .2s ease, color .2s ease;
+  }
+  .toc a:hover{ background: var(--thread); color: #fff;}
+
+  .demo-section{
+    padding: 64px 0;
+    border-top: 1px solid var(--line-soft);
+  }
+  .demo-section:first-of-type{ border-top: 0;}
+  .demo-head{ margin-bottom: 32px; max-width: 60ch;}
+  .demo-head h2{
+    font-family: var(--serif); font-weight: 400;
+    font-size: clamp(1.8rem, 3.2vw, 2.4rem);
+    margin: 12px 0 10px;
+  }
+  .demo-head h2 em{ font-style: italic; color: var(--thread);}
+  .demo-head p{ color: var(--ink-soft); margin: 0;}
+
+  .demo-stage{
+    background: var(--surface);
+    border: 1px solid var(--line-soft);
+    border-radius: var(--r-lg);
+    padding: 36px;
+    box-shadow: var(--shadow-sm);
+  }
+  .demo-stage--soft{ background: var(--paper-2);}
+
+  /* CONTACT FORMS */
+  .form-row{ display:grid; grid-template-columns: repeat(2, 1fr); gap: 16px;}
+  @media (max-width: 720px){ .form-row{ grid-template-columns: 1fr;}}
+  .form-field label{
+    display:block; font-size: .76rem; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--muted); margin-bottom: 6px;
+  }
+  .form-field input, .form-field textarea, .form-field select{
+    width: 100%; padding: 14px 16px;
+    background: var(--paper); color: var(--ink);
+    border: 1px solid var(--line); border-radius: var(--r-md);
+    font: inherit; font-size: 1rem;
+    transition: border-color .2s ease, box-shadow .2s ease;
+  }
+  .form-field input:focus, .form-field textarea:focus, .form-field select:focus{
+    outline: none; border-color: var(--thread);
+    box-shadow: 0 0 0 3px rgba(184,57,42,.12);
+  }
+  .form-field textarea{ min-height: 120px; resize: vertical;}
+  .form-foot{
+    margin-top: 20px;
+    display:flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap;
+  }
+  .form-consent{
+    display:flex; gap: 10px; align-items: flex-start;
+    color: var(--muted); font-size: .85rem;
+  }
+  .form-consent input{ margin-top: 4px;}
+  .form-foot .btn{ flex-shrink: 0;}
+
+  .qualification{
+    margin-top: 16px; padding: 14px 18px;
+    background: var(--paper-2); border-radius: var(--r-md);
+    font-size: .88rem; color: var(--ink-soft);
+    display:flex; gap: 12px; align-items: flex-start;
+  }
+  .qualification svg{ width: 18px; height: 18px; color: var(--thread); flex-shrink: 0; margin-top: 1px;}
+
+  /* CTA Buttons */
+  .cta-row{
+    display:flex; gap: 16px; flex-wrap: wrap;
+  }
+  .cta-pill{
+    display:inline-flex; align-items: center; gap: 10px;
+    padding: 14px 24px; border-radius: 999px;
+    font-weight: 500; font-size: 1rem;
+    transition: transform .2s ease, background .2s ease, color .2s ease;
+    cursor: pointer;
+  }
+  .cta-ink{ background: var(--ink); color: var(--paper);}
+  .cta-ink:hover{ background: var(--thread); transform: translateY(-2px);}
+  .cta-thread{ background: var(--thread); color: #fff;}
+  .cta-thread:hover{ background: var(--ink); transform: translateY(-2px);}
+  .cta-outline{ border: 1px solid var(--line); background: var(--surface); color: var(--ink);}
+  .cta-outline:hover{ border-color: var(--thread); color: var(--thread); transform: translateY(-2px);}
+  .cta-soft{ background: var(--paper-2); color: var(--ink-soft);}
+  .cta-soft:hover{ background: var(--thread); color: #fff; transform: translateY(-2px);}
+  .cta-ghost{ color: var(--thread); padding-left: 0; padding-right: 0;}
+  .cta-ghost svg{ transition: transform .2s ease;}
+  .cta-ghost:hover svg{ transform: translateX(4px);}
+
+  /* WhatsApp button */
+  .wa-btn{
+    display:inline-flex; align-items: center; gap: 10px;
+    padding: 14px 22px;
+    background: #25D366; color: #fff;
+    border-radius: 999px; font-weight: 500;
+    transition: background .2s ease, transform .2s ease;
+  }
+  .wa-btn:hover{ background: #128C7E; transform: translateY(-2px);}
+  .wa-btn svg{ width: 18px; height: 18px;}
+
+  /* Floating WA */
+  .wa-float-preview{
+    margin-top: 24px;
+    background: var(--paper); border: 1px dashed var(--line);
+    border-radius: var(--r-md); padding: 32px;
+    position: relative;
+    min-height: 240px;
+  }
+  .wa-float{
+    position: absolute; right: 24px; bottom: 24px;
+    width: 56px; height: 56px; border-radius: 50%;
+    background: #25D366; color: #fff;
+    display:grid; place-items: center;
+    box-shadow: 0 8px 24px rgba(37,211,102,.3);
+    transition: transform .2s ease, background .2s ease;
+    cursor: pointer;
+  }
+  .wa-float:hover{ background: #128C7E; transform: translateY(-2px) scale(1.04);}
+  .wa-float svg{ width: 28px; height: 28px;}
+  .wa-float-preview span{
+    color: var(--muted); font-family: var(--mono); font-size: .76rem;
+    letter-spacing: .12em; text-transform: uppercase;
+  }
+
+  /* Newsletter */
+  .newsletter{
+    display:flex; gap: 10px; max-width: 480px;
+  }
+  .newsletter input{
+    flex: 1; padding: 14px 16px;
+    background: var(--paper); color: var(--ink);
+    border: 1px solid var(--line); border-radius: var(--r-md);
+    font: inherit;
+  }
+  .newsletter input:focus{ outline: none; border-color: var(--thread);}
+  .newsletter button{
+    padding: 14px 22px; background: var(--ink); color: var(--paper);
+    border: 0; border-radius: var(--r-md);
+    font: inherit; font-weight: 500; cursor: pointer;
+    transition: background .2s ease;
+  }
+  .newsletter button:hover{ background: var(--thread);}
+
+  /* Booking widget */
+  .booking-widget{
+    border: 1px solid var(--line); border-radius: var(--r-md);
+    overflow: hidden;
+  }
+  .booking-head{
+    padding: 16px 20px; background: var(--paper-2);
+    display:flex; justify-content: space-between; align-items: center;
+    border-bottom: 1px solid var(--line);
+  }
+  .booking-head strong{ font-family: var(--serif); font-size: 1.1rem;}
+  .booking-head span{ color: var(--muted); font-size: .85rem;}
+  .booking-days{
+    display:grid; grid-template-columns: repeat(7, 1fr);
+    background: var(--paper);
+  }
+  .booking-day{
+    padding: 14px 8px; text-align: center; border-right: 1px solid var(--line-soft);
+    font-size: .9rem; color: var(--ink); cursor: pointer;
+    transition: background .2s ease;
+  }
+  .booking-day:last-child{ border-right: 0;}
+  .booking-day:hover{ background: var(--paper-2);}
+  .booking-day.is-disabled{ color: var(--muted); cursor: default; opacity: .5;}
+  .booking-day.is-active{ background: var(--ink); color: var(--paper);}
+  .booking-day em{ display:block; font-family: var(--mono); font-size: .68rem; letter-spacing: .12em; text-transform: uppercase; font-style: normal; color: inherit; opacity: .7;}
+  .booking-slots{
+    padding: 16px 20px; display:flex; flex-wrap: wrap; gap: 8px;
+    background: var(--surface);
+  }
+  .slot{
+    padding: 8px 14px; border: 1px solid var(--line);
+    border-radius: var(--r-sm); font-size: .88rem; cursor: pointer;
+    transition: all .2s ease;
+  }
+  .slot:hover{ border-color: var(--thread); color: var(--thread);}
+  .slot.is-active{ background: var(--thread); color: #fff; border-color: var(--thread);}
+  .slot.is-taken{ opacity: .35; text-decoration: line-through; cursor: not-allowed;}
+
+  /* Map placeholder */
+  .map{
+    aspect-ratio: 16/9;
+    background:
+      linear-gradient(45deg, var(--paper-2) 25%, transparent 25%),
+      linear-gradient(-45deg, var(--paper-2) 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, var(--paper-2) 75%),
+      linear-gradient(-45deg, transparent 75%, var(--paper-2) 75%),
+      var(--paper);
+    background-size: 40px 40px;
+    background-position: 0 0, 0 20px, 20px -20px, -20px 0;
+    border: 1px solid var(--line);
+    border-radius: var(--r-md);
+    position: relative;
+  }
+  .map-pin{
+    position: absolute; left: 50%; top: 50%; transform: translate(-50%, -100%);
+    color: var(--thread);
+    filter: drop-shadow(0 4px 8px rgba(184,57,42,.25));
+  }
+  .map-pin svg{ width: 36px; height: 36px;}
+  .map-bubble{
+    position: absolute; left: 50%; top: 50%;
+    transform: translate(-50%, -130%);
+    margin-top: -36px;
+    background: var(--surface); border: 1px solid var(--line);
+    padding: 10px 14px; border-radius: var(--r-md);
+    font-size: .85rem; white-space: nowrap;
+    box-shadow: var(--shadow-sm);
+  }
+
+  /* Notice / banner */
+  .notice-success{
+    padding: 14px 18px; border-radius: var(--r-md);
+    background: #e8f3ea; border: 1px solid #b6d8be;
+    color: #2c5e3f; font-size: .92rem;
+    display:flex; gap: 12px; align-items: flex-start;
+  }
+  .notice-success svg{ flex-shrink: 0; color: #4a8f5d;}
+  .notice-warn{
+    padding: 14px 18px; border-radius: var(--r-md);
+    background: #fdf2c1; border: 1px solid #efd97a;
+    color: #5c4a0d; font-size: .92rem;
+    display:flex; gap: 12px; align-items: flex-start;
+  }
+  .notice-warn svg{ flex-shrink: 0; color: #b08a1d;}
+
+  /* FAQ */
+  .faq details{
+    border: 1px solid var(--line); border-radius: var(--r-md);
+    margin-bottom: 12px; overflow: hidden;
+    background: var(--surface);
+  }
+  .faq summary{
+    padding: 18px 22px; cursor: pointer;
+    list-style: none;
+    display:flex; justify-content: space-between; align-items: center;
+    font-family: var(--serif); font-size: 1.1rem;
+    transition: color .2s ease;
+  }
+  .faq summary::-webkit-details-marker{ display: none;}
+  .faq summary::after{
+    content: "+"; font-family: var(--sans); font-weight: 300;
+    font-size: 1.5rem; color: var(--thread);
+    transition: transform .25s ease;
+  }
+  .faq details[open] summary::after{ transform: rotate(45deg);}
+  .faq summary:hover{ color: var(--thread);}
+  .faq-body{
+    padding: 0 22px 18px; color: var(--ink-soft); font-size: .95rem;
+  }
+
+  /* Code-Snippet */
+  .code{
+    background: var(--ink); color: var(--paper);
+    padding: 18px 22px; border-radius: var(--r-md);
+    font-family: var(--mono); font-size: .82rem; line-height: 1.6;
+    overflow-x: auto; white-space: pre;
+  }
+  .code .c{ color: #888;}
+  .code .k{ color: var(--thread-2);}
+  .code .s{ color: #b8d8ae;}
+
+  /* Final CTA */
+  .final-cta{
+    background: var(--ink); color: var(--paper);
+    border-radius: var(--r-xl); padding: clamp(40px, 6vw, 72px);
+    text-align: center; margin-top: 80px;
+  }
+  .final-cta h2{ color: var(--paper); font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 16px; font-weight: 400;}
+  .final-cta h2 em{ font-style: italic; color: var(--thread-2);}
+  .final-cta p{ color: rgba(250,246,236,.78); max-width: 56ch; margin: 0 auto;}
+  .final-cta .btn{ margin-top: 28px;}
+  .final-cta .btn-primary{ background: var(--paper); color: var(--ink);}
+  .final-cta .btn-primary:hover{ background: var(--thread); color: #fff;}
+</style>
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <div class="container nav-row">
+    <a href="index.html" class="brand">
+      <span class="brand-mark"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+      <span>Pixel<em style="font-style:italic;color:var(--thread);font-weight:300">schneiderei</em></span>
+    </a>
+    <nav class="nav-links">
+      <a href="index.html#leistungen">Leistungen</a>
+      <a href="index.html#pakete">Pakete</a>
+      <a href="referenzen.html">Referenzen</a>
+      <a href="komponenten.html" class="is-active">Komponenten</a>
+      <a href="index.html#kontakt">Kontakt</a>
+    </nav>
+    <a href="index.html#kontakt" class="nav-cta nav-cta-desktop">Projekt starten
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" width="14" height="14"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menü öffnen" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" width="18" height="18"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+</header>
+
+<main>
+
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">Komponenten &amp; Bausteine</span>
+      <h1 style="margin-top:18px">Einzelne <em style="font-style:italic;color:var(--thread);font-weight:300">Knöpfe.</em><br/>Aus dem Sortiment.</h1>
+      <p class="lede">
+        Wiederverwendbare Bausteine, die wir in jeden Auftritt einnähen können –
+        einzeln, im Set oder als Service-Paket.
+      </p>
+    </div>
+  </section>
+
+  <section style="padding-top: 32px;">
+    <div class="container">
+
+      <div class="toc">
+        <strong>Inhalt</strong>
+        <a href="#kontakt">Kontakt­formulare</a>
+        <a href="#cta">CTAs &amp; Buttons</a>
+        <a href="#whatsapp">WhatsApp</a>
+        <a href="#buchung">Termin­buchung</a>
+        <a href="#newsletter">Newsletter</a>
+        <a href="#karten">Karten</a>
+        <a href="#hinweise">Hinweise</a>
+        <a href="#faq">FAQ</a>
+      </div>
+
+      <!-- KONTAKTFORMULARE -->
+      <div class="demo-section" id="kontakt">
+        <div class="demo-head">
+          <span class="eyebrow">01 · Formular</span>
+          <h2>Kontakt­formular mit <em>Vorqualifizierung.</em></h2>
+          <p>Smart, ohne Tracking, mit Spam-Schutz – und mit Auswahlfeldern, die uns helfen, schneller zu antworten.</p>
+        </div>
+        <div class="demo-stage">
+          <form onsubmit="event.preventDefault(); document.getElementById('form-success').style.display='flex';">
+            <div class="form-row">
+              <div class="form-field">
+                <label for="kf-name">Ihr Name</label>
+                <input id="kf-name" type="text" placeholder="Vor- und Nachname" required/>
+              </div>
+              <div class="form-field">
+                <label for="kf-mail">E-Mail</label>
+                <input id="kf-mail" type="email" placeholder="sie@beispiel.de" required/>
+              </div>
+            </div>
+            <div class="form-row" style="margin-top: 16px;">
+              <div class="form-field">
+                <label for="kf-typ">Worum geht's?</label>
+                <select id="kf-typ" required>
+                  <option value="">Bitte wählen…</option>
+                  <option>Neue Webseite</option>
+                  <option>Bestehende Seite optimieren</option>
+                  <option>Beratung &amp; Strategie</option>
+                  <option>Wartung &amp; Pflege</option>
+                  <option>Etwas anderes</option>
+                </select>
+              </div>
+              <div class="form-field">
+                <label for="kf-budget">Budget-Idee (optional)</label>
+                <select id="kf-budget">
+                  <option value="">Noch unklar</option>
+                  <option>Hobby / Privat</option>
+                  <option>Unternehmen / Standard</option>
+                  <option>Premium / Hochglanz</option>
+                  <option>Enterprise</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-field" style="margin-top: 16px;">
+              <label for="kf-msg">Ihre Nachricht</label>
+              <textarea id="kf-msg" placeholder="Was haben Sie vor?" required></textarea>
+            </div>
+            <div class="form-foot">
+              <label class="form-consent">
+                <input type="checkbox" required/>
+                <span>Ich habe die <a href="datenschutz.html" style="color: var(--thread); text-decoration: underline;">Datenschutzerklärung</a> gelesen.</span>
+              </label>
+              <button class="cta-pill cta-ink" type="submit">Anfrage senden →</button>
+            </div>
+            <div class="qualification">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>
+              <span>Die Vorqualifizierung hilft uns, Ihre Anfrage gezielter zu beantworten – die Felder sind aber optional.</span>
+            </div>
+            <div id="form-success" class="notice-success" style="display:none; margin-top: 16px;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" width="18" height="18"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/></svg>
+              <span>Demo: Anfrage wäre nun versendet. Wir melden uns meist innerhalb eines Werktags.</span>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- CTAS -->
+      <div class="demo-section" id="cta">
+        <div class="demo-head">
+          <span class="eyebrow">02 · Buttons</span>
+          <h2>Call-to-Action Buttons – <em>verschiedene Stile.</em></h2>
+          <p>Vom dezenten Link bis zum lautstarken Hauptknopf. Für jeden Kontext der richtige Schnitt.</p>
+        </div>
+        <div class="demo-stage">
+          <div class="cta-row">
+            <button class="cta-pill cta-ink">Termin vereinbaren →</button>
+            <button class="cta-pill cta-thread">Jetzt anfragen →</button>
+            <button class="cta-pill cta-outline">Mehr erfahren →</button>
+            <button class="cta-pill cta-soft">Auf später merken</button>
+            <a class="cta-ghost" href="#">Direkt zum Angebot
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" width="14" height="14"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- WHATSAPP -->
+      <div class="demo-section" id="whatsapp">
+        <div class="demo-head">
+          <span class="eyebrow">03 · WhatsApp</span>
+          <h2>WhatsApp-<em>Integration.</em></h2>
+          <p>Direkter Draht für Kunden-Anfragen. Als CTA-Button im Inhalt – und als schwebendes Symbol unten rechts.</p>
+        </div>
+        <div class="demo-stage">
+          <div class="cta-row">
+            <a class="wa-btn" href="#">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163A11.867 11.867 0 0 1 .057 11.94C.057 5.34 5.396 0 12 0c3.21 0 6.218 1.247 8.485 3.515A11.864 11.864 0 0 1 24 11.957C24 18.557 18.661 23.9 12.066 23.9a11.93 11.93 0 0 1-5.681-1.451L.057 24zm6.597-3.807c1.676.997 3.276 1.595 5.392 1.596 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.886-.001 2.225.651 3.891 1.746 5.634L4.918 19.81l3.736-.984z"/></svg>
+              Per WhatsApp anfragen
+            </a>
+            <a class="wa-btn" style="background: #fff; color: #25D366; border: 1px solid #25D366;" href="#">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163A11.867 11.867 0 0 1 .057 11.94C.057 5.34 5.396 0 12 0c3.21 0 6.218 1.247 8.485 3.515A11.864 11.864 0 0 1 24 11.957C24 18.557 18.661 23.9 12.066 23.9a11.93 11.93 0 0 1-5.681-1.451L.057 24zm6.597-3.807c1.676.997 3.276 1.595 5.392 1.596 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.886-.001 2.225.651 3.891 1.746 5.634L4.918 19.81l3.736-.984z"/></svg>
+              WhatsApp Business
+            </a>
+          </div>
+
+          <div class="wa-float-preview">
+            <span>Vorschau · schwebende Schaltfläche unten rechts</span>
+            <div class="wa-float" title="WhatsApp">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163A11.867 11.867 0 0 1 .057 11.94C.057 5.34 5.396 0 12 0c3.21 0 6.218 1.247 8.485 3.515A11.864 11.864 0 0 1 24 11.957C24 18.557 18.661 23.9 12.066 23.9a11.93 11.93 0 0 1-5.681-1.451L.057 24zm6.597-3.807c1.676.997 3.276 1.595 5.392 1.596 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.886-.001 2.225.651 3.891 1.746 5.634L4.918 19.81l3.736-.984z"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TERMINBUCHUNG -->
+      <div class="demo-section" id="buchung">
+        <div class="demo-head">
+          <span class="eyebrow">04 · Buchung</span>
+          <h2>Termin-<em>Buchung.</em></h2>
+          <p>Eingebauter Kalender oder Anbindung an bestehende Tools wie Calendly, Google Kalender, oder Ihre Praxissoftware.</p>
+        </div>
+        <div class="demo-stage demo-stage--soft">
+          <div class="booking-widget">
+            <div class="booking-head">
+              <strong>Mai 2026</strong>
+              <span>Verfügbare Zeiten</span>
+            </div>
+            <div class="booking-days">
+              <div class="booking-day"><em>Mo</em>11</div>
+              <div class="booking-day is-active"><em>Di</em>12</div>
+              <div class="booking-day"><em>Mi</em>13</div>
+              <div class="booking-day"><em>Do</em>14</div>
+              <div class="booking-day"><em>Fr</em>15</div>
+              <div class="booking-day is-disabled"><em>Sa</em>16</div>
+              <div class="booking-day is-disabled"><em>So</em>17</div>
+            </div>
+            <div class="booking-slots">
+              <div class="slot is-taken">09:00</div>
+              <div class="slot">10:00</div>
+              <div class="slot is-active">11:30</div>
+              <div class="slot">13:00</div>
+              <div class="slot">14:30</div>
+              <div class="slot is-taken">16:00</div>
+              <div class="slot">17:00</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- NEWSLETTER -->
+      <div class="demo-section" id="newsletter">
+        <div class="demo-head">
+          <span class="eyebrow">05 · Newsletter</span>
+          <h2>Newsletter-<em>Anmeldung.</em></h2>
+          <p>DSGVO-konformes Double-Opt-in. Mit Mailchimp, Brevo, Mailjet oder einem schlanken eigenen Setup.</p>
+        </div>
+        <div class="demo-stage">
+          <form class="newsletter" onsubmit="event.preventDefault(); alert('Demo: Anmeldung nicht aktiv.');">
+            <input type="email" placeholder="Ihre E-Mail-Adresse" required/>
+            <button type="submit">Anmelden →</button>
+          </form>
+          <p style="margin-top: 12px; color: var(--muted); font-size: .85rem;">
+            Sie können sich jederzeit per Klick wieder abmelden. Keine Tracker, keine Werbe-E-Mails.
+          </p>
+        </div>
+      </div>
+
+      <!-- KARTEN -->
+      <div class="demo-section" id="karten">
+        <div class="demo-head">
+          <span class="eyebrow">06 · Karten &amp; Routing</span>
+          <h2>Karten – <em>datenschutz­freundlich.</em></h2>
+          <p>OpenStreetMap statt Google Maps. Auf Wunsch mit Anfahrtshinweisen, Parkmöglichkeiten und einem Klick zur Routenplanung.</p>
+        </div>
+        <div class="demo-stage demo-stage--soft">
+          <div class="map">
+            <div class="map-bubble">Beispielstraße 12 · 0000 Musterstadt</div>
+            <div class="map-pin">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8 2 5 5 5 9c0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- HINWEISE -->
+      <div class="demo-section" id="hinweise">
+        <div class="demo-head">
+          <span class="eyebrow">07 · Banner &amp; Hinweise</span>
+          <h2>Status- &amp; <em>Hinweis­banner.</em></h2>
+          <p>Für Sprechstunden-Ausfälle, Sonderöffnungszeiten, Saisonstart oder den Ausverkauf am Wochenende.</p>
+        </div>
+        <div class="demo-stage" style="display:flex; flex-direction: column; gap: 12px;">
+          <div class="notice-success">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" width="18" height="18"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/></svg>
+            <span><strong>Wir sind heute geöffnet.</strong> Reguläre Sprechzeiten · 8:00 – 18:00 Uhr.</span>
+          </div>
+          <div class="notice-warn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" width="18" height="18"><path d="M12 2 2 22h20L12 2z"/><path d="M12 9v5M12 17h.01"/></svg>
+            <span><strong>Achtung:</strong> Am Pfingstmontag (8.&nbsp;Juni) bleibt die Praxis geschlossen.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ -->
+      <div class="demo-section" id="faq">
+        <div class="demo-head">
+          <span class="eyebrow">08 · FAQ</span>
+          <h2>Aufklappbare <em>Fragen.</em></h2>
+          <p>Saubere Akkordeons mit semantischem &lt;details&gt;-Element – ohne JavaScript, mit Tastaturbedienung von Haus aus.</p>
+        </div>
+        <div class="demo-stage demo-stage--soft">
+          <div class="faq">
+            <details open>
+              <summary>Wie lange dauert ein typisches Projekt?</summary>
+              <div class="faq-body">Hobby-Seiten in 2–3 Wochen, Standard-Auftritte 4–8 Wochen. Premium-Projekte planen wir individuell.</div>
+            </details>
+            <details>
+              <summary>Können Sie meine bestehende Seite weiterführen?</summary>
+              <div class="faq-body">Ja, wir prüfen den aktuellen Stand und können entweder weiterführen, optimieren oder einen sauberen Neuaufsatz vorschlagen.</div>
+            </details>
+            <details>
+              <summary>Wo werden meine Daten gespeichert?</summary>
+              <div class="faq-body">Code in GitHub, E-Mails bei einem deutschen Hoster (STRATO), Angebote in Zoho Invoice. Details in unserer <a href="datenschutz.html" style="color: var(--thread); text-decoration: underline;">Datenschutzerklärung</a>.</div>
+            </details>
+          </div>
+        </div>
+      </div>
+
+      <!-- FINAL CTA -->
+      <div class="final-cta">
+        <h2>Welche Komponente brauchen <em>Sie?</em></h2>
+        <p>Nahezu alles davon lässt sich auch einzeln integrieren – in eine bestehende Webseite oder als Teil eines neuen Auftritts.</p>
+        <a class="btn btn-primary" href="index.html#kontakt">Mit uns sprechen →</a>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand">Pixel<span class="accent">schneiderei</span></div>
+        <p>Maßgeschneiderte Webseiten, sauber verarbeitet. DSGVO-konform, ausfallsicher, mit hoher Erreichbarkeit.</p>
+      </div>
+      <div class="foot-col"><h4>Seite</h4>
+        <ul>
+          <li><a href="index.html#leistungen">Leistungen</a></li>
+          <li><a href="index.html#pakete">Pakete</a></li>
+          <li><a href="referenzen.html">Referenzen</a></li>
+          <li><a href="komponenten.html">Komponenten</a></li>
+          <li><a href="index.html#kontakt">Kontakt</a></li>
+        </ul>
+      </div>
+      <div class="foot-col"><h4>Rechtliches</h4>
+        <ul>
+          <li><a href="impressum.html">Impressum</a></li>
+          <li><a href="datenschutz.html">Datenschutz</a></li>
+          <li><a href="mailto:erik@weisser.dev">Kontakt aufnehmen</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year">2026</span> Pixelschneiderei</span>
+      <span>Mit Sorgfalt genäht.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/site.js"></script>
+</body>
+</html>
