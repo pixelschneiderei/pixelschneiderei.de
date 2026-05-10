@@ -3,11 +3,12 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<meta name="theme-color" content="#ffffff" />
+<meta name="theme-color" content="#f5f1ec" />
 <title>Komponenten &amp; Bausteine für Webseiten | Pixelschneiderei</title>
 <meta name="description" content="Wiederverwendbare Web-Bausteine: Kontaktformular, Bilder-Carousel, Vorher/Nachher-Slider, Lightbox, Audio-Player, Bento-Galerie, Karten, Newsletter, FAQ. Live-Demos zum Anschauen." />
 <meta name="keywords" content="Webseiten Komponenten, Kontaktformular, Bilder Carousel, Vorher Nachher Slider, Lightbox Galerie, Audio Player, Newsletter Anmeldung, OpenStreetMap einbinden, FAQ Akkordeon" />
 <link rel="canonical" href="https://pixelschneiderei.de/komponenten.html" />
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
 
 <meta property="og:title" content="Komponenten &amp; Bausteine für Webseiten | Pixelschneiderei" />
 <meta property="og:description" content="Wiederverwendbare Web-Bausteine: Carousel, Vorher/Nachher, Lightbox, Audio-Player, Galerie, Karten, Newsletter, FAQ. Live-Demos zum Anschauen." />
@@ -19,8 +20,30 @@
 <meta property="og:locale" content="de_DE" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:image" content="https://pixelschneiderei.de/assets/og-komponenten.jpg" />
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23ffffff'/%3E%3Cg fill='%230f0f10'%3E%3Crect x='6' y='6' width='4' height='4'/%3E%3Crect x='14' y='6' width='4' height='4'/%3E%3Crect x='22' y='6' width='4' height='4'/%3E%3Crect x='6' y='14' width='4' height='4'/%3E%3Crect x='14' y='14' width='4' height='4' fill='%23b8392a'/%3E%3Crect x='6' y='22' width='4' height='4'/%3E%3Crect x='22' y='22' width='4' height='4'/%3E%3C/g%3E%3C/svg%3E" />
+<link rel="icon" type="image/png" sizes="any" href="assets/ci/logo_light.png" />
+<link rel="apple-touch-icon" href="assets/ci/logo_light.png" />
 <link rel="stylesheet" href="assets/style.css"/>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "@id": "https://pixelschneiderei.de/komponenten.html",
+  "name": "Komponenten — UI-Bausteine der Pixelschneiderei",
+  "description": "Übersicht der wiederverwendbaren UI-Komponenten und Bausteine, die wir in Kundenprojekten einsetzen — Formulare, Galerien, Audio-Player, Karten, FAQ und mehr.",
+  "url": "https://pixelschneiderei.de/komponenten.html",
+  "inLanguage": "de-DE",
+  "isPartOf": { "@type": "WebSite", "name": "Pixelschneiderei", "url": "https://pixelschneiderei.de/" },
+  "publisher": { "@type": "Organization", "name": "Pixelschneiderei", "url": "https://pixelschneiderei.de/" },
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://pixelschneiderei.de/" },
+      { "@type": "ListItem", "position": 2, "name": "Komponenten", "item": "https://pixelschneiderei.de/komponenten.html" }
+    ]
+  }
+}
+</script>
 <style>
   .toc{
     margin: 0 0 56px;
@@ -81,7 +104,7 @@
   }
   .form-field input:focus, .form-field textarea:focus, .form-field select:focus{
     outline: none; border-color: var(--thread);
-    box-shadow: 0 0 0 3px rgba(184,57,42,.12);
+    box-shadow: 0 0 0 3px rgba(177, 56, 58,.12);
   }
   .form-field textarea{ min-height: 120px; resize: vertical;}
   .form-foot{
@@ -380,7 +403,7 @@
   .bento-gallery:hover .bento-tile{ opacity: .55;}
   .bento-gallery:hover .bento-tile:hover{ opacity: 1; transform: scale(1.01);}
   .bg-1{ grid-column: span 2; grid-row: span 2; background-image: url('assets/img/komponenten/gallery-1.jpg'), linear-gradient(135deg, #d4b88f, #6e5538);}
-  .bg-2{ background-image: url('assets/img/komponenten/gallery-2.jpg'), linear-gradient(135deg, #b8392a, #2a1208);}
+  .bg-2{ background-image: url('assets/img/komponenten/gallery-2.jpg'), linear-gradient(135deg, #b1383a, #2a1208);}
   .bg-3{ background-image: url('assets/img/komponenten/gallery-3.jpg'), linear-gradient(135deg, #c8d4cc, #2c3f37);}
   .bg-4{ grid-column: span 2; background-image: url('assets/img/komponenten/gallery-4.jpg'), linear-gradient(135deg, #d8c194, #a87b3c);}
   .bg-5{ background-image: url('assets/img/komponenten/gallery-5.jpg'), linear-gradient(135deg, #c4a87d, #2c2419);}
@@ -596,10 +619,7 @@
 
 <header class="nav" id="nav">
   <div class="container nav-row">
-    <a href="index.html" class="brand">
-      <span class="brand-mark"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
-      <span>Pixel<em style="font-style:italic;color:var(--thread);font-weight:300">schneiderei</em></span>
-    </a>
+    <a href="index.html" class="brand"><img src="assets/ci/logo_light.png" alt="" class="brand-icon" width="1536" height="1024" decoding="async" aria-hidden="true"><span class="brand-text">pixel<em>schneiderei</em></span></a>
     <nav class="nav-links">
       <a href="index.html#leistungen">Leistungen</a>
       <a href="index.html#pakete">Pakete</a>
@@ -1068,7 +1088,7 @@
   <div class="container">
     <div class="foot-grid">
       <div>
-        <div class="foot-brand">Pixel<span class="accent">schneiderei</span></div>
+        <a href="index.html" class="foot-brand-link" aria-label="pixelschneiderei – Startseite"><img src="assets/ci/logo_light.png" alt="" class="foot-brand-icon" width="1536" height="1024" loading="lazy" decoding="async" aria-hidden="true"><span class="foot-brand-text">pixel<em>schneiderei</em></span></a>
         <p>Maßgeschneiderte Webseiten, sauber verarbeitet. DSGVO-konform, ausfallsicher, mit hoher Erreichbarkeit.</p>
       </div>
       <div class="foot-col"><h4>Seite</h4>

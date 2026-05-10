@@ -40,6 +40,12 @@ const fonts = [
     cssUrl: 'https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap',
     outName: 'jetbrains-mono',
   },
+  {
+    // Script-Schrift für die "schneiderei"-Wortmarke im Logo-Schriftzug
+    family: 'Allura',
+    cssUrl: 'https://fonts.googleapis.com/css2?family=Allura&display=swap',
+    outName: 'allura',
+  },
 ];
 
 console.log('📦  Downloading fonts to assets/fonts/…\n');

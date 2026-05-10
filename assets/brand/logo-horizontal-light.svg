@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="683" height="288" viewBox="0 0 683 288" role="img" aria-labelledby="title desc">
+  <title id="title">Pixelschneiderei Logo</title>
+  <desc id="desc">Horizontales Pixelschneiderei Logo mit Laptop, Nadel, rotem Faden und Wortmarke auf hellem Grund.</desc>
+  <defs>
+    <style>
+      .paper{fill:#F5F1EC}
+      .ink{fill:none;stroke:#1A1A1A;stroke-width:6;stroke-linecap:round;stroke-linejoin:round}
+      .ink-thin{fill:none;stroke:#1A1A1A;stroke-width:3.5;stroke-linecap:round;stroke-linejoin:round}
+      .muted{stroke:#A0A0A0}
+      .soft{fill:#D9D9D9;opacity:.7}
+      .thread{fill:none;stroke:#8D2230;stroke-width:5;stroke-linecap:round;stroke-linejoin:round}
+      .red{fill:#8D2230}
+      .word{font-family:Georgia, Fraunces, serif;font-size:54px;font-weight:500;letter-spacing:-1.5px;fill:#1A1A1A}
+      .script{font-family:"Snell Roundhand","Apple Chancery","Brush Script MT",cursive;font-size:50px;font-weight:400;letter-spacing:-.8px;fill:#8D2230}
+      .claim{font-family:Inter, Arial, sans-serif;font-size:13px;letter-spacing:5px;fill:#1A1A1A}
+    </style>
+  </defs>
+  <rect class="paper" width="683" height="288" rx="0"/>
+  <g transform="translate(42 68) scale(.56)">
+    <path class="ink" d="M88 30h226a12 12 0 0 1 12 12v158H76V42a12 12 0 0 1 12-12z"/>
+    <path class="ink" d="M76 200 28 270h350l-52-70"/>
+    <path class="ink" d="M28 270h350l22 30H8l20-30z"/>
+    <path class="ink-thin" d="M115 236h182M98 258h210M74 282h258"/>
+    <path class="ink-thin" d="M111 219h38M164 219h38M217 219h38M270 219h38"/>
+    <path class="ink-thin" d="M92 242h30M137 242h30M182 242h30M227 242h30M272 242h30"/>
+    <rect class="red" x="104" y="60" width="38" height="28"/>
+    <rect class="soft" x="104" y="111" width="166" height="58" rx="3"/>
+    <rect class="soft" x="104" y="181" width="44" height="26" rx="2"/>
+    <rect class="soft" x="161" y="181" width="44" height="26" rx="2"/>
+    <rect class="soft" x="218" y="181" width="44" height="26" rx="2"/>
+    <path class="ink-thin muted" d="M176 61h116M246 86h28M294 86h26M339 86h24"/>
+    <path class="thread" d="M0 212c42-44 86-38 128 5 45 47 87 48 122 0 34-48 89-50 132 0 36 42 73 38 106-15"/>
+    <path class="thread" d="M224 227c37-88 98-83 128-30"/>
+    <g transform="translate(326 32) rotate(24)">
+      <path d="M0 0v190" fill="none" stroke="#1A1A1A" stroke-width="6" stroke-linecap="round"/>
+      <ellipse cx="0" cy="-12" rx="9" ry="18" fill="none" stroke="#1A1A1A" stroke-width="5"/>
+      <path d="M0 178l-12 32h24z" fill="#1A1A1A"/>
+      <circle cx="0" cy="-12" r="4" fill="#8D2230"/>
+    </g>
+  </g>
+  <g transform="translate(314 108)">
+    <text class="word" x="0" y="70">Pixel</text>
+    <text class="script" x="124" y="70">schneiderei</text>
+    <text class="claim" x="2" y="126">DESIGN</text>
+    <circle cx="101" cy="122" r="2.4" fill="#8D2230"/>
+    <text class="claim" x="122" y="126">WEB</text>
+    <circle cx="192" cy="122" r="2.4" fill="#8D2230"/>
+    <text class="claim" x="209" y="126">ENTWICKLUNG</text>
+  </g>
+</svg>

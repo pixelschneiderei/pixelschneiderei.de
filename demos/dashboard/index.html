@@ -1,0 +1,712 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="theme-color" content="#0f1117" />
+<title>Prism — System Dashboard (Demo)</title>
+<meta name="description" content="Demo: System-Dashboard für interne Tools — KPI-Karten, Live-Charts, Status-Tabellen, Activity-Feed. Beispielauftritt der Pixelschneiderei für Tooling-UI." />
+<meta name="robots" content="noindex, nofollow" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="thumb.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="750" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230f1117'/%3E%3Cpath d='M6 22 L12 12 L18 18 L26 8' stroke='%235cf2c4' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  :root{
+    --bg:        #0a0c12;
+    --surface:   #11141c;
+    --surface-2: #161a25;
+    --surface-3: #1c2030;
+    --line:      #232838;
+    --line-soft: #1a1e2a;
+    --fg:        #e6e8ee;
+    --fg-soft:   #a8adba;
+    --muted:     #6c7184;
+    --accent:    #5cf2c4;
+    --accent-2:  #34d3a4;
+    --warn:      #f5b95c;
+    --danger:    #ff6b6b;
+    --info:      #6ba4ff;
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --mono: 'JetBrains Mono', ui-monospace, monospace;
+    --ease: cubic-bezier(.2,.7,.2,1);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    background: var(--bg); color: var(--fg);
+    font-family: var(--sans); line-height: 1.55;
+    font-size: 14px;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  a{color:inherit; text-decoration:none}
+  ::selection{ background: var(--accent); color: var(--bg);}
+
+  .demo-banner{ background: var(--accent); color: var(--bg); text-align:center; padding: 10px 16px; font-family: var(--mono); font-size: .76rem; letter-spacing: .12em; text-transform: uppercase; font-weight: 600;}
+  .demo-banner a{ text-decoration: underline; text-underline-offset: 3px;}
+
+  /* ============ APP SHELL ============ */
+  .app{
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    min-height: 100vh;
+  }
+  @media (max-width: 980px){
+    .app{ grid-template-columns: 1fr; }
+  }
+
+  /* ============ SIDEBAR ============ */
+  .side{
+    background: var(--surface);
+    border-right: 1px solid var(--line);
+    padding: 24px 16px;
+    display: flex; flex-direction: column;
+    position: sticky; top: 0;
+    height: 100vh;
+    overflow-y: auto;
+  }
+  @media (max-width: 980px){
+    .side{ position: static; height: auto; padding: 16px;}
+  }
+  .side-brand{
+    display: flex; align-items: center; gap: 10px;
+    padding: 4px 8px 24px;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 16px;
+  }
+  .side-brand-mark{
+    width: 32px; height: 32px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    border-radius: 8px;
+    display: grid; place-items: center;
+    color: var(--bg);
+    font-family: var(--mono); font-weight: 700; font-size: 14px;
+  }
+  .side-brand-text{ font-weight: 600; font-size: 1.05rem; letter-spacing: -0.01em;}
+  .side-brand-text small{ display: block; font-family: var(--mono); font-size: .68rem; color: var(--muted); letter-spacing: .12em; text-transform: uppercase; margin-top: 2px;}
+  .side-section{ margin-bottom: 24px;}
+  .side-section h4{
+    font-family: var(--mono); font-size: .68rem; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--muted); padding: 0 8px 8px; font-weight: 500;
+  }
+  .side-nav{ display: flex; flex-direction: column; gap: 2px;}
+  .side-nav a{
+    padding: 8px 12px; border-radius: 6px;
+    color: var(--fg-soft); font-size: .92rem;
+    display: flex; align-items: center; gap: 10px;
+    transition: background .15s ease, color .15s ease;
+  }
+  .side-nav a:hover{ background: var(--surface-2); color: var(--fg);}
+  .side-nav a.is-active{ background: var(--surface-3); color: var(--fg); border-left: 2px solid var(--accent); padding-left: 10px;}
+  .side-nav a svg{ width: 16px; height: 16px; flex-shrink: 0;}
+  .side-nav a .badge{
+    margin-left: auto; padding: 1px 6px;
+    background: var(--surface-3); border-radius: 999px;
+    font-family: var(--mono); font-size: .66rem; color: var(--muted);
+  }
+  .side-nav a.is-active .badge{ background: var(--accent); color: var(--bg);}
+
+  .side-foot{
+    margin-top: auto;
+    padding: 16px 8px;
+    border-top: 1px solid var(--line);
+    display: flex; align-items: center; gap: 10px;
+    font-size: .82rem; color: var(--fg-soft);
+  }
+  .side-foot .avatar{
+    width: 28px; height: 28px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--info), var(--accent));
+    display: grid; place-items: center;
+    font-family: var(--mono); font-size: .7rem; color: var(--bg); font-weight: 600;
+  }
+
+  /* ============ TOPBAR ============ */
+  .topbar{
+    position: sticky; top: 0; z-index: 20;
+    background: rgba(10,12,18,.85);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+    padding: 12px 32px;
+    display: flex; align-items: center; gap: 24px;
+  }
+  @media (max-width: 720px){ .topbar{ padding: 12px 20px;}}
+  .topbar h1{
+    font-size: 1.1rem; font-weight: 600; letter-spacing: -0.01em;
+  }
+  .topbar h1 small{
+    display: inline-block; margin-left: 8px;
+    font-family: var(--mono); font-size: .72rem; color: var(--muted); font-weight: 400;
+  }
+  .topbar-search{
+    flex: 1; max-width: 360px; position: relative;
+  }
+  .topbar-search input{
+    width: 100%; padding: 8px 12px 8px 36px;
+    background: var(--surface-2); border: 1px solid var(--line); border-radius: 6px;
+    color: var(--fg); font-family: inherit; font-size: .88rem;
+    transition: border-color .15s ease;
+  }
+  .topbar-search input:focus{ outline: none; border-color: var(--accent);}
+  .topbar-search svg{ position: absolute; left: 10px; top: 50%; transform: translateY(-50%); width: 16px; height: 16px; color: var(--muted);}
+  .topbar-search kbd{
+    position: absolute; right: 8px; top: 50%; transform: translateY(-50%);
+    font-family: var(--mono); font-size: .68rem; color: var(--muted);
+    background: var(--surface-3); padding: 2px 6px; border-radius: 3px; border: 1px solid var(--line);
+  }
+  @media (max-width: 720px){ .topbar-search{ display: none;}}
+  .topbar-actions{ margin-left: auto; display: flex; align-items: center; gap: 8px;}
+  .topbar-btn{
+    width: 32px; height: 32px; border-radius: 6px;
+    background: transparent; border: 1px solid var(--line);
+    display: grid; place-items: center; color: var(--fg-soft);
+    cursor: pointer; transition: background .15s ease, color .15s ease;
+  }
+  .topbar-btn:hover{ background: var(--surface-2); color: var(--fg);}
+  .topbar-btn svg{ width: 16px; height: 16px;}
+  .topbar-btn.is-pulse{ position: relative;}
+  .topbar-btn.is-pulse::after{
+    content:""; position: absolute; top: 6px; right: 6px;
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 0 var(--accent);
+    animation: pulse 1.8s infinite;
+  }
+  @keyframes pulse{
+    0%{ box-shadow: 0 0 0 0 rgba(92,242,196,.6);}
+    70%{ box-shadow: 0 0 0 10px rgba(92,242,196,0);}
+    100%{ box-shadow: 0 0 0 0 rgba(92,242,196,0);}
+  }
+
+  /* ============ MAIN ============ */
+  main{ padding: 32px;}
+  @media (max-width: 720px){ main{ padding: 20px;}}
+
+  /* ============ STAT-KARTEN ============ */
+  .stats{
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+    margin-bottom: 32px;
+  }
+  @media (max-width: 1100px){ .stats{ grid-template-columns: repeat(2, 1fr);}}
+  @media (max-width: 480px){ .stats{ grid-template-columns: 1fr;}}
+  .stat{
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .stat::before{
+    content:""; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: var(--accent);
+  }
+  .stat:nth-child(2)::before{ background: var(--info);}
+  .stat:nth-child(3)::before{ background: var(--warn);}
+  .stat:nth-child(4)::before{ background: var(--danger);}
+  .stat-head{
+    display: flex; align-items: center; justify-content: space-between;
+    color: var(--muted); font-family: var(--mono); font-size: .7rem;
+    letter-spacing: .14em; text-transform: uppercase; margin-bottom: 14px;
+  }
+  .stat-head .stat-icon{
+    width: 24px; height: 24px; border-radius: 6px;
+    background: var(--surface-3); display: grid; place-items: center;
+    color: var(--fg-soft);
+  }
+  .stat-head .stat-icon svg{ width: 14px; height: 14px;}
+  .stat-value{ font-size: 1.9rem; font-weight: 600; letter-spacing: -0.02em; line-height: 1.05;}
+  .stat-value small{ font-size: .65em; color: var(--muted); margin-left: 4px;}
+  .stat-trend{
+    margin-top: 10px; font-family: var(--mono); font-size: .76rem;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .stat-trend.up{ color: var(--accent);}
+  .stat-trend.down{ color: var(--danger);}
+  .stat-spark{
+    margin-top: 14px; height: 36px;
+  }
+  .stat-spark svg{ width: 100%; height: 100%; display: block;}
+
+  /* ============ MAIN GRID (Charts + Side) ============ */
+  .grid-2{
+    display: grid; grid-template-columns: 1.6fr 1fr; gap: 16px;
+    margin-bottom: 32px;
+  }
+  @media (max-width: 980px){ .grid-2{ grid-template-columns: 1fr;}}
+
+  .panel{
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .panel-head{
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 20px;
+    border-bottom: 1px solid var(--line);
+  }
+  .panel-head h3{ font-size: 1rem; font-weight: 600; letter-spacing: -0.005em;}
+  .panel-head h3 small{ display: inline-block; margin-left: 6px; font-family: var(--mono); font-size: .72rem; color: var(--muted); font-weight: 400;}
+  .panel-head .panel-actions{ display: flex; gap: 6px;}
+  .chip{
+    padding: 4px 10px; border-radius: 999px;
+    font-family: var(--mono); font-size: .68rem; letter-spacing: .04em;
+    border: 1px solid var(--line); color: var(--fg-soft);
+    background: transparent; cursor: pointer;
+    transition: all .15s ease;
+  }
+  .chip:hover{ color: var(--fg); border-color: var(--fg-soft);}
+  .chip.is-active{ background: var(--accent); color: var(--bg); border-color: var(--accent);}
+  .panel-body{ padding: 20px;}
+
+  /* Hauptchart */
+  .chart-area{
+    height: 280px; position: relative;
+  }
+  .chart-area svg{ width: 100%; height: 100%; display: block;}
+  .chart-legend{
+    display: flex; gap: 20px; padding: 16px 20px;
+    border-top: 1px solid var(--line);
+    font-family: var(--mono); font-size: .76rem; color: var(--fg-soft);
+  }
+  .chart-legend i{
+    display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 6px;
+    vertical-align: middle;
+  }
+
+  /* Activity feed */
+  .activity{
+    list-style: none; max-height: 340px; overflow-y: auto;
+  }
+  .activity li{
+    padding: 12px 20px;
+    border-bottom: 1px solid var(--line-soft);
+    display: grid; grid-template-columns: auto 1fr auto; gap: 12px;
+    align-items: start;
+  }
+  .activity li:last-child{ border-bottom: 0;}
+  .activity-dot{
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--accent); margin-top: 6px;
+    flex-shrink: 0;
+  }
+  .activity-dot.warn{ background: var(--warn);}
+  .activity-dot.danger{ background: var(--danger);}
+  .activity-dot.info{ background: var(--info);}
+  .activity-msg{ font-size: .88rem; line-height: 1.45;}
+  .activity-msg strong{ color: var(--fg); font-weight: 500;}
+  .activity-msg span{ color: var(--muted);}
+  .activity-time{
+    font-family: var(--mono); font-size: .7rem; color: var(--muted); white-space: nowrap;
+  }
+
+  /* ============ TABELLE ============ */
+  .table-wrap{ overflow-x: auto;}
+  table.data{
+    width: 100%; border-collapse: collapse; font-size: .88rem;
+  }
+  table.data th{
+    text-align: left; padding: 12px 20px;
+    font-family: var(--mono); font-size: .68rem;
+    letter-spacing: .14em; text-transform: uppercase;
+    color: var(--muted); font-weight: 500;
+    border-bottom: 1px solid var(--line);
+    background: var(--surface-2);
+    position: sticky; top: 0;
+  }
+  table.data td{
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--line-soft);
+    vertical-align: middle;
+  }
+  table.data tr:hover td{ background: var(--surface-2);}
+  table.data tr:last-child td{ border-bottom: 0;}
+  .pill{
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 3px 10px; border-radius: 999px;
+    font-family: var(--mono); font-size: .68rem; letter-spacing: .04em;
+    background: var(--surface-3); color: var(--fg-soft);
+  }
+  .pill::before{
+    content:""; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--muted);
+  }
+  .pill.healthy{ background: rgba(92,242,196,.12); color: var(--accent);}
+  .pill.healthy::before{ background: var(--accent); box-shadow: 0 0 6px var(--accent);}
+  .pill.degraded{ background: rgba(245,185,92,.12); color: var(--warn);}
+  .pill.degraded::before{ background: var(--warn);}
+  .pill.down{ background: rgba(255,107,107,.12); color: var(--danger);}
+  .pill.down::before{ background: var(--danger);}
+  .col-load{
+    display: flex; align-items: center; gap: 8px;
+  }
+  .col-load .bar{
+    flex: 1; max-width: 80px;
+    height: 4px; background: var(--surface-3); border-radius: 2px;
+    position: relative; overflow: hidden;
+  }
+  .col-load .bar > i{
+    position: absolute; left: 0; top: 0; bottom: 0;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    border-radius: 2px;
+  }
+  .col-load span{ font-family: var(--mono); font-size: .76rem; color: var(--fg-soft); min-width: 36px;}
+
+  /* ============ DEMO EXIT ============ */
+  .demo-exit{
+    position: fixed; bottom: 24px; left: 24px; z-index: 100;
+    background: var(--accent); color: var(--bg);
+    padding: 10px 18px; border-radius: 999px;
+    font-family: var(--mono); font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; font-weight: 600;
+    display: inline-flex; align-items: center; gap: 8px;
+    box-shadow: 0 8px 24px rgba(0,0,0,.4);
+    transition: transform .25s ease, background .25s ease;
+  }
+  .demo-exit:hover{ transform: translateY(-2px); background: var(--accent-2);}
+  .demo-exit svg{ width: 14px; height: 14px;}
+</style>
+</head>
+<body>
+
+<div class="demo-banner">Demo · Branche: System Dashboard &nbsp;·&nbsp; <a href="../../index.html">← zur Pixelschneiderei</a></div>
+
+<div class="app">
+
+  <!-- ============ SIDEBAR ============ -->
+  <aside class="side">
+    <div class="side-brand">
+      <div class="side-brand-mark">P</div>
+      <div class="side-brand-text">
+        Prism
+        <small>v2.4.0</small>
+      </div>
+    </div>
+
+    <div class="side-section">
+      <h4>Workspace</h4>
+      <div class="side-nav">
+        <a href="#" class="is-active">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>
+          Übersicht
+        </a>
+        <a href="#">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14l4-4 4 4 5-7"/></svg>
+          Analytics
+          <span class="badge">12</span>
+        </a>
+        <a href="#">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 10h20"/><path d="M6 14h2M10 14h2"/></svg>
+          Modelle
+        </a>
+        <a href="#">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg>
+          Endpoints
+          <span class="badge">3</span>
+        </a>
+        <a href="#">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v8M12 22v-2M4 12H2M22 12h-2M19 5l-1.4 1.4M6.4 17.6L5 19M19 19l-1.4-1.4M6.4 6.4L5 5"/><circle cx="12" cy="12" r="4"/></svg>
+          Workflows
+        </a>
+        <a href="#">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="4"/><path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/><circle cx="17" cy="7" r="3"/><path d="M21 21v-1a3 3 0 0 0-3-3h-1"/></svg>
+          Team
+        </a>
+      </div>
+    </div>
+
+    <div class="side-section">
+      <h4>System</h4>
+      <div class="side-nav">
+        <a href="#">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h-4a2 2 0 0 0-2 2v2H4a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2h-4V6a2 2 0 0 0-2-2z"/><path d="M9 14h6"/></svg>
+          Logs
+        </a>
+        <a href="#">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          Einstellungen
+        </a>
+      </div>
+    </div>
+
+    <div class="side-foot">
+      <div class="avatar">EW</div>
+      <div>
+        Erik Weisser
+        <div style="font-family: var(--mono); font-size: .68rem; color: var(--muted);">Admin</div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ============ MAIN ============ -->
+  <div>
+    <header class="topbar">
+      <h1>Übersicht <small>// production · eu-central-1</small></h1>
+      <div class="topbar-search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        <input type="text" placeholder="Suche · Modelle, Endpoints, Logs…" />
+        <kbd>⌘ K</kbd>
+      </div>
+      <div class="topbar-actions">
+        <button class="topbar-btn is-pulse" aria-label="Benachrichtigungen">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>
+        </button>
+        <button class="topbar-btn" aria-label="Hilfe">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 1 1 5.8 1c0 2-3 3-3 3"/><circle cx="12" cy="17" r=".4" fill="currentColor"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <main>
+
+      <!-- ============ STAT-KARTEN ============ -->
+      <div class="stats">
+        <div class="stat">
+          <div class="stat-head">
+            <span>Anfragen / 24h</span>
+            <span class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h4l3-9 6 18 3-9h4"/></svg></span>
+          </div>
+          <div class="stat-value">142.<span style="opacity:.6">831</span></div>
+          <div class="stat-trend up">▲ 12,4 % vs. Vorwoche</div>
+          <div class="stat-spark">
+            <svg viewBox="0 0 200 36" preserveAspectRatio="none">
+              <polyline points="0,28 20,24 40,26 60,18 80,22 100,14 120,18 140,8 160,12 180,6 200,10" fill="none" stroke="#5cf2c4" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+            </svg>
+          </div>
+        </div>
+
+        <div class="stat">
+          <div class="stat-head">
+            <span>Latenz P95</span>
+            <span class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span>
+          </div>
+          <div class="stat-value">284<small>ms</small></div>
+          <div class="stat-trend up">▼ 18 ms vs. gestern</div>
+          <div class="stat-spark">
+            <svg viewBox="0 0 200 36" preserveAspectRatio="none">
+              <polyline points="0,12 20,16 40,14 60,20 80,18 100,22 120,20 140,24 160,22 180,28 200,26" fill="none" stroke="#6ba4ff" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+            </svg>
+          </div>
+        </div>
+
+        <div class="stat">
+          <div class="stat-head">
+            <span>Aktive Sessions</span>
+            <span class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="4"/><path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/></svg></span>
+          </div>
+          <div class="stat-value">1.<span style="opacity:.6">204</span></div>
+          <div class="stat-trend up">▲ 38 in letzter Stunde</div>
+          <div class="stat-spark">
+            <svg viewBox="0 0 200 36" preserveAspectRatio="none">
+              <polyline points="0,24 20,22 40,18 60,20 80,14 100,16 120,12 140,14 160,8 180,10 200,4" fill="none" stroke="#f5b95c" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+            </svg>
+          </div>
+        </div>
+
+        <div class="stat">
+          <div class="stat-head">
+            <span>Fehlerrate</span>
+            <span class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><circle cx="12" cy="17" r=".5" fill="currentColor"/></svg></span>
+          </div>
+          <div class="stat-value">0,42<small>%</small></div>
+          <div class="stat-trend down">▲ 0,08 pp · prüfen</div>
+          <div class="stat-spark">
+            <svg viewBox="0 0 200 36" preserveAspectRatio="none">
+              <polyline points="0,30 20,28 40,30 60,26 80,28 100,22 120,24 140,18 160,20 180,12 200,14" fill="none" stroke="#ff6b6b" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ MAIN GRID ============ -->
+      <div class="grid-2">
+
+        <!-- Hauptchart -->
+        <div class="panel">
+          <div class="panel-head">
+            <h3>Anfragen pro Stunde <small>// last 24h</small></h3>
+            <div class="panel-actions">
+              <button class="chip">1h</button>
+              <button class="chip">6h</button>
+              <button class="chip is-active">24h</button>
+              <button class="chip">7d</button>
+            </div>
+          </div>
+          <div class="panel-body">
+            <div class="chart-area">
+              <svg viewBox="0 0 800 280" preserveAspectRatio="none">
+                <defs>
+                  <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#5cf2c4" stop-opacity=".35"/>
+                    <stop offset="100%" stop-color="#5cf2c4" stop-opacity="0"/>
+                  </linearGradient>
+                  <linearGradient id="areaGrad2" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#6ba4ff" stop-opacity=".25"/>
+                    <stop offset="100%" stop-color="#6ba4ff" stop-opacity="0"/>
+                  </linearGradient>
+                </defs>
+                <!-- Grid -->
+                <g stroke="#232838" stroke-width="0.8">
+                  <line x1="0" y1="60" x2="800" y2="60"/>
+                  <line x1="0" y1="120" x2="800" y2="120"/>
+                  <line x1="0" y1="180" x2="800" y2="180"/>
+                  <line x1="0" y1="240" x2="800" y2="240"/>
+                </g>
+                <!-- Area 2 (sekundär — Cache hits) -->
+                <path d="M0,180 L66,170 L133,178 L200,160 L266,165 L333,140 L400,150 L466,135 L533,128 L600,120 L666,110 L733,118 L800,108 L800,280 L0,280 Z" fill="url(#areaGrad2)"/>
+                <polyline points="0,180 66,170 133,178 200,160 266,165 333,140 400,150 466,135 533,128 600,120 666,110 733,118 800,108" fill="none" stroke="#6ba4ff" stroke-width="2"/>
+                <!-- Area 1 (primär — total) -->
+                <path d="M0,210 L66,180 L133,190 L200,150 L266,140 L333,100 L400,120 L466,90 L533,70 L600,80 L666,55 L733,65 L800,40 L800,280 L0,280 Z" fill="url(#areaGrad)"/>
+                <polyline points="0,210 66,180 133,190 200,150 266,140 333,100 400,120 466,90 533,70 600,80 666,55 733,65 800,40" fill="none" stroke="#5cf2c4" stroke-width="2.5"/>
+                <!-- Datapoints am Ende -->
+                <circle cx="800" cy="40" r="4" fill="#5cf2c4"/>
+                <circle cx="800" cy="40" r="8" fill="#5cf2c4" opacity=".25"/>
+                <!-- Label rechts -->
+                <text x="780" y="32" font-family="JetBrains Mono, monospace" font-size="11" fill="#5cf2c4" text-anchor="end">7.842</text>
+              </svg>
+            </div>
+          </div>
+          <div class="chart-legend">
+            <span><i style="background:#5cf2c4"></i>Total</span>
+            <span><i style="background:#6ba4ff"></i>Cache hits</span>
+            <span style="margin-left:auto; color: var(--muted);">Aktualisiert vor 12 s</span>
+          </div>
+        </div>
+
+        <!-- Activity feed -->
+        <div class="panel">
+          <div class="panel-head">
+            <h3>Aktivität <small>// live</small></h3>
+            <button class="chip">Alle ansehen</button>
+          </div>
+          <ul class="activity">
+            <li>
+              <span class="activity-dot"></span>
+              <div class="activity-msg"><strong>API-Endpoint deployed</strong> <span>· prism-classifier-v3 erfolgreich freigegeben</span></div>
+              <span class="activity-time">vor 2 Min</span>
+            </li>
+            <li>
+              <span class="activity-dot info"></span>
+              <div class="activity-msg"><strong>Neuer Workflow</strong> <span>· „Bild-Klassifikation" von M. Sauer angelegt</span></div>
+              <span class="activity-time">vor 14 Min</span>
+            </li>
+            <li>
+              <span class="activity-dot warn"></span>
+              <div class="activity-msg"><strong>Quota-Warnung</strong> <span>· Workspace „Demo" zu 87 % ausgelastet</span></div>
+              <span class="activity-time">vor 32 Min</span>
+            </li>
+            <li>
+              <span class="activity-dot"></span>
+              <div class="activity-msg"><strong>Modell aktualisiert</strong> <span>· prism-vision von v1.4.2 → v1.5.0</span></div>
+              <span class="activity-time">vor 1 Std</span>
+            </li>
+            <li>
+              <span class="activity-dot danger"></span>
+              <div class="activity-msg"><strong>Endpoint timeout</strong> <span>· 3× HTTP 504 in „prism-stream-eu" — automatisch neu gestartet</span></div>
+              <span class="activity-time">vor 2 Std</span>
+            </li>
+            <li>
+              <span class="activity-dot info"></span>
+              <div class="activity-msg"><strong>Backup erfolgreich</strong> <span>· Daily Snapshot 2,4 GB übertragen</span></div>
+              <span class="activity-time">vor 4 Std</span>
+            </li>
+            <li>
+              <span class="activity-dot"></span>
+              <div class="activity-msg"><strong>Rate-Limit</strong> <span>· Workspace „Tester" auf 10k req/h hochgesetzt</span></div>
+              <span class="activity-time">vor 6 Std</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ============ TABELLE ============ -->
+      <div class="panel">
+        <div class="panel-head">
+          <h3>Endpoints <small>// 6 aktiv</small></h3>
+          <div class="panel-actions">
+            <button class="chip">Alle</button>
+            <button class="chip is-active">Aktiv</button>
+            <button class="chip">Down</button>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table class="data">
+            <thead>
+              <tr>
+                <th>Endpoint</th>
+                <th>Region</th>
+                <th>Status</th>
+                <th>Latenz</th>
+                <th>Last</th>
+                <th>Anfragen / Min</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code style="font-family:var(--mono); color:var(--fg);">prism-classifier-v3</code></td>
+                <td><span style="font-family:var(--mono); color:var(--fg-soft); font-size:.82rem;">eu-central-1</span></td>
+                <td><span class="pill healthy">healthy</span></td>
+                <td><span style="font-family:var(--mono);">142 ms</span></td>
+                <td><div class="col-load"><div class="bar"><i style="width:42%"></i></div><span>42%</span></div></td>
+                <td><span style="font-family:var(--mono); color:var(--fg);">2.184</span></td>
+              </tr>
+              <tr>
+                <td><code style="font-family:var(--mono); color:var(--fg);">prism-vision</code></td>
+                <td><span style="font-family:var(--mono); color:var(--fg-soft); font-size:.82rem;">eu-central-1</span></td>
+                <td><span class="pill healthy">healthy</span></td>
+                <td><span style="font-family:var(--mono);">324 ms</span></td>
+                <td><div class="col-load"><div class="bar"><i style="width:68%"></i></div><span>68%</span></div></td>
+                <td><span style="font-family:var(--mono); color:var(--fg);">1.456</span></td>
+              </tr>
+              <tr>
+                <td><code style="font-family:var(--mono); color:var(--fg);">prism-stream-eu</code></td>
+                <td><span style="font-family:var(--mono); color:var(--fg-soft); font-size:.82rem;">eu-west-3</span></td>
+                <td><span class="pill degraded">degraded</span></td>
+                <td><span style="font-family:var(--mono);">812 ms</span></td>
+                <td><div class="col-load"><div class="bar"><i style="width:91%; background:var(--warn);"></i></div><span>91%</span></div></td>
+                <td><span style="font-family:var(--mono); color:var(--fg);">3.024</span></td>
+              </tr>
+              <tr>
+                <td><code style="font-family:var(--mono); color:var(--fg);">prism-embed-v2</code></td>
+                <td><span style="font-family:var(--mono); color:var(--fg-soft); font-size:.82rem;">us-east-1</span></td>
+                <td><span class="pill healthy">healthy</span></td>
+                <td><span style="font-family:var(--mono);">96 ms</span></td>
+                <td><div class="col-load"><div class="bar"><i style="width:28%"></i></div><span>28%</span></div></td>
+                <td><span style="font-family:var(--mono); color:var(--fg);">872</span></td>
+              </tr>
+              <tr>
+                <td><code style="font-family:var(--mono); color:var(--fg);">prism-router</code></td>
+                <td><span style="font-family:var(--mono); color:var(--fg-soft); font-size:.82rem;">global</span></td>
+                <td><span class="pill healthy">healthy</span></td>
+                <td><span style="font-family:var(--mono);">38 ms</span></td>
+                <td><div class="col-load"><div class="bar"><i style="width:54%"></i></div><span>54%</span></div></td>
+                <td><span style="font-family:var(--mono); color:var(--fg);">12.318</span></td>
+              </tr>
+              <tr>
+                <td><code style="font-family:var(--mono); color:var(--fg);">prism-batch-archive</code></td>
+                <td><span style="font-family:var(--mono); color:var(--fg-soft); font-size:.82rem;">eu-central-1</span></td>
+                <td><span class="pill down">down</span></td>
+                <td><span style="font-family:var(--mono); color:var(--muted);">—</span></td>
+                <td><div class="col-load"><div class="bar"><i style="width:0%"></i></div><span>0%</span></div></td>
+                <td><span style="font-family:var(--mono); color:var(--muted);">—</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<a class="demo-exit" href="../../referenzen.html">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+  Demo verlassen
+</a>
+
+<script src="../../assets/demo-exit.js"></script>
+</body>
+</html>

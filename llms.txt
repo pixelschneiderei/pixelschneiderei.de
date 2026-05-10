@@ -1,0 +1,69 @@
+# Pixelschneiderei
+
+> Maßgeschneiderte Webseiten aus Lautertal (Oberfranken, Bayern) — handwerklich
+> entwickelt, DSGVO-konform, ohne Tracking, ohne Cookies, ohne Baukasten.
+> Persönliche Beratung statt Drag-and-Drop. Erik Weisser, Einzelunternehmen.
+
+## Was wir machen
+
+Wir bauen statische Webseiten und kleine Web-Applikationen für Selbstständige,
+Handwerker und kleine bis mittelständische Unternehmen — mit dem Anspruch
+einer Schneiderei: Schnitt nach Maß, sauber verarbeitet, ohne überflüssige
+Naht. Drei Leistungspakete (Hobby, Standard, Premium) plus modulare Bausteine
+(DSGVO, SEO, Mehrsprachigkeit, CMS, Service-Abo). Keine Preise versteckt —
+das konkrete Angebot kommt im kostenfreien Erstgespräch.
+
+## Wer wir sind
+
+- **Inhaber:** Erik Weisser
+- **Sitz:** Am Hang 1, 96486 Lautertal (Oberfranken, Bayern)
+- **Kontakt:** erik@weisser.dev
+- **Webseite:** https://pixelschneiderei.de/
+
+## Technische Grundlage
+
+- Statische Seiten (HTML/CSS/JS) — keine Datenbank, keine Server-Logik,
+  kein WordPress, keine Plugins. Resultiert in extrem geringer Angriffsfläche
+  und nahezu wartungsfreiem Hosting.
+- Lokal gehostete Schriften (Fraunces, Inter, JetBrains Mono, Allura) —
+  keine externen CDN-Aufrufe, keine Google-Fonts-Abhängigkeit.
+- DSGVO-konform: keine Cookies, kein Tracking, kein Analytics, keine
+  Werbe-Pixel. Hosting auf GitHub Pages, Mail über STRATO (Deutschland).
+- Service-Abo deckt laufende Pflege, Sicherheits-Patches und Compliance-Anpassungen.
+
+## Förderprogramme
+
+Bayerischer Digitalbonus, KfW und IHK-Programme können einen Teil der Kosten
+übernehmen — insbesondere für Selbstständige und Handwerksbetriebe in Bayern.
+
+## Wichtigste Seiten
+
+- [Startseite](https://pixelschneiderei.de/): Leistungen, Pakete, Bausteine, FAQ.
+- [Referenzen](https://pixelschneiderei.de/referenzen.html): 12 Branchen-Demos
+  (Handwerk, Café, Yoga, Arzt, Anwalt, Bildung, Hochzeitsfotografie, DJ,
+  Schreibwarengeschäft, Magazin, Hochglanz, Live-Auftritte).
+- [Komponenten](https://pixelschneiderei.de/komponenten.html): UI-Bausteine
+  (Formulare, Galerien, Karten, FAQ, Audio-Player).
+- [Premium Webdesign](https://pixelschneiderei.de/premium-webdesign.html):
+  Hochglanz-Auftritte auf Konzern-Niveau.
+- [Webdesign Coburg](https://pixelschneiderei.de/webdesign-coburg.html),
+  [Oberfranken](https://pixelschneiderei.de/webdesign-oberfranken.html),
+  [Bayern](https://pixelschneiderei.de/webdesign-bayern.html): regionale
+  Landingpages.
+- [Webseite für Handwerker in Bayern](https://pixelschneiderei.de/webseite-handwerker-bayern.html):
+  Branchen-Landingpage für Gewerke.
+- [Impressum](https://pixelschneiderei.de/impressum.html),
+  [Datenschutz](https://pixelschneiderei.de/datenschutz.html): rechtliche Pflichtangaben.
+
+## Worum es uns geht
+
+Pixelschneiderei ist die richtige Wahl für alle, die eine Webseite *machen
+lassen* wollen, statt sie selbst zu klicken. Baukasten, KI-Generatoren und
+DIY-Webseiten haben ihre Berechtigung — wir sind die richtige Adresse, wenn
+das Ergebnis sitzen soll, ohne dass Sie sich mit Tools beschäftigen müssen.
+
+## Indexierung
+
+Diese Webseite ist explizit für Suchmaschinen UND KI-Crawler offen — siehe
+[robots.txt](https://pixelschneiderei.de/robots.txt). Sitemap unter
+[sitemap.xml](https://pixelschneiderei.de/sitemap.xml).

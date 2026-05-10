@@ -3,11 +3,12 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<meta name="theme-color" content="#ffffff" />
+<meta name="theme-color" content="#f5f1ec" />
 <title>Referenzen &amp; Webseiten-Demos für 12 Branchen | Pixelschneiderei</title>
 <meta name="description" content="12 Beispiel-Webseiten für Handwerk, Gastronomie, Fotografie, Arzt, Anwalt, Bildung, DJ, Blog und mehr. Sehen Sie, wie eine maßgeschneiderte Webseite für Ihre Branche aussehen könnte." />
-<meta name="keywords" content="Webseite Beispiele, Webseiten Referenzen, Webseite Handwerker, Webseite Café, Webseite Yoga, Webseite Arzt, Webseite Kanzlei, Webseite Fotograf, Premium Webseite, Live Demo" />
+<meta name="keywords" content="Webseite Beispiele, Webseiten Referenzen, Webseite Handwerker, Webseite Café, Webseite Yoga, Webseite Arzt, Webseite Kanzlei, Webseite Fotograf, Premium Webseite, System Dashboard" />
 <link rel="canonical" href="https://pixelschneiderei.de/referenzen.html" />
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
 
 <meta property="og:title" content="Referenzen &amp; Webseiten-Demos für 12 Branchen | Pixelschneiderei" />
 <meta property="og:description" content="12 Beispiel-Webseiten für Handwerk, Gastronomie, Fotografie, Arzt, Anwalt, Bildung, DJ, Blog und mehr." />
@@ -19,8 +20,30 @@
 <meta property="og:locale" content="de_DE" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:image" content="https://pixelschneiderei.de/assets/og-referenzen.jpg" />
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23ffffff'/%3E%3Cg fill='%230f0f10'%3E%3Crect x='6' y='6' width='4' height='4'/%3E%3Crect x='14' y='6' width='4' height='4'/%3E%3Crect x='22' y='6' width='4' height='4'/%3E%3Crect x='6' y='14' width='4' height='4'/%3E%3Crect x='14' y='14' width='4' height='4' fill='%23b8392a'/%3E%3Crect x='6' y='22' width='4' height='4'/%3E%3Crect x='22' y='22' width='4' height='4'/%3E%3C/g%3E%3C/svg%3E" />
+<link rel="icon" type="image/png" sizes="any" href="assets/ci/logo_light.png" />
+<link rel="apple-touch-icon" href="assets/ci/logo_light.png" />
 <link rel="stylesheet" href="assets/style.css"/>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "@id": "https://pixelschneiderei.de/referenzen.html",
+  "name": "Referenzen & Webseiten-Demos für 12 Branchen",
+  "description": "Beispiel-Webseiten für Handwerk, Gastronomie, Fotografie, Arzt, Anwalt, Bildung, DJ, Blog und mehr.",
+  "url": "https://pixelschneiderei.de/referenzen.html",
+  "inLanguage": "de-DE",
+  "isPartOf": { "@type": "WebSite", "name": "Pixelschneiderei", "url": "https://pixelschneiderei.de/" },
+  "publisher": { "@type": "Organization", "name": "Pixelschneiderei", "url": "https://pixelschneiderei.de/" },
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://pixelschneiderei.de/" },
+      { "@type": "ListItem", "position": 2, "name": "Referenzen", "item": "https://pixelschneiderei.de/referenzen.html" }
+    ]
+  }
+}
+</script>
 <style>
   .filters{
     display:flex; flex-wrap: wrap; gap: 10px;
@@ -100,10 +123,7 @@
 
 <header class="nav" id="nav">
   <div class="container nav-row">
-    <a href="index.html" class="brand">
-      <span class="brand-mark"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
-      <span>Pixel<em style="font-style:italic;color:var(--thread);font-weight:300">schneiderei</em></span>
-    </a>
+    <a href="index.html" class="brand"><img src="assets/ci/logo_light.png" alt="" class="brand-icon" width="1536" height="1024" decoding="async" aria-hidden="true"><span class="brand-text">pixel<em>schneiderei</em></span></a>
     <nav class="nav-links">
       <a href="index.html#leistungen">Leistungen</a>
       <a href="index.html#pakete">Pakete</a>
@@ -134,7 +154,7 @@
 
       <div class="filters" id="filters">
         <button class="filter is-active" data-filter="all">Alle <span style="opacity:.5;">·12</span></button>
-        <button class="filter" data-filter="live">Live</button>
+        <button class="filter" data-filter="dashboard">Dashboard</button>
         <button class="filter" data-filter="hochglanz">Hochglanz</button>
         <button class="filter" data-filter="foto">Foto</button>
         <button class="filter" data-filter="dj">DJ &amp; Event</button>
@@ -159,15 +179,15 @@
                   <stop offset="0%" stop-color="#0a0a0a"/><stop offset="100%" stop-color="#1a1a1a"/>
                 </linearGradient>
                 <radialGradient id="x1g" cx="50%" cy="50%" r="50%">
-                  <stop offset="0%" stop-color="#b8392a" stop-opacity=".55"/>
-                  <stop offset="60%" stop-color="#b8392a" stop-opacity="0"/>
+                  <stop offset="0%" stop-color="#b1383a" stop-opacity=".55"/>
+                  <stop offset="60%" stop-color="#b1383a" stop-opacity="0"/>
                 </radialGradient>
               </defs>
               <rect width="600" height="375" fill="url(#x1)"/>
               <ellipse cx="300" cy="200" rx="240" ry="120" fill="url(#x1g)"/>
               <rect x="240" y="100" width="120" height="220" rx="22" fill="#0d0d0d" stroke="#2a2a2a"/>
               <text x="300" y="220" font-family="Inter" font-size="13" fill="#fff" text-anchor="middle" font-weight="600" letter-spacing="2">PIXELSCHNEIDEREI</text>
-              <text x="300" y="240" font-family="Fraunces" font-size="11" fill="#b8392a" text-anchor="middle" font-style="italic">Atelier</text>
+              <text x="300" y="240" font-family="Fraunces" font-size="11" fill="#b1383a" text-anchor="middle" font-style="italic">Atelier</text>
             </svg>
             <span class="ref-badge">Hochglanz</span>
           </div>
@@ -179,29 +199,31 @@
           </div>
         </a>
 
-        <a class="ref" data-cat="live" href="https://e-bikefactory.de" target="_blank" rel="noopener">
+        <a class="ref" data-cat="dashboard" href="demos/dashboard/index.html">
           <div class="ref-thumb">
-            <img class="ref-thumb-img" src="demos/_external/e-bikefactory.jpg" alt="" loading="lazy" onerror="this.remove();">
+            <img class="ref-thumb-img" src="demos/dashboard/thumb.jpg" alt="" loading="lazy" onerror="this.remove();">
             <svg viewBox="0 0 600 375" preserveAspectRatio="xMidYMid slice">
-              <defs><linearGradient id="x2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#1c2a36"/><stop offset="100%" stop-color="#0f1820"/></linearGradient></defs>
+              <defs><linearGradient id="x2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#0f1117"/><stop offset="100%" stop-color="#080a10"/></linearGradient></defs>
               <rect width="600" height="375" fill="url(#x2)"/>
-              <g opacity=".7">
-                <circle cx="180" cy="245" r="68" fill="none" stroke="#7fb98a" stroke-width="2"/>
-                <circle cx="180" cy="245" r="20" fill="#7fb98a"/>
-                <circle cx="420" cy="245" r="68" fill="none" stroke="#7fb98a" stroke-width="2"/>
-                <circle cx="420" cy="245" r="20" fill="#7fb98a"/>
-                <path d="M180 245 L300 145 L420 245 L300 245 Z" fill="none" stroke="#cfe7d3" stroke-width="2"/>
+              <g opacity=".55">
+                <rect x="40" y="40" width="160" height="64" rx="6" fill="none" stroke="#5cf2c4" stroke-width="1"/>
+                <rect x="220" y="40" width="160" height="64" rx="6" fill="none" stroke="#5cf2c4" stroke-width="1"/>
+                <rect x="400" y="40" width="160" height="64" rx="6" fill="none" stroke="#5cf2c4" stroke-width="1"/>
+                <path d="M40 250 L120 200 L200 220 L280 170 L360 190 L440 140 L520 160 L560 130" fill="none" stroke="#5cf2c4" stroke-width="1.6"/>
+                <line x1="40" y1="280" x2="560" y2="280" stroke="#2a3140" stroke-width="0.6"/>
+                <line x1="40" y1="310" x2="560" y2="310" stroke="#2a3140" stroke-width="0.6"/>
+                <line x1="40" y1="340" x2="560" y2="340" stroke="#2a3140" stroke-width="0.6"/>
               </g>
-              <text x="40" y="60" font-family="Inter" font-size="14" fill="#7fb98a" font-weight="600" letter-spacing="3">E-BIKEFACTORY</text>
-              <text x="40" y="100" font-family="Fraunces" font-size="36" fill="#fff">Dein Bike. Dein Weg.</text>
+              <text x="40" y="28" font-family="JetBrains Mono, monospace" font-size="10" fill="#5cf2c4" letter-spacing="3">PRISM · SYSTEM DASHBOARD</text>
+              <text x="40" y="160" font-family="Fraunces, serif" font-size="32" font-style="italic" fill="#f5f1ec">Alles im Blick.</text>
             </svg>
-            <span class="ref-badge">Live</span>
+            <span class="ref-badge">Demo · Dashboard</span>
           </div>
           <div class="ref-body">
-            <div class="ref-meta">Live Demo · Shop · Mobilität</div>
-            <h3>e-bikefactory.de</h3>
-            <p>Onlineauftritt eines E-Bike-Spezialisten mit Produktwelt und Beratungseinstieg.</p>
-            <p class="ref-tags">Live im Web · Shop-Strecken · Konfigurator-Logik · Beratungseinstieg</p>
+            <div class="ref-meta">Demo · Dashboard · Tooling</div>
+            <h3>System Dashboard</h3>
+            <p>Daten-Cockpit für interne Tools — KPI-Karten, Live-Charts, Status-Tabellen, Activity-Feed. Dunkles Tooling-UI im Stil von Open-Model-Prism.</p>
+            <p class="ref-tags">Stat-Karten · Sparklines · Status-Indikatoren · Live-Aktivitäten · Resource-Tabelle · Dunkler Modus</p>
           </div>
         </a>
 
@@ -485,7 +507,7 @@
   <div class="container">
     <div class="foot-grid">
       <div>
-        <div class="foot-brand">Pixel<span class="accent">schneiderei</span></div>
+        <a href="index.html" class="foot-brand-link" aria-label="pixelschneiderei – Startseite"><img src="assets/ci/logo_light.png" alt="" class="foot-brand-icon" width="1536" height="1024" loading="lazy" decoding="async" aria-hidden="true"><span class="foot-brand-text">pixel<em>schneiderei</em></span></a>
         <p>Maßgeschneiderte Webseiten, sauber verarbeitet. DSGVO-konform, ausfallsicher, mit hoher Erreichbarkeit.</p>
       </div>
       <div class="foot-col"><h4>Seite</h4>

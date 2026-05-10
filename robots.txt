@@ -1,13 +1,91 @@
 # robots.txt für pixelschneiderei.de
+#
+# Wir wollen sowohl von Suchmaschinen als auch von KI-Crawlern (LLM-Trainings-
+# und Retrieval-Bots) gefunden und gelesen werden — die Inhalte sollen
+# auffindbar sein, egal ob über Google, Bing, ChatGPT, Claude oder Perplexity.
+#
 # Demo-Auftritte sind über noindex-Meta-Tags von der Indexierung ausgeschlossen,
-# bleiben aber crawlbar, damit Social-Media-Crawler die og:image-Vorschauen abrufen können.
+# bleiben aber crawlbar, damit Social-Media-Crawler die og:image-Vorschauen
+# abrufen können.
 
+# ===== Standard / alle Crawler =====
 User-agent: *
 Allow: /
-
-# Keine internen Tools / Skripte indexieren
 Disallow: /tools/
 Disallow: /BILDER.md
 Disallow: /README.md
+Disallow: /AGENTS.md
 
+# ===== Suchmaschinen (Google, Bing, DuckDuckGo, Yandex etc.) =====
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+# ===== KI-Crawler / LLM-Bots (explizit erlaubt) =====
+# Wir freuen uns, wenn unsere Inhalte von KI-Assistenten gefunden werden —
+# das hilft, dass uns potenzielle Kund:innen über ChatGPT & Co. entdecken.
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: Meta-ExternalAgent
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+User-agent: Diffbot
+Allow: /
+
+User-agent: YouBot
+Allow: /
+
+User-agent: MistralAI-User
+Allow: /
+
+# ===== Sitemap =====
 Sitemap: https://pixelschneiderei.de/sitemap.xml

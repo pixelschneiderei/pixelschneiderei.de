@@ -9,18 +9,26 @@
 @import url('fonts.css');
 
 :root{
-  --paper:     #ffffff;
-  --paper-2:   #f6f6f7;
-  --paper-3:   #ececee;
+  /* ===== CI-Farben (offiziell, aus Brand-Board + Logo) =====
+     Rot       #B1383A   Pixelschneider-Rot (RGB 177, 56, 58 — Logo-Sample)
+     Ink       #1A1A1A   Schwarz
+     Paper     #F5F1EC   Cream-Hintergrund
+     Mid-Grey  #A0A0A0   Sekundär-Text / Muted
+     Light-Grey #D9D9D9  Trennlinien / Borders
+     Abgeleitete Töne (paper-2/3, line-soft, thread-2/3) sind Helligkeits-
+     oder Sättigungs-Variationen davon und müssen sich auch wie CI anfühlen. */
+  --paper:     #f5f1ec;
+  --paper-2:   #eee9e1;
+  --paper-3:   #e3ddd2;
   --surface:   #ffffff;
-  --line:      #e3e3e6;
-  --line-soft: #ededf0;
-  --ink:       #0f0f10;
-  --ink-soft:  #2a2a2c;
-  --muted:     #8a8a90;
-  --thread:    #b8392a;
-  --thread-2:  #d96a55;
-  --thread-3:  #f5dad3;
+  --line:      #d9d9d9;
+  --line-soft: #e6e3dd;
+  --ink:       #1a1a1a;
+  --ink-soft:  #2e2e2e;
+  --muted:     #a0a0a0;
+  --thread:    #b1383a;
+  --thread-2:  #c85a5c;
+  --thread-3:  #f2d8d9;
   --gold:      #a87b3c;
   --gold-soft: #d8c194;
 
@@ -118,11 +126,57 @@ p{margin: 0 0 1em}
   height: 72px;
 }
 .brand{
-  display:flex; align-items:center; gap: 12px;
+  display:flex; align-items:center; gap: 10px;
   font-family: var(--serif);
-  font-size: 1.2rem;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.015em;
+  transition: opacity .2s ease;
+  text-decoration: none;
+  color: var(--ink);
+  line-height: 1;
 }
+.brand:hover{ opacity: .82;}
+
+/* Icon-Image im Header — Laptop+Nadel als Marke vor dem Schriftzug */
+.brand-icon{
+  display: block;
+  height: clamp(40px, 5vw, 52px);
+  width: auto;
+  object-fit: contain;
+}
+
+/* Wortmarke „pixelschneiderei" — Fraunces für „pixel", Allura-Script für „schneiderei" */
+.brand-text{
+  display: inline-block;
+  font-family: var(--serif);
+  font-size: clamp(1.5rem, 2.6vw, 1.9rem);
+  font-weight: 500;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+  font-variation-settings: "opsz" 144, "SOFT" 30;
+  white-space: nowrap;
+  line-height: 1;
+}
+.brand-text em{
+  font-family: 'Allura', 'Fraunces', cursive;
+  font-style: normal;       /* Allura hat eigenen Schwung, kein zusätzliches italic */
+  font-weight: 400;
+  color: var(--thread);
+  font-size: 1.25em;        /* Script wirkt optisch kleiner — leicht hochskalieren */
+  letter-spacing: 0;
+  margin-left: 4px;
+  vertical-align: -0.05em;  /* leichte Anhebung gegenüber „pixel"-Baseline */
+  /* Fallback bevor Allura geladen ist: Fraunces-Italic mit weicher Soft-Achse */
+  font-variation-settings: "opsz" 144, "SOFT" 100;
+}
+/* Sobald Allura aktiv ist, wird font-style/italic über @font-face automatisch gesetzt
+   und die Variation-Settings ignoriert. */
+
+@media (max-width: 480px){
+  .brand-icon{ height: 36px;}
+  .brand-text{ font-size: 1.3rem;}
+}
+
+/* Legacy CSS-Brand-Mark (3×3 Pixel-Grid) — wird nicht mehr genutzt, bleibt für ggf. künftige Wiederverwendung */
 .brand-mark{
   width: 30px; height: 30px;
   display:grid;
@@ -279,6 +333,47 @@ footer{ border-top: 1px solid var(--line-soft); padding: 56px 0 32px;}
   margin-bottom: 12px;
 }
 .foot-brand .accent{ color: var(--thread); font-style:italic; font-weight: 300;}
+.foot-brand-logo{
+  display: block;
+  width: clamp(220px, 22vw, 280px);
+  height: auto;
+  margin-bottom: 12px;
+}
+/* Neuer Footer-Brand: Icon + CSS-Wortmarke (kleines „p", italic-rotes „schneiderei") */
+.foot-brand-link{
+  display: inline-flex; align-items: center; gap: 12px;
+  margin-bottom: 12px;
+  text-decoration: none; color: inherit;
+  transition: opacity .2s ease;
+}
+.foot-brand-link:hover{ opacity: .82;}
+.foot-brand-icon{
+  display: block;
+  height: clamp(48px, 5vw, 60px);
+  width: auto;
+  object-fit: contain;
+}
+.foot-brand-text{
+  font-family: var(--serif);
+  font-size: clamp(1.6rem, 2.4vw, 2rem);
+  font-weight: 500;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+  font-variation-settings: "opsz" 144, "SOFT" 30;
+  white-space: nowrap;
+  line-height: 1;
+}
+.foot-brand-text em{
+  font-family: 'Allura', 'Fraunces', cursive;
+  font-style: normal;
+  font-weight: 400;
+  color: var(--thread);
+  font-size: 1.25em;
+  letter-spacing: 0;
+  margin-left: 4px;
+  vertical-align: -0.05em;
+  font-variation-settings: "opsz" 144, "SOFT" 100;
+}
 .foot-grid p{ color: var(--ink-soft); max-width: 36ch;}
 .foot-col h4{
   font-family: var(--mono);

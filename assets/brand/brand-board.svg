@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+  <title id="title">Pixelschneiderei CI Board</title>
+  <desc id="desc">CI Übersicht mit hellem und dunklem Logo, Zeichenmarken, Kleinstformaten und Farbpalette.</desc>
+  <defs>
+    <style>
+      .bg{fill:#F5F1EC}
+      .dark{fill:#1A1A1A}
+      .label{font-family:Inter, Arial, sans-serif;font-size:16px;font-weight:700;letter-spacing:8px;fill:#1A1A1A}
+      .small{font-family:Inter, Arial, sans-serif;font-size:14px;font-weight:700;letter-spacing:1px;fill:#1A1A1A}
+      .rule{stroke:#D9D9D9;stroke-width:1}
+      .shadow{filter:drop-shadow(0 14px 22px rgba(26,26,26,.16))}
+    </style>
+  </defs>
+  <rect class="bg" width="1600" height="1000"/>
+  <line class="rule" x1="800" y1="0" x2="800" y2="360"/>
+  <text class="label" x="42" y="54">1. HORIZONTALE LOGOS</text>
+  <image href="logo-horizontal-light.svg" x="42" y="86" width="690" height="230"/>
+  <rect class="dark" x="800" y="0" width="800" height="360"/>
+  <image href="logo-horizontal-dark.svg" x="846" y="86" width="690" height="230"/>
+  <line class="rule" x1="0" y1="360" x2="1600" y2="360"/>
+  <text class="label" x="42" y="408">2. NUR ICONS / ZEICHENMARKEN</text>
+  <image href="mark-light.svg" x="124" y="450" width="180" height="180"/>
+  <image href="mark-dark.svg" x="414" y="450" width="180" height="180"/>
+  <rect x="704" y="450" width="180" height="180" rx="30" fill="#8D2230" class="shadow"/>
+  <image href="mark-dark.svg" x="704" y="450" width="180" height="180"/>
+  <rect x="994" y="450" width="180" height="180" rx="30" fill="#F5F1EC" stroke="#D9D9D9" class="shadow"/>
+  <image href="favicon.svg" x="1024" y="480" width="120" height="120"/>
+  <line class="rule" x1="0" y1="680" x2="1600" y2="680"/>
+  <text class="label" x="42" y="730">3. FAVICON / KLEINSTFORMATE</text>
+  <image href="favicon.svg" x="78" y="782" width="48" height="48"/>
+  <image href="favicon.svg" x="184" y="772" width="72" height="72"/>
+  <rect x="314" y="744" width="128" height="128" rx="24" fill="#F5F1EC" stroke="#D9D9D9" class="shadow"/>
+  <image href="favicon.svg" x="346" y="776" width="64" height="64"/>
+  <text class="label" x="760" y="730">FARBEN</text>
+  <g transform="translate(836 774)">
+    <rect width="64" height="64" fill="#8D2230"/>
+    <text class="small" x="0" y="94">#8D2230</text>
+  </g>
+  <g transform="translate(1010 774)">
+    <rect width="64" height="64" fill="#1A1A1A"/>
+    <text class="small" x="0" y="94">#1A1A1A</text>
+  </g>
+  <g transform="translate(1184 774)">
+    <rect width="64" height="64" fill="#F5F1EC" stroke="#A0A0A0"/>
+    <text class="small" x="0" y="94">#F5F1EC</text>
+  </g>
+  <g transform="translate(1358 774)">
+    <rect width="64" height="64" fill="#A0A0A0"/>
+    <text class="small" x="0" y="94">#A0A0A0</text>
+  </g>
+  <g transform="translate(1486 774)">
+    <rect width="64" height="64" fill="#D9D9D9"/>
+    <text class="small" x="-6" y="94">#D9D9D9</text>
+  </g>
+</svg>

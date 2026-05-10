@@ -30,26 +30,32 @@ const externalBase = baseFlag >= 0 ? args[baseFlag + 1] : null;
 
 const demos = [
   'atelier', 'holzgeist', 'aurora', 'atmen', 'arztpraxis',
-  'laden', 'akademie', 'kanzlei', 'lichtblick', 'nachtschicht', 'kontur',
+  'laden', 'akademie', 'kanzlei', 'lichtblick', 'nachtschicht', 'kontur', 'dashboard',
 ];
 
+// Hauptseiten — OG-Standard 1200×630 (Facebook/LinkedIn/Twitter erwarten dieses Format).
+const mainOg = { viewport: { width: 1200, height: 630 }, clip: { width: 1200, height: 630 } };
 const mainPages = [
-  { url: '/index.html',                       out: 'assets/og-home.jpg' },
-  { url: '/referenzen.html',                  out: 'assets/og-referenzen.jpg' },
-  { url: '/komponenten.html',                 out: 'assets/og-komponenten.jpg' },
-  { url: '/premium-webdesign.html',           out: 'assets/og-premium-webdesign.jpg' },
-  { url: '/webdesign-coburg.html',            out: 'assets/og-webdesign-coburg.jpg' },
-  { url: '/webdesign-oberfranken.html',       out: 'assets/og-webdesign-oberfranken.jpg' },
-  { url: '/webdesign-bayern.html',            out: 'assets/og-webdesign-bayern.jpg' },
-  { url: '/webseite-handwerker-bayern.html',  out: 'assets/og-webseite-handwerker-bayern.jpg' },
+  { url: '/index.html',                       out: 'assets/og-home.jpg',                             ...mainOg },
+  { url: '/referenzen.html',                  out: 'assets/og-referenzen.jpg',                       ...mainOg },
+  { url: '/komponenten.html',                 out: 'assets/og-komponenten.jpg',                      ...mainOg },
+  { url: '/premium-webdesign.html',           out: 'assets/og-premium-webdesign.jpg',                ...mainOg },
+  { url: '/webdesign-coburg.html',            out: 'assets/og-webdesign-coburg.jpg',                 ...mainOg },
+  { url: '/webdesign-oberfranken.html',       out: 'assets/og-webdesign-oberfranken.jpg',            ...mainOg },
+  { url: '/webdesign-bayern.html',            out: 'assets/og-webdesign-bayern.jpg',                 ...mainOg },
+  { url: '/webseite-handwerker-bayern.html',  out: 'assets/og-webseite-handwerker-bayern.jpg',       ...mainOg },
 ];
 
 // Bilder für die Responsive-Sektion auf der Startseite —
-// Atelier-Demo in drei Viewport-Grössen geschossen.
+// Startseite in drei Viewport-Grössen geschossen.
+// Tablet/Mobile bekommen extra-hohe Clip-Höhe (ca. 1.5× Viewport),
+// damit der gestapelte Hero-Bereich (Text + Nadel-Illustration) komplett
+// im Bild liegt. Die Device-Frames im CSS croppen mit `background-size: cover`
+// von oben aus, sodass Logo + Hero erkennbar bleiben.
 const responsiveShots = [
-  { url: '/demos/atelier/index.html', out: 'assets/responsive-desktop.jpg', viewport: { width: 1440, height: 900 },  clip: { width: 1440, height: 900 },  settle: 2500 },
-  { url: '/demos/atelier/index.html', out: 'assets/responsive-tablet.jpg',  viewport: { width: 820,  height: 1180 }, clip: { width: 820,  height: 1093 }, settle: 2500 }, // 3:4
-  { url: '/demos/atelier/index.html', out: 'assets/responsive-mobile.jpg',  viewport: { width: 390,  height: 845 },  clip: { width: 390,  height: 845 },  settle: 2500 }, // ≈9:19.5
+  { url: '/index.html', out: 'assets/responsive-desktop.jpg', viewport: { width: 1440, height: 900  }, clip: { width: 1440, height: 900  }, settle: 2500 },
+  { url: '/index.html', out: 'assets/responsive-tablet.jpg',  viewport: { width: 820,  height: 1500 }, clip: { width: 820,  height: 1500 }, settle: 2500 },
+  { url: '/index.html', out: 'assets/responsive-mobile.jpg',  viewport: { width: 390,  height: 1200 }, clip: { width: 390,  height: 1200 }, settle: 2500 },
 ];
 
 const wait = {
@@ -118,8 +124,9 @@ const hideCss = `
 `;
 
 async function shoot(page, url, outPath, label, settleMs, opts = {}) {
-  const viewport = opts.viewport || { width: 1200, height: 630 };
-  const clip = opts.clip || { width: 1200, height: 630 };
+  const viewport = opts.viewport || { width: 1200, height: 750 };
+  const clip = opts.clip || { width: 1200, height: 750 };
+  const fullPage = !!opts.fullPage;
   await page.setViewport(viewport);
   try {
     await page.goto(url, { waitUntil: 'networkidle0', timeout: 30000 });
@@ -130,12 +137,19 @@ async function shoot(page, url, outPath, label, settleMs, opts = {}) {
   await page.addStyleTag({ content: hideCss });
   await page.evaluate(() => window.scrollTo(0, 0));
   await new Promise(r => setTimeout(r, settleMs));
-  await page.screenshot({
+
+  const screenshotOpts = {
     path: outPath,
     type: 'jpeg',
     quality: 88,
-    clip: { x: 0, y: 0, width: clip.width, height: clip.height },
-  });
+  };
+  if (fullPage) {
+    // Vollseite: capture top-down, scroll-Höhe variabel
+    screenshotOpts.fullPage = true;
+  } else {
+    screenshotOpts.clip = { x: 0, y: 0, width: clip.width, height: clip.height };
+  }
+  await page.screenshot(screenshotOpts);
   console.log(`  ✓ ${label} → ${outPath.replace(root + '/', '')}`);
   return true;
 }
@@ -167,7 +181,10 @@ const page = await browser.newPage();
 
 console.log('Hauptseiten:');
 for (const p of mainPages) {
-  await shoot(page, `${base}${p.url}`, join(root, p.out), p.url, 2000);
+  await shoot(page, `${base}${p.url}`, join(root, p.out), p.url, 2000, {
+    viewport: p.viewport,
+    clip: p.clip,
+  });
 }
 
 console.log('\nDemos:');
@@ -183,7 +200,11 @@ for (const demo of demos) {
 
 console.log('\nResponsive-Sektion (Desktop / Tablet / Mobile):');
 for (const r of responsiveShots) {
-  await shoot(page, `${base}${r.url}`, join(root, r.out), r.out, r.settle, { viewport: r.viewport, clip: r.clip });
+  await shoot(page, `${base}${r.url}`, join(root, r.out), r.out, r.settle, {
+    viewport: r.viewport,
+    clip: r.clip,
+    fullPage: r.fullPage,
+  });
 }
 
 await browser.close();
