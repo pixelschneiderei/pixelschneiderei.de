@@ -65,13 +65,15 @@ Demos sind keine echten Auftritte — sie sollen Google nicht verwirren. Sie ble
 Oben ein farbiger Banner: `Demo · Branche: X — ← zur Pixelschneiderei`. Unten links ein fixierter **Demo-Verlassen-Button** (dunkler Pill mit Pfeil-links). **Nicht versteckt machen**, das sind unsere Beispiele, nicht die Sites unserer Kunden.
 
 ```html
-<a class="demo-exit" href="../../index.html">
+<a class="demo-exit" href="../../referenzen.html">
   <svg .../><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
   Demo verlassen
 </a>
 ```
 
-Zusätzlich bindet **jede Demo** das Skript `assets/demo-exit.js` direkt vor `</body>` ein. Es lässt den Button per `history.back()` zur Herkunftsseite (inkl. Scroll-Position und Hash, z.&nbsp;B. zurück nach `#referenzen`) springen, wenn der Besucher von der gleichen Domain kam — sonst bleibt der statische `href` als Fallback.
+**Wichtig:** Der statische `href` zeigt auf `../../referenzen.html` (nicht auf `index.html`!). Das ist der Fallback für Direkt-Einsprünge — wenn jemand aus einem Google-Treffer oder einem Link in eine Demo kommt und keine Browser-Back-History hat, soll der „Demo verlassen"-Button auf die Referenzen-Übersicht führen, nicht auf die Startseite ganz oben.
+
+Zusätzlich bindet **jede Demo** das Skript `assets/demo-exit.js` direkt vor `</body>` ein. Es lässt den Button per `history.back()` zur Herkunftsseite (inkl. Scroll-Position und Hash, z.&nbsp;B. zurück nach `#referenzen`) springen, wenn der Besucher von der gleichen Domain kam — sonst bleibt der statische `href` (Referenzen) als Fallback.
 
 ```html
 <script src="../../assets/demo-exit.js"></script>

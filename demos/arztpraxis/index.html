@@ -158,11 +158,26 @@
     border: 1px solid var(--line); border-radius: 16px;
     max-width: 600px; margin: 48px auto 0;
   }
-  .hours-card table{ width: 100%; border-collapse: collapse;}
-  .hours-card td{ padding: 14px 0; border-bottom: 1px solid var(--paper-2); font-size: 1rem;}
-  .hours-card td:first-child{ font-family: var(--serif); font-weight: 500; color: var(--ink);}
+  .hours-card table{ width: 100%; border-collapse: collapse; table-layout: fixed;}
+  .hours-card td{ padding: 14px 0; border-bottom: 1px solid var(--paper-2); font-size: 1rem; vertical-align: baseline;}
+  .hours-card td:first-child{ font-family: var(--serif); font-weight: 500; color: var(--ink); width: 38%;}
   .hours-card td:last-child{ text-align: right; color: var(--ink-soft); font-variant-numeric: tabular-nums;}
   .hours-card tr:last-child td{ border-bottom: 0;}
+
+  /* Mobile: Tag + Zeiten stacken vertikal — keine engen 2-Spalten mehr */
+  @media (max-width: 580px){
+    .hours-card{ padding: 22px 20px;}
+    .hours-card table, .hours-card tbody, .hours-card tr, .hours-card td{ display: block; width: 100%;}
+    .hours-card tr{ padding: 12px 0; border-bottom: 1px solid var(--paper-2);}
+    .hours-card tr:last-child{ border-bottom: 0;}
+    .hours-card td{ padding: 0; border-bottom: 0;}
+    .hours-card td:first-child{ font-size: 1.02rem; margin-bottom: 4px; width: auto;}
+    .hours-card td:last-child{
+      text-align: left;
+      font-family: var(--mono); font-size: .86rem;
+      color: var(--ink-soft); letter-spacing: .01em;
+    }
+  }
 
   /* CTA */
   .cta-strip{ padding: 80px 24px; background: var(--blue-deep); color: var(--cream); text-align: center;}
