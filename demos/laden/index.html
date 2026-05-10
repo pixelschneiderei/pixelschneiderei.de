@@ -7,6 +7,10 @@
 <title>Das gute Büro – Schreibwaren mit Charakter (Demo)</title>
 <meta name="description" content="Demo: Das gute Büro – Schreibwarengeschäft. Beispielauftritt der Pixelschneiderei für ein kleines Geschäft." />
 <meta name="robots" content="noindex, nofollow" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="thumb.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23fbf3e8'/%3E%3Cpath d='M8 24 L8 12 L16 6 L24 12 L24 24 L18 24 L18 17 L14 17 L14 24 Z' fill='%235b2f1c'/%3E%3C/svg%3E" />
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -60,7 +64,15 @@
   .btn-ghost{ border: 1px solid var(--rust-deep); color: var(--rust-deep);}
   .btn-ghost:hover{ background: var(--rust-deep); color: var(--cream); transform: translateY(-2px);}
 
-  .hero-art{ aspect-ratio: 4/5; background: linear-gradient(180deg, #f3ddd0, #c97c5a); border-radius: 16px; overflow: hidden; position: relative;}
+  .hero-art{
+    aspect-ratio: 4/5;
+    background:
+      url('img/hero.jpg') center/cover no-repeat,
+      linear-gradient(180deg, #f3ddd0, #c97c5a);
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+  }
 
   section{ padding: 80px 0;}
   h2{ font-family: var(--serif); font-weight: 400; font-size: clamp(2rem, 4.5vw, 3.4rem); line-height: 1.05; letter-spacing: -0.01em;}
@@ -77,10 +89,20 @@
     overflow: hidden; transition: transform .25s var(--ease), border-color .25s var(--ease);
   }
   .prod:hover{ transform: translateY(-4px); border-color: var(--rust-deep);}
-  .prod-thumb{ aspect-ratio: 1; background: linear-gradient(135deg, #efd9c2, #b86a4a);}
-  .prod:nth-child(2) .prod-thumb{ background: linear-gradient(135deg, #f3ddd0, #5b2f1c);}
-  .prod:nth-child(3) .prod-thumb{ background: linear-gradient(135deg, #d4b89a, #8a563b);}
-  .prod:nth-child(4) .prod-thumb{ background: linear-gradient(135deg, #f8e5cf, #c97c5a);}
+  .prod-thumb{
+    aspect-ratio: 1;
+    background: center/cover no-repeat;
+    background-image: linear-gradient(135deg, #efd9c2, #b86a4a);
+  }
+  .prod.p-1 .prod-thumb{ background-image: url('img/prod-fueller.jpg'), linear-gradient(135deg, #efd9c2, #b86a4a);}
+  .prod.p-2 .prod-thumb{ background-image: url('img/prod-notiz.jpg'), linear-gradient(135deg, #f3ddd0, #5b2f1c);}
+  .prod.p-3 .prod-thumb{ background-image: url('img/prod-buero.jpg'), linear-gradient(135deg, #d4b89a, #8a563b);}
+  .prod.p-4 .prod-thumb{ background-image: url('img/prod-geschenk.jpg'), linear-gradient(135deg, #f8e5cf, #c97c5a);}
+  .story-art{
+    background:
+      url('img/story.jpg') center/cover no-repeat,
+      linear-gradient(135deg, #f3ddd0, #5b2f1c) !important;
+  }
   .prod-body{ padding: 16px 20px;}
   .prod h3{ font-family: var(--serif); font-size: 1.1rem; font-weight: 500;}
   .prod span{ display:block; color: var(--muted); font-size: .85rem; margin-top: 4px;}
@@ -118,7 +140,7 @@
 
 <div class="demo-banner">Demo · Branche: Geschäft &nbsp;·&nbsp; <a href="../../index.html">← zur Pixelschneiderei</a></div>
 
-<a class="demo-exit" href="../../index.html">
+<a class="demo-exit" href="../../referenzen.html">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
   Demo verlassen
 </a>
@@ -183,19 +205,19 @@
         <h2>Was bei uns <em>auf</em> dem Tresen liegt.</h2>
       </div>
       <div class="products-grid">
-        <div class="prod reveal">
+        <div class="prod p-1 reveal">
           <div class="prod-thumb"></div>
           <div class="prod-body"><h3>Füller &amp; Tinte</h3><span>Manufaktur · diverse Marken</span></div>
         </div>
-        <div class="prod reveal">
+        <div class="prod p-2 reveal">
           <div class="prod-thumb"></div>
           <div class="prod-body"><h3>Notizbücher</h3><span>Leinen, Leder, Papier</span></div>
         </div>
-        <div class="prod reveal">
+        <div class="prod p-3 reveal">
           <div class="prod-thumb"></div>
           <div class="prod-body"><h3>Bürobedarf</h3><span>Klassisch &amp; nachhaltig</span></div>
         </div>
-        <div class="prod reveal">
+        <div class="prod p-4 reveal">
           <div class="prod-thumb"></div>
           <div class="prod-body"><h3>Geschenke</h3><span>Briefpapier, Stempel, Karten</span></div>
         </div>
@@ -273,5 +295,6 @@
   document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
 </script>
 
+<script src="../../assets/demo-exit.js"></script>
 </body>
 </html>

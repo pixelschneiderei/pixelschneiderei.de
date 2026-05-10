@@ -4,16 +4,30 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
 <meta name="theme-color" content="#ffffff" />
-<title>Pixelschneiderei – Maßgeschneiderte Webseiten</title>
-<meta name="description" content="Pixelschneiderei: maßgeschneiderte Webseiten von Beratung bis Premium. DSGVO-konform, ausfallsicher, mit Erfahrung aus Versicherung, E-Commerce und Unternehmensauftritten." />
-<meta property="og:title" content="Pixelschneiderei – Maßgeschneiderte Webseiten" />
-<meta property="og:description" content="Maßgeschneiderte Webseiten – DSGVO-konform, ausfallsicher, hohe Erreichbarkeit." />
+<title>Webseite erstellen lassen — maßgeschneidert | Pixelschneiderei</title>
+<meta name="description" content="Maßgeschneiderte Webseiten &amp; Homepages für Handwerker, Selbstständige und Unternehmen. DSGVO-konform, ausfallsicher, von Hobby- bis Premium-Auftritt. Beratung, Erstellung &amp; Pflege aus einer Hand." />
+<meta name="keywords" content="Webseite erstellen lassen, Homepage erstellen, Webdesign, Webseite Handwerker, Webseite Selbstständige, Premium Webseite, DSGVO konforme Webseite, Webseiten-Erstellung, Web­auftritt, Webagentur, Webentwicklung, Mittelstand Webseite" />
+<meta name="author" content="Pixelschneiderei" />
+<link rel="canonical" href="https://pixelschneiderei.de/" />
+
+<!-- Open Graph (Facebook, WhatsApp, LinkedIn, Slack) -->
+<meta property="og:title" content="Webseite erstellen lassen — maßgeschneidert | Pixelschneiderei" />
+<meta property="og:description" content="Maßgeschneiderte Webseiten &amp; Homepages für Handwerker, Selbstständige und Unternehmen. DSGVO-konform, ausfallsicher, von Hobby bis Premium." />
 <meta property="og:type" content="website" />
+<meta property="og:url" content="https://pixelschneiderei.de/" />
+<meta property="og:site_name" content="Pixelschneiderei" />
 <meta property="og:locale" content="de_DE" />
+<meta property="og:image" content="https://pixelschneiderei.de/assets/og-home.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Pixelschneiderei — Maßgeschneiderte Webseiten" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Webseite erstellen lassen — maßgeschneidert | Pixelschneiderei" />
+<meta name="twitter:description" content="Maßgeschneiderte Webseiten für Handwerker, Selbstständige und Unternehmen. DSGVO-konform, ausfallsicher." />
+<meta name="twitter:image" content="https://pixelschneiderei.de/assets/og-home.jpg" />
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23ffffff'/%3E%3Cg fill='%230f0f10'%3E%3Crect x='6' y='6' width='4' height='4'/%3E%3Crect x='14' y='6' width='4' height='4'/%3E%3Crect x='22' y='6' width='4' height='4'/%3E%3Crect x='6' y='14' width='4' height='4'/%3E%3Crect x='14' y='14' width='4' height='4' fill='%23b8392a'/%3E%3Crect x='6' y='22' width='4' height='4'/%3E%3Crect x='22' y='22' width='4' height='4'/%3E%3C/g%3E%3C/svg%3E" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..700,30..100&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="assets/style.css" />
 <style>
   /* ---- index-only styles ---- */
@@ -139,7 +153,9 @@
   .why-pull .eyebrow::before{ background: var(--thread-2);}
   .why-pull h2{ color: var(--paper); margin-top: 18px;}
   .why-pull blockquote{
-    margin: 56px 0 0; padding: 24px 0 0 0; max-width: 56ch;
+    margin: 56px 0 0;
+    padding: 6px 0 0 72px;
+    max-width: calc(56ch + 72px);
     font-family: var(--serif); font-style: italic; font-size: clamp(1.2rem, 2vw, 1.6rem);
     color: rgba(250,246,236,.92); line-height: 1.5;
     position: relative;
@@ -147,14 +163,18 @@
   .why-pull blockquote::before{
     content: "„";
     position: absolute;
-    top: -24px; left: -4px;
+    top: -18px; left: 0;
     font-family: var(--serif);
     font-style: normal;
     font-weight: 500;
-    font-size: 4rem;
+    font-size: 5rem;
     line-height: 1;
     color: var(--thread-2);
-    opacity: .85;
+    opacity: .9;
+  }
+  @media (max-width: 600px){
+    .why-pull blockquote{ padding-left: 56px; }
+    .why-pull blockquote::before{ font-size: 4rem; top: -10px;}
   }
 
   .why-stats{
@@ -346,21 +366,43 @@
   .enterprise h3{ margin: 0 0 4px; font-size: 1.4rem;}
   .enterprise p{ margin: 0; color: var(--ink-soft);}
 
-  /* INDUSTRIES (demo categories) */
-  .industries{
-    display:grid; grid-template-columns: repeat(8, 1fr); gap: 10px;
+  .foerderung{
+    margin-top: 16px;
+    background: linear-gradient(135deg, rgba(184,57,42,.06), rgba(184,57,42,.02));
+    border: 1px solid rgba(184,57,42,.18);
+    border-radius: var(--r-lg); padding: 36px;
+    display:grid; grid-template-columns: auto 1fr; gap: 28px; align-items: center;
   }
-  @media (max-width: 1100px){ .industries{ grid-template-columns: repeat(4, 1fr);}}
-  @media (max-width: 580px){ .industries{ grid-template-columns: repeat(2, 1fr);}}
+  @media (max-width: 720px){ .foerderung{ grid-template-columns: 1fr;}}
+  .foerderung-icon{
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    background: rgba(184,57,42,.12);
+    display: grid; place-items: center;
+    color: var(--thread);
+    flex-shrink: 0;
+  }
+  .foerderung-icon svg{ width: 28px; height: 28px;}
+  .foerderung h3{ margin: 0 0 6px; font-size: 1.4rem;}
+  .foerderung p{ margin: 0 0 8px; color: var(--ink-soft);}
+  .foerderung a{ color: var(--thread); text-decoration: underline; text-underline-offset: 3px;}
+  .foerderung small{ display: block; color: var(--muted); font-size: .82rem; font-family: var(--mono);}
+
+  /* INDUSTRIES (demo categories) — 12 Branchen, immer gerade Reihen */
+  .industries{
+    display:grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
+  }
+  @media (max-width: 1100px){ .industries{ grid-template-columns: repeat(3, 1fr);}}
+  @media (max-width: 720px){ .industries{ grid-template-columns: repeat(2, 1fr);}}
   .industry{
     display:flex; flex-direction:column; align-items:center; justify-content:center;
-    gap: 10px; padding: 24px 12px; min-height: 130px;
-    background: var(--surface); border: 1px solid var(--line-soft); border-radius: var(--r-lg);
-    color: var(--ink-soft); text-align: center; font-size: .9rem;
+    gap: 8px; padding: 16px 10px; min-height: 88px;
+    background: var(--surface); border: 1px solid var(--line-soft); border-radius: var(--r-md);
+    color: var(--ink-soft); text-align: center; font-size: .88rem;
     transition: transform .25s var(--ease), border-color .25s var(--ease), color .25s var(--ease), background .25s var(--ease);
   }
-  .industry:hover{ transform: translateY(-3px); border-color: var(--thread); color: var(--thread); background: var(--paper-2);}
-  .industry svg{ width: 28px; height: 28px;}
+  .industry:hover{ transform: translateY(-2px); border-color: var(--thread); color: var(--thread); background: var(--paper-2);}
+  .industry svg{ width: 22px; height: 22px;}
 
   /* REFERENCES (featured 3) */
   .refs-grid{
@@ -377,6 +419,7 @@
   .ref:hover{ transform: translateY(-4px); border-color: var(--thread); box-shadow: var(--shadow-md);}
   .ref-thumb{ aspect-ratio: 16 / 10; position: relative; overflow: hidden; border-bottom: 1px solid var(--line-soft);}
   .ref-thumb svg{ width: 100%; height: 100%; display:block;}
+  .ref-thumb-img{ position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 2;}
   .ref-body{ padding: 22px 26px 26px; display:flex; align-items:flex-start; justify-content:space-between; gap: 16px;}
   .ref-meta{ font-family: var(--mono); font-size: .72rem; text-transform: uppercase; letter-spacing: .14em; color: var(--muted); margin-bottom: 6px;}
   .ref h3{ font-family: var(--serif); font-size: 1.35rem;}
@@ -414,6 +457,236 @@
   .step h3{ font-size: 1.3rem; margin-bottom: 10px;}
   .step p{ color: var(--ink-soft); font-size: .95rem; margin: 0;}
 
+  /* RESPONSIVE — Device-Mockups */
+  .responsive{
+    background: var(--paper);
+    border-top: 1px solid var(--line-soft);
+    overflow: hidden;
+    position: relative;
+  }
+  .responsive::before{
+    content:""; position: absolute; inset: 0;
+    background:
+      radial-gradient(800px 400px at 50% 100%, rgba(184,57,42,.04), transparent 60%);
+    pointer-events: none;
+  }
+  .devices{
+    position: relative;
+    display: flex; justify-content: center; align-items: flex-end;
+    margin-top: 56px;
+    padding: 0 16px;
+    min-height: 460px;
+  }
+  .device{
+    position: relative;
+    background: linear-gradient(180deg, #1a1a1d 0%, #0c0c0d 100%);
+    box-shadow: 0 30px 80px rgba(20,15,8,.22), 0 0 0 1px rgba(0,0,0,.06);
+    overflow: hidden;
+    transition: transform .4s var(--ease);
+  }
+  .devices:hover .device{ transform: translateY(-4px);}
+  .device-screen{
+    background: center/cover no-repeat;
+    background-color: var(--paper-2);
+  }
+
+  /* Desktop */
+  .device-desktop{
+    width: clamp(360px, 48vw, 560px);
+    aspect-ratio: 16/10;
+    border-radius: 14px 14px 6px 6px;
+    padding: 26px 4px 4px;
+    z-index: 2;
+  }
+  .device-desktop .traffic{
+    position: absolute; top: 9px; left: 12px;
+    display: flex; gap: 5px;
+  }
+  .device-desktop .traffic i{
+    width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,.2);
+  }
+  .device-desktop .traffic i:nth-child(1){ background: #f87171;}
+  .device-desktop .traffic i:nth-child(2){ background: #fbbf24;}
+  .device-desktop .traffic i:nth-child(3){ background: #6ec77a;}
+  .device-desktop .device-url{
+    position: absolute; top: 7px; left: 50%; transform: translateX(-50%);
+    width: 42%; max-width: 220px; height: 14px;
+    background: rgba(255,255,255,.08);
+    border-radius: 4px;
+    color: rgba(255,255,255,.55);
+    font-family: var(--mono); font-size: .56rem; letter-spacing: .04em;
+    text-align: center; line-height: 14px;
+  }
+  .device-desktop .device-screen{
+    width: 100%; height: 100%; border-radius: 0 0 6px 6px;
+    background-image:
+      url('assets/responsive-desktop.jpg'),
+      linear-gradient(135deg, #fff, #ddd);
+  }
+
+  /* Tablet */
+  .device-tablet{
+    width: clamp(180px, 22vw, 240px);
+    aspect-ratio: 3/4;
+    border-radius: 22px;
+    padding: 18px 10px;
+    margin-bottom: 24px;
+    margin-right: -36px;
+    z-index: 1;
+    transform: rotate(-3deg);
+  }
+  .device-tablet::before{
+    content: ""; position: absolute; top: 8px; left: 50%; transform: translateX(-50%);
+    width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,.25);
+  }
+  .device-tablet .device-screen{
+    width: 100%; height: 100%; border-radius: 7px;
+    background-image:
+      url('assets/responsive-tablet.jpg'),
+      linear-gradient(135deg, #d8e2dc, #5b7868);
+  }
+
+  /* Mobile */
+  .device-mobile{
+    width: clamp(120px, 14vw, 156px);
+    aspect-ratio: 9/19.5;
+    border-radius: 24px;
+    padding: 8px;
+    margin-bottom: 32px;
+    margin-left: -32px;
+    z-index: 3;
+    transform: rotate(4deg);
+  }
+  .device-mobile::before{
+    content: ""; position: absolute; top: 14px; left: 50%; transform: translateX(-50%);
+    width: 50px; height: 16px; border-radius: 999px; background: #0a0a0a;
+  }
+  .device-mobile .device-screen{
+    width: 100%; height: 100%; border-radius: 18px;
+    background-image:
+      url('assets/responsive-mobile.jpg'),
+      linear-gradient(135deg, var(--thread), var(--ink));
+  }
+
+  /* Device-Labels darunter */
+  .device-labels{
+    display: flex; justify-content: center; gap: clamp(24px, 6vw, 80px);
+    margin-top: 32px;
+    font-family: var(--mono); font-size: .76rem;
+    letter-spacing: .14em; text-transform: uppercase; color: var(--muted);
+  }
+  .device-labels span strong{
+    display: block; color: var(--ink); margin-bottom: 4px;
+    font-family: var(--serif); font-style: italic; font-weight: 400;
+    font-size: 1.2rem; letter-spacing: -0.01em; text-transform: none;
+  }
+
+  /* Responsive-Breakpoints-Strip */
+  .breakpoints{
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+    margin: 64px auto 0; max-width: 880px;
+    border-top: 1px dashed var(--line); padding-top: 32px;
+  }
+  @media (max-width: 720px){ .breakpoints{ grid-template-columns: repeat(2, 1fr);}}
+  .breakpoints div{ text-align: center;}
+  .breakpoints strong{
+    display: block; font-family: var(--serif); font-size: 1.6rem;
+    color: var(--thread); font-weight: 400; letter-spacing: -0.01em; line-height: 1;
+  }
+  .breakpoints span{
+    display: block; margin-top: 6px;
+    font-family: var(--mono); font-size: .72rem; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--muted);
+  }
+
+  @media (max-width: 720px){
+    .devices{ min-height: auto;}
+    .device-tablet{ display: none;}
+    .device-mobile{ margin-left: -24px;}
+  }
+  @media (max-width: 480px){
+    .device-desktop{ width: 90%;}
+    .device-mobile{ display: none;}
+  }
+
+  /* VORTEILE */
+  .vorteile{ background: var(--paper-2); border-block: 1px solid var(--line-soft);}
+  .vorteile-grid{
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+    margin-top: 16px;
+  }
+  @media (max-width: 980px){ .vorteile-grid{ grid-template-columns: repeat(2, 1fr);}}
+  @media (max-width: 600px){ .vorteile-grid{ grid-template-columns: 1fr;}}
+  .vorteil{
+    background: var(--surface);
+    padding: 32px;
+    border: 1px solid var(--line-soft);
+    border-radius: var(--r-lg);
+    transition: transform .25s var(--ease), border-color .25s var(--ease);
+  }
+  .vorteil:hover{ transform: translateY(-3px); border-color: var(--thread);}
+  .vorteil-icon{
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    background: rgba(184,57,42,.10);
+    color: var(--thread);
+    display: grid; place-items: center;
+    margin-bottom: 20px;
+  }
+  .vorteil-icon svg{ width: 22px; height: 22px;}
+  .vorteil h3{
+    font-family: var(--serif); font-size: 1.4rem; font-weight: 400;
+    margin-bottom: 10px; line-height: 1.15;
+  }
+  .vorteil h3 em{ font-style: italic; color: var(--thread);}
+  .vorteil p{ color: var(--ink-soft); font-size: .96rem; margin: 0;}
+
+  .vorteile-honest{
+    margin-top: 36px;
+    padding: 28px 36px;
+    background: var(--surface);
+    border-left: 3px solid var(--thread);
+    border-radius: var(--r-md);
+    max-width: 880px; margin-left: auto; margin-right: auto;
+  }
+  .vorteile-honest h4{
+    font-family: var(--serif); font-size: 1.15rem; font-style: italic;
+    color: var(--thread); margin-bottom: 8px; font-weight: 400;
+  }
+  .vorteile-honest p{ margin: 0; color: var(--ink-soft); font-size: .98rem;}
+
+  /* FAQ */
+  .faq-list{ max-width: 880px; margin: 0 auto;}
+  .faq-list details{
+    border-top: 1px solid var(--line);
+    background: transparent;
+  }
+  .faq-list details:last-child{ border-bottom: 1px solid var(--line);}
+  .faq-list summary{
+    padding: 22px 4px; cursor: pointer;
+    list-style: none;
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: var(--serif); font-size: 1.25rem; font-weight: 400;
+    color: var(--ink);
+    transition: color .2s ease;
+  }
+  .faq-list summary::-webkit-details-marker{ display: none;}
+  .faq-list summary::after{
+    content: "+"; font-family: var(--sans); font-weight: 300;
+    font-size: 1.6rem; color: var(--thread);
+    transition: transform .25s ease;
+    flex-shrink: 0; margin-left: 16px;
+  }
+  .faq-list details[open] summary::after{ transform: rotate(45deg);}
+  .faq-list summary:hover{ color: var(--thread);}
+  .faq-body{
+    padding: 0 4px 24px;
+    color: var(--ink-soft); font-size: 1rem; line-height: 1.65;
+    max-width: 70ch;
+  }
+  .faq-body p{ margin: 0 0 .7em;}
+  .faq-body p:last-child{ margin-bottom: 0;}
+
   /* CONTACT */
   .contact-card{
     background: var(--ink); color: var(--paper); border-radius: var(--r-xl);
@@ -440,6 +713,181 @@
   .contact-card .btn-ghost{ background: transparent; border-color: rgba(250,246,236,.3); color: var(--paper);}
   .contact-card .btn-ghost:hover{ border-color: var(--thread-2); color: var(--thread-2); background: transparent;}
 </style>
+
+<!-- Strukturierte Daten für SEO (Organization, LocalBusiness, Service) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://pixelschneiderei.de/#organization",
+      "name": "Pixelschneiderei",
+      "alternateName": "Pixelschneiderei – Maßgeschneiderte Webseiten",
+      "url": "https://pixelschneiderei.de/",
+      "logo": "https://pixelschneiderei.de/assets/og-home.jpg",
+      "image": "https://pixelschneiderei.de/assets/og-home.jpg",
+      "description": "Maßgeschneiderte Webseiten und Homepages für Handwerker, Selbstständige und Unternehmen.",
+      "founder": { "@type": "Person", "name": "Erik Weisser" },
+      "foundingDate": "2025",
+      "areaServed": [
+        { "@type": "Country", "name": "Deutschland" },
+        { "@type": "Country", "name": "Österreich" },
+        { "@type": "Country", "name": "Schweiz" }
+      ],
+      "knowsLanguage": ["de", "en"]
+    },
+    {
+      "@type": "LocalBusiness",
+      "@id": "https://pixelschneiderei.de/#business",
+      "name": "Pixelschneiderei",
+      "image": "https://pixelschneiderei.de/assets/og-home.jpg",
+      "url": "https://pixelschneiderei.de/",
+      "email": "erik@weisser.dev",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Am Hang 1",
+        "postalCode": "96486",
+        "addressLocality": "Lautertal",
+        "addressRegion": "Bayern",
+        "addressCountry": "DE"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 50.2935,
+        "longitude": 10.9925
+      },
+      "priceRange": "€€"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://pixelschneiderei.de/#website",
+      "url": "https://pixelschneiderei.de/",
+      "name": "Pixelschneiderei",
+      "publisher": { "@id": "https://pixelschneiderei.de/#organization" },
+      "inLanguage": "de-DE"
+    },
+    {
+      "@type": "Service",
+      "name": "Webseiten-Erstellung",
+      "serviceType": "Webdesign &amp; Webentwicklung",
+      "provider": { "@id": "https://pixelschneiderei.de/#organization" },
+      "areaServed": "DE",
+      "description": "Maßgeschneiderte Webseiten und Homepages für Handwerker, Selbstständige und Unternehmen — von Hobby-Auftritt bis Premium-Niveau. DSGVO-konform und ausfallsicher.",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Webseiten-Pakete",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Hobby — einseitige Webseite" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Standard — Unternehmens-Webseite" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Premium — Hochglanz-Auftritt" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Enterprise — auf Anfrage" } }
+        ]
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://pixelschneiderei.de/" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://pixelschneiderei.de/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Was kostet eine maßgeschneiderte Webseite?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Das hängt vom gewählten Paket und den Bausteinen ab — eine kleine Hobby-Seite kostet einen Bruchteil eines Premium-Auftritts mit eigenem CMS und Mehrsprachigkeit. Wir nennen den konkreten Preis im kostenfreien Erstgespräch, aufgeschlüsselt: Paket + Bausteine. Für viele Selbstständige und Handwerker gibt es zudem staatliche Förderungen, die einen Teil der Kosten übernehmen."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Wie lange dauert die Erstellung einer Webseite?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Eine einseitige Hobby-Webseite ist in zwei bis drei Wochen fertig. Standard-Auftritte für Selbstständige und kleinere Unternehmen brauchen vier bis acht Wochen. Premium-Projekte planen wir individuell, oft sechs bis zwölf Wochen."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Was ist, wenn ich noch keine Inhalte oder Bilder habe?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Kein Problem. Wir sprechen mit Ihnen, hören zu und entwickeln gemeinsam die Struktur. Auf Wunsch liefern wir Mock-Bilder, Stockmotive und Demo-Texte, mit denen Ihre Webseite vom ersten Tag an aussieht wie aus einem Guss."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Brauche ich ein DSGVO-konformes Impressum und Datenschutz?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sobald Ihre Webseite mehr ist als ein rein privater Spaß — sobald Sie also gewerblich tätig sind, Kontakte aufnehmen oder Bestellungen erhalten — ist Impressum und Datenschutz Pflicht. Wir bieten das als DSGVO-Baustein an: rechtssicher umgesetzt, ohne Generator-Abo."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Was ist der Unterschied zu einem Webseiten-Baukasten?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Bei einem Baukasten investieren Sie Stunden Ihrer Zeit, kämpfen mit Templates, die nicht ganz passen, und zahlen monatliche Gebühren für Tools. Bei uns geben Sie die Technik komplett ab und bekommen einen Auftritt, der zu Ihrer Marke passt — gebaut, nicht zusammengeklickt. DIY-Wege haben ihre Daseinsberechtigung. Wir sind die richtige Wahl, wenn Sie sich nicht damit beschäftigen wollen."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Nutzen Sie KI beim Bauen?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ja, unbedingt — KI gehört heute zur modernen Webentwicklung dazu. Aber wie im Handwerk oder in der Fotografie macht das beste Werkzeug noch kein Meisterstück: Der stärkste Akkuschrauber, die schärfste Säge, die modernste Kamera, die fähigste KI — am Ende braucht es Können, Geschicklichkeit und manuelle Feinarbeit, damit etwas wirklich maßgenau geschneidert wird. Genau dieser Hebel macht es möglich, moderne Webseiten zu fairen Preisen anzubieten. Ohne KI wären wir bei Stundensätzen, die niemand gerne zahlt. Mit KI ist sie eine sinnvolle Verstärkung — nicht der Ersatz für Erfahrung und Sorgfalt. Und ja, Sie könnten sich theoretisch auch selbst mit KI eine Webseite generieren — so wie jede:r Laie einen Schrank zusammenbauen, eine Wand verputzen oder Eventfotos machen kann. Der Unterschied liegt in der Erwartungshaltung: Soll Ihre Webseite verkaufen, vertrauenswürdig wirken und sich abheben, lohnt sich der Profi."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Wer kümmert sich um Hosting und Domain?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Wir, falls Sie das wollen. Wir beraten beim Domain-Kauf, übernehmen die Registrierung und richten ein ausfallsicheres Hosting ein. Auf Wunsch managen wir auch Ihre E-Mail-Postfächer. Alternativ können Sie auch bei einem bestehenden Hoster bleiben."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Bekomme ich den Quellcode meiner Webseite?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ja. Der Quellcode liegt in einem GitHub-Repository, auf das Sie auf Wunsch Zugriff bekommen. So sind Sie technisch nie an uns gebunden — wenn Sie irgendwann zu jemand anderem wechseln möchten, geht das ohne Datenverlust."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Gibt es staatliche Förderungen für Webseiten?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ja. Selbstständige und Handwerker:innen können in vielen Bundesländern bis zu 50 % der Kosten erstattet bekommen — z. B. über den Bayerischen Digitalbonus oder Programme von KfW und IHK. Wir sind keine Förder-Berater, aber wir sagen Ihnen gerne, welches Programm überhaupt in Frage kommen könnte."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Sind statische Webseiten sicher vor Angriffen?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Statische Webseiten haben keine Server-Logik, keine Datenbank, kein User-Login — die klassischen Angriffsflächen wie SQL-Injection, Server-XSS, Brute-Force oder kompromittierte Plugin-Updates entfallen schlicht. Die Seite besteht aus HTML-, CSS- und JS-Dateien, die ein CDN ausliefert; es gibt nichts, was gehackt werden könnte. DDoS-Angriffe absorbieren moderne CDNs wie Cloudflare routiniert. Updates oder Sicherheitspatches braucht eine statische Seite nicht. Sobald Login-Bereiche, Foren oder ein Online-Shop dazukommen, gibt es wieder Angriffsflächen — die härten wir dann entsprechend."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Was ist mit Abmahnwellen wegen Google Fonts, Cookies und Co.?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Wir achten beim Bauen auf die jeweils aktuellen Themen — z. B. Schriftarten lokal hosten statt extern von Google laden, Cookie-Logik korrekt umsetzen, keine unnötigen Tracker, ehrliches Impressum und Datenschutz. So vermeiden wir die typischen Fallen, die in den letzten Jahren zu Abmahnwellen geführt haben. Mit einem Service-Abo bei uns prüfen wir die Thematik laufend für alle Kunden — wenn neue Abmahn-Trends auftauchen oder Gerichtsurteile die Anforderungen ändern, melden wir uns bei Ihnen und ziehen die Webseite proaktiv nach. Wir sind aber keine Anwält:innen — für Spezial-Fälle wie Online-Shops oder große Reichweite empfehlen wir eine zusätzliche rechtliche Zweitmeinung."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -634,18 +1082,19 @@
 
       <div class="why-pull reveal">
         <span class="eyebrow">Erfahrung, die zählt</span>
-        <h2>Enterprise-gehärtet.<br/>E-Commerce auf höchstem Niveau.</h2>
+        <h2>Aus gro&szlig;er Schule.<br/>F&uuml;r Ihren Auftritt.</h2>
         <blockquote>
-          Hinter der Pixelschneiderei steht über zehn Jahre Praxis: E-Commerce-Erfahrung
-          auf höchstem Niveau, Datenschutz und Sicherheit aus der Versicherungsbranche
-          und ein Tech-Stack, der immer top aktuell ist. Genau dieser Anspruch
-          landet in Ihrem Projekt.
+          &Uuml;ber zehn Jahre Berufspraxis stecken in der Pixelschneiderei &ndash;
+          unter anderem aus Markenauftritten gro&szlig;er Versandh&auml;user und
+          Telekommunikations-Anbieter, gepaart mit den Sicherheits- und Datenschutz-Standards
+          der Versicherungsbranche. Diese Tiefe landet in Ihrem Projekt &ndash; egal,
+          wie gro&szlig; oder klein es ist.
         </blockquote>
 
         <div class="why-stats">
           <div class="why-stat"><strong>10+</strong><span>Jahre Praxis</span></div>
-          <div class="why-stat"><strong>E-Commerce</strong><span>auf höchstem Niveau</span></div>
-          <div class="why-stat"><strong>Sicherheit</strong><span>aus Versicherungsbranche</span></div>
+          <div class="why-stat"><strong>Marken</strong><span>auf Konzern-Niveau</span></div>
+          <div class="why-stat"><strong>Security</strong><span>by Design</span></div>
           <div class="why-stat"><strong>Tech-Stack</strong><span>immer top aktuell</span></div>
         </div>
       </div>
@@ -690,7 +1139,7 @@
       <div class="section-head">
         <div class="reveal">
           <span class="eyebrow">Leistungen</span>
-          <h2 style="margin-top:18px">Was wir nähen.</h2>
+          <h2 style="margin-top:18px">Wie wir arbeiten.</h2>
         </div>
         <p class="lede reveal">
           Beratung, Optimierung, Erstellung, Individuallösungen, Individualsysteme.
@@ -778,60 +1227,57 @@
           <h2 style="margin-top:18px">Drei Schnittmuster.<br/>Eines davon passt.</h2>
         </div>
         <p class="lede reveal">
-          Konkrete Konditionen besprechen wir persönlich – Preise hängen davon ab,
-          ob CMS, Anleitung, Inhalte oder Pflege dazukommen. Diese drei Pakete
-          geben Ihnen einen Eindruck, wie wir typischerweise arbeiten.
+          Das Paket beschreibt die Webseite selbst &mdash; wie gro&szlig;, wie individuell,
+          wie viel Inszenierung. Funktionen wie DSGVO, Kontaktformular oder Hosting
+          kommen als Bausteine dazu. So bleibt Ihr Preis transparent: Paket + Bausteine.
         </p>
       </div>
 
       <div class="packages-wrap">
       <div class="packages-grid" id="pkgGrid">
         <article class="pkg reveal">
-          <div class="pkg-name">Hobby · Budget</div>
+          <div class="pkg-name">Hobby &middot; Budget</div>
           <h3>Der Auftritt</h3>
-          <p class="pkg-claim">Für private Projekte, Vereine und kleine Hobby-Ideen, die professionell online sein möchten.</p>
+          <p class="pkg-claim">F&uuml;r private Projekte, Vereine und kleine Hobby-Ideen, die professionell online sein m&ouml;chten.</p>
           <ul class="pkg-list">
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12l5 5L20 7"/></svg>Einseitige, mobile Webseite</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12l5 5L20 7"/></svg>Kontaktmöglichkeit (E-Mail, Telefon, WhatsApp)</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12l5 5L20 7"/></svg>DSGVO-konformes Impressum &amp; Datenschutz</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12l5 5L20 7"/></svg>Domain-Hilfe &amp; Hosting-Setup</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12l5 5L20 7"/></svg>SEO-Grundlagen</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12l5 5L20 7"/></svg>Solides, modernes Standard-Design</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12l5 5L20 7"/></svg>Bis zu 3 Inhaltsbereiche</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12l5 5L20 7"/></svg>Auf Ihre Texte und Bilder zugeschnitten</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12l5 5L20 7"/></svg>Beratungs- und Abnahme-Termin</li>
           </ul>
           <div class="pkg-foot"><small>Idealer Einstieg</small><a class="pkg-link" href="#kontakt">Anfragen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a></div>
         </article>
 
         <article class="pkg is-featured reveal">
           <span class="pkg-tag">Beliebt</span>
-          <div class="pkg-name">Unternehmen · Standard</div>
+          <div class="pkg-name">Unternehmen &middot; Standard</div>
           <h3>Die Manufaktur</h3>
-          <p class="pkg-claim">Für Selbstständige und kleine Unternehmen, die einen kompletten, gepflegten Auftritt brauchen.</p>
+          <p class="pkg-claim">F&uuml;r Selbstst&auml;ndige und kleine Unternehmen, die einen kompletten, gepflegten Auftritt brauchen.</p>
           <ul class="pkg-list">
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12l5 5L20 7"/></svg>Mehrseitiger Auftritt mit Leistungs- und Produktseiten</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12l5 5L20 7"/></svg>Individuelles Design auf Ihre Marke abgestimmt</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12l5 5L20 7"/></svg>Bildbearbeitung, Mock-Bilder &amp; Inhalte auf Wunsch</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12l5 5L20 7"/></svg>Kontaktformular mit Vorqualifizierung</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12l5 5L20 7"/></svg>WhatsApp, Karten, Routing &amp; Telefonie</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12l5 5L20 7"/></svg>SEO-Grundlagen &amp; Performance-Tuning</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12l5 5L20 7"/></svg>Service-Paket auf Wunsch (Pflege &amp; Updates)</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12l5 5L20 7"/></svg>Mehrseitiger Auftritt mit individueller Struktur</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12l5 5L20 7"/></svg>Individuelles Design, auf Ihre Marke abgestimmt</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12l5 5L20 7"/></svg>Bildbearbeitung &amp; Inhalts-Aufbereitung</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12l5 5L20 7"/></svg>Mobile-optimiert, performant</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12l5 5L20 7"/></svg>Mehrere Konzept- und Abstimmungs-Termine</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12l5 5L20 7"/></svg>&Uuml;bergabe mit schriftlicher Anleitung</li>
           </ul>
           <div class="pkg-foot"><small>Unsere Empfehlung</small><a class="pkg-link" href="#kontakt">Anfragen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a></div>
         </article>
 
         <article class="pkg reveal">
-          <div class="pkg-name">Premium · Hochglanz</div>
+          <div class="pkg-name">Premium &middot; Hochglanz</div>
           <h3>Die Couture</h3>
-          <p class="pkg-claim">Für anspruchsvolle Marken, die einen Auftritt im Stil großer Hersteller wollen.</p>
+          <p class="pkg-claim">F&uuml;r anspruchsvolle Marken, die einen Auftritt im Stil gro&szlig;er Hersteller wollen.</p>
           <ul class="pkg-list">
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12l5 5L20 7"/></svg>Premium-Auftritt mit Produkt-, Karriere- &amp; Story-Seiten</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12l5 5L20 7"/></svg>Hochglanz-Design mit Animationen &amp; Inszenierung</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12l5 5L20 7"/></svg>Cloudflare-Hosting für höchste Verfügbarkeit</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12l5 5L20 7"/></svg>Erweiterte SEO &amp; strukturierte Daten</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12l5 5L20 7"/></svg>Mehrsprachigkeit &amp; barrierearmer Aufbau</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12l5 5L20 7"/></svg>Eigenes leichtgewichtiges CMS, DB &amp; Backup</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12l5 5L20 7"/></svg>Individuelle Integrationen &amp; Automationen</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12l5 5L20 7"/></svg>Premium-Service mit bevorzugten Reaktionszeiten</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12l5 5L20 7"/></svg>Premium-Auftritt mit Story-Seiten und Marken-Inszenierung</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12l5 5L20 7"/></svg>Hochglanz-Design mit Animationen &amp; Mikro-Interaktionen</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12l5 5L20 7"/></svg>Performance-Hosting auf Top-Niveau</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12l5 5L20 7"/></svg>Barrierearmer Aufbau als Standard</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12l5 5L20 7"/></svg>Auswahl an Bausteinen inklusive</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12l5 5L20 7"/></svg>Bevorzugte Reaktionszeiten im Service</li>
           </ul>
-          <div class="pkg-foot"><small>Für hohe Ansprüche</small><a class="pkg-link" href="#kontakt">Anfragen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a></div>
+          <div class="pkg-foot"><small>F&uuml;r hohe Anspr&uuml;che</small><a class="pkg-link" href="#kontakt">Anfragen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a></div>
         </article>
       </div>
 
@@ -840,28 +1286,32 @@
       </div>
       </div>
 
-      <p class="pkg-note">// Der Preis ergibt sich aus Paket + Zusatzleistungen + Features (DSGVO, SEO, Mehrsprachigkeit, mehrere Themes, CMS &amp; mehr). Transparent im Erstgespräch.</p>
+      <p class="pkg-note">// Das Paket beschreibt die Webseite selbst &mdash; Funktionen wie DSGVO, Kontaktformular, SEO oder Hosting kommen als Bausteine dazu.</p>
 
       <!-- ADD-ON FEATURES / SERVICE PACKAGES -->
       <div class="addons reveal">
         <div class="addons-head">
-          <span class="eyebrow">Service- &amp; Feature-Pakete</span>
-          <h3 style="margin-top:14px;">Bausteine für Ihren Auftritt.</h3>
-          <p>Jedes Paket lässt sich um Service-Bausteine erweitern. So entsteht Ihr Preis: Paket + die Bausteine, die Sie wirklich brauchen.</p>
+          <span class="eyebrow">Bausteine</span>
+          <h3 style="margin-top:14px;">Was Sie zus&auml;tzlich brauchen.</h3>
+          <p>Jedes Paket l&auml;sst sich um Bausteine erweitern. Die meisten gesch&auml;ftlichen Auftritte brauchen mindestens DSGVO und ein Kontaktformular &mdash; den Rest w&auml;hlen Sie nach Bedarf. So entsteht Ihr Preis: Paket + die Bausteine, die Sie wirklich brauchen.</p>
         </div>
         <div class="addons-grid">
-          <div class="addon"><strong>DSGVO-Paket</strong><span>Impressum, Datenschutz, Cookie-Logik – rechtssicher umgesetzt</span></div>
-          <div class="addon"><strong>SEO-Paket</strong><span>Strukturierte Daten, Sitemap, Performance, Content-Coaching</span></div>
-          <div class="addon"><strong>Mehrsprachigkeit</strong><span>Mehrere Sprachen sauber organisiert &amp; pflegbar</span></div>
-          <div class="addon"><strong>Mehrere Themes</strong><span>Helle &amp; dunkle Variante, saisonale Modes oder Marken-Themes</span></div>
-          <div class="addon"><strong>CMS &amp; Datenbank</strong><span>Eigenes leichtgewichtiges CMS, Datenbank inkl. Backup</span></div>
+          <div class="addon"><strong>DSGVO-Paket</strong><span>Impressum, Datenschutz, Cookie-Logik &ndash; rechtssicher umgesetzt</span></div>
           <div class="addon"><strong>Kontaktformular</strong><span>Smart, mit Vorqualifizierung und Spam-Schutz</span></div>
-          <div class="addon"><strong>WhatsApp-Integration</strong><span>Direkter Draht für Kunden-Anfragen, ohne Tracking</span></div>
-          <div class="addon"><strong>Karten &amp; Routing</strong><span>Datenschutzfreundliche Karten, Telefonie, Anfahrt</span></div>
-          <div class="addon"><strong>Mock-Bilder &amp; Inhalte</strong><span>Wir liefern Bildmaterial und Texte, falls Sie noch keine haben</span></div>
-          <div class="addon"><strong>Wartung &amp; Updates</strong><span>Jährliche Pflege als Service-Paket – Basic oder Premium</span></div>
           <div class="addon"><strong>Hosting &amp; Domain</strong><span>Ausfallsicheres Hosting, Domain-Beratung &amp; -Kauf</span></div>
+          <div class="addon"><strong>SEO-Paket</strong><span>Strukturierte Daten, Sitemap, Performance, Content-Coaching</span></div>
+          <div class="addon"><strong>Social-Media-Strategie</strong><span>Pragmatische Empfehlungen, Kanal-Auswahl, Inhalts-Plan</span></div>
+          <div class="addon"><strong>WhatsApp &amp; Telefonie</strong><span>Direkter Draht f&uuml;r Kunden-Anfragen, ohne Tracking</span></div>
+          <div class="addon"><strong>Karten &amp; Routing</strong><span>Datenschutzfreundliche Karten und Anfahrt</span></div>
+          <div class="addon"><strong>Mehrsprachigkeit</strong><span>Mehrere Sprachen sauber organisiert &amp; pflegbar</span></div>
+          <div class="addon"><strong>Mehrere Themes</strong><span>Helle &amp; dunkle Variante, saisonale Modes, Marken-Themes</span></div>
+          <div class="addon"><strong>CMS &amp; Datenbank</strong><span>Eigenes leichtgewichtiges CMS, Datenbank inkl. Backup</span></div>
+          <div class="addon"><strong>Integrationen</strong><span>Kalender, Trello, Notion, CRM, Buchungstools etc.</span></div>
+          <div class="addon"><strong>Mock-Bilder &amp; Inhalte</strong><span>Wir liefern Bildmaterial und Texte, falls noch nicht vorhanden</span></div>
+          <div class="addon"><strong>Newsletter-Setup</strong><span>DSGVO-konformes Double-Opt-in mit g&auml;ngigen Tools</span></div>
+          <div class="addon"><strong>Wartung &amp; Updates</strong><span>J&auml;hrliche Pflege als Service-Paket &ndash; Basic oder Premium</span></div>
           <div class="addon"><strong>Schulung &amp; Anleitung</strong><span>Schulung Ihres Teams, schriftliche Anleitung inklusive</span></div>
+          <div class="addon"><strong>Namensberatung</strong><span>Naming, Markenpr&uuml;fung, Domain-Verf&uuml;gbarkeit</span></div>
         </div>
       </div>
 
@@ -877,6 +1327,254 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
         </a>
       </aside>
+
+      <aside class="foerderung reveal">
+        <div class="foerderung-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2v20M5 9l7-7 7 7M5 15l7 7 7-7"/>
+          </svg>
+        </div>
+        <div>
+          <h3>F&ouml;rderf&auml;hig &mdash; teils bis zu 50 % vom Staat</h3>
+          <p>
+            Selbstst&auml;ndige, Handwerker:innen, Fotograf:innen und Gr&uuml;nder:innen wissen oft nicht,
+            dass Webauftritte und Digitalisierung in vielen Bundesl&auml;ndern gef&ouml;rdert werden &mdash;
+            etwa &uuml;ber den <a href="https://www.digitalbonus.bayern/foerderprogramm/" target="_blank" rel="noopener">Bayerischen Digitalbonus</a>
+            oder die zahlreichen Programme, die <a href="https://startup-profi.de/digitalisierung" target="_blank" rel="noopener">startup-profi.de</a> &uuml;bersichtlich auflistet.
+            Je nach Programm werden Anteile bis 50&nbsp;% der Kosten erstattet.
+          </p>
+          <small>// Wir sind keine F&ouml;rder-Berater &mdash; aber wir sagen Ihnen gerne, welches Programm f&uuml;r Ihren Fall &uuml;berhaupt in Frage kommen k&ouml;nnte.</small>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ============ VORTEILE ============ -->
+  <section class="vorteile" id="vorteile">
+    <div class="container">
+      <div class="section-head">
+        <div class="reveal">
+          <span class="eyebrow">Ihre Vorteile</span>
+          <h2 style="margin-top:18px">Warum die Schneiderei,<br/>nicht der <em style="font-style:italic;color:var(--thread);font-weight:300">Baukasten?</em></h2>
+        </div>
+        <p class="lede reveal">
+          Baukästen, KI-Generatoren und DIY-Webseiten gibt es genug. Hier ist,
+          was Sie bei uns bekommen, was die nicht liefern können.
+        </p>
+      </div>
+
+      <div class="vorteile-grid">
+        <article class="vorteil reveal">
+          <div class="vorteil-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <h3>Ein <em>persönlicher</em> Ansprechpartner.</h3>
+          <p>Kein Ticket-System, kein Hotline-Karussell. Sie schreiben, wir antworten. Dieselbe Person, die Ihre Webseite gebaut hat, betreut sie auch.</p>
+        </article>
+
+        <article class="vorteil reveal">
+          <div class="vorteil-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 14l2 2 4-4"/></svg>
+          </div>
+          <h3>Sie machen Ihr Geschäft.<br/>Wir Ihren <em>Auftritt.</em></h3>
+          <p>Während Sie hobeln, kochen, behandeln oder spielen, kümmern wir uns um Hosting, Updates, Texte und Bilder. Schuster bleib bei deinen Leisten.</p>
+        </article>
+
+        <article class="vorteil reveal">
+          <div class="vorteil-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>
+          </div>
+          <h3>Keine Inhalte? <em>Kein Problem.</em></h3>
+          <p>Wir sprechen mit Ihnen, hören zu, machen Vorschläge — und liefern auf Wunsch Mock-Bilder, Texte und Strukturen, damit Sie nicht bei Null anfangen.</p>
+        </article>
+
+        <article class="vorteil reveal">
+          <div class="vorteil-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M3 12h18M3 18h18"/><path d="M9 3v18M15 3v18"/></svg>
+          </div>
+          <h3>Keine versteckten <em>Zusatzverträge.</em></h3>
+          <p>Kein Impressum-Generator-Abo, kein Cookie-Consent-Tool, kein Datenschutz-Modul. Was Sie brauchen, kommt als einmaliger Baustein oder als Service-Paket. Punkt.</p>
+        </article>
+
+        <article class="vorteil reveal">
+          <div class="vorteil-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          </div>
+          <h3>Sparen Sie sich die <em>Stunden.</em></h3>
+          <p>Sie haben Besseres zu tun, als sich durch Drag-and-Drop-Editoren oder KI-Generatoren zu klicken. Diese nervige Technik-Arbeit nehmen wir Ihnen gerne ab.</p>
+        </article>
+
+        <article class="vorteil reveal">
+          <div class="vorteil-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          </div>
+          <h3>Langfristig <em>günstiger.</em></h3>
+          <p>Anbieter mit zahlreichen Zusatz-Abos summieren sich über die Jahre. Bei uns zahlen Sie für die Webseite und ggf. das Service-Paket — keine versteckten Kostenfallen.</p>
+        </article>
+      </div>
+
+      <aside class="vorteile-honest reveal">
+        <h4>Ein ehrliches Wort zum Schluss:</h4>
+        <p>
+          Baukästen, KI-Generatoren und DIY-Webseiten haben alle ihre Daseinsberechtigung —
+          und wer durch ein eigenes Projekt etwas selbst lernt, hat etwas gewonnen,
+          das wir nicht ersetzen können. Die Pixelschneiderei ist die richtige Wahl,
+          wenn Sie <em style="font-style:italic;">nicht</em> lernen wollen, sondern
+          einfach einen Auftritt haben möchten, der sitzt.
+        </p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <section id="faq">
+    <div class="container">
+      <div class="section-head">
+        <div class="reveal">
+          <span class="eyebrow">Häufige Fragen</span>
+          <h2 style="margin-top:18px">Was Sie sich vielleicht <em style="font-style:italic;color:var(--thread);font-weight:300">noch fragen.</em></h2>
+        </div>
+        <p class="lede reveal">
+          Die häufigsten Fragen aus unseren Erstgesprächen — kurz und ehrlich beantwortet.
+        </p>
+      </div>
+
+      <div class="faq-list reveal">
+        <details>
+          <summary>Was kostet eine maßgeschneiderte Webseite?</summary>
+          <div class="faq-body">
+            <p>Das hängt vom gewählten Paket und den Bausteinen ab, die Sie brauchen — eine kleine einseitige Hobby-Seite kostet einen Bruchteil eines Premium-Auftritts mit eigenem CMS und Mehrsprachigkeit. Wir nennen Ihnen den konkreten Preis im kostenfreien Erstgespräch, aufgeschlüsselt: Paket + Bausteine.</p>
+            <p>Für viele Selbstständige und Handwerker gibt es zudem staatliche Förderungen, die einen Teil der Kosten übernehmen.</p>
+          </div>
+        </details>
+
+        <details>
+          <summary>Wie lange dauert die Erstellung einer Webseite?</summary>
+          <div class="faq-body">
+            <p>Eine einseitige Hobby-Webseite ist in zwei bis drei Wochen fertig. Standard-Auftritte für Selbstständige und kleinere Unternehmen brauchen vier bis acht Wochen. Premium-Projekte planen wir individuell, oft sechs bis zwölf Wochen.</p>
+          </div>
+        </details>
+
+        <details>
+          <summary>Was ist, wenn ich noch keine Inhalte oder Bilder habe?</summary>
+          <div class="faq-body">
+            <p>Kein Problem. Wir sprechen mit Ihnen, hören zu und entwickeln gemeinsam die Struktur. Auf Wunsch liefern wir Mock-Bilder, Stockmotive und Demo-Texte, mit denen Ihre Webseite vom ersten Tag an aussieht wie aus einem Guss.</p>
+          </div>
+        </details>
+
+        <details>
+          <summary>Brauche ich ein DSGVO-konformes Impressum &amp; Datenschutz?</summary>
+          <div class="faq-body">
+            <p>Sobald Ihre Webseite mehr ist als ein rein privater Spaß — sobald Sie also gewerblich tätig sind, Kontakte aufnehmen oder Bestellungen erhalten — ist Impressum und Datenschutz Pflicht. Wir bieten das als DSGVO-Baustein an: rechtssicher umgesetzt, ohne Generator-Abo.</p>
+          </div>
+        </details>
+
+        <details>
+          <summary>Was ist der Unterschied zu einem Webseiten-Baukasten?</summary>
+          <div class="faq-body">
+            <p>Bei einem Baukasten investieren Sie Stunden Ihrer Zeit, kämpfen mit Templates, die nicht ganz passen, und zahlen monatliche Gebühren für Tools, die mal funktionieren und mal nicht. Bei uns geben Sie die Technik komplett ab und bekommen einen Auftritt, der zu Ihrer Marke passt — gebaut, nicht zusammengeklickt.</p>
+            <p>DIY-Wege haben ihre Daseinsberechtigung. Wir sind die richtige Wahl, wenn Sie sich nicht damit beschäftigen wollen.</p>
+          </div>
+        </details>
+
+        <details>
+          <summary>Nutzen Sie KI beim Bauen?</summary>
+          <div class="faq-body">
+            <p>Ja, unbedingt — KI gehört heute zur modernen Webentwicklung dazu. Aber wie im Handwerk oder in der Fotografie macht das beste Werkzeug noch kein Meisterstück: Der stärkste Akkuschrauber, die schärfste Säge, die modernste Kamera, die fähigste KI — am Ende braucht es Können, Geschicklichkeit und manuelle Feinarbeit, damit etwas wirklich maßgenau geschneidert wird.</p>
+            <p>Genau dieser Hebel macht es möglich, moderne Webseiten zu fairen Preisen anzubieten. Ohne KI wären wir bei Stundensätzen, die niemand gerne zahlt. Mit KI ist sie eine sinnvolle Verstärkung — nicht der Ersatz für Erfahrung und Sorgfalt.</p>
+            <p>Und ja, Sie könnten sich theoretisch auch selbst mit KI eine Webseite generieren — so wie jede:r Laie einen Schrank zusammenbauen, eine Wand verputzen oder Eventfotos machen kann. Der Unterschied liegt in der Erwartungshaltung: Soll Ihre Webseite verkaufen, vertrauenswürdig wirken und sich abheben, lohnt sich der Profi.</p>
+          </div>
+        </details>
+
+        <details>
+          <summary>Wer kümmert sich um Hosting &amp; Domain?</summary>
+          <div class="faq-body">
+            <p>Wir, falls Sie das wollen. Wir beraten beim Domain-Kauf, übernehmen die Registrierung und richten ein ausfallsicheres Hosting ein. Auf Wunsch managen wir auch Ihre E-Mail-Postfächer. Alternativ können Sie auch bei einem bestehenden Hoster bleiben — wir richten das ein.</p>
+          </div>
+        </details>
+
+        <details>
+          <summary>Bekomme ich den Quellcode meiner Webseite?</summary>
+          <div class="faq-body">
+            <p>Ja. Der Quellcode liegt in einem GitHub-Repository, auf das Sie auf Wunsch Zugriff bekommen. So sind Sie technisch nie an uns gebunden — wenn Sie irgendwann zu jemand anderem wechseln möchten, geht das ohne Datenverlust.</p>
+          </div>
+        </details>
+
+        <details>
+          <summary>Kann ich später Inhalte selbst ändern?</summary>
+          <div class="faq-body">
+            <p>Ja, je nach Paket. Bei kleineren Webseiten ist es oft günstiger, uns kurz Bescheid zu geben — wir erledigen das innerhalb von Stunden. Bei größeren Auftritten bauen wir auf Wunsch ein leichtgewichtiges CMS ein, mit dem Sie Texte, Bilder und Artikel selbst pflegen können.</p>
+          </div>
+        </details>
+
+        <details>
+          <summary>Gibt es staatliche Förderungen für Webseiten?</summary>
+          <div class="faq-body">
+            <p>Ja, einige. Selbstständige und Handwerker:innen können in vielen Bundesländern bis zu 50&nbsp;% der Kosten erstattet bekommen — z.&nbsp;B. über den Bayerischen Digitalbonus oder Programme von KfW und IHK. Wir sind keine Förder-Berater, aber wir sagen Ihnen gerne, welches Programm überhaupt in Frage kommen könnte.</p>
+          </div>
+        </details>
+
+        <details>
+          <summary>Sind statische Webseiten sicher vor Angriffen?</summary>
+          <div class="faq-body">
+            <p>Statische Webseiten haben keine Server-Logik, keine Datenbank, kein User-Login — die klassischen Angriffsflächen wie SQL-Injection, Server-XSS, Brute-Force gegen Logins oder kompromittierte Plugin-Updates entfallen schlicht. Die Seite besteht aus reinen HTML-, CSS- und JS-Dateien, die ein CDN ausliefert. Es gibt einfach nichts, was im klassischen Sinn „gehackt" werden kann.</p>
+            <p>Auch DDoS-Angriffe sind für moderne CDNs (Cloudflare &amp; Co.) Routinearbeit — sie absorbieren riesige Last, ohne dass Sie etwas merken. Updates oder Sicherheitspatches gibt es bei statischen Seiten nicht; es gibt ja nichts zu patchen.</p>
+            <p>Sobald aber Login-Bereiche, Foren, ein Online-Shop oder ein dynamisches CMS dazukommen, gibt es wieder Angriffsflächen — die wir dann entsprechend härten. Bei Bedarf bauen wir gezielt minimal-dynamische Inseln (z.&nbsp;B. nur das Kontaktformular auf einer sonst statischen Seite), um die Angriffsfläche so klein wie möglich zu halten.</p>
+          </div>
+        </details>
+
+        <details>
+          <summary>Was ist mit Abmahn­wellen wegen Google Fonts, Cookies und Co.?</summary>
+          <div class="faq-body">
+            <p>Wir achten beim Bauen auf die jeweils aktuellen Themen — Stand heute heißt das z.&nbsp;B.: Schriftarten lokal hosten (statt extern von Google laden), Cookie-Logik korrekt umsetzen, keine unnötigen Tracker, ehrliches Impressum &amp; Datenschutz. So vermeiden wir die typischen Fallen, die in den letzten Jahren zu Abmahnwellen geführt haben.</p>
+            <p><strong style="color: var(--ink);">Mit einem Service-Abo bei uns</strong> prüfen wir die Thematik laufend für alle Kunden — wenn neue Abmahn-Trends auftauchen oder Gerichtsurteile die Anforderungen ändern, melden wir uns bei Ihnen und ziehen die Webseite proaktiv nach. Sie müssen den Compliance-Stand nicht selbst beobachten.</p>
+            <p>Hand aufs Herz: Wir sind keine Anwält:innen. Was heute Stand der Technik ist, kann sich morgen ändern — und Spezial-Fälle (Online-Shop, große Reichweite, internationale Kund:innen) gehören in eine rechtliche Zweitmeinung. Wir bauen so sauber, wie es zum Zeitpunkt der Erstellung sinnvoll ist; rechtsverbindliche Beratung holen Sie bitte separat ein.</p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ RESPONSIVE ============ -->
+  <section class="responsive">
+    <div class="container">
+      <div class="section-head section-head--center">
+        <span class="eyebrow reveal">Responsive Optimiert</span>
+        <h2 class="reveal" style="margin-top:18px">
+          Auf jedem Gerät.<br/>
+          <em style="font-style:italic;color:var(--thread);font-weight:300">Ohne</em> Kompromiss.
+        </h2>
+        <p class="lede reveal">
+          Eine Webseite, drei Geräte, ein Anspruch — automatisch passend von 320 px Smartphone bis 4K-Display.
+        </p>
+      </div>
+
+      <div class="devices reveal">
+        <div class="device device-tablet">
+          <div class="device-screen"></div>
+        </div>
+        <div class="device device-desktop">
+          <div class="traffic"><i></i><i></i><i></i></div>
+          <div class="device-url">pixelschneiderei.de</div>
+          <div class="device-screen"></div>
+        </div>
+        <div class="device device-mobile">
+          <div class="device-screen"></div>
+        </div>
+      </div>
+
+      <div class="device-labels reveal">
+        <span><strong>Desktop</strong>1280 px+</span>
+        <span><strong>Tablet</strong>768 px+</span>
+        <span><strong>Mobile</strong>320 px+</span>
+      </div>
+
+      <div class="breakpoints reveal">
+        <div><strong>320 px</strong><span>Mobile-Min</span></div>
+        <div><strong>768 px</strong><span>Tablet</span></div>
+        <div><strong>1280 px</strong><span>Desktop</span></div>
+        <div><strong>2560 px</strong><span>Wide-Display</span></div>
+      </div>
     </div>
   </section>
 
@@ -906,8 +1604,8 @@
           Geschäft
         </a>
         <a class="industry" href="demos/atmen/index.html">
-          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16h6l3-8 6 16 3-8h6"/></svg>
-          Fitness
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="16" r="11"/><circle cx="16" cy="16" r="6"/><circle cx="16" cy="16" r="2" fill="currentColor"/></svg>
+          Yoga
         </a>
         <a class="industry" href="demos/aurora/index.html">
           <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h18a4 4 0 0 1 0 8h-1"/><path d="M5 12v8a4 4 0 0 0 4 4h9a4 4 0 0 0 4-4"/><path d="M9 4c0 2 2 2 2 4M14 4c0 2 2 2 2 4M19 4c0 2 2 2 2 4"/></svg>
@@ -929,6 +1627,22 @@
           <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4l3 9h9l-7.5 5.5L23 28l-7-5.5L9 28l2.5-9.5L4 13h9z"/></svg>
           Hochglanz
         </a>
+        <a class="industry" href="demos/lichtblick/index.html">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="9" width="24" height="18" rx="2"/><circle cx="16" cy="18" r="5"/><path d="M11 9l2-3h6l2 3"/></svg>
+          Fotografie
+        </a>
+        <a class="industry" href="demos/nachtschicht/index.html">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="16" r="12"/><circle cx="16" cy="16" r="3" fill="currentColor"/><path d="M16 4v3M16 25v3M4 16h3M25 16h3"/></svg>
+          DJ &amp; Event
+        </a>
+        <a class="industry" href="demos/kontur/index.html">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6h20M6 12h16M6 18h20M6 24h14"/></svg>
+          Blog &amp; CMS
+        </a>
+        <a class="industry" href="https://e-bikefactory.de" target="_blank" rel="noopener">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h24v16H4z"/><circle cx="10" cy="16" r="1.5" fill="currentColor"/><path d="M14 14l8 0M14 18l5 0"/><path d="M2 28h28"/></svg>
+          Live Demo
+        </a>
       </div>
 
       <div class="refs-grid">
@@ -936,6 +1650,7 @@
         <!-- HOCHGLANZ ATELIER -->
         <a class="ref reveal" href="demos/atelier/index.html">
           <div class="ref-thumb">
+            <img class="ref-thumb-img" src="demos/atelier/thumb.jpg" alt="" loading="lazy" onerror="this.remove();">
             <svg viewBox="0 0 600 375" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
               <defs>
                 <linearGradient id="atGr" x1="0" y1="0" x2="0" y2="1">
@@ -971,6 +1686,7 @@
         <!-- E-BIKE FACTORY -->
         <a class="ref reveal" href="https://e-bikefactory.de" target="_blank" rel="noopener">
           <div class="ref-thumb">
+            <img class="ref-thumb-img" src="demos/_external/e-bikefactory.jpg" alt="" loading="lazy" onerror="this.remove();">
             <svg viewBox="0 0 600 375" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
               <defs><linearGradient id="ebGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#1c2a36"/><stop offset="100%" stop-color="#0f1820"/></linearGradient></defs>
               <rect width="600" height="375" fill="url(#ebGrad)"/>
@@ -989,7 +1705,7 @@
           </div>
           <div class="ref-body">
             <div>
-              <div class="ref-meta">Live · E-Commerce · Mobilität</div>
+              <div class="ref-meta">Live Demo · Shop · Mobilität</div>
               <h3>e-bikefactory.de</h3>
               <p>Onlineauftritt eines E-Bike-Spezialisten – mit Produktwelt, Konfigurator-Logik und Beratungseinstieg.</p>
             </div>
@@ -1000,6 +1716,7 @@
         <!-- TISCHLEREI -->
         <a class="ref reveal" href="demos/holzgeist/index.html">
           <div class="ref-thumb">
+            <img class="ref-thumb-img" src="demos/holzgeist/thumb.jpg" alt="" loading="lazy" onerror="this.remove();">
             <svg viewBox="0 0 600 375" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
               <defs><linearGradient id="hgGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#a87b3c"/><stop offset="100%" stop-color="#5e4322"/></linearGradient></defs>
               <rect width="600" height="375" fill="url(#hgGrad)"/>
@@ -1114,7 +1831,7 @@
     </div>
     <div class="foot-bottom">
       <span>© <span id="year">2026</span> Pixelschneiderei</span>
-      <span>Mit Sorgfalt genäht.</span>
+      <span class="foot-signature"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="6" y1="18" x2="18" y2="6"/><circle cx="17" cy="7" r="1.4"/><path d="M15.5 6.5C13 5 10.5 6.5 11 9.5"/></svg>Mit Liebe geschneidert @ <a href="https://pixelschneiderei.de/">pixelschneiderei.de</a></span>
     </div>
   </div>
 </footer>

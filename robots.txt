@@ -1,0 +1,13 @@
+# robots.txt für pixelschneiderei.de
+# Demo-Auftritte sind über noindex-Meta-Tags von der Indexierung ausgeschlossen,
+# bleiben aber crawlbar, damit Social-Media-Crawler die og:image-Vorschauen abrufen können.
+
+User-agent: *
+Allow: /
+
+# Keine internen Tools / Skripte indexieren
+Disallow: /tools/
+Disallow: /BILDER.md
+Disallow: /README.md
+
+Sitemap: https://pixelschneiderei.de/sitemap.xml

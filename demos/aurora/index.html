@@ -7,6 +7,10 @@
 <title>Café Aurora – Specialty Coffee &amp; kleine Küche (Demo)</title>
 <meta name="description" content="Demo: Café Aurora. Beispielauftritt der Pixelschneiderei für ein Café mit eigener Rösterei." />
 <meta name="robots" content="noindex, nofollow" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="thumb.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23fef0e8'/%3E%3Ccircle cx='16' cy='16' r='8' fill='none' stroke='%23a4452f' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='3' fill='%23a4452f'/%3E%3C/svg%3E" />
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -85,10 +89,13 @@
     aspect-ratio: 4/5;
     border-radius: 200px 200px 24px 24px;
     overflow: hidden;
-    background: linear-gradient(180deg, #f8c9b0 0%, #e8704c 60%, #a4452f 100%);
+    background:
+      url('img/hero.jpg') center/cover no-repeat,
+      linear-gradient(180deg, #f8c9b0 0%, #e8704c 60%, #a4452f 100%);
     position: relative;
   }
-  .hero-art svg{ width: 100%; height: 100%;}
+  /* Decorative SVG shows only as fallback when no hero image */
+  .hero-art svg{ width: 100%; height: 100%; mix-blend-mode: screen; opacity: .6;}
 
   /* MENU SECTION */
   .menu-section{ padding: 96px 0; background: var(--cream);}
@@ -106,9 +113,19 @@
     padding: 32px;
     border: 1px solid var(--line);
     border-radius: 24px;
+    overflow: hidden;
     transition: transform .25s var(--ease), border-color .25s var(--ease);
+    position: relative;
   }
   .menu-card:hover{ transform: translateY(-4px); border-color: var(--coral-deep);}
+  .menu-card-img{
+    margin: -32px -32px 24px;
+    aspect-ratio: 4/3;
+    background: center/cover no-repeat;
+    background-image: linear-gradient(135deg, var(--paper-2), var(--coral));
+  }
+  .menu-card.menu-pastry .menu-card-img{ background-image: url('img/menu-pastry.jpg'), linear-gradient(135deg, var(--paper-2), var(--coral));}
+  .menu-card.menu-coffee .menu-card-img{ background-image: url('img/menu-coffee.jpg'), linear-gradient(135deg, #e8a99f, #5b2f25);}
   .menu-card h3{ font-family: var(--serif); font-size: 1.6rem; margin-bottom: 16px; display:flex; justify-content: space-between; align-items: center; gap: 16px;}
   .menu-card h3 em{ font-style: italic; color: var(--coral-deep);}
   .menu-card .price{ font-family: var(--sans); font-size: .95rem; color: var(--ink-soft); font-weight: 500;}
@@ -126,7 +143,12 @@
   @media (max-width: 880px){ .two-cols{ grid-template-columns: 1fr;}}
   .two-cols-text{ padding: 0 56px;}
   .two-cols-text p{ margin-top: 24px; color: var(--ink-soft); font-size: 1.05rem;}
-  .two-cols-art{ aspect-ratio: 1; background: linear-gradient(135deg, #fbd7c2, #e8704c);}
+  .two-cols-art{
+    aspect-ratio: 1;
+    background:
+      url('img/coffee.jpg') center/cover no-repeat,
+      linear-gradient(135deg, #fbd7c2, #e8704c);
+  }
   @media (max-width: 880px){ .two-cols-text{ padding: 32px 24px 0;} .two-cols-art{ aspect-ratio: 16/10;}}
 
   /* HOURS */
@@ -181,7 +203,7 @@
 
 <div class="demo-banner">Demo · Branche: Gastronomie &nbsp;·&nbsp; <a href="../../index.html">← zur Pixelschneiderei</a></div>
 
-<a class="demo-exit" href="../../index.html">
+<a class="demo-exit" href="../../referenzen.html">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
   Demo verlassen
 </a>
@@ -259,7 +281,8 @@
       </div>
 
       <div class="menu-grid">
-        <article class="menu-card reveal">
+        <article class="menu-card menu-coffee reveal">
+          <div class="menu-card-img"></div>
           <h3>Aus der <em>Mühle</em></h3>
           <ul>
             <li><strong>Espresso</strong><span>– aus eigener Rösterei –</span></li>
@@ -269,7 +292,8 @@
           </ul>
         </article>
 
-        <article class="menu-card reveal">
+        <article class="menu-card menu-pastry reveal">
+          <div class="menu-card-img"></div>
           <h3>Aus der <em>Backstube</em></h3>
           <ul>
             <li><strong>Sauerteig-Toast</strong><span>Avocado, Frühlingskräuter</span></li>
@@ -386,5 +410,6 @@
   document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
 </script>
 
+<script src="../../assets/demo-exit.js"></script>
 </body>
 </html>

@@ -7,6 +7,10 @@
 <title>Praxis Linde – Allgemeinmedizin (Demo)</title>
 <meta name="description" content="Demo: Hausarztpraxis Linde. Beispielauftritt der Pixelschneiderei für eine Arztpraxis." />
 <meta name="robots" content="noindex, nofollow" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="thumb.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23f4f7fa'/%3E%3Crect x='14' y='8' width='4' height='16' fill='%23264a6b'/%3E%3Crect x='8' y='14' width='16' height='4' fill='%23264a6b'/%3E%3C/svg%3E" />
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -73,12 +77,14 @@
 
   .hero-art{
     aspect-ratio: 4/5;
-    background: linear-gradient(135deg, #e3edf3, #b9cbdc);
+    background:
+      url('img/hero.jpg') center/cover no-repeat,
+      linear-gradient(135deg, #e3edf3, #b9cbdc);
     border-radius: 16px;
     overflow: hidden;
     position: relative;
   }
-  .hero-art svg{ width: 100%; height: 100%;}
+  .hero-art svg{ width: 100%; height: 100%; opacity: .55;}
 
   /* QUICK INFO */
   .quick{
@@ -131,7 +137,17 @@
     border-radius: 16px; border: 1px solid var(--line);
     display: flex; gap: 24px; align-items: flex-start;
   }
-  .doc-photo{ flex-shrink: 0; width: 96px; height: 96px; border-radius: 50%; background: linear-gradient(135deg, #b9cbdc, #4a7ba8);}
+  .doc-photo{
+    flex-shrink: 0; width: 96px; height: 96px; border-radius: 50%;
+    background: center/cover no-repeat;
+    background-image: linear-gradient(135deg, #b9cbdc, #4a7ba8);
+  }
+  .doc-photo.doc-anna{
+    background-image: url('img/doctor-anna.jpg'), linear-gradient(135deg, #b9cbdc, #4a7ba8);
+  }
+  .doc-photo.doc-johannes{
+    background-image: url('img/doctor-johannes.jpg'), linear-gradient(135deg, #c1d5e2, #355a7a);
+  }
   .doc h3{ font-family: var(--serif); font-size: 1.4rem; margin-bottom: 4px;}
   .doc span{ display:block; color: var(--blue-deep); font-size: .88rem; letter-spacing: .04em; margin-bottom: 12px;}
   .doc p{ color: var(--ink-soft); font-size: .94rem;}
@@ -180,7 +196,7 @@
 
 <div class="demo-banner">Demo · Branche: Arztpraxis &nbsp;·&nbsp; <a href="../../index.html">← zur Pixelschneiderei</a></div>
 
-<a class="demo-exit" href="../../index.html">
+<a class="demo-exit" href="../../referenzen.html">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
   Demo verlassen
 </a>
@@ -312,7 +328,7 @@
       </div>
       <div class="team-grid">
         <article class="doc reveal">
-          <div class="doc-photo"></div>
+          <div class="doc-photo doc-anna"></div>
           <div>
             <h3>Dr. med. Anna Linde</h3>
             <span>Fachärztin für Allgemeinmedizin · Praxisinhaberin</span>
@@ -320,7 +336,7 @@
           </div>
         </article>
         <article class="doc reveal">
-          <div class="doc-photo" style="background: linear-gradient(135deg, #c1d5e2, #355a7a);"></div>
+          <div class="doc-photo doc-johannes"></div>
           <div>
             <h3>Dr. med. Johannes Bender</h3>
             <span>Facharzt für Innere Medizin</span>
@@ -405,5 +421,6 @@
   document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
 </script>
 
+<script src="../../assets/demo-exit.js"></script>
 </body>
 </html>

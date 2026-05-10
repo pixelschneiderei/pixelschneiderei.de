@@ -1,0 +1,704 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="theme-color" content="#fbf9f4" />
+<title>Kontur — Magazin &amp; Blog (Demo)</title>
+<meta name="description" content="Demo: Magazin-Blog mit leichtgewichtigem CMS-Mockup. Beispielauftritt der Pixelschneiderei." />
+<meta name="robots" content="noindex, nofollow" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="thumb.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23fbf9f4'/%3E%3Cpath d='M8 8h16M8 14h12M8 20h16M8 26h10' stroke='%231a1a1a' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..600;1,8..60,400&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root{
+    --paper: #fbf9f4;
+    --paper-2: #f3efe5;
+    --cream: #fffefa;
+    --ink: #14161a;
+    --ink-soft: #2c2f36;
+    --muted: #6c7080;
+    --line: #e3dfd4;
+    --rule: #1a1a1a;
+    --accent: #c0392b;
+    --serif: 'Source Serif 4', Georgia, serif;
+    --sans: 'Inter', sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+    --ease: cubic-bezier(.2,.7,.2,1);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{ background: var(--paper); color: var(--ink); font-family: var(--sans); line-height: 1.6; -webkit-font-smoothing: antialiased;}
+  a{color:inherit; text-decoration:none}
+  img,svg{display:block; max-width:100%}
+  ::selection{ background: var(--accent); color: var(--cream);}
+
+  .demo-banner{ background: var(--ink); color: var(--cream); text-align:center; padding: 10px 16px; font-family: var(--mono); font-size: .76rem; letter-spacing: .12em; text-transform: uppercase;}
+  .demo-banner a{ text-decoration: underline; text-underline-offset: 3px;}
+
+  .container{ max-width: 1280px; margin: 0 auto; padding: 0 32px;}
+  .container.narrow{ max-width: 760px;}
+
+  /* MASTHEAD - newspaper style */
+  .masthead{
+    border-bottom: 3px double var(--rule);
+    padding: 36px 32px 24px;
+  }
+  .mast-row{ display: flex; align-items: center; justify-content: space-between; max-width: 1280px; margin: 0 auto;}
+  .masthead-meta{ font-family: var(--mono); font-size: .76rem; letter-spacing: .12em; color: var(--muted); text-transform: uppercase;}
+  .masthead-brand{
+    font-family: var(--serif); font-weight: 400;
+    font-size: clamp(2.4rem, 5vw, 4rem);
+    letter-spacing: -0.005em;
+    line-height: 1; text-align: center;
+  }
+  .masthead-brand em{ font-style: italic; color: var(--accent);}
+  .masthead-cta{
+    padding: 10px 20px;
+    background: var(--ink); color: var(--cream);
+    font-size: .82rem; letter-spacing: .12em; text-transform: uppercase;
+    border-radius: 0;
+    transition: background .25s var(--ease);
+  }
+  .masthead-cta:hover{ background: var(--accent);}
+  @media (max-width: 720px){
+    .masthead-meta, .masthead-cta{ display: none;}
+    .mast-row{ justify-content: center;}
+  }
+
+  /* CATEGORY NAV */
+  .cat-nav{
+    border-bottom: 1px solid var(--line);
+    padding: 14px 32px;
+    background: var(--cream);
+  }
+  .cat-row{ display: flex; gap: 32px; max-width: 1280px; margin: 0 auto; overflow-x: auto; scrollbar-width: none;}
+  .cat-row::-webkit-scrollbar{ display: none;}
+  .cat-row a{
+    font-family: var(--mono); font-size: .78rem; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--ink-soft); white-space: nowrap;
+    transition: color .2s ease;
+  }
+  .cat-row a:hover, .cat-row a.is-active{ color: var(--accent);}
+
+  /* HERO ARTICLE */
+  .hero-article{
+    padding: 56px 0;
+  }
+  .hero-grid{ display: grid; grid-template-columns: 1.2fr 1fr; gap: 56px; align-items: center;}
+  @media (max-width: 880px){ .hero-grid{ grid-template-columns: 1fr; gap: 32px;}}
+  .hero-img{
+    aspect-ratio: 4/3;
+    background: center/cover no-repeat;
+    background-image: url('img/hero.jpg'), linear-gradient(135deg, #d4d0c4, #6c6e72);
+  }
+  .article-cat{
+    font-family: var(--mono); font-size: .76rem; letter-spacing: .18em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 16px;
+    display: inline-block;
+  }
+  .hero-article h1{
+    font-family: var(--serif); font-weight: 400;
+    font-size: clamp(2.2rem, 4.5vw, 3.6rem); line-height: 1.1; letter-spacing: -0.005em;
+    margin-bottom: 18px;
+  }
+  .hero-article h1 em{ font-style: italic;}
+  .hero-article .lead{
+    font-family: var(--serif); font-size: 1.15rem; line-height: 1.6;
+    color: var(--ink-soft); margin-bottom: 24px;
+    max-width: 50ch;
+  }
+  .byline{
+    font-family: var(--mono); font-size: .78rem;
+    color: var(--muted); letter-spacing: .04em;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .byline .dot{ width: 4px; height: 4px; background: var(--muted); border-radius: 50%;}
+  .byline strong{ color: var(--ink); font-weight: 500;}
+  .read-more{
+    margin-top: 24px;
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--mono); font-size: .82rem; letter-spacing: .12em; text-transform: uppercase;
+    color: var(--accent);
+    border-bottom: 1px solid var(--accent);
+    padding-bottom: 4px;
+  }
+
+  /* ARTICLES GRID */
+  .articles{
+    padding: 64px 0;
+    border-top: 1px solid var(--rule);
+  }
+  .articles-head{
+    display: flex; justify-content: space-between; align-items: end;
+    margin-bottom: 40px; padding-bottom: 16px;
+    border-bottom: 1px solid var(--line);
+  }
+  .articles-head h2{
+    font-family: var(--serif); font-weight: 400;
+    font-size: 2rem; letter-spacing: -0.005em;
+  }
+  .articles-head a{
+    font-family: var(--mono); font-size: .78rem; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--accent);
+  }
+  .articles-grid{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;}
+  @media (max-width: 880px){ .articles-grid{ grid-template-columns: 1fr;}}
+  article.card{
+    display: flex; flex-direction: column;
+    transition: transform .25s var(--ease);
+  }
+  article.card:hover{ transform: translateY(-3px);}
+  article.card:hover h3{ color: var(--accent);}
+  .card-img{
+    aspect-ratio: 4/3;
+    background: center/cover no-repeat;
+    margin-bottom: 18px;
+  }
+  .card-1 .card-img{ background-image: url('img/post-1.jpg'), linear-gradient(135deg, #c4a87d, #6e5538);}
+  .card-2 .card-img{ background-image: url('img/post-2.jpg'), linear-gradient(135deg, #b9c1cf, #355a7a);}
+  .card-3 .card-img{ background-image: url('img/post-3.jpg'), linear-gradient(135deg, #a8c4b6, #3a544a);}
+  .card-4 .card-img{ background-image: url('img/post-4.jpg'), linear-gradient(135deg, #d8c194, #a87b3c);}
+  .card-5 .card-img{ background-image: url('img/post-5.jpg'), linear-gradient(135deg, #c8a06b, #5b2f1c);}
+  .card-6 .card-img{ background-image: url('img/post-6.jpg'), linear-gradient(135deg, #e2c3b4, #8a4d3b);}
+  article.card .article-cat{ font-size: .72rem; margin-bottom: 8px;}
+  article.card h3{
+    font-family: var(--serif); font-weight: 400;
+    font-size: 1.4rem; line-height: 1.2; letter-spacing: -0.005em;
+    margin-bottom: 10px;
+    transition: color .2s ease;
+  }
+  article.card p{ color: var(--ink-soft); font-size: .96rem; line-height: 1.6; margin-bottom: 12px;}
+  article.card .byline{ font-size: .72rem; margin-top: auto;}
+
+  /* READING SAMPLE / ARTICLE PREVIEW */
+  .reading{
+    padding: 96px 0;
+    background: var(--cream);
+    border-block: 1px solid var(--line);
+  }
+  .reading-head{
+    text-align: center; margin-bottom: 48px;
+  }
+  .reading-head .kicker{
+    font-family: var(--mono); font-size: .76rem; letter-spacing: .18em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 14px;
+  }
+  .reading-head h2{
+    font-family: var(--serif); font-weight: 400; font-style: italic;
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem); letter-spacing: -0.005em;
+  }
+  .article-mock{
+    max-width: 680px; margin: 0 auto;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    padding: 56px 56px 48px;
+  }
+  @media (max-width: 600px){ .article-mock{ padding: 32px 24px;}}
+  .article-mock .article-cat{ margin-bottom: 12px;}
+  .article-mock h3{
+    font-family: var(--serif); font-weight: 400;
+    font-size: clamp(1.8rem, 3vw, 2.4rem); line-height: 1.15;
+    margin-bottom: 18px;
+    letter-spacing: -0.005em;
+  }
+  .article-mock h3 em{ font-style: italic;}
+  .article-mock .byline{ font-size: .76rem; margin-bottom: 28px;}
+  .article-mock p{
+    font-family: var(--serif); font-size: 1.08rem; line-height: 1.75;
+    color: var(--ink-soft); margin-bottom: 18px;
+  }
+  .article-mock p:first-of-type::first-letter{
+    font-family: var(--serif); font-size: 4.5em; line-height: .9;
+    float: left; margin: 4px 12px 0 -2px;
+    font-weight: 400; color: var(--accent);
+  }
+  .article-mock blockquote{
+    margin: 32px -24px;
+    padding: 24px 32px;
+    border-left: 3px solid var(--accent);
+    font-family: var(--serif); font-style: italic;
+    font-size: 1.4rem; line-height: 1.4;
+    color: var(--ink);
+  }
+  @media (max-width: 600px){ .article-mock blockquote{ margin: 24px 0;}}
+
+  /* CMS PREVIEW */
+  .cms{ padding: 96px 0;}
+  .cms-head{ text-align: center; margin-bottom: 56px;}
+  .cms-head .kicker{
+    font-family: var(--mono); font-size: .76rem; letter-spacing: .18em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 14px;
+  }
+  .cms-head h2{
+    font-family: var(--serif); font-weight: 400;
+    font-size: clamp(2rem, 4vw, 3rem); line-height: 1.1; letter-spacing: -0.005em;
+    margin-bottom: 18px;
+  }
+  .cms-head h2 em{ font-style: italic;}
+  .cms-head p{ color: var(--ink-soft); max-width: 56ch; margin: 0 auto;}
+
+  .editor{
+    border: 1px solid var(--ink);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 24px 64px rgba(20,22,26,.16);
+    background: var(--cream);
+  }
+  .editor-bar{
+    background: var(--ink); color: var(--cream);
+    padding: 14px 18px;
+    display: flex; align-items: center; gap: 14px;
+    font-family: var(--mono); font-size: .78rem; letter-spacing: .04em;
+  }
+  .editor-dots{ display: flex; gap: 6px;}
+  .editor-dots i{ width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,.2);}
+  .editor-bar .url{
+    flex: 1;
+    padding: 4px 12px;
+    background: rgba(255,255,255,.08);
+    border-radius: 4px; font-size: .76rem;
+    color: rgba(255,255,255,.7);
+  }
+  .editor-bar .save-btn{
+    padding: 4px 12px;
+    background: var(--accent); color: #fff;
+    border-radius: 4px; font-size: .74rem; letter-spacing: .12em; text-transform: uppercase;
+    cursor: default;
+  }
+
+  .editor-grid{
+    display: grid;
+    grid-template-columns: 220px 1fr 240px;
+    min-height: 480px;
+  }
+  @media (max-width: 880px){ .editor-grid{ grid-template-columns: 1fr;}}
+  .editor-side{
+    background: var(--paper-2);
+    border-right: 1px solid var(--line);
+    padding: 20px;
+  }
+  @media (max-width: 880px){ .editor-side{ display: none;}}
+  .editor-side h4{
+    font-family: var(--mono); font-size: .72rem; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 12px;
+  }
+  .editor-side ul{ list-style: none; padding: 0; margin: 0 0 24px; display: flex; flex-direction: column; gap: 4px;}
+  .editor-side li{
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: .88rem;
+    cursor: default;
+    color: var(--ink-soft);
+  }
+  .editor-side li:hover, .editor-side li.is-active{ background: var(--cream); color: var(--ink);}
+  .editor-side li.is-active{ font-weight: 500;}
+  .editor-side .new{
+    margin-top: 8px;
+    padding: 8px 12px;
+    background: var(--ink); color: var(--cream);
+    border-radius: 6px;
+    font-family: var(--mono); font-size: .74rem; letter-spacing: .12em; text-transform: uppercase;
+    text-align: center; cursor: pointer;
+    transition: background .2s ease;
+  }
+  .editor-side .new:hover{ background: var(--accent);}
+
+  .editor-main{ padding: 28px 36px; max-height: 480px; overflow-y: auto;}
+  @media (max-width: 880px){ .editor-main{ max-height: none;}}
+  .editor-main .field{ margin-bottom: 18px;}
+  .editor-main label{
+    display: block;
+    font-family: var(--mono); font-size: .7rem; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 6px;
+  }
+  .editor-main input, .editor-main textarea{
+    width: 100%; padding: 10px 12px;
+    background: var(--cream); border: 1px solid var(--line); border-radius: 6px;
+    font: inherit; font-size: 1rem; color: var(--ink);
+    font-family: var(--serif);
+  }
+  .editor-main input:focus, .editor-main textarea:focus{ outline: none; border-color: var(--accent);}
+  .editor-main input.title-field{ font-size: 1.4rem; font-weight: 500;}
+  .editor-main textarea{ min-height: 120px; resize: vertical; line-height: 1.6;}
+  .editor-toolbar{
+    display: flex; gap: 4px; padding: 6px;
+    background: var(--paper-2);
+    border: 1px solid var(--line); border-bottom: 0;
+    border-radius: 6px 6px 0 0;
+    font-family: var(--mono); font-size: .76rem;
+  }
+  .editor-toolbar button{
+    padding: 4px 10px; background: transparent; border: 0;
+    color: var(--ink-soft); cursor: pointer;
+    border-radius: 4px;
+    font-family: inherit; font-size: inherit;
+  }
+  .editor-toolbar button:hover{ background: var(--cream); color: var(--ink);}
+  .editor-toolbar .sep{ width: 1px; background: var(--line); margin: 4px 4px;}
+  .editor-main .editor-toolbar + textarea{ border-top-left-radius: 0; border-top-right-radius: 0;}
+
+  .editor-meta{
+    background: var(--paper-2);
+    border-left: 1px solid var(--line);
+    padding: 20px;
+  }
+  @media (max-width: 880px){ .editor-meta{ display: none;}}
+  .editor-meta h4{
+    font-family: var(--mono); font-size: .72rem; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 12px;
+  }
+  .meta-row{ font-size: .82rem; color: var(--ink-soft); margin-bottom: 16px;}
+  .meta-row strong{ display: block; color: var(--ink); margin-bottom: 4px; font-weight: 500; font-family: var(--mono); font-size: .72rem; letter-spacing: .12em; text-transform: uppercase;}
+  .tag{
+    display: inline-block;
+    padding: 3px 8px; background: var(--cream); border: 1px solid var(--line);
+    border-radius: 4px; font-size: .76rem; margin-right: 4px; margin-bottom: 4px;
+  }
+  .status-pill{
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 5px 10px; background: #eef9f3; color: #2c7d49;
+    border-radius: 999px; font-size: .76rem; font-family: var(--mono);
+    border: 1px solid #b8e0c5;
+  }
+  .status-pill::before{ content: ""; width: 6px; height: 6px; background: #2c7d49; border-radius: 50%;}
+
+  /* NEWSLETTER */
+  .nl{
+    padding: 96px 24px; text-align: center;
+    background: var(--ink); color: var(--cream);
+  }
+  .nl .kicker{ font-family: var(--mono); font-size: .76rem; letter-spacing: .18em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px;}
+  .nl h2{
+    font-family: var(--serif); font-weight: 400;
+    font-size: clamp(2rem, 4vw, 3rem); line-height: 1.1;
+    margin-bottom: 18px;
+  }
+  .nl h2 em{ font-style: italic;}
+  .nl p{ opacity: .75; max-width: 50ch; margin: 0 auto 32px;}
+  .nl form{
+    display: flex; gap: 8px;
+    max-width: 480px; margin: 0 auto;
+  }
+  .nl input{
+    flex: 1; padding: 14px 18px;
+    background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.2);
+    color: var(--cream);
+    font: inherit; font-size: 1rem;
+    border-radius: 4px;
+  }
+  .nl input::placeholder{ color: rgba(255,255,255,.5);}
+  .nl input:focus{ outline: none; border-color: var(--accent);}
+  .nl button{
+    padding: 14px 24px;
+    background: var(--accent); color: var(--cream);
+    border: 0; cursor: pointer;
+    font: inherit; font-size: .82rem; letter-spacing: .12em; text-transform: uppercase;
+    border-radius: 4px;
+  }
+  .nl button:hover{ background: var(--cream); color: var(--accent);}
+
+  /* FOOTER */
+  footer{ background: var(--paper); border-top: 3px double var(--rule); padding: 48px 0 32px;}
+  .foot-row{ display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap;}
+  .foot-brand{ font-family: var(--serif); font-size: 1.6rem;}
+  .foot-brand em{ font-style: italic; color: var(--accent);}
+  .foot-links{ display: flex; gap: 24px; font-family: var(--mono); font-size: .76rem; letter-spacing: .12em; text-transform: uppercase;}
+  .foot-links a{ color: var(--ink-soft);}
+  .foot-links a:hover{ color: var(--accent);}
+  .foot-bottom{ margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--line); text-align: center; font-size: .8rem; color: var(--muted);}
+  .foot-bottom a{ color: var(--accent); text-decoration: underline;}
+
+  .reveal{ opacity: 0; transform: translateY(18px); transition: opacity .8s var(--ease), transform .8s var(--ease);}
+  .reveal.is-visible{ opacity: 1; transform: translateY(0);}
+  @media (prefers-reduced-motion: reduce){ .reveal{opacity:1; transform: none;} *,*::before,*::after{transition-duration: 0.001ms !important;}}
+</style>
+</head>
+<body>
+
+<div class="demo-banner">Demo · Branche: Magazin / Blog &nbsp;·&nbsp; <a href="../../index.html">← zur Pixelschneiderei</a></div>
+
+<a class="demo-exit" href="../../referenzen.html">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+  Demo verlassen
+</a>
+<style>
+  .demo-exit{ position: fixed; bottom: 24px; left: 24px; z-index: 100; display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; background: rgba(20,22,26,.92); color: #fff; border-radius: 999px; font-family: 'Inter', sans-serif; font-size: .82rem; font-weight: 500; letter-spacing: .04em; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,.1); box-shadow: 0 6px 20px rgba(0,0,0,.25); transition: transform .2s ease, background .2s ease; text-decoration: none;}
+  .demo-exit:hover{ transform: translateY(-2px); background: #c0392b;}
+  .demo-exit svg{ width: 14px; height: 14px;}
+  @media (max-width: 720px){ .demo-exit{ bottom: 16px; left: 16px; padding: 8px 14px; font-size: .78rem;}}
+</style>
+
+<header class="masthead">
+  <div class="mast-row">
+    <div class="masthead-meta">Ausgabe 47 &middot; Mai 2026</div>
+    <a href="#" class="masthead-brand">Kontur<em>.</em></a>
+    <a href="#nl" class="masthead-cta">Abonnieren</a>
+  </div>
+</header>
+
+<nav class="cat-nav">
+  <div class="cat-row">
+    <a href="#" class="is-active">Alle</a>
+    <a href="#">Handwerk</a>
+    <a href="#">Design</a>
+    <a href="#">Werkstatt</a>
+    <a href="#">Reportage</a>
+    <a href="#">Essay</a>
+    <a href="#">Kolumne</a>
+    <a href="#">Interview</a>
+  </div>
+</nav>
+
+<main>
+
+  <!-- HERO ARTICLE -->
+  <section class="hero-article">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-img reveal"></div>
+        <div class="reveal">
+          <span class="article-cat">Reportage</span>
+          <h1>Was im Stoff <em>bleibt,</em> wenn die Marke geht.</h1>
+          <p class="lead">
+            Wir besuchten f&uuml;nf alte M&auml;ntel in deutschen Schr&auml;nken und fragten ihre Besitzer, was die N&auml;hte zusammenh&auml;lt.
+          </p>
+          <div class="byline">
+            <strong>Helene Brandt</strong>
+            <span class="dot"></span>
+            <span>14. Mai 2026</span>
+            <span class="dot"></span>
+            <span>12 Min Lesezeit</span>
+          </div>
+          <a href="#" class="read-more">Weiterlesen &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ARTICLES GRID -->
+  <section class="articles">
+    <div class="container">
+      <div class="articles-head">
+        <h2>Aus der aktuellen Ausgabe</h2>
+        <a href="#">Archiv &rarr;</a>
+      </div>
+      <div class="articles-grid">
+        <article class="card card-1 reveal">
+          <div class="card-img"></div>
+          <span class="article-cat">Werkstatt</span>
+          <h3>Vom Schnittmuster zum Browser: Was Schneiderei und Code gemeinsam haben</h3>
+          <p>&Uuml;ber Pr&auml;zision, Maserung und das Recht auf eine zweite Naht.</p>
+          <div class="byline"><strong>Erik W.</strong><span class="dot"></span><span>09.05.</span></div>
+        </article>
+        <article class="card card-2 reveal">
+          <div class="card-img"></div>
+          <span class="article-cat">Essay</span>
+          <h3>Die Kunst, „nein" zu sagen, ohne unh&ouml;flich zu werden</h3>
+          <p>Manchmal ist die ehrlichste Empfehlung, kein Projekt zu starten.</p>
+          <div class="byline"><strong>Mira Rohr</strong><span class="dot"></span><span>03.05.</span></div>
+        </article>
+        <article class="card card-3 reveal">
+          <div class="card-img"></div>
+          <span class="article-cat">Reportage</span>
+          <h3>Drei Tage in einer Bayerischen Werkstatt</h3>
+          <p>Wir verbrachten 72 Stunden in einer Tischlerei und hörten zu.</p>
+          <div class="byline"><strong>Tom Bender</strong><span class="dot"></span><span>27.04.</span></div>
+        </article>
+        <article class="card card-4 reveal">
+          <div class="card-img"></div>
+          <span class="article-cat">Interview</span>
+          <h3>„Wir sind keine Bastelbude" &mdash; Gespr&auml;ch mit einer Webdesignerin</h3>
+          <p>&Uuml;ber Konzern-Erfahrung, Hand-Werk und faire Preise.</p>
+          <div class="byline"><strong>Lina Marlen</strong><span class="dot"></span><span>20.04.</span></div>
+        </article>
+        <article class="card card-5 reveal">
+          <div class="card-img"></div>
+          <span class="article-cat">Kolumne</span>
+          <h3>Warum jede Webseite mit einer Frage anfangen sollte</h3>
+          <p>Eine Verteidigung des langen, langweiligen Erstgespr&auml;chs.</p>
+          <div class="byline"><strong>Erik W.</strong><span class="dot"></span><span>14.04.</span></div>
+        </article>
+        <article class="card card-6 reveal">
+          <div class="card-img"></div>
+          <span class="article-cat">Design</span>
+          <h3>Sechs Schriften, die einer Webseite den Unterschied machen</h3>
+          <p>Variable Fonts, Italics und der Mut zum Wei&szlig;raum.</p>
+          <div class="byline"><strong>Selma Roth</strong><span class="dot"></span><span>06.04.</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- READING SAMPLE -->
+  <section class="reading">
+    <div class="container">
+      <div class="reading-head reveal">
+        <div class="kicker">Lese-Probe</div>
+        <h2>So sieht ein Artikel im Lesemodus aus.</h2>
+      </div>
+      <div class="article-mock reveal">
+        <span class="article-cat">Werkstatt</span>
+        <h3>Vom Schnittmuster zum Browser: <em>Was Schneiderei und Code</em> gemeinsam haben.</h3>
+        <div class="byline">
+          <strong>Erik Weisser</strong>
+          <span class="dot"></span>
+          <span>09. Mai 2026</span>
+          <span class="dot"></span>
+          <span>8 Min Lesezeit</span>
+        </div>
+        <p>Wer einmal einem Schneider beim Maßnehmen zugeschaut hat, der weiß, wie viel Zeit zwischen den Strichen vergeht. Erst der Hals. Dann die Schulter. Dann das Mittelmaß über der Brust. Jede Zahl mit einem leisen Hmm. quittiert, mit einem Stirnrunzeln korrigiert, mit einem zufriedenen So. abgehakt.</p>
+        <blockquote>Ein guter Schnitt entsteht nicht aus dem Stoff &mdash; sondern aus den Pausen zwischen den Maßen.</blockquote>
+        <p>Das Internet hat dieselbe Logik. Eine Webseite, die in einer Stunde steht, sitzt nie. Sie spannt an den Schultern, wirft Falten in der Mitte und l&auml;uft am Saum unten lose aus. Das w&auml;re kein Drama, w&auml;ren wir bei einem Bademantel &mdash; aber wir sind bei einem Anzug.</p>
+        <p>Wer sich also vornimmt, einen Auftritt im Web zu wagen, der sollte mit den Pausen anfangen, nicht mit dem Stoff. &hellip;</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CMS PREVIEW -->
+  <section class="cms">
+    <div class="container">
+      <div class="cms-head reveal">
+        <div class="kicker">Hinter den Kulissen</div>
+        <h2>Das <em>leichtgewichtige</em> CMS.</h2>
+        <p>Kein WordPress, kein Login-Wirrwarr. Ein schlanker Editor, der genau das tut, was Sie brauchen &mdash; und sonst nichts. So sieht der Schreibmodus aus.</p>
+      </div>
+      <div class="editor reveal">
+        <div class="editor-bar">
+          <div class="editor-dots"><i></i><i></i><i></i></div>
+          <div class="url">kontur.demo / admin / artikel / vom-schnittmuster-zum-browser</div>
+          <div class="save-btn">Gespeichert</div>
+        </div>
+        <div class="editor-grid">
+          <aside class="editor-side">
+            <h4>Inhalte</h4>
+            <ul>
+              <li class="is-active">Artikel</li>
+              <li>Seiten</li>
+              <li>Kategorien</li>
+              <li>Medien</li>
+              <li>Autoren</li>
+            </ul>
+            <h4>Aktuelle Ausgabe</h4>
+            <ul>
+              <li class="is-active">Vom Schnittmuster zum&hellip;</li>
+              <li>Die Kunst, „nein" zu sagen</li>
+              <li>Drei Tage in einer Werkstatt</li>
+              <li>Interview: Webdesignerin</li>
+              <li>Warum jede Webseite&hellip;</li>
+            </ul>
+            <div class="new">+ Neuer Artikel</div>
+          </aside>
+
+          <div class="editor-main">
+            <div class="field">
+              <label>Kategorie</label>
+              <input type="text" value="Werkstatt"/>
+            </div>
+            <div class="field">
+              <label>Titel</label>
+              <input type="text" class="title-field" value="Vom Schnittmuster zum Browser"/>
+            </div>
+            <div class="field">
+              <label>Untertitel</label>
+              <input type="text" value="Was Schneiderei und Code gemeinsam haben"/>
+            </div>
+            <div class="field">
+              <label>Inhalt</label>
+              <div class="editor-toolbar">
+                <button title="Fett"><strong>B</strong></button>
+                <button title="Kursiv"><em>I</em></button>
+                <button title="Link">&#x1F517;</button>
+                <span class="sep"></span>
+                <button>H2</button>
+                <button>H3</button>
+                <span class="sep"></span>
+                <button title="Zitat">&ldquo; &rdquo;</button>
+                <button title="Bild">&#x1F5BC;</button>
+                <button title="Liste">&bull;&bull;&bull;</button>
+              </div>
+              <textarea>Wer einmal einem Schneider beim Maßnehmen zugeschaut hat, der weiß, wie viel Zeit zwischen den Strichen vergeht. Erst der Hals. Dann die Schulter. Dann das Mittelmaß über der Brust. Jede Zahl mit einem leisen Hmm. quittiert, mit einem Stirnrunzeln korrigiert, mit einem zufriedenen So. abgehakt.
+
+> Ein guter Schnitt entsteht nicht aus dem Stoff — sondern aus den Pausen zwischen den Maßen.
+
+Das Internet hat dieselbe Logik. Eine Webseite, die in einer Stunde steht, sitzt nie. Sie spannt an den Schultern, wirft Falten in der Mitte und läuft am Saum unten lose aus.</textarea>
+            </div>
+          </div>
+
+          <aside class="editor-meta">
+            <h4>Meta</h4>
+            <div class="meta-row">
+              <strong>Autor</strong>
+              Erik Weisser
+            </div>
+            <div class="meta-row">
+              <strong>Geplant</strong>
+              09. Mai 2026 &middot; 06:00
+            </div>
+            <div class="meta-row">
+              <strong>Status</strong>
+              <span class="status-pill">Veröffentlicht</span>
+            </div>
+            <div class="meta-row">
+              <strong>Lesezeit</strong>
+              ~ 8 Minuten
+            </div>
+            <div class="meta-row">
+              <strong>Tags</strong>
+              <span class="tag">handwerk</span><span class="tag">code</span><span class="tag">essay</span>
+            </div>
+            <div class="meta-row">
+              <strong>SEO</strong>
+              <span class="status-pill">Optimiert</span>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section class="nl" id="nl">
+    <div class="container narrow">
+      <div class="kicker">Abonnement</div>
+      <h2>Jeden Donnerstag<br/>ein <em>frischer Artikel</em> per Mail.</h2>
+      <p>Eine Ausgabe pro Woche, sauber getextet, ohne Tracker, jederzeit abbestellbar. Kein Werbe-M&uuml;ll.</p>
+      <form onsubmit="event.preventDefault(); alert('Demo: Anmeldung nicht aktiv.');">
+        <input type="email" placeholder="ihre@adresse.de" required/>
+        <button type="submit">Abonnieren</button>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="foot-row">
+      <div class="foot-brand">Kontur<em>.</em></div>
+      <nav class="foot-links">
+        <a href="#">Archiv</a>
+        <a href="#">Kategorien</a>
+        <a href="#">Autor:innen</a>
+        <a href="#">Impressum</a>
+      </nav>
+    </div>
+    <div class="foot-bottom">
+      Demo · Kontur ist ein fiktiver Beispielauftritt der <a href="../../index.html">Pixelschneiderei</a>.
+    </div>
+  </div>
+</footer>
+
+<script>
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if (e.isIntersecting){ e.target.classList.add('is-visible'); io.unobserve(e.target);}});
+  }, { threshold: 0.10, rootMargin: "0px 0px -8% 0px" });
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+</script>
+<script src="../../assets/demo-exit.js"></script>
+</body>
+</html>

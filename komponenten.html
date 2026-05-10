@@ -4,12 +4,22 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <meta name="theme-color" content="#ffffff" />
-<title>Komponenten – Pixelschneiderei</title>
-<meta name="description" content="Einzelne Bausteine für Ihre Webseite: Kontaktformulare, CTAs, WhatsApp-Integration, Karten, Newsletter, Buchungen – integrierbar in jeden Auftritt." />
+<title>Komponenten &amp; Bausteine für Webseiten | Pixelschneiderei</title>
+<meta name="description" content="Wiederverwendbare Web-Bausteine: Kontaktformular, Bilder-Carousel, Vorher/Nachher-Slider, Lightbox, Audio-Player, Bento-Galerie, Karten, Newsletter, FAQ. Live-Demos zum Anschauen." />
+<meta name="keywords" content="Webseiten Komponenten, Kontaktformular, Bilder Carousel, Vorher Nachher Slider, Lightbox Galerie, Audio Player, Newsletter Anmeldung, OpenStreetMap einbinden, FAQ Akkordeon" />
+<link rel="canonical" href="https://pixelschneiderei.de/komponenten.html" />
+
+<meta property="og:title" content="Komponenten &amp; Bausteine für Webseiten | Pixelschneiderei" />
+<meta property="og:description" content="Wiederverwendbare Web-Bausteine: Carousel, Vorher/Nachher, Lightbox, Audio-Player, Galerie, Karten, Newsletter, FAQ. Live-Demos zum Anschauen." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://pixelschneiderei.de/komponenten.html" />
+<meta property="og:image" content="https://pixelschneiderei.de/assets/og-komponenten.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:locale" content="de_DE" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://pixelschneiderei.de/assets/og-komponenten.jpg" />
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23ffffff'/%3E%3Cg fill='%230f0f10'%3E%3Crect x='6' y='6' width='4' height='4'/%3E%3Crect x='14' y='6' width='4' height='4'/%3E%3Crect x='22' y='6' width='4' height='4'/%3E%3Crect x='6' y='14' width='4' height='4'/%3E%3Crect x='14' y='14' width='4' height='4' fill='%23b8392a'/%3E%3Crect x='6' y='22' width='4' height='4'/%3E%3Crect x='22' y='22' width='4' height='4'/%3E%3C/g%3E%3C/svg%3E" />
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..700,30..100&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="assets/style.css"/>
 <style>
   .toc{
@@ -209,35 +219,35 @@
   .slot.is-active{ background: var(--thread); color: #fff; border-color: var(--thread);}
   .slot.is-taken{ opacity: .35; text-decoration: line-through; cursor: not-allowed;}
 
-  /* Map placeholder */
-  .map{
-    aspect-ratio: 16/9;
-    background:
-      linear-gradient(45deg, var(--paper-2) 25%, transparent 25%),
-      linear-gradient(-45deg, var(--paper-2) 25%, transparent 25%),
-      linear-gradient(45deg, transparent 75%, var(--paper-2) 75%),
-      linear-gradient(-45deg, transparent 75%, var(--paper-2) 75%),
-      var(--paper);
-    background-size: 40px 40px;
-    background-position: 0 0, 0 20px, 20px -20px, -20px 0;
+  /* Map (live OpenStreetMap embed) */
+  .map-wrap{
+    position: relative;
     border: 1px solid var(--line);
     border-radius: var(--r-md);
-    position: relative;
+    overflow: hidden;
+    background: var(--paper-2);
   }
-  .map-pin{
-    position: absolute; left: 50%; top: 50%; transform: translate(-50%, -100%);
-    color: var(--thread);
-    filter: drop-shadow(0 4px 8px rgba(184,57,42,.25));
+  .map-wrap iframe{
+    display: block;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 16/9;
+    border: 0;
+    filter: saturate(.9);
   }
-  .map-pin svg{ width: 36px; height: 36px;}
-  .map-bubble{
-    position: absolute; left: 50%; top: 50%;
-    transform: translate(-50%, -130%);
-    margin-top: -36px;
-    background: var(--surface); border: 1px solid var(--line);
-    padding: 10px 14px; border-radius: var(--r-md);
-    font-size: .85rem; white-space: nowrap;
-    box-shadow: var(--shadow-sm);
+  .map-caption{
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 12px 16px;
+    background: var(--surface);
+    border-top: 1px solid var(--line);
+    font-size: .88rem;
+    flex-wrap: wrap; gap: 8px;
+  }
+  .map-caption strong{ color: var(--ink);}
+  .map-caption a{
+    color: var(--thread); font-family: var(--mono);
+    font-size: .76rem; letter-spacing: .12em; text-transform: uppercase;
+    text-decoration: underline; text-underline-offset: 3px;
   }
 
   /* Notice / banner */
@@ -291,6 +301,282 @@
   .code .c{ color: #888;}
   .code .k{ color: var(--thread-2);}
   .code .s{ color: #b8d8ae;}
+
+  /* CAROUSEL */
+  .carousel{ position: relative;}
+  .carousel-track{
+    display: flex; gap: 12px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    border-radius: var(--r-md);
+  }
+  .carousel-track::-webkit-scrollbar{ display: none;}
+  .carousel-slide{
+    flex: 0 0 100%;
+    aspect-ratio: 16/9;
+    scroll-snap-align: center;
+    border-radius: var(--r-md);
+    position: relative;
+    display: flex; align-items: end;
+  }
+  .cs-cap{
+    position: absolute; bottom: 16px; left: 18px;
+    color: #fff; font-family: var(--serif); font-style: italic; font-size: 1.2rem;
+    text-shadow: 0 1px 4px rgba(0,0,0,.3);
+  }
+  .carousel-arrow{
+    position: absolute; top: 50%; transform: translateY(-50%);
+    width: 44px; height: 44px; border-radius: 50%;
+    background: rgba(255,255,255,.92);
+    border: 1px solid var(--line);
+    display: grid; place-items: center;
+    cursor: pointer;
+    transition: background .2s ease, transform .2s ease;
+  }
+  .carousel-arrow:hover{ background: var(--ink); color: var(--paper); transform: translateY(-50%) scale(1.05);}
+  .carousel-arrow svg{ width: 18px; height: 18px;}
+  .carousel-prev{ left: 16px;}
+  .carousel-next{ right: 16px;}
+  .carousel-dots{
+    display: flex; justify-content: center; gap: 8px;
+    margin-top: 16px;
+  }
+  .carousel-dots i{
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--line);
+    cursor: pointer;
+    transition: background .2s ease, transform .2s ease;
+  }
+  .carousel-dots i.is-active{ background: var(--thread); transform: scale(1.3);}
+
+  /* BENTO-GALERIE */
+  .bento-gallery{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 160px;
+    gap: 10px;
+  }
+  @media (max-width: 600px){ .bento-gallery{ grid-template-columns: repeat(2, 1fr); grid-auto-rows: 140px;}}
+  .bento-tile{
+    background: center/cover no-repeat;
+    background-image: linear-gradient(135deg, var(--paper-2), var(--ink));
+    border-radius: var(--r-md);
+    overflow: hidden;
+    position: relative;
+    cursor: zoom-in;
+    transition: opacity .25s ease, transform .25s ease;
+  }
+  .bento-tile::after{
+    content: attr(data-cap);
+    position: absolute; left: 14px; bottom: 12px;
+    color: #fff;
+    font-family: var(--mono); font-size: .72rem; letter-spacing: .12em; text-transform: uppercase;
+    text-shadow: 0 1px 4px rgba(0,0,0,.55);
+    opacity: 0; transition: opacity .25s ease;
+  }
+  .bento-tile:hover::after{ opacity: 1;}
+  .bento-gallery:hover .bento-tile{ opacity: .55;}
+  .bento-gallery:hover .bento-tile:hover{ opacity: 1; transform: scale(1.01);}
+  .bg-1{ grid-column: span 2; grid-row: span 2; background-image: url('assets/img/komponenten/gallery-1.jpg'), linear-gradient(135deg, #d4b88f, #6e5538);}
+  .bg-2{ background-image: url('assets/img/komponenten/gallery-2.jpg'), linear-gradient(135deg, #b8392a, #2a1208);}
+  .bg-3{ background-image: url('assets/img/komponenten/gallery-3.jpg'), linear-gradient(135deg, #c8d4cc, #2c3f37);}
+  .bg-4{ grid-column: span 2; background-image: url('assets/img/komponenten/gallery-4.jpg'), linear-gradient(135deg, #d8c194, #a87b3c);}
+  .bg-5{ background-image: url('assets/img/komponenten/gallery-5.jpg'), linear-gradient(135deg, #c4a87d, #2c2419);}
+  @media (max-width: 600px){ .bg-1, .bg-4{ grid-column: span 2;} .bg-1{ grid-row: span 1;}}
+
+  /* AUDIO-PLAYER */
+  .ap{
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 20px;
+    padding: 20px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--r-lg);
+    box-shadow: var(--shadow-sm);
+    align-items: center;
+  }
+  @media (max-width: 600px){ .ap{ grid-template-columns: 80px 1fr; gap: 16px; padding: 16px;}}
+  .ap-cover{
+    aspect-ratio: 1;
+    background:
+      url('assets/img/komponenten/track-cover.jpg') center/cover no-repeat,
+      linear-gradient(135deg, var(--ink) 0%, var(--thread) 100%);
+    border-radius: var(--r-md);
+    position: relative;
+    overflow: hidden;
+  }
+  .ap-cover::after{
+    content: ""; position: absolute; left: 8px; bottom: 8px;
+    width: 24px; height: 24px;
+    background: rgba(255,255,255,.92);
+    -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'><path d='M12 3v9.5l7 4-1 1.7-8-4.6V3h2z' stroke='currentColor' stroke-width='2' fill='none'/></svg>") center/contain no-repeat;
+            mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'><path d='M12 3v9.5l7 4-1 1.7-8-4.6V3h2z' stroke='currentColor' stroke-width='2' fill='none'/></svg>") center/contain no-repeat;
+    background: rgba(255,255,255,.9);
+    display: none; /* tiny logo placeholder, optional */
+  }
+  .ap-body{ display: flex; flex-direction: column; gap: 12px;}
+  .ap-meta strong{ display: block; font-family: var(--serif); font-size: 1.2rem;}
+  .ap-meta span{ display: block; font-family: var(--mono); font-size: .76rem; letter-spacing: .04em; color: var(--muted); margin-top: 2px;}
+  .ap-waveform{
+    display: flex; align-items: center; gap: 2px;
+    height: 40px;
+    cursor: pointer;
+  }
+  .ap-waveform i{
+    flex: 1;
+    background: var(--line);
+    border-radius: 1px;
+    min-width: 2px;
+    transition: background .15s ease;
+  }
+  .ap-waveform i.is-played{ background: var(--thread);}
+  .ap-bottom{ display: flex; align-items: center; gap: 14px;}
+  .ap-play{
+    width: 40px; height: 40px; border-radius: 50%;
+    background: var(--ink); color: var(--paper);
+    border: 0; cursor: pointer;
+    display: grid; place-items: center;
+    transition: background .2s ease, transform .2s ease;
+  }
+  .ap-play:hover{ background: var(--thread); transform: scale(1.05);}
+  .ap-play svg{ width: 16px; height: 16px;}
+  .ap-time{ font-family: var(--mono); font-size: .82rem; color: var(--muted); letter-spacing: .04em;}
+
+  /* VORHER / NACHHER */
+  .ba-wrap{
+    position: relative; aspect-ratio: 16/9;
+    border-radius: var(--r-md); overflow: hidden;
+    user-select: none;
+  }
+  .ba-img{
+    position: absolute; inset: 0;
+    background: center/cover no-repeat;
+  }
+  .ba-after{
+    background-image: linear-gradient(135deg, #d4b88f, #6e5538);
+  }
+  .ba-before{
+    width: 50%;
+    background-image: linear-gradient(135deg, #2a2a2c, #6b6b70);
+    will-change: width;
+  }
+  .ba-label{
+    position: absolute; top: 16px;
+    padding: 6px 12px;
+    background: rgba(255,255,255,.92);
+    color: var(--ink);
+    border-radius: 999px;
+    font-family: var(--mono); font-size: .72rem; letter-spacing: .14em; text-transform: uppercase;
+  }
+  .ba-label-after{ right: 16px;}
+  .ba-label-before{ left: 16px;}
+  .ba-handle{
+    position: absolute; top: 0; bottom: 0; left: 50%;
+    width: 2px;
+    transform: translateX(-1px);
+    pointer-events: none;
+    will-change: left;
+  }
+  .ba-line{
+    position: absolute; top: 0; bottom: 0; left: 0; right: 0;
+    background: rgba(255,255,255,.95);
+  }
+  .ba-knob{
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 44px; height: 44px;
+    background: rgba(255,255,255,.95);
+    border-radius: 50%;
+    display: grid; place-items: center;
+    color: var(--ink);
+    box-shadow: 0 4px 12px rgba(0,0,0,.25);
+    pointer-events: none;
+  }
+  .ba-knob svg{ width: 18px; height: 18px;}
+  .ba-slider{
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    opacity: 0;
+    cursor: ew-resize;
+  }
+
+  /* TESTIMONIALS */
+  .quotes{ position: relative; max-width: 56ch; margin: 0 auto; min-height: 180px;}
+  .q{
+    position: absolute; top: 0; left: 0; right: 0;
+    opacity: 0; transition: opacity .6s ease;
+    font-family: var(--serif); font-style: italic;
+    font-size: clamp(1.2rem, 2vw, 1.6rem); line-height: 1.5;
+    color: var(--ink);
+    pointer-events: none;
+  }
+  .q.is-active{ opacity: 1; position: relative; pointer-events: auto;}
+  .q cite{ display: block; margin-top: 18px; font-style: normal; font-family: var(--sans);
+    font-size: .82rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted);
+  }
+  .quotes-dots{ display: flex; justify-content: center; gap: 8px; margin-top: 24px;}
+  .quotes-dots i{
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--line);
+    cursor: pointer;
+    transition: background .2s ease, transform .2s ease;
+  }
+  .quotes-dots i.is-active{ background: var(--thread); transform: scale(1.3);}
+
+  /* LIGHTBOX */
+  .lb-grid{
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
+  }
+  @media (max-width: 600px){ .lb-grid{ grid-template-columns: repeat(2, 1fr);}}
+  .lb-thumb{
+    aspect-ratio: 1;
+    border: 0; padding: 0; cursor: zoom-in;
+    border-radius: var(--r-md);
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
+  .lb-thumb:hover{ transform: scale(1.02); box-shadow: 0 6px 18px rgba(0,0,0,.15);}
+  .lb-overlay{
+    position: fixed; inset: 0; z-index: 200;
+    background: rgba(15,15,16,.92);
+    backdrop-filter: blur(10px);
+    display: none; place-items: center;
+    padding: 24px;
+  }
+  .lb-overlay.is-open{ display: grid;}
+  .lb-content{
+    width: min(800px, 90vw); aspect-ratio: 4/3;
+    border-radius: 8px;
+    background: center/cover no-repeat;
+  }
+  .lb-close{
+    position: absolute; top: 24px; right: 24px;
+    width: 44px; height: 44px; border-radius: 50%;
+    background: rgba(255,255,255,.12);
+    color: #fff; border: 0; cursor: pointer;
+    font-size: 1.5rem; line-height: 1;
+    transition: background .2s ease;
+  }
+  .lb-close:hover{ background: rgba(255,255,255,.22);}
+  .lb-nav{
+    position: absolute; top: 50%; transform: translateY(-50%);
+    width: 48px; height: 48px; border-radius: 50%;
+    background: rgba(255,255,255,.12); color: #fff;
+    border: 0; cursor: pointer;
+    display: grid; place-items: center;
+    transition: background .2s ease;
+  }
+  .lb-nav:hover{ background: rgba(255,255,255,.22);}
+  .lb-nav svg{ width: 22px; height: 22px;}
+  .lb-nav-prev{ left: 24px;}
+  .lb-nav-next{ right: 24px;}
+  .lb-counter{
+    position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%);
+    color: rgba(255,255,255,.6);
+    font-family: var(--mono); font-size: .8rem; letter-spacing: .12em;
+  }
 
   /* Final CTA */
   .final-cta{
@@ -352,6 +638,12 @@
         <a href="#cta">CTAs &amp; Buttons</a>
         <a href="#whatsapp">WhatsApp</a>
         <a href="#buchung">Termin­buchung</a>
+        <a href="#carousel">Bilder-Carousel</a>
+        <a href="#galerie">Bilder-Galerie</a>
+        <a href="#vorhernachher">Vorher / Nachher</a>
+        <a href="#stimmen">Stimmen-Slider</a>
+        <a href="#lightbox">Lightbox</a>
+        <a href="#player">Audio-Player</a>
         <a href="#newsletter">Newsletter</a>
         <a href="#karten">Karten</a>
         <a href="#hinweise">Hinweise</a>
@@ -506,6 +798,176 @@
         </div>
       </div>
 
+      <!-- BILDER-CAROUSEL -->
+      <div class="demo-section" id="carousel">
+        <div class="demo-head">
+          <span class="eyebrow">05 &middot; Bilder-Carousel</span>
+          <h2>Bilder-<em>Carousel.</em></h2>
+          <p>Touch-fähig, mit Tastatur-Navigation und automatischer Wiedergabe. Snap-Verhalten ohne Library, mit Indikator-Punkten und Pfeilen.</p>
+        </div>
+        <div class="demo-stage demo-stage--soft">
+          <div class="carousel" id="carousel-1">
+            <div class="carousel-track" id="carousel-track">
+              <div class="carousel-slide" style="background: linear-gradient(135deg, #d4b88f, #6e5538);">
+                <span class="cs-cap">Ein Tag in Tirol</span>
+              </div>
+              <div class="carousel-slide" style="background: linear-gradient(135deg, #c4a87d, #2c2419);">
+                <span class="cs-cap">Standesamt &amp; Hinterhof</span>
+              </div>
+              <div class="carousel-slide" style="background: linear-gradient(135deg, #d8c0a0, #84776a);">
+                <span class="cs-cap">Schloss Eckartsau</span>
+              </div>
+              <div class="carousel-slide" style="background: linear-gradient(135deg, #b59a6b, #2c2419);">
+                <span class="cs-cap">Almh&uuml;tte M&auml;rz</span>
+              </div>
+              <div class="carousel-slide" style="background: linear-gradient(135deg, #c4a87d, #4a3722);">
+                <span class="cs-cap">Wiesenblumen-Strau&szlig;</span>
+              </div>
+            </div>
+            <button class="carousel-arrow carousel-prev" aria-label="Vorheriges Bild">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg>
+            </button>
+            <button class="carousel-arrow carousel-next" aria-label="N&auml;chstes Bild">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
+            <div class="carousel-dots" id="carousel-dots"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BILDER-GALERIE -->
+      <div class="demo-section" id="galerie">
+        <div class="demo-head">
+          <span class="eyebrow">06 &middot; Bilder-Galerie</span>
+          <h2>Bento-<em>Galerie.</em></h2>
+          <p>Asymmetrisches Bento-Grid mit 5 gemischten Größen. Auf Mobile fällt es zur 2-spaltigen Stapelung. Hover dimmt die anderen Bilder, damit der Fokus sitzt.</p>
+        </div>
+        <div class="demo-stage">
+          <div class="bento-gallery">
+            <div class="bento-tile bg-1" data-cap="Werkstatt &middot; Lautertal"></div>
+            <div class="bento-tile bg-2" data-cap="Faden &middot; Detail"></div>
+            <div class="bento-tile bg-3" data-cap="Bildschirm &middot; Code"></div>
+            <div class="bento-tile bg-4" data-cap="Skizze &middot; Konzept"></div>
+            <div class="bento-tile bg-5" data-cap="Farbtafeln"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VORHER / NACHHER -->
+      <div class="demo-section" id="vorhernachher">
+        <div class="demo-head">
+          <span class="eyebrow">06 &middot; Bild-Vergleich</span>
+          <h2>Vorher / <em>Nachher.</em></h2>
+          <p>Ein Schieber, der zwei Bilder &uuml;berlagert. Perfekt f&uuml;r Sanierung, Bildbearbeitung, Webseiten-Relaunches, Fotografie-Edits.</p>
+        </div>
+        <div class="demo-stage demo-stage--soft">
+          <div class="ba-wrap" id="ba-1">
+            <div class="ba-img ba-after">
+              <span class="ba-label ba-label-after">Nachher</span>
+            </div>
+            <div class="ba-img ba-before" id="ba-before">
+              <span class="ba-label ba-label-before">Vorher</span>
+            </div>
+            <div class="ba-handle" id="ba-handle">
+              <div class="ba-line"></div>
+              <div class="ba-knob">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 18l-6-6 6-6M15 6l6 6-6 6"/></svg>
+              </div>
+            </div>
+            <input type="range" min="0" max="100" value="50" id="ba-slider" class="ba-slider" aria-label="Vergleichs-Schieber" />
+          </div>
+        </div>
+      </div>
+
+      <!-- STIMMEN-SLIDER -->
+      <div class="demo-section" id="stimmen">
+        <div class="demo-head">
+          <span class="eyebrow">07 &middot; Testimonials</span>
+          <h2>Stimmen-<em>Slider.</em></h2>
+          <p>Ein ruhiges Karussell f&uuml;r Kunden-Stimmen. Wechselt automatisch alle 6 Sekunden, h&auml;lt bei Hover, mit Indikator-Punkten.</p>
+        </div>
+        <div class="demo-stage demo-stage--soft" style="text-align: center;">
+          <div class="quotes" id="quotes">
+            <blockquote class="q is-active">
+              &bdquo;Frau Mahler hat unsere Trennung mit einer Ruhe begleitet, die ich nicht f&uuml;r m&ouml;glich gehalten h&auml;tte."
+              <cite>&mdash; Mandantin, anonymisiert</cite>
+            </blockquote>
+            <blockquote class="q">
+              &bdquo;Der Auftritt sieht aus, als h&auml;tten wir das Doppelte bezahlt. Genau das wollten wir."
+              <cite>&mdash; Inhaber, Manufaktur</cite>
+            </blockquote>
+            <blockquote class="q">
+              &bdquo;Mein Tisch ist seit 1981 bei mir. Bei Holzgeist bekommt er gerade einen neuen Lack &mdash; nicht den ersten."
+              <cite>&mdash; Frau M., Stammkundin</cite>
+            </blockquote>
+            <blockquote class="q">
+              &bdquo;Wir haben innerhalb von zwei Wochen mehr Anfragen bekommen als im ganzen letzten Jahr."
+              <cite>&mdash; Inhaberin, Caf&eacute;</cite>
+            </blockquote>
+          </div>
+          <div class="quotes-dots" id="quotes-dots" aria-hidden="true">
+            <i class="is-active"></i><i></i><i></i><i></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- LIGHTBOX -->
+      <div class="demo-section" id="lightbox">
+        <div class="demo-head">
+          <span class="eyebrow">08 &middot; Lightbox</span>
+          <h2>Lightbox-<em>Galerie.</em></h2>
+          <p>Klick auf ein Bild &mdash; es &ouml;ffnet sich gro&szlig; in einem Overlay. Schlie&szlig;en mit Esc oder Klick au&szlig;erhalb. Pfeiltasten f&uuml;r Vor/Zur&uuml;ck.</p>
+        </div>
+        <div class="demo-stage">
+          <div class="lb-grid" id="lb-grid">
+            <button class="lb-thumb" data-idx="0" style="background: linear-gradient(135deg, #d4b88f, #6e5538);"></button>
+            <button class="lb-thumb" data-idx="1" style="background: linear-gradient(135deg, #b59a6b, #2c2419);"></button>
+            <button class="lb-thumb" data-idx="2" style="background: linear-gradient(135deg, #d8c0a0, #84776a);"></button>
+            <button class="lb-thumb" data-idx="3" style="background: linear-gradient(135deg, #c4a87d, #2c2419);"></button>
+            <button class="lb-thumb" data-idx="4" style="background: linear-gradient(135deg, #d4b88f, #4a3722);"></button>
+            <button class="lb-thumb" data-idx="5" style="background: linear-gradient(135deg, #b59a6b, #6e5538);"></button>
+          </div>
+        </div>
+        <div class="lb-overlay" id="lb-overlay" aria-hidden="true">
+          <button class="lb-close" id="lb-close" aria-label="Schlie&szlig;en">&times;</button>
+          <button class="lb-nav lb-nav-prev" id="lb-prev" aria-label="Vorheriges Bild">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <div class="lb-content" id="lb-content"></div>
+          <button class="lb-nav lb-nav-next" id="lb-next" aria-label="N&auml;chstes Bild">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+          <div class="lb-counter" id="lb-counter">1 / 6</div>
+        </div>
+      </div>
+
+      <!-- AUDIO-PLAYER -->
+      <div class="demo-section" id="player">
+        <div class="demo-head">
+          <span class="eyebrow">10 &middot; Audio-Player</span>
+          <h2>Audio-<em>Player.</em></h2>
+          <p>Inline-Player für Sets, Mixes, Podcasts oder Audio-Snippets. Mit Cover, Wellenform-Vorschau, Play/Pause, Progress und Track-Info. Klickbar &amp; tastatur-bedienbar.</p>
+        </div>
+        <div class="demo-stage demo-stage--soft">
+          <div class="ap" id="ap">
+            <div class="ap-cover"></div>
+            <div class="ap-body">
+              <div class="ap-meta">
+                <strong>Sonnendeck Sunset</strong>
+                <span>Pixelschneiderei &middot; Demo-Track</span>
+              </div>
+              <div class="ap-waveform" id="ap-wave"></div>
+              <div class="ap-bottom">
+                <button class="ap-play" id="ap-play" aria-label="Abspielen">
+                  <svg viewBox="0 0 24 24" fill="currentColor" id="ap-play-icon"><path d="M8 5v14l11-7z"/></svg>
+                </button>
+                <span class="ap-time" id="ap-time">00:00 / 03:42</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- NEWSLETTER -->
       <div class="demo-section" id="newsletter">
         <div class="demo-head">
@@ -527,15 +989,20 @@
       <!-- KARTEN -->
       <div class="demo-section" id="karten">
         <div class="demo-head">
-          <span class="eyebrow">06 · Karten &amp; Routing</span>
-          <h2>Karten – <em>datenschutz­freundlich.</em></h2>
-          <p>OpenStreetMap statt Google Maps. Auf Wunsch mit Anfahrtshinweisen, Parkmöglichkeiten und einem Klick zur Routenplanung.</p>
+          <span class="eyebrow">10 &middot; Karten &amp; Routing</span>
+          <h2>Karten &mdash; <em>datenschutz&shy;freundlich.</em></h2>
+          <p>OpenStreetMap statt Google Maps. Kein Cookie-Tracking, kein Drittanbieter-Skript &mdash; und f&uuml;r die meisten Einsatzzwecke v&ouml;llig ausreichend. Hier echt eingebunden auf den Standort der Pixelschneiderei.</p>
         </div>
         <div class="demo-stage demo-stage--soft">
-          <div class="map">
-            <div class="map-bubble">Beispielstraße 12 · 0000 Musterstadt</div>
-            <div class="map-pin">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8 2 5 5 5 9c0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>
+          <div class="map-wrap">
+            <iframe
+              src="https://www.openstreetmap.org/export/embed.html?bbox=10.9755%2C50.2855%2C11.0095%2C50.3015&amp;layer=mapnik&amp;marker=50.2935%2C10.9925"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Karte: Am Hang 1, 96486 Lautertal"></iframe>
+            <div class="map-caption">
+              <span><strong>Pixelschneiderei</strong> &middot; Am Hang 1 &middot; 96486 Lautertal</span>
+              <a href="https://www.openstreetmap.org/?mlat=50.2935&amp;mlon=10.9925#map=15/50.2935/10.9925" target="_blank" rel="noopener">Auf OpenStreetMap &ouml;ffnen &rarr;</a>
             </div>
           </div>
         </div>
@@ -623,11 +1090,222 @@
     </div>
     <div class="foot-bottom">
       <span>© <span id="year">2026</span> Pixelschneiderei</span>
-      <span>Mit Sorgfalt genäht.</span>
+      <span class="foot-signature"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="6" y1="18" x2="18" y2="6"/><circle cx="17" cy="7" r="1.4"/><path d="M15.5 6.5C13 5 10.5 6.5 11 9.5"/></svg>Mit Liebe geschneidert @ <a href="https://pixelschneiderei.de/">pixelschneiderei.de</a></span>
     </div>
   </div>
 </footer>
 
 <script src="assets/site.js"></script>
+<script>
+/* ============ CAROUSEL ============ */
+(function(){
+  var car = document.getElementById('carousel-1');
+  if (!car) return;
+  var track = document.getElementById('carousel-track');
+  var slides = track.querySelectorAll('.carousel-slide');
+  var dotsRoot = document.getElementById('carousel-dots');
+  var prev = car.querySelector('.carousel-prev');
+  var next = car.querySelector('.carousel-next');
+
+  // Build dots
+  slides.forEach(function(_, i){
+    var d = document.createElement('i');
+    if (i === 0) d.classList.add('is-active');
+    d.addEventListener('click', function(){ go(i); });
+    dotsRoot.appendChild(d);
+  });
+  var dots = dotsRoot.querySelectorAll('i');
+
+  function current(){
+    var c = track.scrollLeft + track.clientWidth / 2;
+    var best = 0, bestDist = Infinity;
+    slides.forEach(function(s, i){
+      var sc = s.offsetLeft + s.offsetWidth / 2;
+      var d = Math.abs(sc - c);
+      if (d < bestDist){ bestDist = d; best = i; }
+    });
+    return best;
+  }
+  function go(i){
+    track.scrollTo({ left: slides[i].offsetLeft - 0, behavior: 'smooth' });
+  }
+  function update(){
+    var i = current();
+    dots.forEach(function(d, j){ d.classList.toggle('is-active', i === j); });
+  }
+  track.addEventListener('scroll', update, {passive: true});
+  prev.addEventListener('click', function(){
+    var i = current();
+    go(Math.max(0, i - 1));
+  });
+  next.addEventListener('click', function(){
+    var i = current();
+    go(Math.min(slides.length - 1, i + 1));
+  });
+
+  // Auto-play
+  var auto = setInterval(function(){
+    var i = current();
+    go(i + 1 >= slides.length ? 0 : i + 1);
+  }, 5000);
+  car.addEventListener('mouseenter', function(){ clearInterval(auto); });
+})();
+
+/* ============ VORHER / NACHHER ============ */
+(function(){
+  var slider = document.getElementById('ba-slider');
+  var before = document.getElementById('ba-before');
+  var handle = document.getElementById('ba-handle');
+  if (!slider || !before || !handle) return;
+  function update(){
+    var v = slider.value;
+    before.style.width = v + '%';
+    handle.style.left = v + '%';
+  }
+  slider.addEventListener('input', update);
+  update();
+})();
+
+/* ============ TESTIMONIAL SLIDER ============ */
+(function(){
+  var root = document.getElementById('quotes');
+  var dotsRoot = document.getElementById('quotes-dots');
+  if (!root || !dotsRoot) return;
+  var quotes = root.querySelectorAll('.q');
+  var dots = dotsRoot.querySelectorAll('i');
+  var idx = 0;
+  function show(i){
+    idx = i;
+    quotes.forEach(function(q, j){ q.classList.toggle('is-active', i === j); });
+    dots.forEach(function(d, j){ d.classList.toggle('is-active', i === j); });
+  }
+  dots.forEach(function(d, i){ d.addEventListener('click', function(){ show(i); }); });
+  var auto = setInterval(function(){ show((idx + 1) % quotes.length); }, 6000);
+  root.parentElement.addEventListener('mouseenter', function(){ clearInterval(auto); });
+})();
+
+/* ============ AUDIO-PLAYER ============ */
+(function(){
+  var wave = document.getElementById('ap-wave');
+  var btn = document.getElementById('ap-play');
+  var icon = document.getElementById('ap-play-icon');
+  var time = document.getElementById('ap-time');
+  if (!wave || !btn) return;
+
+  // Wellenform aus pseudo-zufälligen Höhen aufbauen
+  var seed = 19;
+  function rnd(){ seed = (seed * 9301 + 49297) % 233280; return seed / 233280; }
+  var bars = [];
+  for (var i = 0; i < 60; i++){
+    var b = document.createElement('i');
+    b.style.height = (8 + Math.floor(rnd() * 28)) + 'px';
+    wave.appendChild(b);
+    bars.push(b);
+  }
+
+  var playing = false;
+  var progress = 0; // 0-100
+  var duration = 222; // 03:42 in Sekunden
+  var ticker = null;
+
+  function fmt(s){
+    var m = Math.floor(s / 60);
+    var ss = Math.floor(s % 60);
+    return (m < 10 ? '0' : '') + m + ':' + (ss < 10 ? '0' : '') + ss;
+  }
+  function paint(){
+    var played = Math.floor(bars.length * progress / 100);
+    bars.forEach(function(b, i){ b.classList.toggle('is-played', i < played);});
+    time.textContent = fmt(duration * progress / 100) + ' / ' + fmt(duration);
+  }
+  function play(){
+    playing = true;
+    icon.innerHTML = '<path d="M6 5h4v14H6zM14 5h4v14h-4z"/>';
+    if (ticker) clearInterval(ticker);
+    ticker = setInterval(function(){
+      progress = Math.min(100, progress + (100 / duration) / 5); // ~5 ticks per second
+      paint();
+      if (progress >= 100){ pause(); progress = 0; paint();}
+    }, 200);
+  }
+  function pause(){
+    playing = false;
+    icon.innerHTML = '<path d="M8 5v14l11-7z"/>';
+    if (ticker){ clearInterval(ticker); ticker = null;}
+  }
+
+  btn.addEventListener('click', function(){
+    playing ? pause() : play();
+  });
+  wave.addEventListener('click', function(e){
+    var rect = wave.getBoundingClientRect();
+    progress = Math.max(0, Math.min(100, ((e.clientX - rect.left) / rect.width) * 100));
+    paint();
+  });
+  paint();
+})();
+
+/* ============ BENTO-GALERIE → LIGHTBOX ============ */
+(function(){
+  var tiles = document.querySelectorAll('.bento-tile');
+  var overlay = document.getElementById('lb-overlay');
+  if (!tiles.length || !overlay) return;
+  var content = document.getElementById('lb-content');
+  var counter = document.getElementById('lb-counter');
+  var idx = 0;
+  function open(i){
+    idx = i;
+    var bg = window.getComputedStyle(tiles[i]).backgroundImage;
+    content.style.background = bg + ' center/cover no-repeat';
+    counter.textContent = (i + 1) + ' / ' + tiles.length;
+    overlay.classList.add('is-open');
+    overlay.setAttribute('aria-hidden', 'false');
+  }
+  tiles.forEach(function(t, i){ t.addEventListener('click', function(){ open(i); });});
+})();
+
+/* ============ LIGHTBOX ============ */
+(function(){
+  var grid = document.getElementById('lb-grid');
+  var overlay = document.getElementById('lb-overlay');
+  var content = document.getElementById('lb-content');
+  var counter = document.getElementById('lb-counter');
+  var prev = document.getElementById('lb-prev');
+  var next = document.getElementById('lb-next');
+  var close = document.getElementById('lb-close');
+  if (!grid || !overlay) return;
+  var thumbs = grid.querySelectorAll('.lb-thumb');
+  var idx = 0;
+
+  function open(i){
+    idx = i;
+    var bg = thumbs[i].style.background;
+    content.style.background = bg + ' center/cover no-repeat';
+    counter.textContent = (i + 1) + ' / ' + thumbs.length;
+    overlay.classList.add('is-open');
+    overlay.setAttribute('aria-hidden', 'false');
+  }
+  function shut(){
+    overlay.classList.remove('is-open');
+    overlay.setAttribute('aria-hidden', 'true');
+  }
+  function step(d){
+    var n = thumbs.length;
+    open(((idx + d) % n + n) % n);
+  }
+
+  thumbs.forEach(function(t, i){ t.addEventListener('click', function(){ open(i); }); });
+  close.addEventListener('click', shut);
+  prev.addEventListener('click', function(){ step(-1); });
+  next.addEventListener('click', function(){ step(1); });
+  overlay.addEventListener('click', function(e){ if (e.target === overlay) shut(); });
+  document.addEventListener('keydown', function(e){
+    if (!overlay.classList.contains('is-open')) return;
+    if (e.key === 'Escape') shut();
+    if (e.key === 'ArrowLeft') step(-1);
+    if (e.key === 'ArrowRight') step(1);
+  });
+})();
+</script>
 </body>
 </html>

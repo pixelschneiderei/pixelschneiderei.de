@@ -1,0 +1,648 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="theme-color" content="#0a0a0c" />
+<title>Nachtschicht — DJ &amp; Producer (Demo)</title>
+<meta name="description" content="Demo: DJ-Auftritt im synthwave-Stil mit Sticky-Audio-Player. Beispielauftritt der Pixelschneiderei." />
+<meta name="robots" content="noindex, nofollow" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="thumb.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0a0c'/%3E%3Ccircle cx='16' cy='16' r='10' fill='none' stroke='%23ff2d6e' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='3' fill='%2314d4a8'/%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet"/>
+<style>
+  :root{
+    --bg:    #0a0a0c;
+    --bg-2:  #14141a;
+    --line:  #2a2a35;
+    --fg:    #f5f5f7;
+    --muted: #8a8a95;
+    --pink:  #ff2d6e;
+    --cyan:  #14d4a8;
+    --grad:  linear-gradient(135deg, var(--pink) 0%, var(--cyan) 100%);
+    --display: 'Space Grotesk', sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+    --ease: cubic-bezier(.2,.7,.2,1);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{ background: var(--bg); color: var(--fg); font-family: var(--display); -webkit-font-smoothing: antialiased; line-height: 1.5; padding-bottom: 80px;}
+  a{color:inherit; text-decoration:none}
+  img,svg{display:block; max-width:100%}
+  ::selection{ background: var(--pink); color: var(--fg);}
+
+  .demo-banner{ background: var(--pink); color: #fff; text-align:center; padding: 10px 16px; font-family: var(--mono); font-size: .76rem; letter-spacing: .12em; text-transform: uppercase;}
+  .demo-banner a{ text-decoration: underline; text-underline-offset: 3px;}
+
+  .container{ max-width: 1280px; margin: 0 auto; padding: 0 32px;}
+
+  /* NAV */
+  .nav{
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(10,10,12,.85);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--line);
+    padding: 14px 32px;
+  }
+  .nav-row{ display:flex; align-items: center; justify-content: space-between; max-width: 1280px; margin: 0 auto;}
+  .brand{
+    font-family: var(--display); font-weight: 700;
+    font-size: 1.3rem; letter-spacing: .02em;
+    background: var(--grad);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-transform: uppercase;
+  }
+  .nav-links{ display:flex; gap: 32px; font-family: var(--mono); font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted);}
+  .nav-links a:hover{ color: var(--cyan);}
+  .nav-cta{
+    padding: 8px 18px;
+    border: 1px solid var(--pink); color: var(--pink);
+    border-radius: 4px;
+    font-family: var(--mono); font-size: .78rem; letter-spacing: .14em; text-transform: uppercase;
+    transition: background .25s var(--ease), color .25s var(--ease);
+  }
+  .nav-cta:hover{ background: var(--pink); color: var(--bg);}
+  @media (max-width: 720px){ .nav-links{ display: none;}}
+
+  /* HERO */
+  .hero{
+    position: relative;
+    padding: 100px 0 80px;
+    overflow: hidden;
+    text-align: center;
+    background-image:
+      linear-gradient(rgba(8,7,16,.78), rgba(8,7,16,.92)),
+      url('img/hero.jpg');
+    background-size: cover;
+    background-position: center;
+  }
+  .hero::before{
+    content:""; position: absolute; inset: 0;
+    background:
+      radial-gradient(800px 400px at 30% 30%, rgba(255,45,110,.22), transparent 60%),
+      radial-gradient(800px 400px at 70% 70%, rgba(20,212,168,.18), transparent 60%);
+    pointer-events: none;
+  }
+  .hero::after{
+    content:""; position: absolute; inset: 0;
+    background-image:
+      linear-gradient(to right, rgba(255,255,255,.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,.04) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, #000 30%, transparent 80%);
+    -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, #000 30%, transparent 80%);
+    pointer-events: none;
+  }
+  .hero-inner{ position: relative;}
+  .hero .kicker{
+    font-family: var(--mono);
+    font-size: .82rem; letter-spacing: .3em; text-transform: uppercase;
+    color: var(--cyan);
+    margin-bottom: 24px;
+  }
+  .hero h1{
+    font-family: var(--display); font-weight: 700;
+    font-size: clamp(4.5rem, 14vw, 11rem);
+    line-height: .85; letter-spacing: -0.04em;
+    margin: 0 auto;
+    background: var(--grad);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-transform: uppercase;
+  }
+  .hero .subtitle{
+    margin-top: 28px;
+    font-family: var(--mono);
+    font-size: clamp(.9rem, 1.2vw, 1.05rem);
+    color: var(--muted);
+    letter-spacing: .04em;
+    max-width: 56ch; margin-left: auto; margin-right: auto;
+  }
+  .hero-actions{ margin-top: 40px; display:inline-flex; gap: 12px; flex-wrap: wrap; justify-content: center;}
+  .btn{
+    display:inline-flex; align-items: center; gap: 10px;
+    padding: 14px 26px; border-radius: 6px;
+    font-family: var(--mono); font-size: .82rem; letter-spacing: .14em; text-transform: uppercase;
+    transition: transform .2s ease, background .2s ease, color .2s ease;
+    cursor: pointer;
+  }
+  .btn-primary{ background: var(--pink); color: var(--bg); border: 0;}
+  .btn-primary:hover{ background: var(--cyan); transform: translateY(-2px);}
+  .btn-ghost{ border: 1px solid var(--line); color: var(--fg); background: transparent;}
+  .btn-ghost:hover{ border-color: var(--cyan); color: var(--cyan); transform: translateY(-2px);}
+
+  /* UPCOMING */
+  .upcoming{ padding: 100px 0; border-top: 1px solid var(--line);}
+  .section-head{
+    display: grid; grid-template-columns: auto 1fr; gap: 20px; align-items: end;
+    margin-bottom: 48px;
+  }
+  .section-head h2{
+    font-family: var(--display); font-weight: 600;
+    font-size: clamp(2.4rem, 5vw, 4rem); line-height: 1; letter-spacing: -0.02em;
+    text-transform: uppercase;
+  }
+  .section-head .meta{
+    font-family: var(--mono); font-size: .8rem; letter-spacing: .14em; color: var(--muted);
+    text-align: right; padding-bottom: 8px;
+  }
+  .events{ list-style: none; padding: 0; margin: 0;}
+  .event{
+    display: grid;
+    grid-template-columns: 80px 1fr auto auto;
+    gap: 32px;
+    align-items: center;
+    padding: 24px 8px;
+    border-top: 1px solid var(--line);
+    transition: background .25s var(--ease), padding .25s var(--ease);
+  }
+  .event:hover{ background: var(--bg-2); padding-left: 16px;}
+  .event:last-child{ border-bottom: 1px solid var(--line);}
+  @media (max-width: 720px){ .event{ grid-template-columns: 60px 1fr;} .event-loc, .event-cta{ display: none;}}
+  .event-date strong{
+    display: block; font-family: var(--mono); font-weight: 700;
+    font-size: 2rem; line-height: 1; color: var(--pink);
+  }
+  .event-date span{
+    display: block; font-family: var(--mono); font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted);
+  }
+  .event-name{
+    font-family: var(--display); font-size: 1.4rem; font-weight: 500;
+  }
+  .event-name em{ display: block; font-style: normal; font-family: var(--mono); font-size: .76rem; letter-spacing: .14em; color: var(--cyan); margin-top: 4px;}
+  .event-loc{
+    font-family: var(--mono); font-size: .78rem; letter-spacing: .12em; color: var(--muted);
+    text-transform: uppercase;
+  }
+  .event-cta a{
+    color: var(--cyan); font-family: var(--mono); font-size: .78rem; letter-spacing: .14em; text-transform: uppercase;
+  }
+  .event.is-soldout .event-cta a{ color: var(--muted); text-decoration: line-through;}
+
+  /* SETS / WAVEFORMS */
+  .sets{ padding: 100px 0; background: var(--bg-2); border-block: 1px solid var(--line);}
+  .sets-grid{ display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;}
+  @media (max-width: 720px){ .sets-grid{ grid-template-columns: 1fr;}}
+  .set{
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 28px;
+    transition: border-color .25s var(--ease), transform .25s var(--ease);
+  }
+  .set:hover{ border-color: var(--pink); transform: translateY(-3px);}
+  .set-cover{
+    aspect-ratio: 16/9; border-radius: 4px;
+    margin: -28px -28px 22px;
+    background-size: cover; background-position: center;
+    background-color: var(--bg-2);
+    position: relative; overflow: hidden;
+  }
+  .set-cover::after{
+    content:""; position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(8,7,16,0) 50%, rgba(8,7,16,.5));
+  }
+  .set:nth-child(1) .set-cover{ background-image: url('img/set-1.jpg'), linear-gradient(135deg, var(--pink), #5a0d29);}
+  .set:nth-child(2) .set-cover{ background-image: url('img/set-2.jpg'), linear-gradient(135deg, var(--cyan), #093e36);}
+  .set:nth-child(3) .set-cover{ background-image: url('img/set-3.jpg'), linear-gradient(135deg, #b88dd8, #3a1d5b);}
+  .set:nth-child(4) .set-cover{ background-image: url('img/set-4.jpg'), linear-gradient(135deg, #f5b95c, #a8541d);}
+  .set-head{ display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px;}
+  .set-head h3{ font-family: var(--display); font-size: 1.4rem; font-weight: 600;}
+  .set-head .dur{ font-family: var(--mono); font-size: .78rem; color: var(--muted); letter-spacing: .04em;}
+  .set-meta{
+    font-family: var(--mono); font-size: .76rem; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--cyan); margin-bottom: 20px;
+  }
+  .waveform{
+    display: flex; align-items: center; gap: 2px;
+    height: 60px; margin-bottom: 16px;
+  }
+  .waveform i{
+    flex: 1; background: var(--line);
+    border-radius: 1px;
+    transition: background .2s ease;
+  }
+  .set.is-playing .waveform i.is-played{ background: var(--pink);}
+  .set.is-playing .waveform i.is-current{ background: var(--cyan); box-shadow: 0 0 8px var(--cyan);}
+  .set-controls{ display: flex; justify-content: space-between; align-items: center;}
+  .play-btn{
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 8px 16px; background: transparent;
+    border: 1px solid var(--line); color: var(--fg);
+    border-radius: 999px;
+    font-family: var(--mono); font-size: .76rem; letter-spacing: .12em; text-transform: uppercase;
+    cursor: pointer;
+    transition: background .2s ease, color .2s ease, border-color .2s ease;
+  }
+  .play-btn:hover, .play-btn.is-active{ background: var(--pink); border-color: var(--pink); color: var(--bg);}
+  .play-btn svg{ width: 12px; height: 12px;}
+  .set-time{ font-family: var(--mono); font-size: .78rem; color: var(--muted); letter-spacing: .04em;}
+
+  /* PRESS / NUMBERS */
+  .press{ padding: 100px 0;}
+  .press-grid{ display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;}
+  @media (max-width: 720px){ .press-grid{ grid-template-columns: repeat(2, 1fr);}}
+  .stat{
+    border-left: 2px solid var(--pink);
+    padding: 16px 0 16px 20px;
+  }
+  .stat:nth-child(2){ border-color: var(--cyan);}
+  .stat:nth-child(3){ border-color: var(--pink);}
+  .stat:nth-child(4){ border-color: var(--cyan);}
+  .stat strong{
+    display: block; font-family: var(--display); font-weight: 700;
+    font-size: clamp(2rem, 3.5vw, 3rem); line-height: 1; letter-spacing: -0.02em;
+  }
+  .stat span{
+    display: block; margin-top: 8px;
+    font-family: var(--mono); font-size: .76rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted);
+  }
+
+  /* BOOKING */
+  .booking{
+    padding: 120px 0; text-align: center;
+    background:
+      radial-gradient(800px 400px at 50% 50%, rgba(255,45,110,.12), transparent 70%),
+      var(--bg-2);
+    border-top: 1px solid var(--line);
+  }
+  .booking h2{
+    font-family: var(--display); font-weight: 700;
+    font-size: clamp(2.6rem, 6vw, 5rem); line-height: 1; letter-spacing: -0.03em;
+    text-transform: uppercase;
+    background: var(--grad);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 24px;
+  }
+  .booking p{ color: var(--muted); max-width: 50ch; margin: 0 auto 32px; font-family: var(--mono); font-size: .9rem;}
+
+  /* STICKY PLAYER */
+  .player{
+    position: fixed; bottom: 0; left: 0; right: 0; z-index: 60;
+    background: rgba(10,10,12,.95);
+    backdrop-filter: blur(14px);
+    border-top: 1px solid var(--line);
+    padding: 14px 24px;
+    display: flex; align-items: center; gap: 20px;
+    transform: translateY(100%);
+    transition: transform .35s var(--ease);
+  }
+  .player.is-visible{ transform: translateY(0);}
+  .player-art{
+    width: 48px; height: 48px; border-radius: 4px;
+    background: var(--grad);
+    flex-shrink: 0;
+  }
+  .player-info{ flex: 1; min-width: 0;}
+  .player-info strong{ display: block; font-family: var(--display); font-size: .92rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;}
+  .player-info span{ display: block; font-family: var(--mono); font-size: .72rem; color: var(--muted); letter-spacing: .04em;}
+  .player-btn{
+    width: 44px; height: 44px; border-radius: 50%;
+    background: var(--pink); color: var(--bg);
+    border: 0; cursor: pointer;
+    display: grid; place-items: center;
+    transition: background .2s ease;
+    flex-shrink: 0;
+  }
+  .player-btn:hover{ background: var(--cyan);}
+  .player-btn svg{ width: 16px; height: 16px;}
+  .player-progress{
+    flex: 2; height: 4px; background: var(--line); border-radius: 2px; overflow: hidden;
+    cursor: pointer;
+  }
+  @media (max-width: 720px){ .player-progress{ display: none;}}
+  .player-progress-bar{
+    height: 100%; background: var(--grad);
+    width: 30%; transition: width .3s linear;
+  }
+  .player-time{ font-family: var(--mono); font-size: .76rem; color: var(--muted); flex-shrink: 0;}
+  @media (max-width: 720px){ .player-time{ display: none;}}
+  .player-close{
+    width: 32px; height: 32px; border-radius: 50%;
+    background: transparent; color: var(--muted);
+    border: 0; cursor: pointer; flex-shrink: 0;
+    transition: color .2s ease, background .2s ease;
+  }
+  .player-close:hover{ color: var(--fg); background: var(--line);}
+
+  /* FOOTER */
+  footer{ background: var(--bg); border-top: 1px solid var(--line); padding: 48px 0 32px;}
+  .foot-row{ display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap;}
+  .foot-brand{ font-family: var(--display); font-weight: 700; font-size: 1.4rem;
+    background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent;
+    text-transform: uppercase; letter-spacing: .02em;}
+  .foot-links{ display: flex; gap: 24px; font-family: var(--mono); font-size: .78rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted);}
+  .foot-links a:hover{ color: var(--cyan);}
+  .foot-bottom{ margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--line); text-align: center; font-family: var(--mono); font-size: .74rem; color: var(--muted); letter-spacing: .04em;}
+  .foot-bottom a{ color: var(--cyan); text-decoration: underline;}
+</style>
+</head>
+<body>
+
+<div class="demo-banner">Demo · Branche: DJ &amp; Event &nbsp;·&nbsp; <a href="../../index.html">← zur Pixelschneiderei</a></div>
+
+<a class="demo-exit" href="../../referenzen.html">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+  Demo verlassen
+</a>
+<style>
+  .demo-exit{ position: fixed; bottom: 96px; left: 24px; z-index: 100; display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; background: rgba(20,20,22,.92); color: #fff; border-radius: 999px; font-family: 'JetBrains Mono', monospace; font-size: .76rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,.1); box-shadow: 0 6px 20px rgba(0,0,0,.25); transition: transform .2s ease, background .2s ease; text-decoration: none;}
+  .demo-exit:hover{ transform: translateY(-2px); background: #ff2d6e;}
+  .demo-exit svg{ width: 14px; height: 14px;}
+  @media (max-width: 720px){ .demo-exit{ bottom: 84px; left: 16px; padding: 8px 14px; font-size: .7rem;}}
+</style>
+
+<header class="nav">
+  <div class="nav-row">
+    <a href="#top" class="brand">Nachtschicht</a>
+    <nav class="nav-links">
+      <a href="#dates">Dates</a>
+      <a href="#sets">Sets</a>
+      <a href="#booking">Booking</a>
+    </nav>
+    <a href="#booking" class="nav-cta">Anfrage</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <div class="kicker">DJ &middot; Producer &middot; based in Berlin</div>
+      <h1>Nacht-<br/>schicht</h1>
+      <p class="subtitle">House &middot; Disco &middot; Italo &middot; Late-Night-Sets f&uuml;r Clubs, Bars, Hochzeiten, B&uuml;hnen und alles dazwischen.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#sets">Sets h&ouml;ren</a>
+        <a class="btn btn-ghost" href="#booking">Booking-Anfrage</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- UPCOMING DATES -->
+  <section class="upcoming" id="dates">
+    <div class="container">
+      <div class="section-head">
+        <h2>Dates</h2>
+        <div class="meta">// 2026 &middot; aktuelle Termine</div>
+      </div>
+      <ul class="events">
+        <li class="event">
+          <div class="event-date"><strong>17.</strong><span>Mai 2026</span></div>
+          <div class="event-name">Watergate, Berlin<em>House &middot; Disco &middot; 5h Set</em></div>
+          <div class="event-loc">Berlin</div>
+          <div class="event-cta"><a href="#">Tickets &rarr;</a></div>
+        </li>
+        <li class="event is-soldout">
+          <div class="event-date"><strong>24.</strong><span>Mai 2026</span></div>
+          <div class="event-name">Hochzeit B. &amp; M.<em>privat &middot; Open Air</em></div>
+          <div class="event-loc">Mecklenburg</div>
+          <div class="event-cta"><a href="#">Sold out</a></div>
+        </li>
+        <li class="event">
+          <div class="event-date"><strong>06.</strong><span>Jun 2026</span></div>
+          <div class="event-name">Sommerfest Pixelschneiderei<em>4h Italo Disco Set</em></div>
+          <div class="event-loc">Lautertal</div>
+          <div class="event-cta"><a href="#">Tickets &rarr;</a></div>
+        </li>
+        <li class="event">
+          <div class="event-date"><strong>21.</strong><span>Jun 2026</span></div>
+          <div class="event-name">Fusion Festival<em>Tanzwiese &middot; 6&ndash;9 Uhr</em></div>
+          <div class="event-loc">Lärz</div>
+          <div class="event-cta"><a href="#">Tickets &rarr;</a></div>
+        </li>
+        <li class="event">
+          <div class="event-date"><strong>04.</strong><span>Jul 2026</span></div>
+          <div class="event-name">Sisyphos, Sonnendeck<em>Sunset Set &middot; 18&ndash;22 Uhr</em></div>
+          <div class="event-loc">Berlin</div>
+          <div class="event-cta"><a href="#">Tickets &rarr;</a></div>
+        </li>
+        <li class="event">
+          <div class="event-date"><strong>18.</strong><span>Jul 2026</span></div>
+          <div class="event-name">Garden Party, Halle K<em>Closing Set</em></div>
+          <div class="event-loc">Hamburg</div>
+          <div class="event-cta"><a href="#">Tickets &rarr;</a></div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SETS / WAVEFORMS -->
+  <section class="sets" id="sets">
+    <div class="container">
+      <div class="section-head">
+        <h2>Sets &amp; Mixe</h2>
+        <div class="meta">// Auswahl der letzten Aufnahmen</div>
+      </div>
+      <div class="sets-grid">
+        <article class="set" data-set="0">
+          <div class="set-cover"></div>
+          <div class="set-head"><h3>Sonnendeck Sunset</h3><span class="dur">62 Min</span></div>
+          <div class="set-meta">Sisyphos &middot; Apr 2026</div>
+          <div class="waveform"></div>
+          <div class="set-controls">
+            <button class="play-btn">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+              Play
+            </button>
+            <span class="set-time">00:00 / 62:14</span>
+          </div>
+        </article>
+        <article class="set" data-set="1">
+          <div class="set-cover"></div>
+          <div class="set-head"><h3>Italo Late Night</h3><span class="dur">94 Min</span></div>
+          <div class="set-meta">Watergate &middot; Mar 2026</div>
+          <div class="waveform"></div>
+          <div class="set-controls">
+            <button class="play-btn">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+              Play
+            </button>
+            <span class="set-time">00:00 / 94:08</span>
+          </div>
+        </article>
+        <article class="set" data-set="2">
+          <div class="set-cover"></div>
+          <div class="set-head"><h3>Hochzeit-Reduktion</h3><span class="dur">128 Min</span></div>
+          <div class="set-meta">Privat &middot; Sep 2025</div>
+          <div class="waveform"></div>
+          <div class="set-controls">
+            <button class="play-btn">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+              Play
+            </button>
+            <span class="set-time">00:00 / 128:42</span>
+          </div>
+        </article>
+        <article class="set" data-set="3">
+          <div class="set-cover"></div>
+          <div class="set-head"><h3>Wiesen-Disco</h3><span class="dur">75 Min</span></div>
+          <div class="set-meta">Fusion Festival &middot; Jul 2024</div>
+          <div class="waveform"></div>
+          <div class="set-controls">
+            <button class="play-btn">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+              Play
+            </button>
+            <span class="set-time">00:00 / 75:31</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRESS / NUMBERS -->
+  <section class="press">
+    <div class="container">
+      <div class="press-grid">
+        <div class="stat"><strong>120+</strong><span>Auftritte</span></div>
+        <div class="stat"><strong>9</strong><span>Jahre Praxis</span></div>
+        <div class="stat"><strong>40+</strong><span>Hochzeiten</span></div>
+        <div class="stat"><strong>3</strong><span>Releases</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOOKING -->
+  <section class="booking" id="booking">
+    <div class="container">
+      <h2>Booking?</h2>
+      <p>Schreiben Sie uns Datum, Ort, Anlass und ungef&auml;hre G&auml;stezahl. Wir antworten meist innerhalb von 48 Stunden.</p>
+      <a class="btn btn-primary" href="mailto:#">booking@nachtschicht.demo</a>
+    </div>
+  </section>
+
+</main>
+
+<!-- STICKY PLAYER -->
+<div class="player" id="player" aria-hidden="true">
+  <div class="player-art"></div>
+  <div class="player-info">
+    <strong id="player-title">Sonnendeck Sunset</strong>
+    <span id="player-meta">Sisyphos &middot; Apr 2026</span>
+  </div>
+  <button class="player-btn" id="player-toggle">
+    <svg viewBox="0 0 24 24" fill="currentColor" id="player-icon"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+  </button>
+  <div class="player-progress" id="player-prog">
+    <div class="player-progress-bar" id="player-bar"></div>
+  </div>
+  <div class="player-time" id="player-time">01:18 / 62:14</div>
+  <button class="player-close" id="player-close" aria-label="Schlie&szlig;en">&times;</button>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="foot-row">
+      <div class="foot-brand">Nachtschicht</div>
+      <nav class="foot-links">
+        <a href="#dates">Dates</a>
+        <a href="#sets">Sets</a>
+        <a href="#booking">Booking</a>
+      </nav>
+    </div>
+    <div class="foot-bottom">
+      Demo · Nachtschicht ist ein fiktiver Beispielauftritt der <a href="../../index.html">Pixelschneiderei</a>.
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Build random-but-stable waveforms
+  document.querySelectorAll('.waveform').forEach(function(w, idx){
+    var seed = idx * 7 + 13;
+    function rnd(){ seed = (seed * 9301 + 49297) % 233280; return seed / 233280;}
+    for (var i = 0; i < 80; i++){
+      var bar = document.createElement('i');
+      var h = 6 + Math.floor(rnd() * 54);
+      bar.style.height = h + 'px';
+      w.appendChild(bar);
+    }
+  });
+
+  // Set play / sticky player wiring
+  var sets = [
+    {title: 'Sonnendeck Sunset', meta: 'Sisyphos · Apr 2026', dur: '62:14'},
+    {title: 'Italo Late Night',  meta: 'Watergate · Mar 2026', dur: '94:08'},
+    {title: 'Hochzeit-Reduktion', meta: 'Privat · Sep 2025', dur: '128:42'},
+    {title: 'Wiesen-Disco', meta: 'Fusion Festival · Jul 2024', dur: '75:31'}
+  ];
+  var player = document.getElementById('player');
+  var pTitle = document.getElementById('player-title');
+  var pMeta = document.getElementById('player-meta');
+  var pTime = document.getElementById('player-time');
+  var pBar = document.getElementById('player-bar');
+  var pIcon = document.getElementById('player-icon');
+  var current = -1;
+  var playing = false;
+  var interval = null;
+  var progress = 0;
+
+  function fakePlay(){
+    playing = true;
+    pIcon.innerHTML = '<path d="M6 5h4v14H6zM14 5h4v14h-4z"/>';
+    if (interval) clearInterval(interval);
+    interval = setInterval(function(){
+      progress = Math.min(100, progress + 0.15);
+      pBar.style.width = progress + '%';
+      var seconds = Math.floor(progress * 3.732);
+      var m = String(Math.floor(seconds / 60)).padStart(2, '0');
+      var s = String(seconds % 60).padStart(2, '0');
+      pTime.textContent = m + ':' + s + ' / ' + (sets[current] ? sets[current].dur : '00:00');
+      if (progress >= 100){ clearInterval(interval); fakePause();}
+    }, 200);
+  }
+  function fakePause(){
+    playing = false;
+    pIcon.innerHTML = '<path d="M8 5v14l11-7z"/>';
+    if (interval){ clearInterval(interval); interval = null;}
+  }
+  function load(i){
+    current = i;
+    progress = 0;
+    pBar.style.width = '0%';
+    pTitle.textContent = sets[i].title;
+    pMeta.textContent = sets[i].meta;
+    pTime.textContent = '00:00 / ' + sets[i].dur;
+    player.classList.add('is-visible');
+    player.setAttribute('aria-hidden', 'false');
+    document.querySelectorAll('.set').forEach(function(s, j){ s.classList.toggle('is-playing', j === i);});
+    fakePlay();
+  }
+
+  document.querySelectorAll('.set .play-btn').forEach(function(b, i){
+    b.addEventListener('click', function(){
+      if (current === i && playing){ fakePause();}
+      else if (current === i && !playing){ fakePlay();}
+      else { load(i);}
+    });
+  });
+  document.getElementById('player-toggle').addEventListener('click', function(){
+    if (current < 0) return;
+    if (playing) fakePause(); else fakePlay();
+  });
+  document.getElementById('player-close').addEventListener('click', function(){
+    fakePause();
+    player.classList.remove('is-visible');
+    player.setAttribute('aria-hidden', 'true');
+    document.querySelectorAll('.set').forEach(function(s){ s.classList.remove('is-playing');});
+    current = -1;
+  });
+  document.getElementById('player-prog').addEventListener('click', function(e){
+    var rect = e.currentTarget.getBoundingClientRect();
+    progress = ((e.clientX - rect.left) / rect.width) * 100;
+    pBar.style.width = progress + '%';
+  });
+</script>
+<script src="../../assets/demo-exit.js"></script>
+</body>
+</html>

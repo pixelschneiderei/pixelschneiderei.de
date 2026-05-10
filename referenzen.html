@@ -4,12 +4,22 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <meta name="theme-color" content="#ffffff" />
-<title>Referenzen &amp; Demos – Pixelschneiderei</title>
-<meta name="description" content="Alle Referenzen und Branchen-Demos der Pixelschneiderei: Handwerk, Gastronomie, Fitness, Arzt, Geschäft, Hochglanz." />
+<title>Referenzen &amp; Webseiten-Demos für 12 Branchen | Pixelschneiderei</title>
+<meta name="description" content="12 Beispiel-Webseiten für Handwerk, Gastronomie, Fotografie, Arzt, Anwalt, Bildung, DJ, Blog und mehr. Sehen Sie, wie eine maßgeschneiderte Webseite für Ihre Branche aussehen könnte." />
+<meta name="keywords" content="Webseite Beispiele, Webseiten Referenzen, Webseite Handwerker, Webseite Café, Webseite Yoga, Webseite Arzt, Webseite Kanzlei, Webseite Fotograf, Premium Webseite, Live Demo" />
+<link rel="canonical" href="https://pixelschneiderei.de/referenzen.html" />
+
+<meta property="og:title" content="Referenzen &amp; Webseiten-Demos für 12 Branchen | Pixelschneiderei" />
+<meta property="og:description" content="12 Beispiel-Webseiten für Handwerk, Gastronomie, Fotografie, Arzt, Anwalt, Bildung, DJ, Blog und mehr." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://pixelschneiderei.de/referenzen.html" />
+<meta property="og:image" content="https://pixelschneiderei.de/assets/og-referenzen.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:locale" content="de_DE" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://pixelschneiderei.de/assets/og-referenzen.jpg" />
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23ffffff'/%3E%3Cg fill='%230f0f10'%3E%3Crect x='6' y='6' width='4' height='4'/%3E%3Crect x='14' y='6' width='4' height='4'/%3E%3Crect x='22' y='6' width='4' height='4'/%3E%3Crect x='6' y='14' width='4' height='4'/%3E%3Crect x='14' y='14' width='4' height='4' fill='%23b8392a'/%3E%3Crect x='6' y='22' width='4' height='4'/%3E%3Crect x='22' y='22' width='4' height='4'/%3E%3C/g%3E%3C/svg%3E" />
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..700,30..100&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="assets/style.css"/>
 <style>
   .filters{
@@ -40,6 +50,15 @@
   .ref:hover{ transform: translateY(-4px); border-color: var(--thread); box-shadow: var(--shadow-md);}
   .ref-thumb{ aspect-ratio: 16/10; position: relative; overflow: hidden;}
   .ref-thumb svg{ width: 100%; height: 100%;}
+  /* Echtes Screenshot-Thumbnail: legt sich über die SVG-Vorschau, sobald thumb.jpg vorhanden ist. */
+  .ref-thumb-img{
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    z-index: 2;
+    transition: opacity .25s ease;
+  }
+  .ref-badge{ z-index: 3 !important;}
   .ref-body{ padding: 20px 24px 22px;}
   .ref-meta{
     font-family: var(--mono); font-size: .7rem; text-transform: uppercase; letter-spacing: .14em;
@@ -47,6 +66,14 @@
   }
   .ref h3{ font-family: var(--serif); font-size: 1.3rem; line-height: 1.1;}
   .ref-body p{ margin: 8px 0 0; color: var(--ink-soft); font-size: .92rem;}
+  .ref-tags{
+    margin-top: 10px !important;
+    font-family: var(--mono);
+    font-size: .72rem !important;
+    letter-spacing: .04em;
+    color: var(--muted) !important;
+    line-height: 1.55;
+  }
   .ref-badge{
     position:absolute; top: 14px; left: 14px;
     background: rgba(255,255,255,.92); border: 1px solid rgba(0,0,0,.06);
@@ -106,22 +133,26 @@
     <div class="container">
 
       <div class="filters" id="filters">
-        <button class="filter is-active" data-filter="all">Alle <span style="opacity:.5;">·9</span></button>
+        <button class="filter is-active" data-filter="all">Alle <span style="opacity:.5;">·12</span></button>
         <button class="filter" data-filter="live">Live</button>
         <button class="filter" data-filter="hochglanz">Hochglanz</button>
+        <button class="filter" data-filter="foto">Foto</button>
+        <button class="filter" data-filter="dj">DJ &amp; Event</button>
         <button class="filter" data-filter="handwerk">Handwerk</button>
         <button class="filter" data-filter="essen">Essen</button>
-        <button class="filter" data-filter="fitness">Fitness</button>
+        <button class="filter" data-filter="fitness">Yoga</button>
         <button class="filter" data-filter="arzt">Arzt</button>
         <button class="filter" data-filter="geschaeft">Geschäft</button>
         <button class="filter" data-filter="bildung">Bildung</button>
         <button class="filter" data-filter="recht">Recht</button>
+        <button class="filter" data-filter="blog">Blog &amp; CMS</button>
       </div>
 
       <div class="ref-grid" id="grid">
 
         <a class="ref" data-cat="hochglanz" href="demos/atelier/index.html">
           <div class="ref-thumb">
+            <img class="ref-thumb-img" src="demos/atelier/thumb.jpg" alt="" loading="lazy" onerror="this.remove();">
             <svg viewBox="0 0 600 375" preserveAspectRatio="xMidYMid slice">
               <defs>
                 <linearGradient id="x1" x1="0" y1="0" x2="0" y2="1">
@@ -144,11 +175,13 @@
             <div class="ref-meta">Demo · Premium · Showcase</div>
             <h3>Atelier — Pixelschneiderei</h3>
             <p>Im Stil großer Hersteller-Webseiten: dunkle Bühne, Story statt Stillleben.</p>
+            <p class="ref-tags">Dunkles cinematic Layout · Scroll-Animationen · Pinned Wort-Reveal · Animierte Counter · Parallax-Blobs · Scroll-Progress-Bar</p>
           </div>
         </a>
 
         <a class="ref" data-cat="live" href="https://e-bikefactory.de" target="_blank" rel="noopener">
           <div class="ref-thumb">
+            <img class="ref-thumb-img" src="demos/_external/e-bikefactory.jpg" alt="" loading="lazy" onerror="this.remove();">
             <svg viewBox="0 0 600 375" preserveAspectRatio="xMidYMid slice">
               <defs><linearGradient id="x2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#1c2a36"/><stop offset="100%" stop-color="#0f1820"/></linearGradient></defs>
               <rect width="600" height="375" fill="url(#x2)"/>
@@ -165,14 +198,16 @@
             <span class="ref-badge">Live</span>
           </div>
           <div class="ref-body">
-            <div class="ref-meta">Live · E-Commerce · Mobilität</div>
+            <div class="ref-meta">Live Demo · Shop · Mobilität</div>
             <h3>e-bikefactory.de</h3>
             <p>Onlineauftritt eines E-Bike-Spezialisten mit Produktwelt und Beratungseinstieg.</p>
+            <p class="ref-tags">Live im Web · Shop-Strecken · Konfigurator-Logik · Beratungseinstieg</p>
           </div>
         </a>
 
         <a class="ref" data-cat="handwerk" href="demos/holzgeist/index.html">
           <div class="ref-thumb">
+            <img class="ref-thumb-img" src="demos/holzgeist/thumb.jpg" alt="" loading="lazy" onerror="this.remove();">
             <svg viewBox="0 0 600 375" preserveAspectRatio="xMidYMid slice">
               <defs><linearGradient id="x3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#a87b3c"/><stop offset="100%" stop-color="#5e4322"/></linearGradient></defs>
               <rect width="600" height="375" fill="url(#x3)"/>
@@ -190,11 +225,13 @@
             <div class="ref-meta">Demo · Handwerk · Manufaktur</div>
             <h3>Tischlerei Holzgeist</h3>
             <p>Maßmöbel-Manufaktur mit Galerie, Werkstatt-Einblicken und Anfragestrecke.</p>
+            <p class="ref-tags">Warm-handwerkliches Design · Galerie-Grid · Vorher/Nachher-Slider · Pull-Quote · Kontaktformular</p>
           </div>
         </a>
 
         <a class="ref" data-cat="essen" href="demos/aurora/index.html">
           <div class="ref-thumb">
+            <img class="ref-thumb-img" src="demos/aurora/thumb.jpg" alt="" loading="lazy" onerror="this.remove();">
             <svg viewBox="0 0 600 375" preserveAspectRatio="xMidYMid slice">
               <defs><linearGradient id="x4" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#f8d6c5"/><stop offset="100%" stop-color="#e8a99f"/></linearGradient></defs>
               <rect width="600" height="375" fill="url(#x4)"/>
@@ -209,11 +246,13 @@
             <div class="ref-meta">Demo · Gastronomie · Lifestyle</div>
             <h3>Café Aurora</h3>
             <p>Stadtcafé mit eigener Rösterei, Speisekarte und Reservierungs-Hook.</p>
+            <p class="ref-tags">Warmes Hospitality-Design · Bild-Speisekarten · Reservierungs-Formular · WhatsApp-Direkteinstieg</p>
           </div>
         </a>
 
         <a class="ref" data-cat="fitness" href="demos/atmen/index.html">
           <div class="ref-thumb">
+            <img class="ref-thumb-img" src="demos/atmen/thumb.jpg" alt="" loading="lazy" onerror="this.remove();">
             <svg viewBox="0 0 600 375" preserveAspectRatio="xMidYMid slice">
               <defs><linearGradient id="x5" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#d8e5dc"/><stop offset="100%" stop-color="#a8c4b6"/></linearGradient></defs>
               <rect width="600" height="375" fill="url(#x5)"/>
@@ -226,17 +265,19 @@
               <text x="40" y="230" font-family="Fraunces" font-size="44" font-style="italic" fill="#3a544a">Atmen.</text>
               <text x="40" y="280" font-family="Fraunces" font-size="44" fill="#1f342b">Bewegen.</text>
             </svg>
-            <span class="ref-badge">Demo · Fitness</span>
+            <span class="ref-badge">Demo · Yoga</span>
           </div>
           <div class="ref-body">
-            <div class="ref-meta">Demo · Wellness · Studio</div>
+            <div class="ref-meta">Demo · Yoga · Editorial</div>
             <h3>Atmen Yoga Studio</h3>
             <p>Kleines Yoga-Studio mit Stundenplan, Lehrer-Profilen und Online-Buchung.</p>
+            <p class="ref-tags">Editorial Magazin-Layout · Voll-bleed Hero · Bento-Galerie · Asymmetrische Sektionen · Pull-Quote · Transparente Sticky-Nav</p>
           </div>
         </a>
 
         <a class="ref" data-cat="arzt" href="demos/arztpraxis/index.html">
           <div class="ref-thumb">
+            <img class="ref-thumb-img" src="demos/arztpraxis/thumb.jpg" alt="" loading="lazy" onerror="this.remove();">
             <svg viewBox="0 0 600 375" preserveAspectRatio="xMidYMid slice">
               <defs><linearGradient id="x6" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#e3edf3"/><stop offset="100%" stop-color="#b9cbdc"/></linearGradient></defs>
               <rect width="600" height="375" fill="url(#x6)"/>
@@ -256,11 +297,66 @@
             <div class="ref-meta">Demo · Medizin · Hausarzt</div>
             <h3>Praxis Linde</h3>
             <p>Hausarztpraxis mit Sprechzeiten, Team-Vorstellung und Online-Terminbuchung.</p>
+            <p class="ref-tags">Klinisches Vertrauens-Design · Notruf-Banner · Quick-Info-Strip · Sprechzeiten-Tabelle · Team-Karten · Termin-CTA</p>
+          </div>
+        </a>
+
+        <a class="ref" data-cat="foto" href="demos/lichtblick/index.html">
+          <div class="ref-thumb">
+            <img class="ref-thumb-img" src="demos/lichtblick/thumb.jpg" alt="" loading="lazy" onerror="this.remove();">
+            <svg viewBox="0 0 600 375" preserveAspectRatio="xMidYMid slice">
+              <defs><linearGradient id="x10" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#d4b88f"/><stop offset="100%" stop-color="#2c2419"/></linearGradient></defs>
+              <rect width="600" height="375" fill="url(#x10)"/>
+              <g opacity=".6" fill="none" stroke="#fbf8f1" stroke-width="1.5">
+                <circle cx="300" cy="180" r="40"/>
+                <circle cx="300" cy="180" r="20" fill="#fbf8f1" fill-opacity=".3"/>
+                <rect x="220" y="120" width="160" height="120" rx="8"/>
+              </g>
+              <text x="40" y="60" font-family="Inter" font-size="11" fill="#b59a6b" letter-spacing="6">L · I · C · H · T · B · L · I · C · K</text>
+              <text x="300" y="290" font-family="Cormorant Garamond, serif" font-size="32" font-style="italic" fill="#fbf8f1" text-anchor="middle">Den Tag, den Sie nie vergessen werden.</text>
+            </svg>
+            <span class="ref-badge">Demo · Foto</span>
+          </div>
+          <div class="ref-body">
+            <div class="ref-meta">Demo · Fotografie · Editorial</div>
+            <h3>Lichtblick</h3>
+            <p>Bildgetriebenes Portfolio mit Stories, Masonry-Galerie und ruhigem Editorial-Layout.</p>
+            <p class="ref-tags">Voll-bleed Hero · Story-Spreads alternierend · Masonry-Galerie · Pull-Quote · Investment-Tiers ohne Preise · Kontakt-Form mit Bild-Overlay</p>
+          </div>
+        </a>
+
+        <a class="ref" data-cat="dj" href="demos/nachtschicht/index.html">
+          <div class="ref-thumb">
+            <img class="ref-thumb-img" src="demos/nachtschicht/thumb.jpg" alt="" loading="lazy" onerror="this.remove();">
+            <svg viewBox="0 0 600 375" preserveAspectRatio="xMidYMid slice">
+              <defs>
+                <linearGradient id="x11" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#0a0a0c"/><stop offset="100%" stop-color="#14141a"/></linearGradient>
+                <linearGradient id="x11g" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#ff2d6e"/><stop offset="100%" stop-color="#14d4a8"/></linearGradient>
+              </defs>
+              <rect width="600" height="375" fill="url(#x11)"/>
+              <g opacity=".4">
+                <circle cx="450" cy="187" r="120" fill="none" stroke="#ff2d6e" stroke-width="1.5"/>
+                <circle cx="450" cy="187" r="80" fill="none" stroke="#14d4a8" stroke-width="1"/>
+                <circle cx="450" cy="187" r="40" fill="none" stroke="#ff2d6e"/>
+                <circle cx="450" cy="187" r="6" fill="#14d4a8"/>
+              </g>
+              <text x="40" y="60" font-family="JetBrains Mono, monospace" font-size="11" fill="#14d4a8" letter-spacing="3">DJ · PRODUCER · BASED IN BERLIN</text>
+              <text x="40" y="170" font-family="Space Grotesk, sans-serif" font-size="80" fill="url(#x11g)" font-weight="700">NACHT-</text>
+              <text x="40" y="240" font-family="Space Grotesk, sans-serif" font-size="80" fill="url(#x11g)" font-weight="700">SCHICHT</text>
+            </svg>
+            <span class="ref-badge">Demo · DJ &amp; Event</span>
+          </div>
+          <div class="ref-body">
+            <div class="ref-meta">Demo · DJ · Synthwave</div>
+            <h3>Nachtschicht</h3>
+            <p>DJ-Auftritt mit Termin-Liste, Sets und einem Sticky-Audio-Player am unteren Rand.</p>
+            <p class="ref-tags">Dunkles Synthwave-Design · Pink/Cyan-Gradient · Sticky-Audio-Player · CSS-Waveform · Event-Liste · Booking-CTA</p>
           </div>
         </a>
 
         <a class="ref" data-cat="bildung" href="demos/akademie/index.html">
           <div class="ref-thumb">
+            <img class="ref-thumb-img" src="demos/akademie/thumb.jpg" alt="" loading="lazy" onerror="this.remove();">
             <svg viewBox="0 0 600 375" preserveAspectRatio="xMidYMid slice">
               <defs><linearGradient id="x8" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#f5b95c"/><stop offset="100%" stop-color="#295a8c"/></linearGradient></defs>
               <rect width="600" height="375" fill="url(#x8)"/>
@@ -280,11 +376,13 @@
             <div class="ref-meta">Demo · Bildung · Online-Kurse</div>
             <h3>Pixelakademie</h3>
             <p>Kurse als scrollbare Webseite – mit interaktivem Kapitel-Navigator und Code-Beispielen.</p>
+            <p class="ref-tags">Tech-Education-Design · Browser-Mockup · Interaktiver Slide-Navigator · Pfeiltasten-Steuerung · Code-Beispiele</p>
           </div>
         </a>
 
         <a class="ref" data-cat="recht" href="demos/kanzlei/index.html">
           <div class="ref-thumb">
+            <img class="ref-thumb-img" src="demos/kanzlei/thumb.jpg" alt="" loading="lazy" onerror="this.remove();">
             <svg viewBox="0 0 600 375" preserveAspectRatio="xMidYMid slice">
               <defs><linearGradient id="x9" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#2a3a4f"/><stop offset="100%" stop-color="#14181f"/></linearGradient></defs>
               <rect width="600" height="375" fill="url(#x9)"/>
@@ -309,11 +407,13 @@
             <div class="ref-meta">Demo · Recht · Anwaltskanzlei</div>
             <h3>Kanzlei Mahler</h3>
             <p>Klassisch, diskret, zeitlos – mit Tätigkeitsfeldern, Team-Vorstellung und Termin-Anfrage.</p>
+            <p class="ref-tags">Klassisch-vertrauliches Design · Navy + Gold · Justizia-Hero · Tätigkeitsfelder-Grid · Team-Karten · Anfrage-Formular</p>
           </div>
         </a>
 
         <a class="ref" data-cat="geschaeft" href="demos/laden/index.html">
           <div class="ref-thumb">
+            <img class="ref-thumb-img" src="demos/laden/thumb.jpg" alt="" loading="lazy" onerror="this.remove();">
             <svg viewBox="0 0 600 375" preserveAspectRatio="xMidYMid slice">
               <defs><linearGradient id="x7" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#f3ddd0"/><stop offset="100%" stop-color="#c97c5a"/></linearGradient></defs>
               <rect width="600" height="375" fill="url(#x7)"/>
@@ -334,6 +434,32 @@
             <div class="ref-meta">Demo · Einzelhandel · Geschäft</div>
             <h3>Das gute Büro</h3>
             <p>Kleines Schreibwaren-Geschäft mit Sortiment, Stammkund:innen und Stadtgeschichte.</p>
+            <p class="ref-tags">Cozy Lokal-Geschäft-Design · Sortiments-Karten · Story-Sektion · Besuch-Block</p>
+          </div>
+        </a>
+
+        <a class="ref" data-cat="blog" href="demos/kontur/index.html">
+          <div class="ref-thumb">
+            <img class="ref-thumb-img" src="demos/kontur/thumb.jpg" alt="" loading="lazy" onerror="this.remove();">
+            <svg viewBox="0 0 600 375" preserveAspectRatio="xMidYMid slice">
+              <rect width="600" height="375" fill="#fbf9f4"/>
+              <line x1="40" y1="40" x2="560" y2="40" stroke="#1a1a1a" stroke-width="3"/>
+              <line x1="40" y1="46" x2="560" y2="46" stroke="#1a1a1a" stroke-width="1"/>
+              <text x="300" y="120" font-family="Source Serif 4, Georgia, serif" font-size="64" fill="#14161a" text-anchor="middle" font-weight="400">Kontur<tspan fill="#c0392b" font-style="italic">.</tspan></text>
+              <text x="300" y="160" font-family="JetBrains Mono, monospace" font-size="11" fill="#6c7080" text-anchor="middle" letter-spacing="3">AUSGABE 47 · MAI 2026</text>
+              <line x1="40" y1="200" x2="560" y2="200" stroke="#e3dfd4" stroke-width="1"/>
+              <text x="40" y="230" font-family="JetBrains Mono, monospace" font-size="9" fill="#c0392b" letter-spacing="3">REPORTAGE</text>
+              <text x="40" y="270" font-family="Source Serif 4, Georgia, serif" font-size="32" fill="#14161a">Was im Stoff bleibt,</text>
+              <text x="40" y="305" font-family="Source Serif 4, Georgia, serif" font-size="32" font-style="italic" fill="#14161a">wenn die Marke geht.</text>
+              <text x="40" y="340" font-family="JetBrains Mono, monospace" font-size="10" fill="#6c7080">Helene Brandt · 14.05. · 12 Min</text>
+            </svg>
+            <span class="ref-badge">Demo · Blog &amp; CMS</span>
+          </div>
+          <div class="ref-body">
+            <div class="ref-meta">Demo · Magazin · CMS-Mockup</div>
+            <h3>Kontur</h3>
+            <p>Magazin-Blog mit Hero-Artikel, Article-Grid und einem leichtgewichtigen CMS-Editor zum Anschauen.</p>
+            <p class="ref-tags">Newspaper-Masthead · Kategorie-Nav · Lesemodus mit Initial · Live-CMS-Editor-Mockup · Newsletter</p>
           </div>
         </a>
 
@@ -381,7 +507,7 @@
     </div>
     <div class="foot-bottom">
       <span>© <span id="year">2026</span> Pixelschneiderei</span>
-      <span>Mit Sorgfalt genäht.</span>
+      <span class="foot-signature"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="6" y1="18" x2="18" y2="6"/><circle cx="17" cy="7" r="1.4"/><path d="M15.5 6.5C13 5 10.5 6.5 11 9.5"/></svg>Mit Liebe geschneidert @ <a href="https://pixelschneiderei.de/">pixelschneiderei.de</a></span>
     </div>
   </div>
 </footer>

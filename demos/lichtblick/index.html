@@ -1,0 +1,597 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="theme-color" content="#f7f3ec" />
+<title>Lichtblick — Hochzeitsfotografie (Demo)</title>
+<meta name="description" content="Demo: Hochzeitsfotografin im Editorial-Stil. Beispielauftritt der Pixelschneiderei für Foto-Portfolios." />
+<meta name="robots" content="noindex, nofollow" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="thumb.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23f7f3ec'/%3E%3Ccircle cx='16' cy='16' r='8' fill='none' stroke='%231a1714' stroke-width='1.2'/%3E%3Ccircle cx='16' cy='16' r='4' fill='%231a1714'/%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root{
+    --paper: #f7f3ec;
+    --cream: #fbf8f1;
+    --ink: #1a1714;
+    --ink-soft: #2e2925;
+    --muted: #84776a;
+    --line: #e0d8c8;
+    --gold: #b59a6b;
+    --serif: 'Cormorant Garamond', 'Times New Roman', serif;
+    --sans: 'Inter', sans-serif;
+    --ease: cubic-bezier(.2,.7,.2,1);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{ background: var(--paper); color: var(--ink); font-family: var(--sans); line-height: 1.6; -webkit-font-smoothing: antialiased;}
+  a{color:inherit; text-decoration:none}
+  img,svg{display:block; max-width:100%}
+  ::selection{ background: var(--ink); color: var(--paper);}
+
+  .demo-banner{ background: var(--ink); color: var(--paper); text-align:center; padding: 10px 16px; font-size: .76rem; letter-spacing: .12em; text-transform: uppercase;}
+  .demo-banner a{ text-decoration: underline; text-underline-offset: 3px;}
+
+  /* NAV - minimal, almost transparent */
+  .nav{
+    position: fixed; top: 38px; left: 0; right: 0; z-index: 50;
+    padding: 28px 40px;
+    transition: background .3s var(--ease), padding .3s var(--ease);
+  }
+  .nav.is-scrolled{
+    background: rgba(247,243,236,.93);
+    backdrop-filter: blur(14px);
+    padding: 14px 40px;
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-row{ display:flex; align-items: center; justify-content: space-between; max-width: 1600px; margin: 0 auto;}
+  .brand{
+    font-family: var(--serif); font-weight: 400;
+    font-size: 1.6rem; color: var(--paper);
+    letter-spacing: .26em; text-transform: uppercase;
+    transition: color .3s var(--ease);
+  }
+  .nav.is-scrolled .brand{ color: var(--ink);}
+  .nav-links{
+    display:flex; gap: 40px;
+    font-size: .76rem; letter-spacing: .22em; text-transform: uppercase;
+    color: var(--paper);
+    transition: color .3s var(--ease);
+  }
+  .nav.is-scrolled .nav-links{ color: var(--ink-soft);}
+  .nav-links a:hover{ color: var(--gold);}
+  @media (max-width: 720px){ .nav-links{ display: none;}}
+
+  /* HERO - full bleed photo with overlay */
+  .hero{
+    position: relative; height: 100vh; min-height: 680px;
+    overflow: hidden; color: var(--paper);
+  }
+  .hero-img{
+    position: absolute; inset: 0;
+    background:
+      url('img/hero.jpg') center/cover no-repeat,
+      linear-gradient(135deg, #c4a87d 0%, #6e5538 50%, #2c2419 100%);
+  }
+  .hero-img::after{
+    content:""; position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,.35) 0%, rgba(0,0,0,.05) 30%, rgba(0,0,0,.5) 100%);
+  }
+  .hero-meta{
+    position: absolute; top: 50%; left: 0; right: 0;
+    transform: translateY(-50%);
+    text-align: center; padding: 0 24px;
+  }
+  .hero-meta .kicker{
+    font-family: var(--sans);
+    font-size: .76rem; letter-spacing: .3em; text-transform: uppercase;
+    opacity: .85;
+  }
+  .hero-meta h1{
+    font-family: var(--serif); font-weight: 300;
+    font-size: clamp(3rem, 9vw, 7.5rem);
+    letter-spacing: -0.005em; line-height: 1;
+    margin: 28px auto 24px;
+    max-width: 18ch;
+  }
+  .hero-meta h1 em{ font-style: italic; font-weight: 300;}
+  .hero-meta .sub{
+    font-family: var(--serif); font-style: italic;
+    font-size: clamp(1.1rem, 1.6vw, 1.3rem);
+    opacity: .9; max-width: 36ch; margin: 0 auto;
+  }
+  .hero-bottom{
+    position: absolute; bottom: 32px; left: 0; right: 0;
+    display: flex; justify-content: space-between; align-items: end;
+    padding: 0 40px;
+    font-family: var(--sans); font-size: .74rem;
+    letter-spacing: .22em; text-transform: uppercase;
+    opacity: .8;
+  }
+
+  /* INTRODUCTION */
+  .intro{ padding: 140px 24px; text-align: center;}
+  .intro-inner{ max-width: 60ch; margin: 0 auto;}
+  .intro .kicker{
+    font-size: .76rem; letter-spacing: .26em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 28px;
+  }
+  .intro h2{
+    font-family: var(--serif); font-weight: 300; font-style: italic;
+    font-size: clamp(1.8rem, 3.4vw, 2.6rem); line-height: 1.4;
+    color: var(--ink);
+  }
+
+  /* FEATURED WEDDINGS - large editorial blocks */
+  .feature{
+    padding: 60px 0;
+  }
+  .feature-grid{
+    display: grid;
+    grid-template-columns: 6fr 5fr;
+    gap: 80px;
+    align-items: center;
+    max-width: 1440px; margin: 0 auto; padding: 0 40px;
+  }
+  .feature-grid.flip{ grid-template-columns: 5fr 6fr;}
+  .feature-grid.flip .feature-text{ order: -1;}
+  @media (max-width: 880px){
+    .feature-grid, .feature-grid.flip{ grid-template-columns: 1fr; gap: 32px; padding: 0 24px;}
+    .feature-grid.flip .feature-text{ order: 0;}
+  }
+  .feature-img{
+    aspect-ratio: 4/5;
+    background: center/cover no-repeat;
+    background-image: linear-gradient(135deg, var(--paper), var(--gold));
+  }
+  .feature-img.f-1{ background-image: url('img/feature-1.jpg'), linear-gradient(135deg, #d4b88f, #6e5538);}
+  .feature-img.f-2{ background-image: url('img/feature-2.jpg'), linear-gradient(135deg, #c4a87d, #2c2419);}
+  .feature-img.f-3{ background-image: url('img/feature-3.jpg'), linear-gradient(135deg, #d8c0a0, #84776a);}
+  .feature-text{ padding: 0 16px;}
+  .feature-text .kicker{
+    font-family: var(--sans);
+    font-size: .74rem; letter-spacing: .22em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 18px;
+  }
+  .feature-text h3{
+    font-family: var(--serif); font-weight: 400;
+    font-size: clamp(2.2rem, 4.5vw, 3.6rem); line-height: 1;
+    letter-spacing: -0.005em;
+    margin-bottom: 24px;
+  }
+  .feature-text h3 em{ font-style: italic; color: var(--ink);}
+  .feature-text .where{
+    font-family: var(--serif); font-style: italic; font-size: 1.2rem;
+    color: var(--muted); margin-bottom: 24px;
+  }
+  .feature-text p{ color: var(--ink-soft); font-size: 1.04rem; line-height: 1.7;}
+
+  /* FULL BLEED IMAGE */
+  .bleed{
+    width: 100%; height: 90vh; min-height: 540px;
+    background: center/cover no-repeat;
+    background-image:
+      url('img/bleed-1.jpg'),
+      linear-gradient(135deg, #6e5538, #2c2419);
+    margin: 60px 0;
+  }
+  .bleed.b-2{ background-image: url('img/bleed-2.jpg'), linear-gradient(135deg, #b59a6b, #2c2419); height: 80vh;}
+
+  /* PULL QUOTE */
+  .pull{
+    padding: 140px 24px; text-align: center;
+    border-block: 1px solid var(--line);
+  }
+  .pull blockquote{
+    font-family: var(--serif); font-weight: 300; font-style: italic;
+    font-size: clamp(1.8rem, 4vw, 3rem); line-height: 1.35;
+    color: var(--ink);
+    max-width: 28ch; margin: 0 auto;
+  }
+  .pull cite{
+    display: block; margin-top: 32px;
+    font-family: var(--sans); font-style: normal;
+    font-size: .76rem; letter-spacing: .22em; text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* MASONRY GALLERY */
+  .gallery{ padding: 100px 0;}
+  .gallery .label{
+    text-align: center; padding: 0 24px;
+    font-family: var(--sans);
+    font-size: .76rem; letter-spacing: .26em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 48px;
+  }
+  .masonry{
+    column-count: 3; column-gap: 4px;
+    padding: 0 4px;
+  }
+  @media (max-width: 720px){ .masonry{ column-count: 2;}}
+  .m-item{
+    width: 100%; margin-bottom: 4px;
+    background: center/cover no-repeat;
+    background-image: linear-gradient(135deg, var(--paper), var(--gold));
+    break-inside: avoid;
+    transition: opacity .25s var(--ease);
+  }
+  .m-item:hover{ opacity: .85;}
+  .m-1{ aspect-ratio: 3/4; background-image: url('img/m1.jpg'), linear-gradient(135deg, #c4a87d, #6e5538);}
+  .m-2{ aspect-ratio: 1; background-image: url('img/m2.jpg'), linear-gradient(135deg, #d8c0a0, #84776a);}
+  .m-3{ aspect-ratio: 4/5; background-image: url('img/m3.jpg'), linear-gradient(135deg, #b59a6b, #2c2419);}
+  .m-4{ aspect-ratio: 4/5; background-image: url('img/m4.jpg'), linear-gradient(135deg, #d4b88f, #6e5538);}
+  .m-5{ aspect-ratio: 1; background-image: url('img/m5.jpg'), linear-gradient(135deg, #c4a87d, #2c2419);}
+  .m-6{ aspect-ratio: 3/4; background-image: url('img/m6.jpg'), linear-gradient(135deg, #d8c0a0, #6e5538);}
+  .m-7{ aspect-ratio: 4/5; background-image: url('img/m7.jpg'), linear-gradient(135deg, #b59a6b, #84776a);}
+  .m-8{ aspect-ratio: 1; background-image: url('img/m8.jpg'), linear-gradient(135deg, #c4a87d, #6e5538);}
+  .m-9{ aspect-ratio: 3/4; background-image: url('img/m9.jpg'), linear-gradient(135deg, #d4b88f, #2c2419);}
+
+  /* ABOUT - portrait + text */
+  .about{
+    padding: 140px 24px;
+    background: var(--cream);
+    border-block: 1px solid var(--line);
+  }
+  .about-inner{
+    max-width: 1080px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 80px; align-items: center;
+  }
+  @media (max-width: 720px){ .about-inner{ grid-template-columns: 1fr; gap: 32px;}}
+  .about-photo{
+    aspect-ratio: 4/5;
+    background:
+      url('img/about.jpg') center/cover no-repeat,
+      linear-gradient(135deg, #d4b88f, #6e5538);
+  }
+  .about .kicker{
+    font-size: .76rem; letter-spacing: .26em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 20px;
+  }
+  .about h2{
+    font-family: var(--serif); font-weight: 300;
+    font-size: clamp(2.2rem, 4.5vw, 3.4rem); line-height: 1; letter-spacing: -0.005em;
+    margin-bottom: 28px;
+  }
+  .about h2 em{ font-style: italic; color: var(--gold);}
+  .about p{ color: var(--ink-soft); font-size: 1.05rem; line-height: 1.75; margin-bottom: 16px;}
+  .about-sig{
+    font-family: var(--serif); font-style: italic; font-size: 1.3rem;
+    color: var(--ink); margin-top: 24px;
+  }
+
+  /* INVESTMENT - 3 simple tiers */
+  .investment{ padding: 120px 24px; text-align: center;}
+  .investment .kicker{
+    font-size: .76rem; letter-spacing: .26em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 16px;
+  }
+  .investment h2{
+    font-family: var(--serif); font-weight: 300; font-style: italic;
+    font-size: clamp(2rem, 4vw, 3rem); line-height: 1;
+    margin-bottom: 56px;
+  }
+  .invest-grid{
+    max-width: 1080px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;
+  }
+  @media (max-width: 720px){ .invest-grid{ grid-template-columns: 1fr;}}
+  .invest{
+    text-align: left;
+    padding: 36px 32px;
+    border: 1px solid var(--line);
+    background: var(--paper);
+    transition: transform .25s var(--ease), border-color .25s var(--ease);
+  }
+  .invest:hover{ transform: translateY(-4px); border-color: var(--gold);}
+  .invest h3{ font-family: var(--serif); font-size: 1.7rem; font-weight: 400; margin-bottom: 4px;}
+  .invest h3 em{ font-style: italic; color: var(--gold);}
+  .invest .what{ font-size: .82rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-bottom: 18px;}
+  .invest p{ color: var(--ink-soft); font-size: .96rem; margin-bottom: 16px;}
+  .invest ul{ list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;}
+  .invest li{ font-size: .92rem; color: var(--ink-soft); padding-left: 18px; position: relative;}
+  .invest li::before{ content: "·"; position: absolute; left: 4px; color: var(--gold);}
+
+  /* CONTACT - full bleed image with form overlay */
+  .contact{
+    position: relative; padding: 0;
+    overflow: hidden;
+  }
+  .contact-img{
+    position: absolute; inset: 0;
+    background:
+      url('img/contact.jpg') center/cover no-repeat,
+      linear-gradient(135deg, #d4b88f, #2c2419);
+  }
+  .contact-img::after{
+    content:""; position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(247,243,236,.96), rgba(247,243,236,.9));
+  }
+  .contact-inner{
+    position: relative; max-width: 720px; margin: 0 auto;
+    padding: 140px 24px; text-align: center;
+  }
+  .contact .kicker{
+    font-size: .76rem; letter-spacing: .26em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 16px;
+  }
+  .contact h2{
+    font-family: var(--serif); font-weight: 300;
+    font-size: clamp(2.4rem, 5vw, 4rem); line-height: 1; letter-spacing: -0.005em;
+    margin-bottom: 24px;
+  }
+  .contact h2 em{ font-style: italic; color: var(--ink);}
+  .contact p{ color: var(--ink-soft); margin-bottom: 36px; max-width: 50ch; margin-left: auto; margin-right: auto;}
+  .contact form{
+    display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+    max-width: 560px; margin: 0 auto;
+  }
+  @media (max-width: 600px){ .contact form{ grid-template-columns: 1fr;}}
+  .contact input, .contact textarea{
+    padding: 14px 18px;
+    background: var(--paper); border: 1px solid var(--line); border-radius: 0;
+    font: inherit; font-size: .98rem;
+    color: var(--ink);
+  }
+  .contact input:focus, .contact textarea:focus{ outline: none; border-color: var(--gold);}
+  .contact textarea{ grid-column: 1 / -1; min-height: 100px; resize: vertical;}
+  .contact button{
+    grid-column: 1 / -1;
+    padding: 16px 24px; background: var(--ink); color: var(--paper);
+    border: 0; cursor: pointer; font: inherit;
+    font-size: .82rem; letter-spacing: .22em; text-transform: uppercase;
+    transition: background .25s var(--ease);
+  }
+  .contact button:hover{ background: var(--gold);}
+
+  /* FOOTER */
+  footer{
+    background: var(--ink); color: var(--paper);
+    padding: 80px 40px 32px;
+    text-align: center;
+  }
+  .foot-brand{
+    font-family: var(--serif); font-weight: 400;
+    font-size: 2rem; letter-spacing: .26em; text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  .foot-meta{ font-size: .82rem; opacity: .7; margin-bottom: 32px;}
+  .foot-links{ display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; margin-bottom: 40px;}
+  .foot-links a{ font-size: .76rem; letter-spacing: .22em; text-transform: uppercase; opacity: .7; transition: opacity .2s ease;}
+  .foot-links a:hover{ opacity: 1; color: var(--gold);}
+  .foot-bottom{ font-size: .74rem; opacity: .5; padding-top: 24px; border-top: 1px solid rgba(255,255,255,.1);}
+  .foot-bottom a{ color: var(--gold); text-decoration: underline;}
+
+  .reveal{ opacity: 0; transform: translateY(24px); transition: opacity 1.1s var(--ease), transform 1.1s var(--ease);}
+  .reveal.is-visible{ opacity: 1; transform: translateY(0);}
+  @media (prefers-reduced-motion: reduce){ .reveal{opacity:1; transform: none;} *,*::before,*::after{transition-duration: 0.001ms !important;}}
+</style>
+</head>
+<body>
+
+<div class="demo-banner">Demo · Branche: Hochzeitsfotografie &nbsp;·&nbsp; <a href="../../index.html">← zur Pixelschneiderei</a></div>
+
+<a class="demo-exit" href="../../referenzen.html">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+  Demo verlassen
+</a>
+<style>
+  .demo-exit{ position: fixed; bottom: 24px; left: 24px; z-index: 100; display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; background: rgba(20,20,22,.92); color: #fff; border-radius: 999px; font-family: 'Inter', sans-serif; font-size: .82rem; font-weight: 500; letter-spacing: .04em; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,.1); box-shadow: 0 6px 20px rgba(0,0,0,.25); transition: transform .2s ease, background .2s ease; text-decoration: none;}
+  .demo-exit:hover{ transform: translateY(-2px); background: #b59a6b;}
+  .demo-exit svg{ width: 14px; height: 14px;}
+  @media (max-width: 720px){ .demo-exit{ bottom: 16px; left: 16px; padding: 8px 14px; font-size: .78rem;}}
+</style>
+
+<header class="nav" id="nav">
+  <div class="nav-row">
+    <a href="#top" class="brand">Lichtblick</a>
+    <nav class="nav-links">
+      <a href="#stories">Stories</a>
+      <a href="#galerie">Galerie</a>
+      <a href="#ueber-uns">&Uuml;ber uns</a>
+      <a href="#investition">Investition</a>
+      <a href="#anfrage">Anfrage</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-img"></div>
+    <div class="hero-meta">
+      <div class="kicker">Hochzeitsfotografie &middot; seit 2017</div>
+      <h1>Den Tag, <em>den Sie nie<br/>vergessen werden.</em></h1>
+      <p class="sub">Bilder, die nicht posieren &mdash; sondern erinnern.</p>
+    </div>
+    <div class="hero-bottom">
+      <span>Lichtblick &middot; Hochzeitsfotografie</span>
+      <span>Scroll &darr;</span>
+    </div>
+  </section>
+
+  <!-- INTRO -->
+  <section class="intro">
+    <div class="intro-inner">
+      <div class="kicker">Eine Einladung</div>
+      <h2 class="reveal">
+        &bdquo;Ich m&ouml;chte Bilder, die zeigen, wie es sich angef&uuml;hlt hat. Nicht, wie wir ausgesehen haben."
+        <br/>&mdash; Das ist es, was wir h&ouml;ren wollen.
+      </h2>
+    </div>
+  </section>
+
+  <!-- FEATURED WEDDING 1 -->
+  <section class="feature" id="stories">
+    <div class="feature-grid">
+      <div class="feature-img f-1 reveal"></div>
+      <div class="feature-text reveal">
+        <div class="kicker">Story No. 01</div>
+        <h3>Marlene <em>&amp;</em> Aaron</h3>
+        <div class="where">Schloss Eckartsau &middot; Mai 2024</div>
+        <p>Ein nasser Maitag, ein Brautstrau&szlig; aus Wiesenblumen, ein Vater, der drei Reden anf&auml;ngt und keine zu Ende bringt. Wir lieben Hochzeiten, die nicht alles unter Kontrolle haben.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FULL BLEED -->
+  <div class="bleed reveal"></div>
+
+  <!-- FEATURED WEDDING 2 (flipped) -->
+  <section class="feature">
+    <div class="feature-grid flip">
+      <div class="feature-img f-2 reveal"></div>
+      <div class="feature-text reveal">
+        <div class="kicker">Story No. 02</div>
+        <h3>Friederike <em>&amp;</em> Tom</h3>
+        <div class="where">Almh&uuml;tte Tirol &middot; September 2023</div>
+        <p>Drei&szlig;ig G&auml;ste, eine Kuh, die durch die Trauungs-Zeremonie spazierte. Manche Bilder schreibt das Leben besser als jedes Briefing &mdash; man muss nur dabei sein.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PULL QUOTE -->
+  <section class="pull">
+    <blockquote class="reveal">
+      Wir fotografieren <em>Augenblicke,</em><br/>
+      keine Posen.
+    </blockquote>
+    <cite>&mdash; Helene &amp; Jakob</cite>
+  </section>
+
+  <!-- FEATURED WEDDING 3 -->
+  <section class="feature">
+    <div class="feature-grid">
+      <div class="feature-img f-3 reveal"></div>
+      <div class="feature-text reveal">
+        <div class="kicker">Story No. 03</div>
+        <h3>Sina <em>&amp;</em> Lukas</h3>
+        <div class="where">Standesamt &amp; Hinterhof &middot; Juli 2023</div>
+        <p>Vierzehn G&auml;ste. Standesamt-Termin um 11, Pizza um 13, Tanz im Hof bis spat in die Nacht. Eine Hochzeit muss nicht gro&szlig; sein, um schwer zu wiegen.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="bleed b-2 reveal"></div>
+
+  <!-- GALLERY MASONRY -->
+  <section class="gallery" id="galerie">
+    <div class="label">Aus dem Archiv</div>
+    <div class="masonry">
+      <div class="m-item m-1 reveal"></div>
+      <div class="m-item m-2 reveal"></div>
+      <div class="m-item m-3 reveal"></div>
+      <div class="m-item m-4 reveal"></div>
+      <div class="m-item m-5 reveal"></div>
+      <div class="m-item m-6 reveal"></div>
+      <div class="m-item m-7 reveal"></div>
+      <div class="m-item m-8 reveal"></div>
+      <div class="m-item m-9 reveal"></div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="ueber-uns">
+    <div class="about-inner">
+      <div class="about-photo reveal"></div>
+      <div class="reveal">
+        <div class="kicker">&Uuml;ber uns</div>
+        <h2>Helene <em>&amp;</em> Jakob</h2>
+        <p>Wir sind ein Paar, das fotografiert, weil wir es nicht lassen k&ouml;nnen. Seit 2017 begleiten wir Hochzeiten in Deutschland, &Ouml;sterreich und auf den Inseln dazwischen.</p>
+        <p>Wir kommen am Vortag, essen mit, kennen die Trauzeugen beim Vornamen. Wenn der Tag kommt, sind wir nicht mehr Fremde mit Kamera &mdash; sondern Teil davon.</p>
+        <p class="about-sig">&mdash; Helene &amp; Jakob</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- INVESTMENT -->
+  <section class="investment" id="investition">
+    <div class="kicker">Investition</div>
+    <h2>Drei Wege, mit uns zu arbeiten.</h2>
+    <div class="invest-grid">
+      <article class="invest reveal">
+        <h3>Standesamt</h3>
+        <div class="what">Halber Tag</div>
+        <p>F&uuml;r intime Trauungen mit kleiner Feier im Anschluss.</p>
+        <ul>
+          <li>4 Stunden Begleitung</li>
+          <li>~ 200 bearbeitete Bilder</li>
+          <li>Online-Galerie zum Teilen</li>
+        </ul>
+      </article>
+      <article class="invest reveal">
+        <h3><em>Tagesreport.</em></h3>
+        <div class="what">Ganzer Tag</div>
+        <p>Von Getting-Ready bis zum letzten Tanz. Unser Klassiker.</p>
+        <ul>
+          <li>10 Stunden Begleitung</li>
+          <li>~ 500 bearbeitete Bilder</li>
+          <li>Bildband 30 &times; 30 cm</li>
+          <li>Online-Galerie + Print-Box</li>
+        </ul>
+      </article>
+      <article class="invest reveal">
+        <h3>Mehrt&auml;gig</h3>
+        <div class="what">Auf Anfrage</div>
+        <p>F&uuml;r Hochzeiten mit Vor-, Haupt- und Nachfeier &mdash; oder Reise-Hochzeiten.</p>
+        <ul>
+          <li>2&ndash;4 Tage Begleitung</li>
+          <li>Mehrere Bildb&auml;nde</li>
+          <li>Reise- und &Uuml;bernachtungs-Pauschale</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="anfrage">
+    <div class="contact-img"></div>
+    <div class="contact-inner">
+      <div class="kicker">Anfrage</div>
+      <h2>Wir freuen uns,<br/>von <em>Ihrem Tag</em> zu lesen.</h2>
+      <p>Schildern Sie uns kurz Datum, Ort und was Sie sich w&uuml;nschen &mdash; wir antworten meist innerhalb von 48 Stunden.</p>
+      <form onsubmit="event.preventDefault(); alert('Demo: Formular nicht aktiv.');">
+        <input type="text" placeholder="Ihre Namen" required>
+        <input type="email" placeholder="E-Mail" required>
+        <input type="text" placeholder="Datum (ungef&auml;hr)" >
+        <input type="text" placeholder="Ort" >
+        <textarea placeholder="Erz&auml;hlen Sie uns von Ihrem Tag..." required></textarea>
+        <button type="submit">Anfrage senden</button>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="foot-brand">Lichtblick</div>
+  <div class="foot-meta">Hochzeitsfotografie &middot; Helene &amp; Jakob &middot; seit 2017</div>
+  <div class="foot-links">
+    <a href="#stories">Stories</a>
+    <a href="#galerie">Galerie</a>
+    <a href="#ueber-uns">&Uuml;ber uns</a>
+    <a href="#investition">Investition</a>
+    <a href="#anfrage">Anfrage</a>
+  </div>
+  <div class="foot-bottom">
+    Demo · Lichtblick ist ein fiktiver Beispielauftritt der <a href="../../index.html">Pixelschneiderei</a>.
+  </div>
+</footer>
+
+<script>
+  var nav = document.getElementById('nav');
+  if (nav){ window.addEventListener('scroll', function(){ nav.classList.toggle('is-scrolled', window.scrollY > 80);}, {passive:true});}
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if (e.isIntersecting){ e.target.classList.add('is-visible'); io.unobserve(e.target);}});
+  }, { threshold: 0.10, rootMargin: "0px 0px -8% 0px" });
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+</script>
+<script src="../../assets/demo-exit.js"></script>
+</body>
+</html>
