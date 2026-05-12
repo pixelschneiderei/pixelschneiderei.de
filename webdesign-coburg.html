@@ -63,13 +63,15 @@
   .page-hero h1 em{ color: var(--thread); font-style: italic; font-weight: 300;}
   .local-stage{
     margin: 56px 0 0;
-    aspect-ratio: 21/9;
     border: 1px solid var(--line);
     border-radius: var(--r-lg);
     overflow: hidden;
     background: var(--paper-2);
   }
-  .local-stage iframe{ width: 100%; height: 100%; border: 0; display: block; filter: saturate(.9);}
+  .local-stage .map-consent{
+    border: 0; border-radius: 0; aspect-ratio: 21/9;
+  }
+  .local-stage .map-consent iframe{ width: 100%; height: 100%; border: 0; display: block; filter: saturate(.9);}
   .cities{
     display: flex; flex-wrap: wrap; gap: 8px;
     margin-top: 28px; justify-content: center;
@@ -147,11 +149,22 @@
       </div>
 
       <div class="local-stage reveal">
-        <iframe
-          src="https://www.openstreetmap.org/export/embed.html?bbox=10.6%2C50.05%2C11.4%2C50.55&amp;layer=mapnik&amp;marker=50.2935%2C10.9925"
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-          title="Karte: Pixelschneiderei in Lautertal, Coburg & Umgebung"></iframe>
+        <div class="map-consent"
+             data-map-consent
+             data-map-src="https://www.openstreetmap.org/export/embed.html?bbox=10.6%2C50.05%2C11.4%2C50.55&amp;layer=mapnik&amp;marker=50.2935%2C10.9925"
+             data-map-title="Karte: Pixelschneiderei in Lautertal, Coburg &amp; Umgebung">
+          <div class="map-placeholder">
+            <h3>Coburg &amp; Umgebung</h3>
+            <p>
+              Pixelschneiderei sitzt in <strong>Lautertal</strong> &mdash; 20 Minuten n&ouml;rdlich von Coburg, in der Mitte zwischen Th&uuml;ringen und Oberfranken.
+              <small>Die Karte wird erst nach Ihrer Zustimmung geladen. Beim Laden &uuml;bertr&auml;gt Ihr Browser Ihre IP-Adresse an die OpenStreetMap Foundation (UK). Mehr in unserer <a href="datenschutz.html#osm" style="color:var(--thread); text-decoration: underline; text-underline-offset: 3px;">Datenschutzerkl&auml;rung</a>.</small>
+            </p>
+            <div class="map-actions">
+              <button type="button" data-load-map>Karte von OpenStreetMap laden</button>
+              <a class="map-osm-link" href="https://www.openstreetmap.org/?mlat=50.2935&amp;mlon=10.9925#map=11/50.2935/10.9925" target="_blank" rel="noopener">Auf openstreetmap.org &ouml;ffnen &rarr;</a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>

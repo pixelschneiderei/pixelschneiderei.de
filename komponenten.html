@@ -242,7 +242,7 @@
   .slot.is-active{ background: var(--thread); color: #fff; border-color: var(--thread);}
   .slot.is-taken{ opacity: .35; text-decoration: line-through; cursor: not-allowed;}
 
-  /* Map (live OpenStreetMap embed) */
+  /* Map (live OpenStreetMap embed mit Click-to-Load) */
   .map-wrap{
     position: relative;
     border: 1px solid var(--line);
@@ -250,11 +250,16 @@
     overflow: hidden;
     background: var(--paper-2);
   }
-  .map-wrap iframe{
+  .map-wrap .map-consent{
+    border: 0;
+    border-radius: 0;
+    aspect-ratio: 16/9;
+  }
+  .map-wrap .map-consent.is-loaded{ aspect-ratio: 16/9; }
+  .map-wrap .map-consent iframe{
     display: block;
     width: 100%;
     height: 100%;
-    aspect-ratio: 16/9;
     border: 0;
     filter: saturate(.9);
   }
@@ -549,6 +554,80 @@
   }
   .quotes-dots i.is-active{ background: var(--thread); transform: scale(1.3);}
 
+  /* BEWERTUNGEN — Reviews-Grid mit Sternen */
+  .reviews-summary{
+    display: flex; flex-wrap: wrap; gap: 24px; align-items: center;
+    padding: 18px 22px; margin-bottom: 28px;
+    background: var(--surface);
+    border: 1px solid var(--line-soft);
+    border-radius: var(--r-md);
+  }
+  .reviews-score{
+    display: flex; align-items: baseline; gap: 8px;
+    font-family: var(--serif); color: var(--ink);
+  }
+  .reviews-score b{ font-size: 2.4rem; font-weight: 500; line-height: 1;}
+  .reviews-score span{ font-size: .95rem; color: var(--muted); font-family: var(--sans);}
+  .reviews-stars{ display: inline-flex; gap: 2px; color: var(--thread); }
+  .reviews-stars svg{ width: 18px; height: 18px; }
+  .reviews-source{
+    margin-left: auto;
+    font-family: var(--mono); font-size: .8rem;
+    color: var(--muted); letter-spacing: .08em;
+  }
+  .reviews-source strong{ color: var(--ink); font-family: var(--sans); font-weight: 600;}
+
+  .reviews-grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 18px;
+  }
+  .review-card{
+    background: var(--surface);
+    border: 1px solid var(--line-soft);
+    border-radius: var(--r-md);
+    padding: 22px;
+    display: flex; flex-direction: column; gap: 14px;
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
+  .review-card:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px -12px rgba(0,0,0,.12);
+  }
+  .review-card-head{
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 8px;
+  }
+  .review-card .reviews-stars svg{ width: 14px; height: 14px;}
+  .review-card-date{
+    font-family: var(--mono); font-size: .72rem;
+    color: var(--muted); letter-spacing: .08em;
+  }
+  .review-card p{
+    margin: 0;
+    color: var(--ink-soft);
+    font-size: .95rem; line-height: 1.55;
+  }
+  .review-card-foot{
+    display: flex; align-items: center; gap: 10px;
+    margin-top: auto;
+    padding-top: 12px;
+    border-top: 1px solid var(--line-soft);
+  }
+  .review-avatar{
+    width: 36px; height: 36px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--thread), var(--ink));
+    color: var(--paper);
+    display: inline-flex; align-items: center; justify-content: center;
+    font-family: var(--serif); font-size: .9rem; font-weight: 500;
+  }
+  .review-meta{
+    display: flex; flex-direction: column; gap: 2px;
+    line-height: 1.2;
+  }
+  .review-meta b{ font-size: .9rem; color: var(--ink); font-weight: 600;}
+  .review-meta span{ font-size: .78rem; color: var(--muted);}
+
   /* LIGHTBOX */
   .lb-grid{
     display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
@@ -662,6 +741,7 @@
         <a href="#galerie">Bilder-Galerie</a>
         <a href="#vorhernachher">Vorher / Nachher</a>
         <a href="#stimmen">Stimmen-Slider</a>
+        <a href="#bewertungen">Bewertungen</a>
         <a href="#lightbox">Lightbox</a>
         <a href="#player">Audio-Player</a>
         <a href="#newsletter">Newsletter</a>
@@ -931,6 +1011,119 @@
         </div>
       </div>
 
+      <!-- BEWERTUNGEN -->
+      <div class="demo-section" id="bewertungen">
+        <div class="demo-head">
+          <span class="eyebrow">07b &middot; Bewertungen</span>
+          <h2>Bewertungen &mdash; <em>Sterne, Zitate, Vertrauen.</em></h2>
+          <p>Echtes Sozial-Proof-Element: Sternchen-Score oben, einzelne Bewertungs-Karten darunter. Funktioniert mit Google-, Facebook-, Trustpilot- oder Hand-gepflegten Reviews. Datenschutzfreundlich: keine Live-Einbettung von Bewertungs-Plattformen &mdash; die Inhalte werden statisch ausgeliefert.</p>
+        </div>
+        <div class="demo-stage demo-stage--soft">
+          <div class="reviews-summary">
+            <div class="reviews-score">
+              <b>4,9</b>
+              <span>von 5</span>
+            </div>
+            <div class="reviews-stars" aria-label="4,9 von 5 Sternen">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="currentColor" fill-opacity=".5"/></svg>
+            </div>
+            <div class="reviews-source">aus <strong>27 Bewertungen</strong> &middot; Google &amp; Direkt</div>
+          </div>
+
+          <div class="reviews-grid">
+
+            <article class="review-card">
+              <div class="review-card-head">
+                <div class="reviews-stars" aria-label="5 von 5 Sternen">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                </div>
+                <span class="review-card-date">vor 2 Wochen</span>
+              </div>
+              <p>&bdquo;Termin pünktlich, Preis wie besprochen, Ergebnis besser als erwartet. Hier wird Handwerk noch gemacht, nicht nur gepriesen.&ldquo;</p>
+              <div class="review-card-foot">
+                <span class="review-avatar">MH</span>
+                <div class="review-meta">
+                  <b>Marlene Hupf</b>
+                  <span>Coburg</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="review-card">
+              <div class="review-card-head">
+                <div class="reviews-stars" aria-label="5 von 5 Sternen">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                </div>
+                <span class="review-card-date">vor 1 Monat</span>
+              </div>
+              <p>&bdquo;Hatte vorher zwei Angebote von gr&ouml;&szlig;eren Agenturen &mdash; doppelter Preis, halbe Aufmerksamkeit. Hier hat man sich die Zeit genommen, zuzuh&ouml;ren.&ldquo;</p>
+              <div class="review-card-foot">
+                <span class="review-avatar">TS</span>
+                <div class="review-meta">
+                  <b>Thomas Schramm</b>
+                  <span>Inhaber, Schreinerei</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="review-card">
+              <div class="review-card-head">
+                <div class="reviews-stars" aria-label="4 von 5 Sternen">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                </div>
+                <span class="review-card-date">vor 2 Monaten</span>
+              </div>
+              <p>&bdquo;Schnell, freundlich, fairer Preis. Einen halben Stern Abzug, weil ich gerne mehr Vorschl&auml;ge zur Farbgebung gehabt h&auml;tte &mdash; wurde aber sofort nachgeliefert.&ldquo;</p>
+              <div class="review-card-foot">
+                <span class="review-avatar">AK</span>
+                <div class="review-meta">
+                  <b>Anke Kaiser</b>
+                  <span>Yoga-Studio, Lichtenfels</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="review-card">
+              <div class="review-card-head">
+                <div class="reviews-stars" aria-label="5 von 5 Sternen">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                </div>
+                <span class="review-card-date">vor 3 Monaten</span>
+              </div>
+              <p>&bdquo;DSGVO ohne Theater, Texte verst&auml;ndlich, Seite l&auml;dt schneller als die der gro&szlig;en Mitbewerber. Genau das, was wir gesucht haben.&ldquo;</p>
+              <div class="review-card-foot">
+                <span class="review-avatar">RV</span>
+                <div class="review-meta">
+                  <b>Dr. Renate Vogel</b>
+                  <span>Praxis, Bamberg</span>
+                </div>
+              </div>
+            </article>
+
+          </div>
+        </div>
+      </div>
+
       <!-- LIGHTBOX -->
       <div class="demo-section" id="lightbox">
         <div class="demo-head">
@@ -1015,11 +1208,22 @@
         </div>
         <div class="demo-stage demo-stage--soft">
           <div class="map-wrap">
-            <iframe
-              src="https://www.openstreetmap.org/export/embed.html?bbox=10.9755%2C50.2855%2C11.0095%2C50.3015&amp;layer=mapnik&amp;marker=50.2935%2C10.9925"
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
-              title="Karte: Am Hang 1, 96486 Lautertal"></iframe>
+            <div class="map-consent"
+                 data-map-consent
+                 data-map-src="https://www.openstreetmap.org/export/embed.html?bbox=10.9755%2C50.2855%2C11.0095%2C50.3015&amp;layer=mapnik&amp;marker=50.2935%2C10.9925"
+                 data-map-title="Karte: Am Hang 1, 96486 Lautertal">
+              <div class="map-placeholder">
+                <h3>Standort</h3>
+                <p>
+                  <strong>Pixelschneiderei</strong> &middot; Am Hang 1 &middot; 96486 Lautertal
+                  <small>Die Karte wird erst nach Ihrer Zustimmung geladen. Beim Laden &uuml;bertr&auml;gt Ihr Browser Ihre IP-Adresse an die OpenStreetMap Foundation (UK). Mehr in unserer <a href="datenschutz.html#osm" style="color:var(--thread); text-decoration: underline; text-underline-offset: 3px;">Datenschutzerkl&auml;rung</a>.</small>
+                </p>
+                <div class="map-actions">
+                  <button type="button" data-load-map>Karte von OpenStreetMap laden</button>
+                  <a class="map-osm-link" href="https://www.openstreetmap.org/?mlat=50.2935&amp;mlon=10.9925#map=15/50.2935/10.9925" target="_blank" rel="noopener">Auf openstreetmap.org &ouml;ffnen &rarr;</a>
+                </div>
+              </div>
+            </div>
             <div class="map-caption">
               <span><strong>Pixelschneiderei</strong> &middot; Am Hang 1 &middot; 96486 Lautertal</span>
               <a href="https://www.openstreetmap.org/?mlat=50.2935&amp;mlon=10.9925#map=15/50.2935/10.9925" target="_blank" rel="noopener">Auf OpenStreetMap &ouml;ffnen &rarr;</a>

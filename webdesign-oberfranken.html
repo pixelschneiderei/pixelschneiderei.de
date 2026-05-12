@@ -68,11 +68,14 @@
   }
   .cities span strong{ color: var(--thread); font-weight: 600;}
   .local-stage{
-    margin: 56px 0 0; aspect-ratio: 21/9;
+    margin: 56px 0 0;
     border: 1px solid var(--line); border-radius: var(--r-lg); overflow: hidden;
     background: var(--paper-2);
   }
-  .local-stage iframe{ width: 100%; height: 100%; border: 0; display: block; filter: saturate(.9);}
+  .local-stage .map-consent{
+    border: 0; border-radius: 0; aspect-ratio: 21/9;
+  }
+  .local-stage .map-consent iframe{ width: 100%; height: 100%; border: 0; display: block; filter: saturate(.9);}
   .points-grid{
     display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 48px;
   }
@@ -136,10 +139,22 @@
       </div>
 
       <div class="local-stage reveal">
-        <iframe
-          src="https://www.openstreetmap.org/export/embed.html?bbox=10.4%2C49.7%2C12.4%2C50.6&amp;layer=mapnik&amp;marker=50.2935%2C10.9925"
-          loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-          title="Karte: Pixelschneiderei in Oberfranken"></iframe>
+        <div class="map-consent"
+             data-map-consent
+             data-map-src="https://www.openstreetmap.org/export/embed.html?bbox=10.4%2C49.7%2C12.4%2C50.6&amp;layer=mapnik&amp;marker=50.2935%2C10.9925"
+             data-map-title="Karte: Pixelschneiderei in Oberfranken">
+          <div class="map-placeholder">
+            <h3>Oberfranken im &Uuml;berblick</h3>
+            <p>
+              Pixelschneiderei sitzt in <strong>Lautertal</strong> &mdash; mittendrin zwischen Bamberg, Bayreuth, Coburg und Hof.
+              <small>Die Karte wird erst nach Ihrer Zustimmung geladen. Beim Laden &uuml;bertr&auml;gt Ihr Browser Ihre IP-Adresse an die OpenStreetMap Foundation (UK). Mehr in unserer <a href="datenschutz.html#osm" style="color:var(--thread); text-decoration: underline; text-underline-offset: 3px;">Datenschutzerkl&auml;rung</a>.</small>
+            </p>
+            <div class="map-actions">
+              <button type="button" data-load-map>Karte von OpenStreetMap laden</button>
+              <a class="map-osm-link" href="https://www.openstreetmap.org/?mlat=50.2935&amp;mlon=10.9925#map=9/50.2935/10.9925" target="_blank" rel="noopener">Auf openstreetmap.org &ouml;ffnen &rarr;</a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>

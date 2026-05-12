@@ -20,11 +20,79 @@ Alles Externe wird **selbst gehostet**, keine Verbindungen zu Drittservern beim 
 - ❌ **Keine Google Fonts** via `https://fonts.googleapis.com/...`. Stattdessen `tools/download-fonts.mjs` ausführen → lokale `.woff2` in `assets/fonts/` + `assets/fonts.css` mit `@font-face`.
 - ❌ **Kein Google Analytics**, Hotjar, Matomo (Cloud), Facebook-Pixel etc.
 - ❌ **Keine CDN-eingebundenen JS-Bibliotheken** (jQuery from cdnjs, Tailwind Play CDN, etc.). JS und CSS lokal halten.
-- ❌ **Keine Google Maps**. Stattdessen OpenStreetMap-Iframe (`openstreetmap.org/export/embed.html?...`) — datenschutzfreundlich, kein Cookie.
+- ❌ **Keine Google Maps**. Stattdessen OpenStreetMap — aber **nur via Click-to-Load** (siehe A1.1b), weil auch OSM beim Iframe-Laden die IP an die OpenStreetMap Foundation in UK überträgt.
 - ❌ **Keine YouTube-Embeds ohne nocookie**. Wenn Video nötig, dann `youtube-nocookie.com` mit Consent-Hinweis, oder lieber Selbst-Hosting.
 - ❌ **Keine Webfonts-Loader** (Fontsource via CDN etc.) — alles lokal.
 
 **Begründung:** LG-München-Urteil 2022 (Az. 3 O 17493/20) und folgende Abmahnwellen. IP-Übermittlung ohne Einwilligung ist DSGVO-Verstoß.
+
+### A1.1b Click-to-Load Pflicht für jedes Drittanbieter-Iframe
+
+**Regel:** Sobald ein `<iframe>` zu einer fremden Domain auflöst (OpenStreetMap, YouTube, Vimeo, Calendly, Soundcloud, Spotify, Twitter/X-Embed, Instagram, Maps-Anbieter aller Art, Reservierungs-Widgets, Bewertungs-Widgets etc.), **darf es nicht beim Laden der Seite automatisch geladen werden**. Stattdessen kommt ein Platzhalter mit:
+
+1. **Erklärung**, dass beim Laden Daten (insb. IP-Adresse, User-Agent, Referrer) an den Drittanbieter übertragen werden.
+2. **Name + Sitz** des Drittanbieters (Wer? Wo? Außerhalb EU?).
+3. **Link zur Datenschutzerklärung** mit Anker zur passenden Sektion (`datenschutz.html#osm`, `#youtube`, etc.).
+4. **Klick-Button** zur expliziten Einwilligung (Art. 6 Abs. 1 lit. a DSGVO).
+5. **Alternativ-Link** zum direkten Öffnen beim Anbieter (z. B. „auf openstreetmap.org öffnen") — für Besucher:innen, die ihre IP gar nicht teilen wollen.
+
+**Begründung:** Auch OpenStreetMap, YouTube-nocookie und Co. übertragen beim Iframe-Laden die IP-Adresse. Das ist ohne Einwilligung ein DSGVO-Verstoß (Art. 6 Abs. 1 DSGVO; siehe BGH I ZR 186/17 zu Cookies sinngemäß auch für IP-Übertragung). Die Einwilligung wird **nicht** in Cookies oder localStorage gespeichert — sie gilt nur für die aktuelle Seitenansicht. Pro Reload wieder fragen ist DSGVO-konform und akzeptabel.
+
+**Copy-Paste-Pattern (HTML):**
+
+```html
+<div class="map-consent"
+     data-map-consent
+     data-map-src="https://www.openstreetmap.org/export/embed.html?bbox=…&amp;layer=mapnik&amp;marker=…"
+     data-map-title="Karte zur Werkstatt">
+  <div class="map-placeholder">
+    <h3>Standort</h3>
+    <p>
+      <strong>Werkstattname</strong> · Straße 1 · 99999 Stadt
+      <small>Die Karte wird erst nach Ihrer Zustimmung geladen. Beim Laden überträgt Ihr Browser Ihre IP-Adresse an die OpenStreetMap Foundation (UK). Mehr in unserer <a href="datenschutz.html#osm">Datenschutzerklärung</a>.</small>
+    </p>
+    <div class="map-actions">
+      <button type="button" data-load-map>Karte von OpenStreetMap laden</button>
+      <a class="map-osm-link" href="https://www.openstreetmap.org/?mlat=…&amp;mlon=…#map=15/…/…" target="_blank" rel="noopener">auf openstreetmap.org öffnen →</a>
+    </div>
+  </div>
+</div>
+```
+
+**Copy-Paste-Pattern (JS) — gehört in `assets/site.js`:**
+
+```js
+document.querySelectorAll('[data-load-map]').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    var wrap = btn.closest('[data-map-consent]');
+    if (!wrap || wrap.classList.contains('is-loaded')) return;
+    var iframe = document.createElement('iframe');
+    iframe.src = wrap.getAttribute('data-map-src');
+    iframe.title = wrap.getAttribute('data-map-title') || 'Karte';
+    iframe.loading = 'lazy';
+    iframe.referrerPolicy = 'no-referrer-when-downgrade';
+    iframe.setAttribute('frameborder', '0');
+    wrap.appendChild(iframe);
+    wrap.classList.add('is-loaded');
+  });
+});
+```
+
+Die CSS-Regeln (`.map-consent`, `.map-placeholder`, `.map-placeholder button[data-load-map]` etc.) sind in `assets/style.css` zentral hinterlegt und werden in den Pages bei Bedarf lokal überschrieben (z. B. für aspect-ratio).
+
+**Datenschutzerklärung Pflicht-Sektion** — pro eingebundenem Drittanbieter eigene `<h2 id="...">`-Sektion in `datenschutz.html`:
+- Wer ist Anbieter (Name + Adresse + Sitzland)?
+- Welche Daten werden übertragen (IP, User-Agent, Referrer, ggf. mehr)?
+- Wie lange werden sie gespeichert? (Wenn unbekannt: „entzieht sich unserem Einfluss".)
+- Rechtsgrundlage: **Art. 6 Abs. 1 lit. a DSGVO (ausdrückliche Einwilligung durch Klick)**.
+- Link zur Datenschutzerklärung des Drittanbieters.
+
+**Anti-Patterns** (alle verboten):
+- ❌ `<iframe src="https://www.openstreetmap.org/..." loading="lazy">` direkt im HTML.
+- ❌ Einwilligung in `localStorage` speichern und beim Seitenwechsel automatisch nachladen — das wäre Cookie-Banner-Logik durch die Hintertür.
+- ❌ `<iframe loading="lazy">` allein reicht **nicht** — `loading="lazy"` verhindert nur den initialen Request, lädt aber beim Scrollen automatisch (also vor Klick).
+- ❌ Iframe per `display: none` versteckt — Browser laden es trotzdem mit, IP geht trotzdem raus.
+- ❌ Ein einziger zentraler „Karte laden"-Button für die ganze Seite — pro Iframe ein eigener Consent-Wrapper.
 
 ### A1.2 BILDER.md ist Pflicht
 

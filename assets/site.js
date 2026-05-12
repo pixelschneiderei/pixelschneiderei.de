@@ -31,4 +31,22 @@
     }
   }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
   document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+
+  // Click-to-Load: Drittanbieter-Iframes (z. B. OpenStreetMap) erst nach
+  // bewusster Zustimmung laden — Schutz der IP-Adresse vor Übermittlung
+  // an Dritte (Art. 6 Abs. 1 lit. a DSGVO).
+  document.querySelectorAll('[data-load-map]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var wrap = btn.closest('[data-map-consent]');
+      if (!wrap || wrap.classList.contains('is-loaded')) return;
+      var iframe = document.createElement('iframe');
+      iframe.src = wrap.getAttribute('data-map-src');
+      iframe.title = wrap.getAttribute('data-map-title') || 'Karte';
+      iframe.loading = 'lazy';
+      iframe.referrerPolicy = 'no-referrer-when-downgrade';
+      iframe.setAttribute('frameborder', '0');
+      wrap.appendChild(iframe);
+      wrap.classList.add('is-loaded');
+    });
+  });
 })();
