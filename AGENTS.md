@@ -474,18 +474,21 @@ Erscheint in: Impressum, Datenschutz, JSON-LD `LocalBusiness` aller Hauptseiten,
 
 ## B3. Service-Modell
 
-**Drei Pakete** (ohne Preise auf der Seite — Preis im Erstgespräch):
+**Drei Webseiten-Pakete** (Preis-Anker auf `leistungen.html`, konkretes Angebot im Erstgespräch):
 
-- **Hobby** — kleine einseitige Auftritte
-- **Standard** — Selbstständige & kleinere Unternehmen
-- **Premium** — Konzern-Niveau, Hochglanz
+- **Starter** (One-Pager, kein Formular, mailto/tel) — ab 875 € + ab 75 €/Jahr Service → Jahr 1 ab 1.000 €
+- **Standard** (Multi-Page, 2-4 Detail-Seiten, Formular) — ab 1.875 € + ab 175 €/Jahr Service → Jahr 1 ab 2.100 €
+- **Premium** (alles + Karriere/Galerie/SEO/Karte) — ab 2.700 € + ab 250 €/Jahr Service → Jahr 1 ab 3.000 €
 
-**Bausteine** als Add-on (nicht Pflicht-Bundle):
-- DSGVO-Compliance-Set
-- SEO-Optimierung
-- Mehrsprachigkeit
-- CMS-Integration
-- Service-Abo (laufende Pflege, Sicherheits-Patches, Compliance-Updates)
+**Drei Service-Pakete** (jährlich, beidseitig kündbar, Teilerstattung bei vorzeitigem Ende):
+
+- **Budget** — 75 €/Jahr (3 Module: Rechtstexte-Check + SSL/Uptime + Sicherheits-Header)
+- **Basis** — 175 €/Jahr (7 Module + Bewertungen, Feiertage, Formular-Pflege, 2× Inhaltsupdate)
+- **All-Inc** — 250 €/Jahr (alle 12 Module + SEO, Bewerbungsformular, Bildpflege, Karriere-Anzeigen, DNS-Wartung, 4× Inhaltsupdate). Bundle-Ersparnis 50 € vs. à-la-carte.
+
+**12 Service-Module einzeln zubuchbar** à 25 €/Jahr — Liste vollständig auf `leistungen.html`.
+
+**13 Bausteine zubuchbar** (einmalig, je 25-150 €): Kontaktformular, Bewertungs-Slider, Click-to-Load, Content-Modal, Bild-Optimierung, Extraseite, Produktseite, Karriereseite, WhatsApp-CTA, „Heute geöffnet"-Logik, Initiale Einrichtung Basic/Premium, SEO-Tuning.
 
 **Förderprogramme** (für Bayern explizit erwähnt):
 - Bayerischer Digitalbonus
@@ -501,7 +504,8 @@ Erscheint in: Impressum, Datenschutz, JSON-LD `LocalBusiness` aller Hauptseiten,
 
 | Datei | Zweck |
 |---|---|
-| `index.html` | Startseite — Hero, Leistungen, Pakete, Bausteine, Vorteile, FAQ, Responsive-Showcase, Referenzen-Strip, Prozess, Kontakt |
+| `index.html` | Startseite — Hero, Leistungen, Pakete, Bausteine, Vorteile, Responsive-Showcase, Referenzen, Prozess, FAQ, Kontakt |
+| `leistungen.html` | Vergleichstabellen aller Web-/Service-Pakete + Bausteine-Galerie + Empfehlungs-FAQ + Preis-Anker |
 | `referenzen.html` | 12 Branchen-Demos mit Filter |
 | `komponenten.html` | UI-Bausteine: Forms, CTAs, Galerien, Audio, Karten, FAQ |
 | `premium-webdesign.html` | Hochglanz-Landingpage (dunkler Hero) |
@@ -509,7 +513,7 @@ Erscheint in: Impressum, Datenschutz, JSON-LD `LocalBusiness` aller Hauptseiten,
 | `webdesign-oberfranken.html` | Regional Oberfranken |
 | `webdesign-bayern.html` | Bayern + Förderung |
 | `webseite-handwerker-bayern.html` | Branchen-Landingpage Handwerk |
-| `impressum.html`, `datenschutz.html` | Rechtliches |
+| `impressum.html`, `datenschutz.html`, `agb.html` | Rechtliches |
 
 ### Demos (alle `noindex, nofollow`)
 

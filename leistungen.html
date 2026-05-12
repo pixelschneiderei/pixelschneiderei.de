@@ -1,0 +1,634 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<meta name="theme-color" content="#f5f1ec" />
+<title>Leistungen &amp; Bausteine im Detail | Pixelschneiderei</title>
+<meta name="description" content="Alle Bausteine und Service-Module der Pixelschneiderei im Überblick: 3 Webseiten-Pakete, 12 Service-Module, 13 Bausteine. Transparent vergleichen, passend zusammenstellen." />
+<meta name="keywords" content="Leistungen Webdesign, Webseiten-Pakete, Service-Pakete, Bausteine Webseite, Kontaktformular einbauen, Karriereseite erstellen, Bewertungs-Slider, DSGVO-Lightbox, Click-to-Load, WhatsApp Call-To-Action" />
+<meta name="author" content="Pixelschneiderei" />
+<link rel="canonical" href="https://pixelschneiderei.de/leistungen.html" />
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+
+<meta property="og:title" content="Leistungen &amp; Bausteine im Detail | Pixelschneiderei" />
+<meta property="og:description" content="Alle Bausteine und Service-Module der Pixelschneiderei — transparent vergleichen, passend zusammenstellen." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://pixelschneiderei.de/leistungen.html" />
+<meta property="og:image" content="https://pixelschneiderei.de/assets/og-leistungen.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Pixelschneiderei — Leistungen und Bausteine im Detail" />
+<meta property="og:locale" content="de_DE" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://pixelschneiderei.de/assets/og-leistungen.jpg" />
+
+<link rel="icon" type="image/png" sizes="any" href="assets/ci/logo_light.png" />
+<link rel="apple-touch-icon" href="assets/ci/logo_light.png" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "@id": "https://pixelschneiderei.de/leistungen.html",
+  "name": "Leistungen & Bausteine im Detail",
+  "description": "Drei Webseiten-Pakete, drei Service-Pakete, dreizehn frei kombinierbare Bausteine.",
+  "url": "https://pixelschneiderei.de/leistungen.html",
+  "inLanguage": "de-DE",
+  "isPartOf": { "@type": "WebSite", "name": "Pixelschneiderei", "url": "https://pixelschneiderei.de/" },
+  "publisher": { "@type": "Organization", "name": "Pixelschneiderei", "url": "https://pixelschneiderei.de/" },
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://pixelschneiderei.de/" },
+      { "@type": "ListItem", "position": 2, "name": "Leistungen", "item": "https://pixelschneiderei.de/leistungen.html" }
+    ]
+  }
+}
+</script>
+<link rel="stylesheet" href="assets/style.css"/>
+
+<style>
+  /* ============ Vergleichs-Tabellen ============ */
+  .compare{
+    width: 100%; border-collapse: separate; border-spacing: 0;
+    margin: 48px 0; background: var(--surface);
+    border: 1px solid var(--line); border-radius: var(--r-lg);
+    overflow: hidden;
+  }
+  .compare thead th{
+    text-align: left; padding: 20px 24px;
+    background: var(--paper-2); border-bottom: 1px solid var(--line);
+    font-family: var(--serif); font-weight: 500; font-size: 1.1rem;
+  }
+  .compare thead th.tier{ text-align: center; min-width: 140px; font-style: italic;}
+  .compare thead th.tier em{ color: var(--thread); font-style: italic; font-weight: 400; display: block; font-size: .76rem; font-family: var(--mono); letter-spacing: .14em; text-transform: uppercase; margin-top: 4px;}
+  .compare tbody td{
+    padding: 14px 24px; border-bottom: 1px solid var(--line-soft);
+    font-size: .94rem;
+  }
+  .compare tbody tr:last-child td{ border-bottom: 0;}
+  .compare tbody td:first-child{ font-weight: 500; color: var(--ink); width: 50%;}
+  .compare tbody td:first-child small{ display: block; color: var(--muted); font-weight: 400; font-size: .82rem; margin-top: 2px; line-height: 1.4;}
+  .compare tbody td.cell{ text-align: center; color: var(--muted); font-family: var(--mono);}
+  .compare tbody td.cell.yes{ color: var(--thread); font-size: 1.2rem;}
+  .compare tbody tr:hover td{ background: var(--paper-2);}
+  .compare tfoot td{
+    padding: 22px 24px; background: var(--paper-2);
+    border-top: 2px solid var(--line);
+    font-family: var(--mono); font-size: .82rem; color: var(--ink-soft);
+    text-align: center; letter-spacing: .04em;
+  }
+  .compare tfoot td:first-child{ text-align: left; color: var(--muted); font-style: italic;}
+  .compare tfoot td strong{ color: var(--ink); font-family: var(--serif); font-style: normal; font-size: 1.1rem; font-weight: 500;}
+
+  /* ============ Bausteine-Galerie ============ */
+  .bausteine-grid{
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+    margin-top: 48px;
+  }
+  @media (max-width: 980px){ .bausteine-grid{ grid-template-columns: repeat(2, 1fr);}}
+  @media (max-width: 640px){ .bausteine-grid{ grid-template-columns: 1fr;}}
+  .baustein{
+    background: var(--surface);
+    border: 1px solid var(--line-soft);
+    border-radius: var(--r-lg);
+    padding: 24px 26px;
+    transition: transform .25s var(--ease), border-color .25s var(--ease), box-shadow .25s var(--ease);
+  }
+  .baustein:hover{ transform: translateY(-3px); border-color: var(--thread); box-shadow: var(--shadow-md);}
+  .baustein .ico{
+    width: 36px; height: 36px; border-radius: 8px;
+    background: var(--thread-3); color: var(--thread);
+    display: grid; place-items: center; margin-bottom: 14px;
+  }
+  .baustein .ico svg{ width: 18px; height: 18px;}
+  .baustein h3{
+    font-family: var(--serif); font-size: 1.15rem; font-weight: 500;
+    margin-bottom: 8px; line-height: 1.2;
+  }
+  .baustein h3 em{ color: var(--thread); font-style: italic; font-weight: 400;}
+  .baustein p{ color: var(--ink-soft); font-size: .9rem; line-height: 1.55; margin: 0;}
+  .baustein .demo-link{
+    display: inline-flex; align-items: center; gap: 4px;
+    margin-top: 12px; padding-top: 10px; border-top: 1px dashed var(--line);
+    font-family: var(--mono); font-size: .72rem; letter-spacing: .08em;
+    color: var(--thread); text-transform: uppercase;
+  }
+  .baustein .demo-link svg{ width: 12px; height: 12px;}
+
+  /* ============ Empfehlung-Personas ============ */
+  .personas{
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+    margin-top: 48px;
+  }
+  @media (max-width: 880px){ .personas{ grid-template-columns: 1fr;}}
+  .persona{
+    background: var(--paper-2);
+    border-left: 3px solid var(--thread);
+    padding: 24px 28px;
+    border-radius: 0 var(--r-md) var(--r-md) 0;
+  }
+  .persona .eyebrow{
+    font-family: var(--mono); font-size: .72rem; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--thread); margin-bottom: 10px;
+  }
+  .persona h4{
+    font-family: var(--serif); font-size: 1.2rem; font-weight: 500;
+    margin-bottom: 10px;
+  }
+  .persona h4 em{ font-style: italic; color: var(--thread);}
+  .persona p{ color: var(--ink-soft); font-size: .92rem; margin: 0;}
+  .persona p strong{ color: var(--ink); font-weight: 500;}
+
+  /* ============ Preis-Anker ============ */
+  .price-anchor{
+    margin-top: 64px;
+    padding: 36px 40px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--r-lg);
+    box-shadow: var(--shadow-sm);
+  }
+  .price-anchor h3{
+    font-family: var(--serif); font-size: 1.4rem; font-weight: 500;
+    margin-bottom: 18px;
+  }
+  .price-anchor h3 em{ font-style: italic; color: var(--thread);}
+  .price-table{
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+    margin: 20px 0 24px;
+  }
+  @media (max-width: 720px){ .price-table{ grid-template-columns: 1fr;}}
+  .price-cell{
+    text-align: left;
+  }
+  .price-cell .tier-name{
+    font-family: var(--mono); font-size: .72rem; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--muted); margin-bottom: 6px;
+  }
+  .price-cell .amount{
+    font-family: var(--serif); font-size: 1.6rem; font-weight: 500;
+    letter-spacing: -0.02em; color: var(--ink); line-height: 1;
+  }
+  .price-cell .amount em{ font-style: italic; color: var(--thread); font-weight: 400;}
+  .price-cell .amount small{ font-size: .58em; color: var(--muted); font-weight: 400; display: inline-block; margin-left: 2px;}
+  .price-cell .followup{
+    font-family: var(--mono); font-size: .78rem; color: var(--ink-soft); margin-top: 6px;
+  }
+  .price-anchor .note{
+    font-size: .92rem; color: var(--ink-soft);
+    margin: 0; padding-top: 20px; border-top: 1px dashed var(--line);
+  }
+
+  /* ============ FAQ-Lite für Empfehlung ============ */
+  .help-faq{
+    background: var(--paper-2);
+    border-block: 1px solid var(--line-soft);
+    padding: var(--section-pad) 0;
+    margin-top: 96px;
+  }
+  .help-faq details{
+    background: var(--surface);
+    border: 1px solid var(--line-soft);
+    border-radius: var(--r-md);
+    padding: 16px 22px;
+    margin-bottom: 12px;
+  }
+  .help-faq summary{
+    cursor: pointer; font-weight: 500; font-size: 1.02rem;
+    list-style: none;
+  }
+  .help-faq summary::-webkit-details-marker{ display: none;}
+  .help-faq summary::after{
+    content: "+"; float: right; color: var(--thread);
+    transition: transform .2s ease; font-size: 1.4rem; line-height: 1;
+  }
+  .help-faq details[open] summary::after{ content: "−";}
+  .help-faq details p{
+    margin: 12px 0 0; color: var(--ink-soft); font-size: .94rem;
+  }
+</style>
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <div class="container nav-row">
+    <a href="index.html" class="brand" aria-label="Pixelschneiderei – Startseite"><img src="assets/ci/logo_light.png" alt="" class="brand-icon" width="1536" height="1024" decoding="async" aria-hidden="true"><span class="brand-text">pixel<em>schneiderei</em></span></a>
+    <nav class="nav-links" aria-label="Hauptnavigation">
+      <a href="leistungen.html" class="is-active">Leistungen</a>
+      <a href="index.html#pakete">Pakete</a>
+      <a href="referenzen.html">Referenzen</a>
+      <a href="komponenten.html">Komponenten</a>
+      <a href="index.html#kontakt">Kontakt</a>
+    </nav>
+    <a href="index.html#kontakt" class="nav-cta nav-cta-desktop">Projekt starten
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" width="14" height="14"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menü öffnen" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" width="18" height="18"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+</header>
+
+<main>
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">Leistungen &amp; Bausteine</span>
+      <h1 style="margin-top:18px">Alles, was wir<br/><em style="font-style:italic;color:var(--thread);font-weight:300">nähen</em> — übersichtlich.</h1>
+      <p class="lede">
+        Drei Webseiten-Pakete für drei Anlassgrößen. Drei Service-Pakete für das, was danach kommt.
+        Dreizehn Bausteine, die Sie einzeln zubuchen können, wenn das Paket nicht ganz passt.
+        Hier sehen Sie alles auf einen Blick — ohne Überraschungen im Erstgespräch.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ WEBSEITEN-PAKETE ============ -->
+  <section>
+    <div class="container">
+      <div class="section-head">
+        <div class="reveal">
+          <span class="eyebrow">Webseiten-Pakete</span>
+          <h2 style="margin-top:18px">Drei Schnitte. <em style="font-style:italic;color:var(--thread);font-weight:300">Drei Anlässe.</em></h2>
+        </div>
+        <p class="lede reveal">
+          Vom One-Pager mit Telefon-und-Mail-Knopf bis zur Hochglanz-Mehrseiter mit Karriere-Strecke.
+        </p>
+      </div>
+
+      <div class="reveal" style="overflow-x: auto;">
+        <table class="compare">
+          <thead>
+            <tr>
+              <th>Was drin ist</th>
+              <th class="tier">Starter<em>One-Pager</em></th>
+              <th class="tier">Standard<em>Multi-Page</em></th>
+              <th class="tier">Premium<em>All-In</em></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Startseite (Hero, Über uns, Leistungen, Kontakt)<small>Eine durchgehende scrollbare Seite</small></td><td class="cell yes">✓</td><td class="cell yes">✓</td><td class="cell yes">✓</td></tr>
+            <tr><td>Impressum &amp; Datenschutz<small>Rechtlich Pflicht — immer inklusive</small></td><td class="cell yes">✓</td><td class="cell yes">✓</td><td class="cell yes">✓</td></tr>
+            <tr><td>Lokales Font-Hosting (DSGVO)<small>Keine Google-Fonts-CDN, keine Abmahn-Falle</small></td><td class="cell yes">✓</td><td class="cell yes">✓</td><td class="cell yes">✓</td></tr>
+            <tr><td>SSL-Zertifikat + ausfallsicheres Hosting<small>HTTPS erzwungen, Cloudflare-CDN möglich</small></td><td class="cell yes">✓</td><td class="cell yes">✓</td><td class="cell yes">✓</td></tr>
+            <tr><td>Telefon- &amp; Mail-Button (mailto: / tel:)<small>Direkter Klick öffnet Mail oder Anruf</small></td><td class="cell yes">✓</td><td class="cell yes">✓</td><td class="cell yes">✓</td></tr>
+            <tr><td>Kontaktformular<small>Eigene Form mit Spam-Schutz, DSGVO-konform</small></td><td class="cell">—</td><td class="cell yes">✓</td><td class="cell yes">✓</td></tr>
+            <tr><td>Mehrere Unterseiten<small>Eigene Seiten für Leistungen, Team, Anfahrt etc.</small></td><td class="cell">—</td><td class="cell">bis 4</td><td class="cell">unbegrenzt</td></tr>
+            <tr><td>Bewertungs-Slider mit Schema.org<small>Rich-Snippet-Sterne im Google-Ergebnis</small></td><td class="cell">—</td><td class="cell yes">✓</td><td class="cell yes">✓</td></tr>
+            <tr><td>Karriere-Seite mit Bewerbungsformular<small>JobPosting-Schema + DSGVO-Form</small></td><td class="cell">—</td><td class="cell">—</td><td class="cell yes">✓</td></tr>
+            <tr><td>Bilder-Galerie<small>Lightbox, Lazy-Loading, optimiert</small></td><td class="cell">—</td><td class="cell">—</td><td class="cell yes">✓</td></tr>
+            <tr><td>SEO-Tuning &amp; Performance-Optimierung<small>Lighthouse 95+, strukturierte Daten, Sitemap</small></td><td class="cell">basis</td><td class="cell">erweitert</td><td class="cell yes">premium</td></tr>
+            <tr><td>Karten-Einbindung (Click-to-Load)<small>OpenStreetMap, kein Cookie-Tracking</small></td><td class="cell">—</td><td class="cell">—</td><td class="cell yes">✓</td></tr>
+            <tr><td>Animationen &amp; Story-Sektionen<small>Scroll-Reveals, geführte Inszenierung</small></td><td class="cell">—</td><td class="cell">—</td><td class="cell yes">✓</td></tr>
+            <tr><td>Zwei Designentwürfe inklusive<small>Erster Entwurf + überarbeitete Version</small></td><td class="cell yes">✓</td><td class="cell yes">✓</td><td class="cell yes">✓</td></tr>
+            <tr><td>Quellcode-Übergabe bei Vertragsende<small>GitHub-Repository inkl. Selbst-Hosting-Anleitung</small></td><td class="cell yes">✓</td><td class="cell yes">✓</td><td class="cell yes">✓</td></tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td>Empfohlen für:</td>
+              <td><strong>Einzel­unternehmer</strong> &amp; Handwerker</td>
+              <td><strong>Etablierte Betriebe</strong> mit Detail-Bedarf</td>
+              <td><strong>Recruiting-fokussierte</strong> Unternehmen</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SERVICE-PAKETE ============ -->
+  <section style="background: var(--paper-2); border-block: 1px solid var(--line-soft);">
+    <div class="container">
+      <div class="section-head">
+        <div class="reveal">
+          <span class="eyebrow">Service-Pakete</span>
+          <h2 style="margin-top:18px">Damit Ihre Seite <em style="font-style:italic;color:var(--thread);font-weight:300">aktuell bleibt.</em></h2>
+        </div>
+        <p class="lede reveal">
+          Webseite einmal gebaut — und dann? Drei Service-Stufen, die laufend dafür sorgen, dass
+          alles rechtssicher, sicher und gepflegt bleibt. Beidseitig kündbar, Teilerstattung
+          bei vorzeitigem Ende. Alle Module 1:1 in jedem Paket gleich definiert — Sie wissen
+          immer, was drin ist.
+        </p>
+      </div>
+
+      <div class="reveal" style="overflow-x: auto;">
+        <table class="compare">
+          <thead>
+            <tr>
+              <th>Service-Modul</th>
+              <th class="tier">Budget<em>3 Module</em></th>
+              <th class="tier">Basis<em>7 Module</em></th>
+              <th class="tier">All-Inc<em>12 Module</em></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Rechtstexte-Check<small>Impressum + Datenschutz + AGB jährlich auf neue Gesetzeslage geprüft</small></td><td class="cell yes">✓</td><td class="cell yes">✓</td><td class="cell yes">✓</td></tr>
+            <tr><td>SSL- &amp; Uptime-Monitoring<small>Laufende Verfügbarkeits- und Zertifikats-Überwachung mit Alarm</small></td><td class="cell yes">✓</td><td class="cell yes">✓</td><td class="cell yes">✓</td></tr>
+            <tr><td>Sicherheits-Header-Review<small>CSP, HSTS, Permissions-Policy nach Stand der Technik</small></td><td class="cell yes">✓</td><td class="cell yes">✓</td><td class="cell yes">✓</td></tr>
+            <tr><td>Google-Bewertungen<small>Quartalsweise neue Reviews in den Slider einpflegen</small></td><td class="cell">—</td><td class="cell yes">✓</td><td class="cell yes">✓</td></tr>
+            <tr><td>Feiertage-Refresh<small>Jährliches Update bayerischer Feiertage in „Heute geöffnet"</small></td><td class="cell">—</td><td class="cell yes">✓</td><td class="cell yes">✓</td></tr>
+            <tr><td>Kontaktformular-Pflege<small>Health-Check, Spam-Filter, Outlook-Regeln</small></td><td class="cell">—</td><td class="cell yes">✓</td><td class="cell yes">✓</td></tr>
+            <tr><td>Inhaltsupdate klein<small>Bis 30 Min Arbeit pro Update</small></td><td class="cell">—</td><td class="cell">2 / Jahr</td><td class="cell">4 / Jahr</td></tr>
+            <tr><td>SEO-Check<small>Lighthouse-Audit + Search-Console-Review</small></td><td class="cell">—</td><td class="cell">—</td><td class="cell yes">2 / Jahr</td></tr>
+            <tr><td>Bewerbungs-Formular-Pflege<small>Funktionsprüfung, JobPosting-validThrough-Update</small></td><td class="cell">—</td><td class="cell">—</td><td class="cell yes">✓</td></tr>
+            <tr><td>Bildpflege Vorher-Nachher<small>Bis 5 vom Kunden gelieferte Bilder pro Jahr einbauen</small></td><td class="cell">—</td><td class="cell">—</td><td class="cell yes">✓</td></tr>
+            <tr><td>Karriere-Anzeige-Pflege<small>Stellenanzeigen aktualisieren, Schema.org-Validierung</small></td><td class="cell">—</td><td class="cell">—</td><td class="cell yes">✓</td></tr>
+            <tr><td>DNS- &amp; Hosting-Wartung<small>DNS-Drift-Check, Build-Logs-Review, Cloudflare-Pflege</small></td><td class="cell">—</td><td class="cell">—</td><td class="cell yes">✓</td></tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td>Tagline:</td>
+              <td><strong>Pflichten erfüllt.</strong></td>
+              <td><strong>Was die meisten brauchen.</strong></td>
+              <td><strong>Sie kümmern sich um nichts.</strong></td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+
+      <p class="reveal" style="text-align: center; margin-top: 32px; color: var(--ink-soft); font-size: .94rem;">
+        Brauchen Sie nur 1–2 Module statt eines ganzen Pakets? Jedes Modul ist auch
+        einzeln zubuchbar — Sie zahlen nur, was Sie wirklich nutzen.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ BAUSTEINE-GALERIE ============ -->
+  <section>
+    <div class="container">
+      <div class="section-head">
+        <div class="reveal">
+          <span class="eyebrow">Bausteine</span>
+          <h2 style="margin-top:18px">Einzelne <em style="font-style:italic;color:var(--thread);font-weight:300">Bausteine</em> zum Zubuchen.</h2>
+        </div>
+        <p class="lede reveal">
+          Wenn ein Paket fast passt, aber Ihnen ein bestimmtes Feature fehlt — kein Problem.
+          Diese Bausteine lassen sich einzeln dazubuchen. Live ausprobieren können Sie alle
+          auf der <a href="komponenten.html" style="color: var(--thread); border-bottom: 1px dotted currentColor;">Komponenten-Schau</a>.
+        </p>
+      </div>
+
+      <div class="bausteine-grid reveal">
+
+        <article class="baustein">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></div>
+          <h3>Kontakt­formular <em>Basis</em></h3>
+          <p>Standard-Formular, das den Mail-Client öffnet — kein Server, keine DSGVO-Auftrags­verarbeitung.</p>
+          <a href="komponenten.html#forms" class="demo-link">Demo ansehen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+        </article>
+
+        <article class="baustein">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15 8.5 22 9.3 17 14 18.2 21 12 17.8 5.8 21 7 14 2 9.3 9 8.5 12 2"/></svg></div>
+          <h3>Bewertungs-<em>Slider</em></h3>
+          <p>Slider-Komponente mit Schema.org-Review + AggregateRating — Sterne werden bei Google angezeigt.</p>
+          <a href="komponenten.html#bewertungen" class="demo-link">Demo ansehen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+        </article>
+
+        <article class="baustein">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 12h18M12 3v18"/></svg></div>
+          <h3>Click-to-Load<em>(Privacy-Embed)</em></h3>
+          <p>OpenStreetMap, YouTube-nocookie, Calendly &amp; Co. werden erst nach explizitem Klick geladen — DSGVO-konform.</p>
+          <a href="komponenten.html#privacy" class="demo-link">Demo ansehen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+        </article>
+
+        <article class="baustein">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="3"/></svg></div>
+          <h3>Content-Modal <em>(Lightbox)</em></h3>
+          <p>Wiederverwendbare Modal-Komponente für Quickinfos, Galerien, Datenschutz-Hinweise oder Pop-Ups.</p>
+          <a href="komponenten.html#lightbox" class="demo-link">Demo ansehen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+        </article>
+
+        <article class="baustein">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>
+          <h3>Bild-<em>Optimierung</em></h3>
+          <p>Bearbeitung, Komprimierung und korrekte Alt-Texte für vom Kunden gelieferte Bilder.</p>
+          <a href="komponenten.html#bilder" class="demo-link">Demo ansehen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+        </article>
+
+        <article class="baustein">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9V5a3 3 0 0 0-6 0v4"/><rect x="3" y="9" width="18" height="13" rx="2"/></svg></div>
+          <h3>Extra<em>seite</em></h3>
+          <p>Eine zusätzliche Unterseite („Über uns", „Team", „Anfahrt") mit eigenen Inhalten und SEO-Pflege.</p>
+          <a href="komponenten.html" class="demo-link">Demo ansehen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+        </article>
+
+        <article class="baustein">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg></div>
+          <h3>Produkt­seite<em> inkl. Unterseiten</em></h3>
+          <p>Übersicht plus pro Produkt eine eigene Detail-Seite mit Bildern, Beschreibung und Anfrage-CTA.</p>
+          <a href="komponenten.html" class="demo-link">Demo ansehen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+        </article>
+
+        <article class="baustein">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+          <h3>Karriere­seite <em>mit Formular</em></h3>
+          <p>Dedizierte Karriere-Strecke mit Stellenanzeigen, JobPosting-Schema und DSGVO-konformem Bewerbungsformular.</p>
+          <a href="komponenten.html" class="demo-link">Demo ansehen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+        </article>
+
+        <article class="baustein">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.4 8.4 0 0 1 3.8-.9h.5a8.5 8.5 0 0 1 8 8v.5z"/></svg></div>
+          <h3>WhatsApp <em>Call-To-Action</em></h3>
+          <p>Click-to-Chat-Button mit vordefinierter Nachricht plus Datenschutz-Hinweis zur WhatsApp-Verarbeitung.</p>
+          <a href="komponenten.html#whatsapp" class="demo-link">Demo ansehen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+        </article>
+
+        <article class="baustein">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+          <h3>„Heute geöffnet"-<em>Logik</em></h3>
+          <p>Dynamische Öffnungszeiten-Anzeige mit Schema.org-OpeningHoursSpecification, inkl. Feiertage.</p>
+          <a href="komponenten.html" class="demo-link">Demo ansehen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+        </article>
+
+        <article class="baustein">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg></div>
+          <h3>Initiale Einrichtung <em>Basic</em></h3>
+          <p>Domain-Verknüpfung, DNS, SSL, GitHub-Pages-Setup und Mail-Weiterleitung — Sie haben am Ende des Tages eine Live-Seite.</p>
+          <a href="komponenten.html" class="demo-link">Mehr Infos <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+        </article>
+
+        <article class="baustein">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12V8a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h7"/><path d="M16 21l5-5"/><circle cx="12" cy="12" r="3"/></svg></div>
+          <h3>Initiale Einrichtung <em>Premium</em></h3>
+          <p>Wie Basic + Cloudflare-Hosting, Custom-DNS, Mail-Server-Setup und automatisierter Backup-Workflow.</p>
+          <a href="komponenten.html" class="demo-link">Mehr Infos <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+        </article>
+
+        <article class="baustein">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3-9 6 18 3-9h4"/></svg></div>
+          <h3>SEO-<em>Tuning</em></h3>
+          <p>Strukturierte Daten (JSON-LD), Sitemap, robots.txt, llms.txt, Open-Graph, Twitter-Card, Lighthouse-Optimierung.</p>
+          <a href="komponenten.html" class="demo-link">Mehr Infos <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EMPFEHLUNGS-PERSONAS ============ -->
+  <section style="background: var(--paper-2); border-block: 1px solid var(--line-soft);">
+    <div class="container">
+      <div class="section-head section-head--center">
+        <div class="reveal">
+          <span class="eyebrow">Empfehlung</span>
+          <h2 style="margin-top:18px">Welches Paket <em style="font-style:italic;color:var(--thread);font-weight:300">passt für Sie?</em></h2>
+        </div>
+      </div>
+
+      <div class="personas">
+        <article class="persona reveal">
+          <div class="eyebrow">Starter</div>
+          <h4>Sie sind <em>Einzelunternehmer</em> oder Handwerker</h4>
+          <p>
+            Sie wollen <strong>online auffindbar sein</strong> — Telefonnummer, Adresse, Leistungen, Bewertungen.
+            Brauchen kein Formular, weil Anrufen sowieso schneller geht. Eine Seite, klar strukturiert, mobil top.
+            <strong>Starter + Budget-Service</strong>.
+          </p>
+        </article>
+
+        <article class="persona reveal">
+          <div class="eyebrow">Standard</div>
+          <h4>Sie haben einen <em>etablierten Betrieb</em></h4>
+          <p>
+            Sie wollen Ihre <strong>Leistungen ausführlich darstellen</strong>, Kundenstimmen einbinden, ein Kontaktformular
+            anbieten. 2–4 Detail-Seiten, die das Vertrauen aufbauen. Service muss laufen — der Basis-Service deckt
+            Bewertungen, Feiertage und Inhalts­updates ab. <strong>Standard + Basis-Service</strong>.
+          </p>
+        </article>
+
+        <article class="persona reveal">
+          <div class="eyebrow">Premium</div>
+          <h4>Sie <em>suchen Personal</em> oder repräsentieren</h4>
+          <p>
+            Sie wollen Bewerberinnen und Bewerber überzeugen — mit eigener Karriere-Seite, Bilder-Galerie, Story-Strecken.
+            Oder Sie sind eine Marke, die Hochglanz braucht. Sie wollen sich um nichts kümmern müssen.
+            <strong>Premium + All-Inc-Service</strong>.
+          </p>
+        </article>
+      </div>
+
+      <!-- ============ PREIS-ANKER ============ -->
+      <div class="price-anchor reveal">
+        <h3>Was kostet das? <em>Eine grobe Orientierung.</em></h3>
+        <div class="price-table">
+          <div class="price-cell">
+            <div class="tier-name">Starter-Komplett</div>
+            <div class="amount">ab <em>1.000 €</em><small>im 1. Jahr</small></div>
+            <div class="followup">danach ab 75 € / Jahr Service</div>
+          </div>
+          <div class="price-cell">
+            <div class="tier-name">Standard-Komplett</div>
+            <div class="amount">ab <em>2.100 €</em><small>im 1. Jahr</small></div>
+            <div class="followup">danach ab 175 € / Jahr Service</div>
+          </div>
+          <div class="price-cell">
+            <div class="tier-name">Premium-Komplett</div>
+            <div class="amount">ab <em>3.000 €</em><small>im 1. Jahr</small></div>
+            <div class="followup">danach ab 250 € / Jahr Service</div>
+          </div>
+        </div>
+        <p class="note">
+          Die endgültigen Preise hängen von Umfang, Aufwand und gewählten Bausteinen ab. Im
+          <strong>kostenfreien Erstgespräch</strong> nennen wir Ihnen die konkreten Beträge für Ihr Projekt —
+          aufgeschlüsselt nach Paket und Bausteinen, ohne Überraschungen. Auf Wunsch zahlbar in zwei Raten
+          (Anzahlung beim ersten Entwurf, Restbetrag bei Lieferung).
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ HELFENDE FAQ ============ -->
+  <section class="help-faq">
+    <div class="container">
+      <div class="section-head">
+        <div class="reveal">
+          <span class="eyebrow">Häufige Fragen</span>
+          <h2 style="margin-top:18px">Bevor Sie <em style="font-style:italic;color:var(--thread);font-weight:300">fragen.</em></h2>
+        </div>
+      </div>
+
+      <div class="reveal" style="margin-top: 24px;">
+        <details>
+          <summary>Kann ich ein Paket wechseln, wenn meine Webseite mit der Zeit wächst?</summary>
+          <p>Ja, jederzeit. Sie zahlen den Differenzbetrag plus den Aufwand für die neuen Bausteine. Wenn Sie z. B. von Starter auf Standard wechseln möchten, weil später ein Kontaktformular dazu soll, sprechen wir kurz, und ich erstelle Ihnen ein Erweiterungs-Angebot.</p>
+        </details>
+        <details>
+          <summary>Bekomme ich einen Festpreis, oder wird abgerechnet nach Stunden?</summary>
+          <p>Festpreis für das Webseiten-Paket selbst. Service-Pakete sind jährliche Festbeträge. Nur Zusatzleistungen außerhalb des Pakets (z. B. nachträgliche große Umbauten, ungeplante Migrationen) laufen über den Stundensatz von 95 € — und auch da bekommen Sie vorab eine schriftliche Schätzung.</p>
+        </details>
+        <details>
+          <summary>Was passiert, wenn ich das Service-Paket nach einem Jahr nicht mehr will?</summary>
+          <p>Sie kündigen schriftlich, mit einem Monat zur Vertragslaufzeit (12 Monate). Bereits gezahlte Beträge für nicht in Anspruch genommene Folgemonate erstatten wir anteilig zurück. Details in unseren <a href="agb.html" style="color: var(--thread);">AGB § 8</a>.</p>
+        </details>
+        <details>
+          <summary>Sind Impressum und Datenschutz wirklich in jedem Paket inklusive?</summary>
+          <p>Ja, ohne Ausnahme. Beide sind rechtlich Pflicht, sobald Sie geschäftlich auftreten — und wir finden es unfair, dafür eine extra Gebühr zu nehmen. Wir liefern Vorlagen nach aktuellem Stand der Technik; eine anwaltliche Prüfung empfehlen wir trotzdem (wir sind keine Rechtsberatung).</p>
+        </details>
+        <details>
+          <summary>Was, wenn ich nur 1–2 Service-Module brauche, kein ganzes Paket?</summary>
+          <p>Geht. Jedes der 12 Module ist einzeln zubuchbar für 25 € pro Jahr. Wenn Sie z. B. nur das SSL-Monitoring und den Rechtstexte-Check wollen, zahlen Sie 50 € / Jahr — kein verstecktes Bundle-Müssen.</p>
+        </details>
+        <details>
+          <summary>Bekomme ich den Quellcode, wenn ich irgendwann woanders hin wechseln will?</summary>
+          <p>Immer. Bei Vertragsende erhalten Sie das vollständige GitHub-Repository, eine Anleitung zum Selbst-Hosting, und auf Wunsch begleiten wir die Migration gegen Stundensatz. Sie sind nie an uns gebunden — das ist uns wichtig.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA ============ -->
+  <section style="padding: 96px 24px; text-align: center;">
+    <div class="container" style="max-width: 720px;">
+      <div class="reveal">
+        <span class="eyebrow" style="justify-content: center;">Loslegen</span>
+        <h2 style="margin-top:18px">Im Erstgespräch <em style="font-style:italic;color:var(--thread);font-weight:300">schneidern</em> wir Ihr Paket gemeinsam.</h2>
+        <p class="lede" style="margin: 28px auto 36px;">
+          Kostenfrei, unverbindlich, 30 Minuten am Telefon oder per Video. Danach
+          haben Sie ein konkretes schriftliches Angebot mit Festpreis.
+        </p>
+        <a href="index.html#kontakt" class="btn btn-primary">
+          Erstgespräch starten
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" width="16" height="16"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <a href="index.html" class="foot-brand-link" aria-label="pixelschneiderei – Startseite"><img src="assets/ci/logo_light.png" alt="" class="foot-brand-icon" width="1536" height="1024" loading="lazy" decoding="async" aria-hidden="true"><span class="foot-brand-text">pixel<em>schneiderei</em></span></a>
+        <p>Maßgeschneiderte Webseiten, sauber verarbeitet. DSGVO-konform, ausfallsicher, mit hoher Erreichbarkeit.</p>
+      </div>
+      <div class="foot-col"><h4>Seite</h4>
+        <ul>
+          <li><a href="leistungen.html">Leistungen</a></li>
+          <li><a href="index.html#pakete">Pakete</a></li>
+          <li><a href="referenzen.html">Referenzen</a></li>
+          <li><a href="komponenten.html">Komponenten</a></li>
+          <li><a href="index.html#kontakt">Kontakt</a></li>
+        </ul>
+      </div>
+      <div class="foot-col"><h4>Rechtliches</h4>
+        <ul>
+          <li><a href="impressum.html">Impressum</a></li>
+          <li><a href="datenschutz.html">Datenschutz</a></li>
+          <li><a href="agb.html">AGB</a></li>
+          <li><a href="mailto:erik@weisser.dev">Kontakt aufnehmen</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year">2026</span> Pixelschneiderei</span>
+      <span class="foot-signature"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="6" y1="18" x2="18" y2="6"/><circle cx="17" cy="7" r="1.4"/><path d="M15.5 6.5C13 5 10.5 6.5 11 9.5"/></svg>Mit Liebe geschneidert @ <a href="https://pixelschneiderei.de/">pixelschneiderei.de</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/site.js"></script>
+</body>
+</html>

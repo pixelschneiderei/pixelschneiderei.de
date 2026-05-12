@@ -39,6 +39,7 @@ const mainPages = [
   { url: '/index.html',                       out: 'assets/og-home.jpg',                             ...mainOg },
   { url: '/referenzen.html',                  out: 'assets/og-referenzen.jpg',                       ...mainOg },
   { url: '/komponenten.html',                 out: 'assets/og-komponenten.jpg',                      ...mainOg },
+  { url: '/leistungen.html',                  out: 'assets/og-leistungen.jpg',                       ...mainOg },
   { url: '/premium-webdesign.html',           out: 'assets/og-premium-webdesign.jpg',                ...mainOg },
   { url: '/webdesign-coburg.html',            out: 'assets/og-webdesign-coburg.jpg',                 ...mainOg },
   { url: '/webdesign-oberfranken.html',       out: 'assets/og-webdesign-oberfranken.jpg',            ...mainOg },
