@@ -90,25 +90,248 @@
           E-Mail: <a href="mailto:erik@weisser.dev">erik@weisser.dev</a>
         </p>
 
-        <h2>2. Hosting und Bereitstellung der Webseite</h2>
+        <h2 id="architektur">2. Warum wir technische Drittanbieter nutzen — und wer wofür verantwortlich ist</h2>
         <p>
-          Der Quellcode dieser Webseite wird in einem Repository bei <strong>GitHub, Inc.</strong>
-          (88 Colin P Kelly Jr Street, San Francisco, CA 94107, USA) versioniert und über deren
-          Hosting-Dienste bereitgestellt. Beim Aufruf der Webseite werden technisch
-          notwendige Daten (z.&nbsp;B. IP-Adresse, Datum/Uhrzeit, abgerufene Datei,
-          User-Agent) durch GitHub verarbeitet. Diese Daten werden nicht von uns ausgewertet
-          und nicht zur Profilbildung verwendet.
+          Eine moderne Webseite besteht aus mehreren technischen Schichten, die in der Regel
+          nicht alle vom Anbieter selbst betrieben werden. Wir setzen bewusst auf spezialisierte
+          Dienstleister, weil das aus drei Gründen besser ist als Eigenbetrieb:
         </p>
+        <ul>
+          <li><strong>Datensicherheit.</strong> Spezialisten betreiben ihre Infrastruktur professioneller,
+            als ein einzelnes Studio es je könnte (Verschlüsselung, DDoS-Abwehr, Patch-Management,
+            24/7-Monitoring).</li>
+          <li><strong>Datenminimierung.</strong> Jeder Dienst sieht nur den Ausschnitt, den er für
+            seine Aufgabe braucht — niemand hat das Gesamtbild. Genau das fordert die DSGVO.</li>
+          <li><strong>Kosteneffizienz.</strong> Wir können faire Pauschalpreise anbieten, weil wir
+            keine sechsstellige Server-Infrastruktur unterhalten müssen.</li>
+        </ul>
+
+        <h3>Die Verantwortlichkeitskette</h3>
+        <p>Datenschutzrechtlich ist die Aufgabenverteilung sauber definiert:</p>
+        <ul>
+          <li><strong>Verantwortlicher (Art. 4 Nr. 7 DSGVO):</strong> wir, Pixelschneiderei
+            (Erik Weisser). Wir entscheiden, welche Daten zu welchem Zweck erhoben werden.</li>
+          <li><strong>Auftragsverarbeiter (Art. 28 DSGVO):</strong> Cloudflare (Hosting, Workers,
+            Turnstile, DNS), Resend (Mail-Versand), STRATO (Mail-Postfach), Zoho (Buchhaltung).
+            Mit allen besteht ein AVV gem. Art. 28 DSGVO.</li>
+          <li><strong>Eigenverantwortliche Anbieter:</strong> Stripe (für Lastschrift- und
+            Kartenzahlungen — Stripe ist eigenverantwortliches Zahlungsinstitut, kein
+            klassischer Auftragsverarbeiter).</li>
+        </ul>
+
+        <h3>Wer sieht welche Daten?</h3>
+        <p>Ein kompakter Überblick. Details zu jedem Dienst stehen in den folgenden Abschnitten.</p>
+        <table>
+          <thead>
+            <tr><th>Dienst</th><th>Sieht</th><th>Speichert wie lange?</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Cloudflare Pages</td><td>IP, User-Agent, aufgerufene URL</td><td>~7 Tage in Sicherheits-Logs</td></tr>
+            <tr><td>Cloudflare Turnstile</td><td>IP, Browser-Signale (Bot-Erkennung)</td><td>Wenige Minuten (Token läuft ab)</td></tr>
+            <tr><td>Cloudflare Workers</td><td>Formularinhalte beim Senden (in transit)</td><td>Wird nicht gespeichert</td></tr>
+            <tr><td>Resend</td><td>Inhalt der versendeten Mail</td><td>Bis zu 30 Tage in Versand-Logs</td></tr>
+            <tr><td>STRATO (Mail-Postfach)</td><td>Empfängt die Mail wie jede andere</td><td>Bis Anliegen erledigt + steuerliche Fristen</td></tr>
+            <tr><td>Zoho Books</td><td>Kunden-, Vertrags-, Rechnungs-Daten</td><td>Steuerlich vorgeschrieben (10 Jahre)</td></tr>
+            <tr><td>Stripe</td><td>Zahlungs-Daten (IBAN/Karte)</td><td>Nach Stripe-Policy, mind. zur Vertragsdurchführung</td></tr>
+          </tbody>
+        </table>
+
+        <h2 id="cloudflare-pages">3. Cloudflare Pages (Hosting der Webseite)</h2>
+
+        <h3>Wer ist Cloudflare?</h3>
         <p>
-          Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einer
-          stabilen, sicheren und kostenarmen Bereitstellung der Webseite).
-        </p>
-        <p>
-          Weitere Informationen zur Datenverarbeitung durch GitHub finden Sie unter:
-          <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">docs.github.com/.../github-general-privacy-statement</a>.
+          <strong>Cloudflare, Inc.</strong> (101 Townsend St, San Francisco, CA 94107, USA)
+          ist einer der weltweit größten Internet-Infrastruktur-Anbieter. Rund
+          <strong>jede fünfte Webseite weltweit</strong> wird über Cloudflare-Dienste
+          ausgeliefert oder abgesichert — von Solo-Selbstständigen wie uns über DAX-Konzerne
+          und öffentliche Stellen bis hin zu Nachrichtenmedien. Auch zahlreiche bekannte
+          deutsche Online-Auftritte (großer Versandhandel, Banken, Vergleichsportale,
+          öffentliche Verwaltung) laufen über Cloudflares Netzwerk. Damit gehört Cloudflare
+          zu den am besten überprüften und regulierten Anbietern weltweit — die Messlatte
+          für Sicherheit und Datenschutz liegt deutlich höher als bei kleineren Hostern.
         </p>
 
-        <h2>3. Schriftarten</h2>
+        <h3>Warum nutzen wir das?</h3>
+        <p>
+          Damit Sie diese Webseite überhaupt im Browser sehen können, müssen die HTML-, Bild-
+          und Textdateien irgendwo liegen und über das Internet ausgeliefert werden. Wir nutzen
+          dafür <strong>Cloudflare Pages</strong>. Cloudflare betreibt weltweit ein
+          Netzwerk von Servern (CDN), liefert die Inhalte vom geografisch nächsten Standort
+          aus (für Sie in Deutschland in der Regel von einem EU-Server) und wehrt Angriffe auf
+          die Seite ab (z.&nbsp;B. DDoS-Attacken).
+        </p>
+
+        <h3>Welche Daten werden verarbeitet?</h3>
+        <p>Bei jedem Aufruf der Seite werden technisch notwendige Daten an Cloudflare übertragen:</p>
+        <ul>
+          <li>Ihre <strong>IP-Adresse</strong></li>
+          <li>Datum und Uhrzeit des Aufrufs</li>
+          <li>Aufgerufene URL und HTTP-Methode</li>
+          <li><strong>User-Agent</strong> (Browser- und Betriebssystem-Information)</li>
+          <li>HTTP-Referrer (von welcher Seite Sie kamen)</li>
+          <li>HTTP-Statuscode</li>
+        </ul>
+
+        <h3>Wo werden die Daten gespeichert?</h3>
+        <p>
+          Cloudflare betreibt Server weltweit. Anfragen aus Deutschland werden in der Regel
+          über EU-Edge-Standorte beantwortet, ein Drittlandstransfer in die USA kann jedoch
+          nicht vollständig ausgeschlossen werden. Sicherheits-Logs werden bei Cloudflare
+          standardmäßig <strong>nach etwa 7 Tagen</strong> automatisch gelöscht.
+        </p>
+
+        <p>
+          <strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse
+          am sicheren, stabilen und schnellen Betrieb der Webseite).<br/>
+          <strong>Drittlandstransfer:</strong> Cloudflare ist ein US-Unternehmen. Übermittlung
+          auf Grundlage von Standardvertragsklauseln (SCC) nach Art. 46 Abs. 2 lit. c DSGVO.<br/>
+          Auftragsverarbeitungsvertrag: <a href="https://www.cloudflare.com/cloudflare-customer-dpa/" target="_blank" rel="noopener">cloudflare.com/cloudflare-customer-dpa</a><br/>
+          Datenschutzhinweise: <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">cloudflare.com/privacypolicy</a>
+        </p>
+
+        <h2 id="cloudflare-workers">4. Cloudflare Workers (Form-Backend)</h2>
+
+        <h3>Warum nutzen wir das?</h3>
+        <p>
+          Wenn Sie unser Kontaktformular abschicken, müssen Ihre Eingaben technisch
+          entgegengenommen, geprüft und in eine E-Mail umgewandelt werden. Statt einen
+          eigenen Server zu betreiben, läuft dieser Schritt in einem sogenannten
+          <strong>Worker</strong> bei Cloudflare — einer schlanken serverlosen Funktion,
+          die nur wenige Millisekunden pro Anfrage aktiv ist. Der Worker ist unter
+          <code>forms.pixelschneiderei.de</code> erreichbar.
+        </p>
+
+        <h3>Welche Daten werden verarbeitet?</h3>
+        <ul>
+          <li>Alle Inhalte, die Sie ins Kontaktformular eingegeben haben (Name, E-Mail,
+            Telefon, Betreff, Nachricht) — nur <strong>während der Übermittlung</strong>,
+            nicht persistent gespeichert</li>
+          <li>Ihre IP-Adresse (ausschließlich als gehashter Wert mit Tagessalz für die
+            Missbrauchsabwehr)</li>
+          <li>Ihr Turnstile-Bot-Schutz-Token (siehe nächster Abschnitt)</li>
+        </ul>
+
+        <h3>Wo werden die Daten gespeichert?</h3>
+        <p>
+          Der Worker ist <strong>stateless</strong> — er speichert die Formulardaten nicht.
+          Sobald Ihre Anfrage als E-Mail versendet wurde, sind die Daten aus dem Worker
+          verschwunden.
+        </p>
+
+        <p>
+          <strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. b DSGVO (vorvertragliche Maßnahmen)
+          und Art. 6 Abs. 1 lit. f DSGVO (zuverlässige Annahme von Formularen).<br/>
+          <strong>Drittlandstransfer:</strong> wie bei Cloudflare Pages (SCC mit Cloudflare).
+        </p>
+
+        <h2 id="turnstile">5. Cloudflare Turnstile (Bot-Schutz im Kontaktformular)</h2>
+
+        <h3>Warum nutzen wir das?</h3>
+        <p>
+          Unser Kontaktformular ist täglich Ziel automatisierter Spam-Bots, die Werbe-Müll
+          und Phishing-Versuche an unser Postfach schicken würden. Statt Sie mit nervigen
+          „Klick auf alle Ampeln"-Captchas zu plagen, nutzen wir <strong>Turnstile</strong>
+          der Cloudflare, Inc. Turnstile entscheidet ohne sichtbares Captcha im Hintergrund,
+          ob Sie ein Mensch sind — auf Basis stiller technischer Signale.
+        </p>
+
+        <h3>Welche Daten werden verarbeitet?</h3>
+        <ul>
+          <li>Ihre <strong>IP-Adresse</strong></li>
+          <li>User-Agent und Browser-Charakteristika</li>
+          <li>Cookie-freie technische Signale (Maus-/Tastatur-Verhalten, Canvas-Rendering,
+            Bildschirm- und Hardware-Eigenschaften)</li>
+        </ul>
+        <p>
+          <strong>Cookies:</strong> Turnstile setzt <strong>keine Cookies</strong> auf
+          Ihrem Gerät — die Bot-Erkennung erfolgt vollständig cookie-frei.
+        </p>
+
+        <h3>Wo werden die Daten gespeichert?</h3>
+        <p>
+          Turnstile verarbeitet die Signale ausschließlich zur Bewertung in Echtzeit. Es
+          entsteht ein einmaliger Token, der wenige Minuten gültig ist und nach der
+          Validierung verfällt. Cloudflare speichert die Daten nur zur Missbrauchsabwehr
+          und gibt sie nicht an uns weiter.
+        </p>
+
+        <p>
+          <strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse
+          am Schutz unseres Formulars vor Missbrauch) sowie Art. 32 DSGVO (Pflicht zur
+          Datensicherheit).<br/>
+          <strong>Drittlandstransfer:</strong> auf Grundlage von SCC.<br/>
+          Datenschutzhinweise: <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">cloudflare.com/privacypolicy</a>
+        </p>
+
+        <h2 id="resend">6. Resend (Mail-Versand des Kontaktformulars)</h2>
+
+        <h3>Warum nutzen wir das?</h3>
+        <p>
+          Damit die E-Mail aus Ihrem Kontaktformular zuverlässig in unserem Postfach ankommt
+          — und nicht im Spam-Ordner unseres Mail-Anbieters landet — nutzen wir
+          <strong>Resend</strong> der <strong>Resend, Inc.</strong> (2261 Market Street #5039,
+          San Francisco, CA 94114, USA). Resend ist auf den professionellen, regelkonformen
+          Versand sogenannter Transaktions-E-Mails spezialisiert (DKIM-Signatur, SPF-Authentifizierung,
+          Reputation-Management). Eigenständig einen sicheren Mailserver mit guter Zustellrate
+          zu betreiben, ist heutzutage kaum noch praktikabel.
+        </p>
+
+        <h3>Welche Daten werden verarbeitet?</h3>
+        <p>
+          Alle Inhalte, die Sie ins Kontaktformular eingegeben haben — also Name, E-Mail-Adresse,
+          Telefonnummer, Betreff, Nachricht — werden an Resend übermittelt und dort als E-Mail
+          an unser Postfach versendet.
+        </p>
+
+        <h3>Wo werden die Daten gespeichert?</h3>
+        <p>
+          Resend speichert die Inhalte für maximal <strong>30 Tage in seinen Versandprotokollen</strong>
+          (Logs zur Fehlerdiagnose und Reputation-Management) und löscht sie danach automatisch.
+          Eine separate Archivierung Ihrer Daten findet bei Resend nicht statt.
+        </p>
+
+        <p>
+          <strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. b DSGVO (vorvertragliche Maßnahmen)
+          und Art. 6 Abs. 1 lit. f DSGVO (zuverlässiger Mail-Versand).<br/>
+          <strong>Drittlandstransfer:</strong> Resend ist ein US-Unternehmen. Übermittlung auf
+          Grundlage von EU-Standardvertragsklauseln (SCC) sowie eines AVV nach Art. 28 DSGVO.<br/>
+          Datenschutzhinweise: <a href="https://resend.com/legal/privacy-policy" target="_blank" rel="noopener">resend.com/legal/privacy-policy</a><br/>
+          Auftragsverarbeitungsvertrag: <a href="https://resend.com/legal/dpa" target="_blank" rel="noopener">resend.com/legal/dpa</a>
+        </p>
+
+        <h2 id="strato">7. STRATO (E-Mail-Postfach)</h2>
+
+        <h3>Warum nutzen wir das?</h3>
+        <p>
+          Unser geschäftliches E-Mail-Postfach liegt bei der <strong>STRATO AG</strong>
+          (Otto-Ostrowski-Straße 7, 10249 Berlin, Deutschland). STRATO ist ein deutscher
+          Anbieter mit Rechenzentren in Deutschland.
+        </p>
+
+        <h3>Welche Daten werden verarbeitet?</h3>
+        <p>
+          Wenn Ihre Formularanfrage als E-Mail bei uns ankommt, wird sie in unserem
+          STRATO-Postfach abgelegt — wie jede andere geschäftliche E-Mail auch. Wir antworten
+          Ihnen dann aus diesem Postfach heraus. Gleiches gilt, wenn Sie uns direkt per
+          <a href="mailto:erik@weisser.dev">E-Mail</a> kontaktieren.
+        </p>
+
+        <h3>Wo werden die Daten gespeichert?</h3>
+        <p>
+          In den STRATO-Rechenzentren in Deutschland. Wir behalten die E-Mail im Posteingang,
+          bis Ihr Anliegen erledigt ist. Geht aus der Anfrage ein Auftrag hervor, gelten
+          anschließend die gesetzlichen Aufbewahrungsfristen für Geschäftskorrespondenz
+          (bis zu 10 Jahre nach HGB / AO).
+        </p>
+
+        <p>
+          <strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. b DSGVO (Vertragsanbahnung),
+          Art. 6 Abs. 1 lit. f DSGVO (Kommunikation mit Kunden) und steuer-/handelsrechtliche
+          Aufbewahrungspflichten.<br/>
+          Datenschutzhinweise: <a href="https://www.strato.de/datenschutz/" target="_blank" rel="noopener">strato.de/datenschutz</a>
+        </p>
+
+        <h2>8. Schriftarten</h2>
         <p>
           Diese Webseite verwendet die Schriftarten <em>Fraunces</em>, <em>Inter</em>,
           <em>JetBrains&nbsp;Mono</em> und <em>Allura</em>. Diese sind unter freien Lizenzen
@@ -117,19 +340,6 @@
           es findet <strong>keine Verbindung zu externen Anbietern</strong> wie Google Fonts statt.
           Beim Aufruf der Schriftarten werden somit auch keine personenbezogenen Daten
           (z.&nbsp;B. IP-Adresse) an Dritte übertragen.
-        </p>
-
-        <h2>4. Kontaktaufnahme per E-Mail</h2>
-        <p>
-          Wenn Sie uns per E-Mail kontaktieren, werden die von Ihnen übermittelten Daten
-          (E-Mail-Adresse, Name, Inhalt) zur Bearbeitung Ihrer Anfrage gespeichert. Die
-          E-Mails werden über das deutsche Hosting-Unternehmen <strong>STRATO AG</strong>
-          (Otto-Ostrowski-Straße 7, 10249 Berlin) verarbeitet und gespeichert.
-        </p>
-        <p>
-          Rechtsgrundlage: Art. 6 Abs. 1 lit. b DSGVO (Anbahnung/Durchführung eines
-          Vertrages) sowie Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der
-          Beantwortung Ihrer Anfrage).
         </p>
 
         <h2>5. Kunden-, Angebots- und Rechnungsdaten (Zoho Books)</h2>
