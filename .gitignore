@@ -1,2 +1,5 @@
 node_modules
 .DS_Store
+
+# Font-Cache vom Preisübersicht-Build (auto-generiert aus assets/fonts/*.woff2)
+tools/_fonts_cache/
