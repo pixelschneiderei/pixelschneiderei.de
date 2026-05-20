@@ -32,7 +32,7 @@
   "@type": "CollectionPage",
   "@id": "https://pixelschneiderei.de/leistungen.html",
   "name": "Leistungen & Bausteine im Detail",
-  "description": "Drei Webseiten-Pakete, drei Service-Pakete, dreizehn frei kombinierbare Bausteine.",
+  "description": "Drei Webseiten-Pakete, vier Service-Pakete, vierzehn frei kombinierbare Bausteine.",
   "url": "https://pixelschneiderei.de/leistungen.html",
   "inLanguage": "de-DE",
   "isPartOf": { "@type": "WebSite", "name": "Pixelschneiderei", "url": "https://pixelschneiderei.de/" },
@@ -81,6 +81,15 @@
   }
   .compare tfoot td:first-child{ text-align: left; color: var(--muted); font-style: italic;}
   .compare tfoot td strong{ color: var(--ink); font-family: var(--serif); font-style: normal; font-size: 1.1rem; font-weight: 500;}
+  /* Ersparnis-Zeile */
+  .compare tbody tr.row-save td{
+    background: var(--thread-3, #f2d8d9);
+    border-top: 1px solid var(--thread);
+    padding-top: 18px; padding-bottom: 18px;
+  }
+  .compare tbody tr.row-save td:first-child{ color: var(--thread); font-weight: 600;}
+  .compare tbody tr.row-save td.cell strong{ color: var(--thread); font-size: 1.08rem; font-family: var(--sans); font-weight: 700;}
+  .compare tbody tr.row-save:hover td{ background: var(--thread-3, #f2d8d9);}
 
   /* ============ Bausteine-Galerie ============ */
   .bausteine-grid{
@@ -237,8 +246,8 @@
       <span class="eyebrow">Leistungen &amp; Bausteine</span>
       <h1 style="margin-top:18px">Alles, was wir<br/><em style="font-style:italic;color:var(--thread);font-weight:300">nähen</em> — übersichtlich.</h1>
       <p class="lede">
-        Drei Webseiten-Pakete für drei Anlassgrößen. Drei Service-Pakete für das, was danach kommt.
-        Dreizehn Bausteine, die Sie einzeln zubuchen können, wenn das Paket nicht ganz passt.
+        Drei Webseiten-Pakete für drei Anlassgrößen. Vier Service-Pakete für das, was danach kommt.
+        Vierzehn Bausteine, die Sie einzeln zubuchen können, wenn das Paket nicht ganz passt.
         Hier sehen Sie alles auf einen Blick — ohne Überraschungen im Erstgespräch.
       </p>
     </div>
@@ -282,6 +291,7 @@
             <tr><td>Paket: Content-Modal (Lightbox)<small>Datenschutz-Quickinfo-Modal als Komponente</small></td><td class="cell">—</td><td class="cell">—</td><td class="cell yes">✓</td></tr>
             <tr><td>Volles Schema.org / Rich Snippets<small>LocalBusiness, Service, Review, JobPosting</small></td><td class="cell">—</td><td class="cell">—</td><td class="cell yes">✓</td></tr>
             <tr><td>Quellcode-Übergabe bei Vertragsende<small>Komplettes .zip-Archiv inkl. Selbst-Hosting-Anleitung</small></td><td class="cell yes">✓</td><td class="cell yes">✓</td><td class="cell yes">✓</td></tr>
+            <tr class="row-save"><td><strong>Ihre Ersparnis gegenüber Einzelkauf</strong></td><td class="cell">—</td><td class="cell"><strong>~15 %</strong></td><td class="cell"><strong>~20 %</strong></td></tr>
           </tbody>
           <tfoot>
             <tr>
@@ -305,7 +315,7 @@
           <h2 style="margin-top:18px">Damit Ihre Seite <em style="font-style:italic;color:var(--thread);font-weight:300">aktuell bleibt.</em></h2>
         </div>
         <p class="lede reveal">
-          Webseite einmal gebaut — und dann? Drei Service-Stufen, die laufend dafür sorgen, dass
+          Webseite einmal gebaut — und dann? Vier Service-Stufen, die laufend dafür sorgen, dass
           alles rechtssicher, sicher und gepflegt bleibt. Beidseitig kündbar, Teilerstattung
           bei vorzeitigem Ende. Alle Module 1:1 in jedem Paket gleich definiert — Sie wissen
           immer, was drin ist.
@@ -317,7 +327,7 @@
           <thead>
             <tr>
               <th>Service-Modul</th>
-              <th class="tier">Hosting Basis<em>Reiner Betrieb</em></th>
+              <th class="tier">Hosting<em>Reiner Betrieb</em></th>
               <th class="tier">Budget<em>+ Pflicht-Checks</em></th>
               <th class="tier">Basis<em>+ Pflege</em></th>
               <th class="tier">All-Inc<em>Alles drin</em></th>
@@ -335,16 +345,8 @@
             <tr><td>Bildpflege (bis 5 Bilder / Jahr)<small>Vom Kunden gelieferte Bilder optimiert einbauen</small></td><td class="cell">—</td><td class="cell">—</td><td class="cell">—</td><td class="cell yes">✓</td></tr>
             <tr><td>Karriere-Anzeige-Pflege<small>Stellenanzeigen aktualisieren, Schema.org-Validierung</small></td><td class="cell">—</td><td class="cell">—</td><td class="cell">—</td><td class="cell yes">✓</td></tr>
             <tr><td>DNS / Hosting-Wartung<small>DNS-Drift-Check, Build-Logs-Review, Cloudflare-Pflege</small></td><td class="cell">—</td><td class="cell">—</td><td class="cell">—</td><td class="cell yes">✓</td></tr>
+            <tr class="row-save"><td><strong>Ihre Ersparnis pro Jahr</strong></td><td class="cell">—</td><td class="cell"><strong>~20 %</strong></td><td class="cell"><strong>~30 %</strong></td><td class="cell"><strong>~45 %</strong></td></tr>
           </tbody>
-          <tfoot>
-            <tr>
-              <td>Tagline:</td>
-              <td><strong>Läuft, mehr nicht.</strong></td>
-              <td><strong>Pflichten erfüllt.</strong></td>
-              <td><strong>Was die meisten brauchen.</strong></td>
-              <td><strong>Sie kümmern sich um nichts.</strong></td>
-            </tr>
-          </tfoot>
         </table>
       </div>
 

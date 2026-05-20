@@ -739,7 +739,7 @@ def section_services_compare():
         S["lede_left"]))
     s.append(Spacer(1, 4*mm))
 
-    header = ["", "Hosting<br/>Basis", "Budget", "Basis", "All-Inc"]
+    header = ["", "Hosting", "Budget", "Basis", "All-Inc"]
     sub = ["Preis pro Jahr", "<b>50 €</b>", "<b>100 €</b>", "<b>150 €</b>", "<b>200 €</b>"]
     rows = [
         ("SSL + Cloudflare-Hosting + Form-Endpoint",      "✓", "✓", "✓", "✓"),
@@ -825,7 +825,7 @@ def section_services_compare():
 
     # „Welches Paket passt zu wem?" — alle 4 Empfehlungen müssen zusammen bleiben.
     recs = [
-        ("Hosting Basis · 50 € / Jahr",
+        ("Hosting · 50 € / Jahr",
          "Sie wollen, dass die Seite läuft. Mehr nicht. Ideal, wenn Sie selbst "
          "Inhalte pflegen oder einen anderen Dienstleister haben."),
         ("Budget · 100 € / Jahr",

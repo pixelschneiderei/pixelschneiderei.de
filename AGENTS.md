@@ -542,21 +542,22 @@ Erscheint in: Impressum, Datenschutz, JSON-LD `LocalBusiness` aller Hauptseiten,
 
 ## B3. Service-Modell
 
-**Drei Webseiten-Pakete** (Preis-Anker auf `leistungen.html`, konkretes Angebot im Erstgespräch):
+**Drei Webseiten-Pakete** — Preise im PDF (`Preisübersicht.pdf`, Source of Truth = Zoho-Artikel):
 
-- **Starter** (One-Pager, kein Formular, mailto/tel) — ab 875 € + ab 75 €/Jahr Service → Jahr 1 ab 1.000 €
-- **Standard** (Multi-Page, 2-4 Detail-Seiten, Formular) — ab 1.875 € + ab 175 €/Jahr Service → Jahr 1 ab 2.100 €
-- **Premium** (alles + Karriere/Galerie/SEO/Karte) — ab 2.700 € + ab 250 €/Jahr Service → Jahr 1 ab 3.000 €
+- **Starter** (One-Pager, KF Basis = mailto)
+- **Standard** (Multi-Page, 2–4 Detail-Seiten, KF Premium + SEO + WhatsApp + 1× Click-to-Load inkl.)
+- **Premium / All-Inclusive** (alles + Karriere + Galerie + KI-Content + Content-Modal + Bewertungs-Slider)
 
-**Drei Service-Pakete** (jährlich, beidseitig kündbar, Teilerstattung bei vorzeitigem Ende):
+**Vier Service-Pakete** (jährlich, beidseitig kündbar, Teilerstattung bei vorzeitigem Ende):
 
-- **Budget** — 75 €/Jahr (3 Module: Rechtstexte-Check + SSL/Uptime + Sicherheits-Header)
-- **Basis** — 175 €/Jahr (7 Module + Bewertungen, Feiertage, Formular-Pflege, 2× Inhaltsupdate)
-- **All-Inc** — 250 €/Jahr (alle 12 Module + SEO, Bewerbungsformular, Bildpflege, Karriere-Anzeigen, DNS-Wartung, 4× Inhaltsupdate). Bundle-Ersparnis 50 € vs. à-la-carte.
+- **Hosting** — Reiner Betrieb (SSL + Cloudflare-Hosting + Form-Endpoint)
+- **Budget** — Hosting + Pflicht-Checks (Impressum-Check, Security-Header-Review, 2× Inhaltsupdate)
+- **Basis** — Budget + Pflege (Google-Bewertungen, Feiertage-Refresh, 5× Inhaltsupdate). Empfehlung für die meisten Kunden.
+- **All-Inc** — alles (SEO-Check, Bewerbungs-Formular-Pflege, Bildpflege, Karriere-Anzeige-Pflege, DNS/Hosting-Wartung, 8× Inhaltsupdate). Bundle-Ersparnis vs. à-la-carte.
 
-**12 Service-Module einzeln zubuchbar** à 25 €/Jahr — Liste vollständig auf `leistungen.html`.
+**Service-Module einzeln zubuchbar** — Liste vollständig auf `leistungen.html` und im PDF.
 
-**13 Bausteine zubuchbar** (einmalig, je 25-150 €): Kontaktformular, Bewertungs-Slider, Click-to-Load, Content-Modal, Bild-Optimierung, Extraseite, Produktseite, Karriereseite, WhatsApp-CTA, „Heute geöffnet"-Logik, Initiale Einrichtung Basic/Premium, SEO-Tuning.
+**14 Add-On-Pakete** (einmalig): Impressum & Datenschutz, Kontaktformular (Basis), Kontaktformular (Premium), WhatsApp Call-To-Action, Bild (Basis), Premium Design, KI-Content, SEO-Optimierung (Basis), Bewertungs-Slider, Click-to-Load (Privacy-Embed), Content-Modal (Lightbox), Karriereseite inkl. Formular, Extraseite, Produktseite.
 
 **Förderprogramme** (für Bayern explizit erwähnt):
 - Bayerischer Digitalbonus
