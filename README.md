@@ -1,47 +1,41 @@
 # pixelschneiderei.de
 
-Quellcode der Webseite [pixelschneiderei.de](https://pixelschneiderei.de) – maßgeschneiderte Webseiten.
+Source code of the website of **Pixelschneiderei**, a studio for tailor-made websites (German-language site).
 
-## Aufbau
+**Live:** [pixelschneiderei.de](https://pixelschneiderei.de)
 
-Statische Webseite, kein Build-Prozess nötig. Direkt deploybar auf GitHub Pages, Cloudflare Pages, Netlify oder jedem statischen Hoster.
+![Screenshot of pixelschneiderei.de](docs/screenshot.jpg)
+
+## Contents
+
+Static website, no build step. Can be hosted on GitHub Pages, Cloudflare Pages, Netlify or any static host.
 
 ```
 .
-├── index.html              # Hauptseite
-├── referenzen.html         # Übersicht aller Demos
-├── komponenten.html        # Komponenten-Schau (Formulare, CTAs, WhatsApp etc.)
-├── impressum.html
-├── datenschutz.html
-├── assets/
-│   ├── style.css           # geteiltes Stylesheet
-│   └── site.js             # geteiltes JS (Nav, Reveal-Animationen)
-└── demos/
-    ├── atelier/            # Hochglanz-Showcase im Apple-Stil
-    ├── holzgeist/          # Tischlerei (Branche: Handwerk)
-    ├── aurora/             # Café (Branche: Essen)
-    ├── atmen/              # Yoga-Studio (Branche: Fitness)
-    ├── arztpraxis/         # Hausarztpraxis (Branche: Arzt)
-    └── laden/              # Schreibwaren-Geschäft (Branche: Geschäft)
+├── index.html              # Home page
+├── referenzen.html         # Overview of all demos
+├── komponenten.html        # Component showcase (forms, CTAs, WhatsApp, ...)
+├── leistungen.html, agb.html, impressum.html, datenschutz.html
+├── assets/                 # shared stylesheet and JS (nav, reveal animations)
+└── demos/                  # sample sites per industry (atelier, holzgeist, aurora, atmen, arztpraxis, laden)
 ```
 
-## Lokal ansehen
-
-Einfach in einem Browser öffnen oder einen kleinen Webserver starten:
+## Run locally
 
 ```bash
 python3 -m http.server 8000
-# oder
+# or
 npx serve .
 ```
 
-## Tech
+## Tech stack
 
-- Plain HTML, CSS, JS (kein Framework)
-- Schriftarten via Google Fonts (Fraunces, Inter, JetBrains Mono)
-- Keine Cookies, keine Tracker, kein Analytics
-- DSGVO-konform
+- Plain HTML, CSS and JavaScript, no framework
+- Google Fonts (Fraunces, Inter, JetBrains Mono)
+- No cookies, no trackers, no analytics
 
-## Lizenz
+See [`AGENTS.md`](AGENTS.md) for contribution conventions.
 
-Inhalte © Pixelschneiderei. Code MIT-lizenziert (siehe `LICENSE`).
+## License
+
+Content (c) Pixelschneiderei. Code is MIT-licensed, see [LICENSE](LICENSE).
